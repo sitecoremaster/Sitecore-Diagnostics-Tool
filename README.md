@@ -13,6 +13,12 @@ The application is distributed in a form of Windows Application and Sitecore Pac
 
 Please find both downloads and release notes on [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
 
+### SOURCE CODE & CONTRIBUTION
+
+The source code is not available at the moment, however you still can contribute - check the `contrib` folder in this repository - 
+it contains a project with sample test and configuration to run this test alongside with default ones. Feel free to clone this repo
+and develop your own tests.
+
 ### PREREQUISITES
 
 * Windows 7, 8.x, 2008 R2, 2012
