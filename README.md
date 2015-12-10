@@ -24,10 +24,6 @@ and develop your own tests.
 * Windows 7, 8.x, 2008 R2, 2012
 * .NET Framework 4.5
 
-### FRAMEWORK API
-
-Sitecore Diagnostics Toolset offers sophisticated framework that you can use to write your own tests. Please refer to the [framework](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/wiki/Framework) wiki page for details.
-
 ### FEEDBACK & BUG REPORTS
 
 To provide feedback please use [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues) or [Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Toolset.aspx) Comments section, if reporting issues please don't forget to provide:
