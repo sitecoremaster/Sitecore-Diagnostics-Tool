@@ -8,7 +8,7 @@ Sitecore Diagnostics Toolset allows automatically diagnosing Sitecore sites. It 
 
 Sitecore 7.2 and above is the target Sitecore version to support, however it is expected to work with Sitecore 6.3+.
 
-The application is distributed as a Windows Application, and as a web module to install on the Sitecore site.
+The application is distributed as a Windows Application, and as a Web module to install on the Sitecore site.
 
 ### DOWNLOADS & RELEASE NOTES
 
