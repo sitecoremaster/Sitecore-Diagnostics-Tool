@@ -15,9 +15,7 @@ Please find both downloads and release notes on [GitHub Releases](https://github
 
 ### SOURCE CODE & CONTRIBUTION
 
-The source code is not available at the moment, however you still can contribute - check the `contrib` folder in this repository - 
-it contains a project with sample test and configuration to run this test alongside with default ones. Feel free to clone this repo
-and develop your own tests.
+The source code is not available at the moment.
 
 ### PREREQUISITES
 
