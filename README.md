@@ -1,9 +1,9 @@
 # Sitecore Diagnostics Toolset
 
-Sitecore Diagnostics Toolset is both an application designed to be useful for the following scenarios:
-- Validating implementation progress during development
-- Pre-production testing
-- Checking health of production servers
+Sitecore Diagnostics Toolset allows automatically diagnosing Sitecore sites. It does the following:
+- Checks the site health and validates configuration consistency
+- Checks the site for various known issues and other Sitecore documentation
+- Generates HTML report based on the analysis
 
 Sitecore 7.2 and above is the target Sitecore version to support, however it is expected to work with Sitecore 6.3+.
 
@@ -11,7 +11,7 @@ The application is distributed in a form of Windows Application and Sitecore Pac
 
 ### DOWNLOADS & RELEASE NOTES
 
-Please find both downloads and release notes on [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
+Available on the [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
 
 ### SOURCE CODE & CONTRIBUTION
 
@@ -24,7 +24,11 @@ The source code is not available at the moment.
 
 ### FEEDBACK & BUG REPORTS
 
-To provide feedback please use [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues) or [Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Toolset.aspx) Comments section, if reporting issues please don't forget to provide:
+For feedback, please use:
+a) [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues)
+b) [Comments on Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Toolset.aspx)
+
+If reporting an issue, please do not forget to provide:
 
 * the report file (if was successfully generated), or otherwise the log files, located in the `%APPDATA%\Sitecore\Sitecore Diagnostics Toolset\Logs` folder
 * an SSPG package of an Instance that you tried to troubleshoot (with extra C11 and C12 options checked)
