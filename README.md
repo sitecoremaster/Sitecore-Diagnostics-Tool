@@ -1,6 +1,6 @@
 # Sitecore Diagnostics Toolset
 
-Sitecore Diagnostics Toolset is both an application and a framework designed to be useful for the following scenarios:
+Sitecore Diagnostics Toolset is both an application designed to be useful for the following scenarios:
 - Validating implementation progress during development
 - Pre-production testing
 - Checking health of production servers
