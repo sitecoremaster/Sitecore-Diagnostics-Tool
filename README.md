@@ -1,8 +1,9 @@
 # Sitecore Diagnostics Toolset
 
 Sitecore Diagnostics Toolset allows automatically diagnosing Sitecore sites. It does the following:
-- Checks the site health and validates configuration consistency
-- Checks the site for various known issues and other Sitecore documentation
+- Checks the site for the configuration consistency
+- Checks the site for symptoms described in known issues
+- Checks the site against recommendations from Sitecore documentation
 - Generates HTML report based on the analysis
 
 Sitecore 7.2 and above is the target Sitecore version to support, however it is expected to work with Sitecore 6.3+.
