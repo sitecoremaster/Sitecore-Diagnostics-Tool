@@ -12,7 +12,7 @@ The application is distributed as a Windows Application, and as a Web module to 
 
 ### DOWNLOADS & RELEASE NOTES
 
-Available on the [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
+Available as a [ClickOnce installer](dl.sitecore.net/updater/sdt), or portable installations on the [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
 
 ### SOURCE CODE & CONTRIBUTION
 
@@ -32,11 +32,9 @@ b) [Comments on Sitecore Marketplace](https://marketplace.sitecore.net/Modules/S
 If reporting an issue, please do not forget to provide:
 
 * the report file (if was successfully generated), or otherwise the log files, located in the `%APPDATA%\Sitecore\Sitecore Diagnostics Toolset\Logs` folder
-* an SSPG package of an Instance that you tried to troubleshoot (with extra C11 and C12 options checked)
+* an SSPG package of an Instance that you tried to troubleshoot (with extra `C11` and `C12` options checked)
 
 ### TROUBLESHOOTING & KNOWN ISSUES
 
-* The Win application requires Administrator permissions.
-* If the tool shows 0 tests available, you need to open Properties for the Sitecore.DiagnosticsToolset.Tests.dll assembly and click the Unblock button.
-* If some tests could not be run, review the HTML source of the resulting report - it contains internal log information in the bottom of the document that can point to something useful!
-
+* The Windows version of application requires Administrator permissions.
+* If some tests could not be run, review the HTML source of the resulting report - it contains internal log information in the bottom of the document that can point to something useful.
