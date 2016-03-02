@@ -16,12 +16,12 @@ Available as a [ClickOnce installer](dl.sitecore.net/updater/sdt), or portable i
 
 ### SOURCE CODE & CONTRIBUTION
 
-The source code is not available at the moment.
+The source code is not available at the moment. The only contribution we accept now is bug/wish reports.
 
 ### PREREQUISITES
 
-* Windows 7, 8.x, 2008 R2, 2012
-* .NET Framework 4.5
+* Windows 7, 8.x, 10, 2008 R2, 2012
+* .NET Framework 4.0 (4.5 for WebApp version)
 
 ### FEEDBACK & BUG REPORTS
 
