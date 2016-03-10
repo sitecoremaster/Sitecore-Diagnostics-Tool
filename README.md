@@ -12,7 +12,9 @@ The application is distributed as a Windows Application, and as a Web module to 
 
 ### DOWNLOADS & RELEASE NOTES
 
-Available as a [ClickOnce installer](http://dl.sitecore.net/updater/sdt), or portable installations on the [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page.
+Available as a [ClickOnce installer](http://dl.sitecore.net/updater/sdt), or portable installations on the [GitHub Releases](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/releases) page. 
+
+Latest QA version is available as [QA ClickOnce](http://dl.sitecore.net/updater/qa/sdt) as well.
 
 ### SOURCE CODE & CONTRIBUTION
 
