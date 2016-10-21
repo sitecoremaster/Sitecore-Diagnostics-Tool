@@ -8,13 +8,13 @@ Sitecore Diagnostics Toolset allows automatically diagnosing Sitecore sites. It 
 
 Sitecore 7.2 and above is the target Sitecore version to support, however it is expected to work with Sitecore 6.3+.
 
-The application is distributed as a Windows Application, and as a Web module to install on the Sitecore site.
+The application is distributed as a Windows Application that can be run either on a web server, or on a developer machine to analyse [SSPG package](https://marketplace.sitecore.net/Modules/Sitecore_Support_Package_Generator.aspx) (limited functionality).
 
 ### DOWNLOADS & RELEASE NOTES
 
 Available only as a [ClickOnce installer](http://dl.sitecore.net/updater/sdt). 
 
-Latest QA version is available as [QA ClickOnce](http://dl.sitecore.net/updater/qa/sdt) as well.
+Latest nighly version is available as [QA ClickOnce installer](http://dl.sitecore.net/updater/qa/sdt) as well.
 
 ### SOURCE CODE & CONTRIBUTION
 
@@ -27,14 +27,14 @@ The source code is not available at the moment. The only contribution we accept 
 
 ### FEEDBACK & BUG REPORTS
 
-For feedback, please use:
-a) [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues)
+For feedback, please use:  
+a) [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues)  
 b) [Comments on Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Toolset.aspx)
 
 If reporting an issue, please do not forget to provide:
 
 * the report file (if was successfully generated), or otherwise the log files, located in the `%APPDATA%\Sitecore\Sitecore Diagnostics Toolset\Logs` folder
-* an SSPG package of an Instance that you tried to troubleshoot (with extra `C11` and `C12` options checked)
+* an [SSPG package](https://marketplace.sitecore.net/Modules/Sitecore_Support_Package_Generator.aspx) of an Instance that you tried to troubleshoot (with extra `C11` and `C12` options checked)
 
 ### TROUBLESHOOTING & KNOWN ISSUES
 
