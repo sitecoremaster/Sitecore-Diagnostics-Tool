@@ -1,6 +1,6 @@
-# Sitecore Diagnostics Toolset
+# Sitecore Diagnostics Tool
 
-Sitecore Diagnostics Toolset allows automatically diagnosing Sitecore sites. It does the following:
+Sitecore Diagnostics Tool allows automatically diagnosing Sitecore sites. It does the following:
 - Checks the site for consistency of configuration 
 - Checks the site for symptoms described in known issues
 - Checks the site against recommendations from Sitecore documentation
@@ -28,12 +28,12 @@ The source code is not available at the moment. The only contribution we accept 
 ### FEEDBACK & BUG REPORTS
 
 For feedback, please use:  
-a) [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Toolset/issues)  
-b) [Comments on Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Toolset.aspx)
+a) [GitHub Issues](https://github.com/Sitecore/Sitecore-Diagnostics-Tool/issues)  
+b) [Comments on Sitecore Marketplace](https://marketplace.sitecore.net/Modules/Sitecore_Diagnostics_Tool.aspx)
 
 If reporting an issue, please do not forget to provide:
 
-* the report file (if was successfully generated), or otherwise the log files, located in the `%APPDATA%\Sitecore\Sitecore Diagnostics Toolset\Logs` folder
+* the report file (if was successfully generated), or otherwise the log files, located in the `%APPDATA%\Sitecore\Sitecore Diagnostics Tool\Logs` folder
 * an [SSPG package](https://marketplace.sitecore.net/Modules/Sitecore_Support_Package_Generator.aspx) of an Instance that you tried to troubleshoot (with extra `C11` and `C12` options checked)
 
 ### TROUBLESHOOTING & KNOWN ISSUES
