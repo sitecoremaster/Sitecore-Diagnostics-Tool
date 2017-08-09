@@ -1,0 +1,1014 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.DiagnosticsTool.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Base.Null">
+            <summary>
+              This class cannot be instantiated and should be always treate as null.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Categories.ServerRole">
+            <summary>
+              Represents a Sitecore instance server role.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.ContentManagement">
+            <summary>
+              The server role represents tests that check Content-Management features in the Sitecore instance.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.ContentDelivery">
+            <summary>
+              The server role represents tests that check Content-Delivery features in the Sitecore instance.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.ContentIndexing">
+            <summary>
+              Responsible for indexing of Sitecore content databases.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.Publishing">
+            <summary>
+              The server role represents tests that check Content-Delivery features in the Sitecore instance.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.Processing">
+            <summary>
+              The server role represents tests that check xDB Processing feature in the Sitecore instance.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.Reporting">
+            <summary>
+              The server role represents tests that check xDB Reporting feature in the Sitecore instance.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.ServerRole.EmailDispatcher">
+            <summary>
+              Responsible for the email dispatch process. This role is only relevant when using EXM module.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Categories.Category">
+            <summary>
+              Represents a category of tests.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Categories.Category.Name">
+            <summary>
+              The display name of the category.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Categories.Category.GetAll">
+            <summary>
+              Gets all registered categories.
+            </summary>
+            <returns>All registered categories.</returns>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.General">
+            <summary>
+              The category represents tests that valid for all kinds of Sitecore instances and environments.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Security">
+            <summary>
+              The category represents tests that check presence of known security vulnerabilities.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Performance">
+            <summary>
+              The category represents tests that designed to improve performance and scalability.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.SearchIndexing">
+            <summary>
+              The category represents tests that validate search and indexing features of Sitecore.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Analytics">
+            <summary>
+              The category represents tests that check for Analytics and xDB-related issues.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Ecm">
+            <summary>
+              The category represents tests that check for Email Experience Manager related issues.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Wffm">
+            <summary>
+              The category represents tests that check for Web Forms for Marketers related issues.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Categories.Category.Production">
+            <summary>
+              The category represents tests that intended to check server in production environment.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.DataProviders.IDataProvider">
+            <summary>
+              The data provider represents a way of retrieving data like LocalServer or SSPG package.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.DataProviders.IDataProvider.GetResources">
+            <summary>
+              The method returns the resources that data provider can offer.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Output.MessagePart.ToString">
+            <summary>
+              Renders text in markdown format. Use overload to see other options.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Common.IResource">
+            <summary>
+              Resource marker.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.ConfigurationFile.RawText">
+            <summary>
+              The raw text stored in the file.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.ConfigurationFile.Configuration">
+            <summary>
+              The XmlDocument pared from the file's raw text.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Failed to load XML file: {0}</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.IContentSearchIndex.Id">
+            <summary>
+              Name of ContentSearch index.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.IContentSearchIndex.Type">
+            <summary>
+              .NET Type of ContentSearch index.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.IContentSearchIndex.SearchProvider">
+            <summary>
+              Type of ContentSearch index implementation.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.IContentSearchIndex.Configuration">
+            <summary>
+              XML configuration element.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Configuration.PipelineDefinition.Name">
+            <summary>
+              The name of pipeline with group prefix (for example, pipelines/itemProvider/addFromTemplate)
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IDatabase.Name">
+            <summary>
+              The name of the appropriate connection string.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IDatabase.ConnectionString">
+            <summary>
+              The appropriate connection string text.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Database.ISystemContext">
+            <summary>
+              System information.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISystemContext.DiagCode">
+            <summary>
+              Reserved for system use.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISystemContext.ApplicationInfo">
+            <summary>
+              Reserved for system use.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabase">
+            <summary>
+              The read-only interface for accessing SQL database
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabase.Type">
+            <summary>
+              The logical type of SQL database.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabase.Schema">
+            <summary>
+              Represents the database schema.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabase.CountRows(System.String)">
+            <summary>
+              Represents a SQL query: SELECT COUNT(*) FROM tableName
+            </summary>
+            <param name="tableName">The table name.</param>
+            <returns>The rows count.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabase.CountRows(System.String,System.String)">
+            <summary>
+              Represents a SQL query: SELECT COUNT(*) FROM tableName WHERE condition
+            </summary>
+            <param name="tableName">The table name.</param>
+            <param name="condition">The optional condition to filter rows with.</param>
+            <returns>The rows count.</returns>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Database.IDatabaseContext">
+            <summary>
+              The read-only interface for accessing Sitecore databases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IDatabaseContext.Sql">
+            <summary>
+              The read-only interface for accessing SQL databases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IDatabaseContext.Mongo">
+            <summary>
+              The read-only interface for accessing Mongo databases
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Database.IMongoDatabaseContext">
+            <summary>
+              The read-only interface for accessing Mongo databases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IMongoDatabaseContext.DatabaseNames">
+            <summary>
+              The connection string names of all mongo databases.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IMongoDatabaseContext.All">
+            <summary>
+              The collection of read-only interfaces to all Mongo databases.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.IMongoDatabaseContext.Item(System.String)">
+            <summary>
+              The read-only interface for accessing Mongo database
+            </summary>
+            <param name="name">The name of the appropriate connection string.</param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabaseContext">
+            <summary>
+              The read-only interface for accessing SQL databases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabaseContext.DatabaseNames">
+            <summary>
+              The connection string names of all SQL databases.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabaseContext.All">
+            <summary>
+              The collection of read-only interfaces to all SQL databases.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Database.ISqlDatabaseContext.Item(System.String)">
+            <summary>
+              The read-only interface for accessing SQL database
+            </summary>
+            <param name="name">The name of the appropriate connection string.</param>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Modules.IModulesContext.ModulesInformation">
+            <summary>
+              Information about Sitecore modules.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Modules.IModulesContext.IncorrectlyInstalledModules">
+            <summary>
+              The list of modules which installed not correctly. Actually, the modules which don't have a full set of libraries.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Modules.IModulesContext.InstalledModules">
+            <summary>
+              The list of correctly installed modules.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Modules.ISitecoreModuleInfo">
+            <summary>
+              A CMS mosule and it's list of releases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Modules.ISitecoreModuleInfo.Name">
+            <summary>
+              Name
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Modules.ISitecoreModuleInfo.Releases">
+            <summary>
+              List of all available releases
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IInstanceName.InstanceName">
+            <summary>
+              The name of the Sitecore instance.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseInfo">
+            <summary>
+              Release description + list of it's assemblies
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseInfo.Release">
+            <summary>
+              Release description
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseInfo.Assemblies">
+            <summary>
+              List of assemblies which belong to this release
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseInfo.AddAssembly(Sitecore.Diagnostics.Objects.AssemblyFile)">
+            <summary>
+              Add assembly to the list
+            </summary>
+            <param name="assembly">Assembly</param>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseDefaultDatabase.Name">
+            <summary>
+              Logical name of the database.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.IReleaseDefaultDatabase.Schema">
+            <summary>
+              Represents database schema.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreAssembliesContext.Assemblies">
+            <summary>
+              The Website\bin\*.dll files.
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.Configuration">
+            <summary>
+              The default Sitecore Configuration of the given Sitecore version.
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetSettings">
+            <summary>
+              Retrieves Sitecore settings map from actual showconfig.
+            </summary>
+            <returns>Returns a dictionary with setting names and values.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetSetting(System.String)">
+            <summary>
+              Retrieves Sitecore setting value from actual showconfig.
+            </summary>
+            <returns>Returns a string value of the setting, or default value if the setting is not presented in the configuration.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetBoolSetting(System.String)">
+            <summary>
+              Retrieves Sitecore setting value from actual showconfig.
+            </summary>
+            <returns>Returns a bool value of the setting.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetConnectionString(System.String)">
+            <summary>
+              Retrieves Sitecore connection string value from actual showconfig.
+            </summary>
+            <returns>Returns a string value of the connection setting, or null if it is not presented in the configuration.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetPipelines">
+            <summary>
+              Retrieves Sitecore pipelines from actual showconfig.
+            </summary>
+            <returns>Returns a set of pipelines extracted from actual showconfig.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetPipeline(System.String)">
+            <summary>
+              Retrieves Sitecore pipeline definition from actual showconfig if it exists.
+            </summary>
+            <param name="name">The name of pipeline with group prefix (for example, pipelines/itemProvider/addFromTemplate)</param>
+            <returns>Returns pipeline definition, or null if it does not exist.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetManagers">
+            <summary>
+              Retrieves Sitecore Managers from actual showconfig.
+            </summary>
+            <returns>Returns a set of Managers extracted from actual showconfig.</returns>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreConfigurationContext.GetManager(System.String)">
+            <summary>
+              Retrieves Sitecore Manager definition from actual showconfig if it exists.
+            </summary>
+            <param name="name">The name of the Manager.</param>
+            <returns>Returns Manager definition, or null if it does not exist.</returns>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreDefaultsContext.Databases">
+            <summary>
+              The default Sitecore Databases of the given Sitecore version.
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext">
+            <summary>
+              The read-only interface for accessing Sitecore assemblies and configuration files
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.WebConfigFile">
+            <summary>
+              The original web.config file
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.DataFolderPath">
+            <summary>
+              The data folder path.
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.GlobalAsaxFile">
+            <summary>
+              The original Global.asax file
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.SitecoreVersionXmlFile">
+            <summary>
+              The sitecore\shell\sitecore.version.xml file
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.SitecoreVersion">
+            <summary>
+              The version of Sitecore extracted from the sitecore\shell\sitecore.version.xml file
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.SitecoreDefaults">
+            <summary>
+              The defaults of the Sitecore version extracted from the sitecore\shell\sitecore.version.xml file.
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.IncludeFiles">
+            <summary>
+              All the App_Config\Include\*.config files
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.ModulesInformation">
+            <summary>
+              Information about Sitecore modules.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.ContentSearchIndexes">
+            <summary>
+              Information about ContentSearch indexes.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation.ISitecoreInformationContext.IsAnalyticsEnabled">
+            <summary>
+              Checks if necessary pipelines are presented and appropriate setting is turned on.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.Thread">
+            <summary>
+              The source thread of the log entry. Example:
+              <code>ManagedPoolThread #1</code>
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.Date">
+            <summary>
+              The date and time of log entry. Example:
+              <code>23/02/2015 08:59:43</code>
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.Level">
+            <summary>
+              The log level. Example:
+              <code>ERROR</code>
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.Message">
+            <summary>
+              The message of log entry. Example:
+              <code>Exception processing remote events from database: core</code>
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.Exception">
+            <summary>
+              The raw stack trace property of Exception object. Example:
+              <code>
+            Exception: System.Data.SqlClient.SqlException
+            Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+            Source: .Net SqlClient Data Provider
+               at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+               at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+            ...
+            </code>
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILogEntry.RawText">
+            <summary>
+              The raw message only (without parsed date and time) of log entry. It may take one or several lines depending on
+              actual log format. Example:
+              <code>
+            ManagedPoolThread #1 08:59:43 ERROR Exception processing remote events from database: core
+            Exception: System.Data.SqlClient.SqlException
+            Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+            Source: .Net SqlClient Data Provider
+               at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+               at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+            ...
+            </code>
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILoggingContext">
+            <summary>
+              The read-only interface for accessing Logging information
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILoggingContext.GetSitecoreLogEntries">
+            <summary>
+              Get all Sitecore log entries.
+            </summary>
+            <returns>The ordered collection of ILogEntry</returns>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILoggingContext.GetSitecoreLogEntries(Sitecore.DiagnosticsTool.Core.Resources.Logging.LogLevel)">
+            <summary>
+              Get all Sitecore log entries.
+            </summary>
+            <param name="logLevel">The log4net log level to be included, pipe-separated list is accepted</param>
+            <returns>The ordered collection of ILogEntry</returns>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Resources.Logging.ILoggingContext.GetSitecoreLogEntries(Sitecore.DiagnosticsTool.Core.Resources.Logging.LogLevel,System.DateTime,System.DateTime)">
+            <summary>
+              Get Sitecore log entries within the specific timeframe.
+            </summary>
+            <param name="logLevel">The log4net log level to be included, pipe-separated list is accepted</param>
+            <param name="start">The start moment of timeframe</param>
+            <param name="end">The end moment of timeframe</param>
+            <returns>The ordered collection of ILogEntry</returns>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.IServerRolesContext">
+            <summary>
+              The read-only interface to the server roles of the Sitecore instance
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.OperationSystemBitness">
+            <summary>
+              The operating system bitness (x86 or x64).
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.OperationSystemVersion">
+            <summary>
+              The operating system version.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.MachineName">
+            <summary>
+              The machine name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.RamMemoryTotal">
+            <summary>
+              The total amount of physical memory on the server. Note, the value can be up to 10% less than actual.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.CpuCoresCount">
+            <summary>
+              The count of CPU cores on the server.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.FrameworkVersions">
+            <summary>
+              The list of installed .NET Framework versions.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IServerInfo.IisVersion">
+            <summary>
+              The version of installed IIS.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion">
+            <summary>
+              Represents the version of .NET Framework. Example:
+              <example>
+                if (FrameworkVersion.45x.HasFlag(framework))
+                {
+                /* framework is 450 or 451 or 452 */
+                }
+              </example>
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v20">
+            <summary>
+              .NET Framework 2.0 specifically
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v30">
+            <summary>
+              .NET Framework 3.0 specifically
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v35">
+            <summary>
+              .NET Framework 3.5 specifically
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v40">
+            <summary>
+              .NET Framework 4.0 specifically
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v450">
+            <summary>
+              .NET Framework 4.5.0 specifically
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v451">
+            <summary>
+              .NET Framework 4.5.1 or further
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v452">
+            <summary>
+              .NET Framework 4.5.1 or further
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v460">
+            <summary>
+              .NET Framework 4.5.1 or further
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v45x">
+            <summary>
+              .NET Framework 4.5.x which includes 4.5.0, 4.5.1, 4.5.2, 4.6.0
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v4x">
+            <summary>
+              .NET Framework 4.x which includes 4.0, 4.5.0, 4.5.1, 4.5.2, 4.6.0
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.v2x">
+            <summary>
+              .NET Framework 2.x which includes 2.0, 3.0, 3.5
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.FrameworkVersion.Undefined">
+            <summary>
+              Unknown version of .NET Framework
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.FrameworkVersion">
+            <summary>
+              .NET Framework version (can be somewhat inaccurate)
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.FrameworkVersionRaw">
+            <summary>
+              .NET Framework version (exact, retrieved by Environment.Version, looks like "4.0.30319.17626")
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.Identity">
+            <summary>
+              The user account that is used for IIS application pool.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.PingingEnabled">
+            <summary>
+              Pinging Enabled application pool property.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.FrameworkBitness">
+            <summary>
+              .NET Framework bitness (x86 or x64).
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.ManagedPipelineMode">
+            <summary>
+              Managed pipeline mode (Classic or Integrated).
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.Name">
+            <summary>
+              The name of application pool.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.WorkerProcessesIds">
+            <summary>
+              The IDs of current worker processes associated with the application pool.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.State">
+            <summary>
+              The state of the application pool (Started, Stopped, ...)
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.MaxWorkerProcesses">
+            <summary>
+              The maximum number of worker processes allowed to have for application pool.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IApplicationPool.LoadUserProfile">
+            <summary>
+              Whether Load User Profile is set to true for application pool or not.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.WebServer.IWebServerContext">
+            <summary>
+              A read-only interface for accessing Web Server (IIS) sites and application pools
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State">
+            <summary>
+              The application pool state.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State.Starting">
+            <summary>
+              The application pool is starting now.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State.Started">
+            <summary>
+              The application pool is started.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State.Stopping">
+            <summary>
+              The application pool is stopping.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State.Stopped">
+            <summary>
+              The application pool is stopped.
+            </summary>
+        </member>
+        <member name="F:Sitecore.DiagnosticsTool.Core.Resources.WebServer.State.Unknown">
+            <summary>
+              The application pool state is unknown.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Resources.FileSystem.IFileSystemContext">
+            <summary>
+              The read-only interface for accessing File System
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Resources.FileSystem.IFileSystemContext.Drives">
+            <summary>
+              The read-only interface for accessing drive settings
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ISolutionTest">
+            <summary>
+              Base interface that is required for every solution-aware test to implement.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ISolutionTest.IsActual(Sitecore.DiagnosticsTool.Core.Tests.ISolutionTestResourceContext,Sitecore.Diagnostics.Objects.ISitecoreVersion)">
+            <summary>
+              The method indicates if this specific test is actual for Sitecore version of the instance under test.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ISolutionTest.Process(Sitecore.DiagnosticsTool.Core.Tests.ISolutionTestResourceContext,Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext)">
+            <summary>
+              All the test logic must be placed here. Use data parameter to access the resources API, use output parameter to give
+              results.
+            </summary>
+            <param name="data">An interface to test resources.</param>
+            <param name="output">An interface to test output.</param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ISolutionTestResourceContext">
+            <summary>
+              The base context interface for providing access to solution-wide resources.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ITestMetadata">
+            <summary>
+              The metadata interface for test.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestMetadata.Name">
+            <summary>
+              Easy to remember and share test name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestMetadata.Categories">
+            <summary>
+              The list of categories the test belongs to.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext">
+            <summary>
+              The context interface for accessing resources and returning messages.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext.Error(Sitecore.DiagnosticsTool.Core.Output.ShortMessage,System.Uri,Sitecore.DiagnosticsTool.Core.Output.DetailedMessage)">
+            <summary>
+              The method for saving information about error in customer's solution.
+            </summary>
+            <param name="message">
+              The short message about error in customer's solution.
+            </param>
+            <param name="url">
+              The link URL to the article that describes the situation.
+            </param>
+            <param name="detailed">
+              The detailed message about an issue applied to customer's solution.
+            </param>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext.Warning(Sitecore.DiagnosticsTool.Core.Output.ShortMessage,System.Uri,Sitecore.DiagnosticsTool.Core.Output.DetailedMessage)">
+            <summary>
+              The method for saving information about trivial error or potential place for improvement in customer's solution.
+            </summary>
+            <param name="message">
+              The short message about trivial error or potential place for improvement in customer's solution.
+            </param>
+            <param name="url">
+              The link URL to the article that describes the situation.
+            </param>
+            <param name="detailed">
+              The detailed message about trivial error or potential place for improvement in customer's solution.
+            </param>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext.CannotRun(Sitecore.DiagnosticsTool.Core.Output.ShortMessage,System.Uri,Sitecore.DiagnosticsTool.Core.Output.DetailedMessage)">
+            <summary>
+              The method for notifying that test is not completed due specific circumstance.
+            </summary>
+            <param name="message">
+              The short message that describes why test couldn't be run.
+            </param>
+            <param name="url">
+              The link URL to the article that describes the situation.
+            </param>
+            <param name="detailed">
+              The detailed message that describes why test couldn't be run.
+            </param>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext.Debug(Sitecore.DiagnosticsTool.Core.Output.DetailedMessage)">
+            <summary>
+              The method for saving additional debug information.
+            </summary>
+            <param name="detailed">
+              The detailed debug information.
+            </param>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext.Debug(System.Exception,Sitecore.DiagnosticsTool.Core.Output.DetailedMessage)">
+            <summary>
+              The method for saving additional debug information.
+            </summary>
+            <param name="exception">
+              The exception was thrown.
+            </param>
+            <param name="detailed">
+              The detailed debug information.
+            </param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContextBase">
+            <summary>
+              The base context interface for providing access to resources.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContextBase.System">
+            <summary>
+              System information.
+            </summary>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.SolutionTest">
+            <summary>
+              Abstract class that implements ISolutionTest interface to simplify test development.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.SolutionTest.Name">
+            <summary>
+              Easy to remember and share test name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.SolutionTest.Categories">
+            <summary>
+              The list of categories the test belongs to.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.SolutionTest.IsActual(Sitecore.DiagnosticsTool.Core.Tests.ISolutionTestResourceContext,Sitecore.Diagnostics.Objects.ISitecoreVersion)">
+            <summary>
+              The method indicates if this specific test is actual for Sitecore version of the instance under test.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.SolutionTest.Process(Sitecore.DiagnosticsTool.Core.Tests.ISolutionTestResourceContext,Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext)">
+            <summary>
+              All the test logic must be placed here. Use data parameter to access the resources API, use output parameter to give
+              results.
+            </summary>
+            <param name="data">An interface to test resources.</param>
+            <param name="output">An interface to test output.</param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.Test">
+            <summary>
+              Abstract class that implements ITest interface to simplify test development.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.Test.Name">
+            <summary>
+              Easy to remember and share test name.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.Test.Categories">
+            <summary>
+              The list of categories the test belongs to.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.Test.ServerRoles">
+            <summary>
+              The list of server roles the Sitecore instance serves for.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.Test.IsActual(System.Collections.Generic.IReadOnlyCollection{Sitecore.DiagnosticsTool.Core.Categories.ServerRole},Sitecore.Diagnostics.Objects.ISitecoreVersion,Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext)">
+            <summary>
+              The method indicates if this specific test is actual for Sitecore version of the instance under test.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.Test.Process(Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext,Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext)">
+            <summary>
+              All the test logic must be placed here. Use context parameter to access the API.
+            </summary>
+            <param name="data">An interface to test resources.</param>
+            <param name="output">An interface to test output.</param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext">
+            <summary>
+              The base context interface for providing access to resources.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.ServerRoles">
+            <summary>
+              The read-only interface to the categories list selected by user
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.FileSystem">
+            <summary>
+              The read-only interface for accessing File System
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.WebServer">
+            <summary>
+              The read-only interface for accessing Web Server (IIS)
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.SitecoreInfo">
+            <summary>
+              The read-only interface for accessing Sitecore assemblies and configuration files
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.Logs">
+            <summary>
+              The read-only interface for accessing Sitecore and IIS Log files
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext.Databases">
+            <summary>
+              The read-only interface for accessing Sitecore databases
+            </summary>
+            <exception cref="T:Sitecore.DiagnosticsTool.Core.Resources.Common.ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.ITest">
+            <summary>
+              Base interface that is required for every test to implement.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITest.IsActual(System.Collections.Generic.IReadOnlyCollection{Sitecore.DiagnosticsTool.Core.Categories.ServerRole},Sitecore.Diagnostics.Objects.ISitecoreVersion,Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext)">
+            <summary>
+              The method indicates if this specific test is actual for Sitecore version of the instance under test.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.ITest.Process(Sitecore.DiagnosticsTool.Core.Tests.ITestResourceContext,Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext)">
+            <summary>
+              All the test logic must be placed here. Use data parameter to access the resources API, use output parameter to give
+              results.
+            </summary>
+            <param name="data">An interface to test resources.</param>
+            <param name="output">An interface to test output.</param>
+        </member>
+        <member name="T:Sitecore.DiagnosticsTool.Core.Tests.KbTest">
+            <summary>
+              Abstract class that is designed for knowledgebase-related tests.
+            </summary>
+        </member>
+        <member name="P:Sitecore.DiagnosticsTool.Core.Tests.KbTest.Link">
+            <summary>
+              Link to the knowledgebase article.
+            </summary>
+        </member>
+        <member name="M:Sitecore.DiagnosticsTool.Core.Tests.KbTest.Report(Sitecore.DiagnosticsTool.Core.Tests.ITestOutputContext,System.String)">
+            <summary>
+              The method for claiming KB issue is applicable to the solution.
+            </summary>
+        </member>
+    </members>
+</doc>

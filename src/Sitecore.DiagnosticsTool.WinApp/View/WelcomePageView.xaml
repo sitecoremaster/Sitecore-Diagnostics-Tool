@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Sitecore.DiagnosticsTool.WinApp.View.WelcomePageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="White"
+             >
+  <Grid>
+
+    <Viewbox Stretch="UniformToFill">
+      <TextBlock FontFamily="Segoe UI" Foreground="#595959">
+        SDT is a Sitecore solution troubleshooting and analysis tool. It contains a set of tests that are executed against SSPG package to compose a report of potential issues and information how to fix them.
+        <LineBreak />
+
+        <TextBlock Margin="30 50 0 0">
+          * Checks the site inconsistency of configuration<LineBreak />
+          * Checks the site for symptoms described in known issues<LineBreak />
+          * Checks the site against recommendations from Sitecore documentation<LineBreak />
+          * Generates report based on analysis<LineBreak />
+        </TextBlock>
+        <LineBreak /><LineBreak />
+
+
+        <TextBlock Margin="0 60 0 0">
+          <TextBlock>
+            Public repository with project description, release notes and downloads are available here:
+            <Hyperlink NavigateUri="https://github.com/Sitecore/Sitecore-Diagnostics-Tool" TextDecorations="None"
+                       RequestNavigate="LinkRequestNavigate">
+              github.com/Sitecore/Sitecore-Diagnostics-Tool
+            </Hyperlink>
+          </TextBlock>
+          <LineBreak />
+
+          <TextBlock>
+            Development and contribution details are available in wiki section of this repository:
+            <Hyperlink NavigateUri="https://github.com/Sitecore/Sitecore-Diagnostics-Tool/wiki" TextDecorations="None"
+                       RequestNavigate="LinkRequestNavigate">
+              github.com/Sitecore/Sitecore-Diagnostics-Tool/wiki
+            </Hyperlink>
+          </TextBlock>
+          <LineBreak />
+
+          <TextBlock>
+            Issue tracking via GitHub Issues:
+            <Hyperlink NavigateUri="https://github.com/Sitecore/Sitecore-Diagnostics-Tool/issues"
+                       TextDecorations="None"
+                       RequestNavigate="LinkRequestNavigate">
+              github.com/Sitecore/Sitecore-Diagnostics-Tool/issues
+            </Hyperlink>
+          </TextBlock>
+        </TextBlock>
+      </TextBlock></Viewbox>
+  </Grid>
+</UserControl>

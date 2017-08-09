@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Sitecore.DiagnosticsTool.WinApp.View.ConfigurationPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModel="clr-namespace:Sitecore.DiagnosticsTool.WinApp.ViewModel"
+             Background="White">
+
+  <Viewbox Stretch="UniformToFill">
+    <Border BorderThickness="1" BorderBrush="#e4e4e4">
+      <Grid HorizontalAlignment="Left">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="950"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox ItemsSource="{Binding Path=Categories}" Grid.Column="0" SelectionMode="Multiple" Name="CategoriesCheckList" BorderThickness="0" HorizontalContentAlignment="Left">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <CheckBox Name="ServerRoleCheckbox" FontSize="10" FontFamily="Segoe UI" VerticalContentAlignment="Center"
+                        IsChecked="{Binding Path=(viewModel:ConfigurationPageViewModel+CategorySourceModel.IsSelected), Mode=TwoWay}" 
+                        Content="{Binding (viewModel:ConfigurationPageViewModel+CategorySourceModel.Category).Name}"  />
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+    </Border>
+  </Viewbox>
+</UserControl>
