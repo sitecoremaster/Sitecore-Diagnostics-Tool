@@ -310,7 +310,7 @@
           continue;
         }
 
-        text += $"<b>Applied to: {instanceName}</b><br />\r\n";
+        text += $"<b>Applies to: {instanceName}</b><br />\r\n";
       }
 
       if (string.IsNullOrWhiteSpace(text))
