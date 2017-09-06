@@ -120,7 +120,6 @@
     <Compile Include="General\Health\PathInfoinUrlError.cs" />
     <Compile Include="Analytics\RefreshAggregatedDataCannotBeRun.cs" />
     <Compile Include="General\Health\MediaCachingError.cs" />
-    <Compile Include="Analytics\EmailReportsTaskWithoutMasterDb.cs" />
     <Compile Include="General\Health\PublishingTimeBeforeStatusExpires.cs" />
     <Compile Include="General\Health\InvalidWebResource.cs" />
     <Compile Include="General\Consistency\MasterDatabaseOnCd.cs" />
