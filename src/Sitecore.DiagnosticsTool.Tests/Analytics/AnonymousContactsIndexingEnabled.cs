@@ -1,16 +1,18 @@
-﻿using Sitecore.Diagnostics.Base;
-using Sitecore.Diagnostics.Objects;
-using Sitecore.DiagnosticsTool.Core.Categories;
-using Sitecore.DiagnosticsTool.Core.Resources.Logging;
-using Sitecore.DiagnosticsTool.Core.Tests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
+    using Sitecore.Diagnostics.Base;
+    using Sitecore.Diagnostics.Objects;
+    using Sitecore.DiagnosticsTool.Core.Categories;
+    using Sitecore.DiagnosticsTool.Core.Resources.Logging;
+    using Sitecore.DiagnosticsTool.Core.Tests;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     class AnonymousContactsIndexingEnabled : KbTest
     {
 
