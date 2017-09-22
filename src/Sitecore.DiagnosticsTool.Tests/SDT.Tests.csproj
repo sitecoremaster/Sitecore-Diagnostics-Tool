@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\AnonymousContactsIndexingEnabled.cs" />
     <Compile Include="Analytics\DeploymentRegionXdbCloudKb339280.cs" />
     <Compile Include="Analytics\EngagementAutomationConditions.cs" />
     <Compile Include="Analytics\ErrorEvaluationOfConditionFailedIfVisitorIsRobot.cs" />
