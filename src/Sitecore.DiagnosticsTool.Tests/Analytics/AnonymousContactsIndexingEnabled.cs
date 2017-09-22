@@ -1,6 +1,4 @@
-﻿
-
-namespace Sitecore.DiagnosticsTool.Tests.Analytics
+﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
     using Sitecore.Diagnostics.Base;
     using Sitecore.Diagnostics.Objects;
@@ -13,7 +11,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
     using System.Text;
     using System.Threading.Tasks;
 
-    class AnonymousContactsIndexingEnabled : KbTest
+    public class AnonymousContactsIndexingEnabled : KbTest
     {
 
         protected string SettingName = "ContentSearch.Analytics.IndexAnonymousContacts";
@@ -27,6 +25,11 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
         {
             return sitecoreVersion.MajorMinorUpdateInt >= 812;
         }
+        protected override bool IsActual(ITestResourceContext data)
+        {
+            return data.SitecoreInfo.IsAnalyticsEnabled;
+        }
+
 
         public override void Process(ITestResourceContext data, ITestOutputContext output)
         {
@@ -34,7 +37,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
 
             if (data.SitecoreInfo.GetBoolSetting(SettingName))
             {
-                 Report(output);
+                Report(output);
             }
         }
     }
