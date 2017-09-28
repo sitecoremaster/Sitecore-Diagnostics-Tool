@@ -18,7 +18,8 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
 
         protected override bool IsActual(ITestResourceContext data)
         {
-            return !data.SitecoreInfo.GetBoolSetting("Analytics.AutoDetectBots");
+            var isCd = data.ServerRoles.Any(x => x == ServerRole.ContentDelivery);
+            return !data.SitecoreInfo.GetBoolSetting("Analytics.AutoDetectBots") && data.SitecoreInfo.IsAnalyticsEnabled && isCd;
         }
 
         public override void Process(ITestResourceContext data, ITestOutputContext output)
