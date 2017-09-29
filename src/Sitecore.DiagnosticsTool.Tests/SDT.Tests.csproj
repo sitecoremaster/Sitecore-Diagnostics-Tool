@@ -62,6 +62,7 @@
     <Compile Include="Analytics\ErrorOnMultisiteSolutionWhenAnalyticsHostNameSettingInNonEmpty.cs" />
     <Compile Include="Analytics\ReportingSecondaryConnectionString.cs" />
     <Compile Include="Analytics\SessionEndPipelineErrorKb975816.cs" />
+    <Compile Include="Analytics\ShowWarningIfTheRobotDetectionIsEnabled.cs" />
     <Compile Include="Analytics\TroubleshootingSitecoreIpGeolocationService.cs" />
     <Compile Include="Analytics\EmailReportsTaskFailsWithoutMasterDatabase.cs" />
     <Compile Include="Analytics\ContactIsLockedByAnotherOperationExceptionOccursWhileSavingAnalyticsDataIfAnalyticsClusterNameIsNotSpecified.cs" />
