@@ -31,7 +31,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private IReadOnlyDictionary<string, AssemblyFile> _Assemblies;
 
     private XmlDocument _Configuration;
-    private IReadOnlyDictionary<string, IReleaseDefaultDatabase> _Databases;
+    private IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> _Databases;
     private IDistributionDefaults _Defaults;
     private List<ISitecoreModuleInfo> _ModulesInformation;
 
@@ -60,7 +60,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     public IReadOnlyDictionary<string, AssemblyFile> Assemblies => _Assemblies ?? (_Assemblies = GetAssemblies());
 
-    public virtual IReadOnlyDictionary<string, IReleaseDefaultDatabase> Databases => _Databases ?? (_Databases = GetDatabases());
+    public virtual IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> SqlDatabases => _Databases ?? (_Databases = GetSqlDatabases());
 
     // for unit testing
     public IReadOnlyDictionary<string, PipelineDefinition> Pipelines { get; set; }
@@ -137,15 +137,15 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       return assemblies;
     }
 
-    private IReadOnlyDictionary<string, IReleaseDefaultDatabase> GetDatabases()
+    private IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> GetSqlDatabases()
     {
       var release = Release;
 
       Log.Info($"Initializing defatult databases for {release}");
       var databases = Defaults.Databases;
-      Assert.IsTrue(databases.Count > 0, $"Databases are not available for {release}. " + ContactSupportMessage);
+      Assert.IsTrue(databases.Count > 0, $" SqlDatabases are not available for {release}. " + ContactSupportMessage);
 
-      return databases.ToDictionary(x => x.Key, x => new ReleaseDefaultDatabase(x.Key, x.Value) as IReleaseDefaultDatabase);
+      return databases.ToDictionary(x => x.Key, x => new ReleaseDefaultSqlDatabase(x.Key, x.Value) as IReleaseDefaultSqlDatabase);
     }
 
     private IDistributionDefaults GetDefaults()

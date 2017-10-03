@@ -104,7 +104,7 @@
     <Compile Include="Resources\WebServer\Identity.cs" />
     <Compile Include="Resources\WebServer\IdentityType.cs" />
     <Compile Include="Resources\FileSystem\IDriveContext.cs" />
-    <Compile Include="Resources\SitecoreInformation\IReleaseDefaultDatabase.cs" />
+    <Compile Include="Resources\SitecoreInformation\IReleaseDefaultSqlDatabase.cs" />
     <Compile Include="Resources\WebServer\IServerInfo.cs" />
     <Compile Include="Resources\SitecoreInformation\ISitecoreAssembliesContext.cs" />
     <Compile Include="Resources\SitecoreInformation\ISitecoreConfigurationContext.cs" />

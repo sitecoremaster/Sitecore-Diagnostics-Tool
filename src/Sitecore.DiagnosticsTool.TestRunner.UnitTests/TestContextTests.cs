@@ -73,7 +73,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner.UnitTests
         new Action(() => resourceContext.Logs.IsNotNull("resourceContext.Logs"))
           .ShouldThrow<ResourceNotAvailableException>()
           .WithMessage(ResourceType.LogFiles + " resource is not available");
-        new Action(() => resourceContext.Databases.IsNotNull("resourceContext.Databases"))
+        new Action(() => resourceContext.Databases.IsNotNull("resourceContext.SqlDatabases"))
           .ShouldThrow<ResourceNotAvailableException>()
           .WithMessage(ResourceType.Database + " resource is not available");
 

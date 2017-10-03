@@ -3,7 +3,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Database.Schema;
 
-  public interface IReleaseDefaultDatabase
+  public interface IReleaseDefaultSqlDatabase
   {
     /// <summary>
     ///   Logical name of the database.

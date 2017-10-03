@@ -23,7 +23,7 @@
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var defaultDatabases = data.SitecoreInfo.SitecoreDefaults.Databases;
+      var defaultDatabases = data.SitecoreInfo.SitecoreDefaults.SqlDatabases;
       var databases = data.Databases.Sql.All;
       foreach (var database in databases)
       {
@@ -50,7 +50,7 @@
       }
     }
 
-    private static void ProcessDatabase([NotNull] ISqlDatabase database, [NotNull] IReadOnlyDictionary<string, IReleaseDefaultDatabase> defaultDatabases, [NotNull] ITestResourceContext data, ITestOutputContext output)
+    private static void ProcessDatabase([NotNull] ISqlDatabase database, [NotNull] IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> defaultDatabases, [NotNull] ITestResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(database, nameof(database));
       Assert.ArgumentNotNull(defaultDatabases, nameof(defaultDatabases));

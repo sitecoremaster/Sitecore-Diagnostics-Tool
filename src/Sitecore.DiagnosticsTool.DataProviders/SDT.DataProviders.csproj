@@ -108,7 +108,7 @@
     <Compile Include="Resources\SitecoreInformation\ConfigurationHelper.cs" />
     <Compile Include="Resources\SitecoreInformation\ContentSearchIndexes.cs" />
     <Compile Include="Resources\SitecoreInformation\ModulesContext.cs" />
-    <Compile Include="Resources\SitecoreInformation\ReleaseDefaultDatabase.cs" />
+    <Compile Include="Resources\SitecoreInformation\ReleaseDefaultSqlDatabase.cs" />
     <Compile Include="Resources\SitecoreInformation\ReleaseInfo.cs" />
     <Compile Include="Resources\SitecoreInformation\SitecoreDefaultsContext.cs" />
     <Compile Include="Resources\SitecoreInformation\SitecoreInformationContext.cs" />
