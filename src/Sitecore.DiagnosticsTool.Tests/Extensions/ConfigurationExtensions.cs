@@ -8,6 +8,7 @@
   public static class ConfigurationExtensions
   {
     [NotNull]
+    [ItemNotNull]
     public static XmlElement[] GetDatabases([NotNull] this XmlDocument configuration)
     {
       Assert.ArgumentNotNull(configuration, nameof(configuration));

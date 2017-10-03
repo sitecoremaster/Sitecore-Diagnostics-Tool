@@ -28,6 +28,7 @@
     }
 
     [NotNull]
+    [ItemNotNull]
     [PublicAPI]
     public static XmlElement[] SelectElements([NotNull] this XmlDocument document, [NotNull] string xpath)
     {
