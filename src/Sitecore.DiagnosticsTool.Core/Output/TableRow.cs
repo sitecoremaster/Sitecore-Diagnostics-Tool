@@ -18,11 +18,6 @@
     {
     }
 
-    public void Add(string header, string value)
-    {
-      Add(header, value);
-    }
-
     public IReadOnlyList<string> Headers => this.ToArray(x => x.Key);
   }
 }
