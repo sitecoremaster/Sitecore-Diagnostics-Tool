@@ -3,13 +3,13 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
@@ -53,7 +53,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
       var assemblies = Assemblies;
       if (assemblies != null)
       {
-        context.Assemblies = assemblies.ToDictionary(x => x.FileName.ToLower(), x => x);
+        context.Assemblies = new AssemblyFileCollection(assemblies);
       }
 
       var version = Version;

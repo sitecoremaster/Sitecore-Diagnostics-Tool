@@ -117,7 +117,7 @@
         Configuration = resultConfiguration,
         IncludeFiles = includeFiles,
         SitecoreVersionXmlFile = sitecoreVersionXml,
-        Assemblies = GetBinaries(rootPath)
+        Assemblies = new AssemblyFileCollection(GetBinaries(rootPath))
       };
 
       return informationContext;
@@ -164,7 +164,7 @@
       return Path.Combine(webRootPath, "data");
     }
 
-    private static IReadOnlyDictionary<string, AssemblyFile> GetBinaries([NotNull] string rootPath)
+    private static IEnumerable<AssemblyFile> GetBinaries([NotNull] string rootPath)
     {
       Assert.ArgumentNotNull(rootPath, nameof(rootPath));
       try
@@ -176,7 +176,7 @@
           if (assemblyInfoPath != null && File.Exists(assemblyInfoPath))
           {
             var xml = new XmlDocument().TryLoadFile(assemblyInfoPath);
-            return xml.SelectElements("/assemblies/assembly").Select(ParseAssembly).GroupBy(x => x.FileName).ToDictionary(x => x.Key, x => x.First()); // GroupBy to bypass duplication issues
+            return xml.SelectElements("/assemblies/assembly").Select(ParseAssembly).GroupBy(x => x.FileName).ToDictionary(x => x.Key, x => x.First()).Values; // GroupBy to bypass duplication issues
           }
 
           return null;
@@ -204,7 +204,7 @@
           }
         }
 
-        return binaries;
+        return binaries.Values;
       }
       catch (Exception ex)
       {

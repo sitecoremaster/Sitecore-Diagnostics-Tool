@@ -118,6 +118,7 @@
     <Compile Include="Resources\Logging\LogEntryEx.cs" />
     <Compile Include="Resources\Logging\LoggingContext.cs" />
     <Compile Include="Resources\Logging\LogType.cs" />
+    <Compile Include="Resources\SitecoreInformation\AssemblyFileCollection.cs" />
     <Compile Include="Resources\SitecoreInformation\ServerRolesContext.cs" />
     <Compile Include="Resources\SitecoreInformation\ConfigurationHelper.cs" />
     <Compile Include="Resources\SitecoreInformation\ContentSearchIndexes.cs" />
