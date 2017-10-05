@@ -15,6 +15,8 @@
       _mainWindowViewModel = new MainWindowViewModel();
       _mainWindowViewModel.RequestClose += OnViewModelRequestClose;
       DataContext = _mainWindowViewModel;
+
+      Title = string.Format(Title, this.GetType().Assembly.GetName().Version);
     }
 
     #endregion
