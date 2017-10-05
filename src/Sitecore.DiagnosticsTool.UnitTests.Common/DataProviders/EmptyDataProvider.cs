@@ -4,6 +4,7 @@
   using System.Xml;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
+  using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
@@ -23,10 +24,12 @@
 
     public IEnumerable<IResource> GetResources()
     {
+      yield return new ServerRolesContext(ServerRole.ContentManagement | ServerRole.ContentDelivery);
+
       if (Version != null)
       {
         yield return new SitecoreInformationContext(ServiceClient)
-        {
+        {          
           SitecoreVersionXmlFile = new XmlDocument()
             .Parse($"<information>" +
               $"<version>" +
