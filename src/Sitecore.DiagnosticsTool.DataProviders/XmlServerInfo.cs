@@ -7,7 +7,6 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 
@@ -31,7 +30,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
       var ramTotal = hardwareInfo.Document.Element("ServerInfo")?.Element("Hardware")?.Element("Ram")?.Element("Total")?.Value;
       if (!string.IsNullOrEmpty(ramTotal))
       {
-        Ram = Size.FromBytes(ulong.Parse(ramTotal));
+        Ram = Size.FromBytes(long.Parse(ramTotal));
       }
 
       var processorCount = hardwareInfo.Document.Element("ServerInfo")?.Element("Hardware")?.Element("ProcessorCount")?.Value;

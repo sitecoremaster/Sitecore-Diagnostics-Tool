@@ -2,17 +2,18 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 {
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
-  using Sitecore.Diagnostics.Database.Schema;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults.DatabaseExtensions;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
+  using SqlDatabaseSchema = Sitecore.Diagnostics.Database.Schema.SqlDatabaseSchema;
+
   public class ReleaseDefaultSqlDatabase : IReleaseDefaultSqlDatabase
   {
     [NotNull]
-    private IDefaultDatabaseInfo Database { get; }
+    private IDefaultSqlDatabaseInfo Database { get; }
 
-    public ReleaseDefaultSqlDatabase([NotNull] string name, [NotNull] IDefaultDatabaseInfo database)
+    public ReleaseDefaultSqlDatabase([NotNull] string name, [NotNull] IDefaultSqlDatabaseInfo database)
     {
       Assert.ArgumentNotNull(name, nameof(name));
       Assert.ArgumentNotNull(database, nameof(database));
@@ -23,6 +24,6 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     public string Name { get; }
 
-    public DatabaseSchema Schema => Database.Schema();
+    public SqlDatabaseSchema Schema => Database.SqlSchema();
   }
 }

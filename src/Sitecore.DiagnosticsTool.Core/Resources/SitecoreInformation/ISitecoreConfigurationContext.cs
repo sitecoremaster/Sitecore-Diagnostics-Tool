@@ -50,6 +50,13 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     IReadOnlyDictionary<string, PipelineDefinition> GetPipelines();
 
     /// <summary>
+    ///   Retrieves Sitecore databases from actual showconfig.
+    /// </summary>
+    /// <returns>Returns a set of databases extracted from actual showconfig.</returns>
+    [NotNull]
+    IReadOnlyDictionary<string, LogicalDatabaseDefinition> GetDatabases();
+
+    /// <summary>
     ///   Retrieves Sitecore pipeline definition from actual showconfig if it exists.
     /// </summary>
     /// <param name="name">The name of pipeline with group prefix (for example, pipelines/itemProvider/addFromTemplate)</param>

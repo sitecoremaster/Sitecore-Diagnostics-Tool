@@ -17,7 +17,7 @@
     ///   Represents the database schema.
     /// </summary>
     [NotNull]
-    DatabaseSchema Schema { get; }
+    SqlDatabaseSchema Schema { get; }
 
     [NotNull]
     IDatabaseMetrics Metrics { get; }

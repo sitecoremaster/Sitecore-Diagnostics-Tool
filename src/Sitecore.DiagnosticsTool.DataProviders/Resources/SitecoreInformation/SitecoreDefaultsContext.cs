@@ -94,6 +94,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       return ConfigurationHelper.GetPipelines(Configuration, Pipelines);
     }
 
+    public IReadOnlyDictionary<string, LogicalDatabaseDefinition> GetDatabases()
+    {
+      return ConfigurationHelper.GetDatabases(Configuration);
+    }
+
     public virtual PipelineDefinition GetPipeline(string name)
     {
       Assert.ArgumentNotNull(name, nameof(name));

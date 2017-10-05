@@ -14,7 +14,7 @@
   {
     private Database _Metrics;
     private string RootPath { get; }
-    private DatabaseSchema _Schema;
+    private SqlDatabaseSchema _Schema;
 
     public SupportPackageSqlDatabase([NotNull] string databaseName, [NotNull] string connectString, string rootPath)
     {
@@ -31,7 +31,7 @@
     public string ConnectionString { get; }
     public DatabaseType Type { get; }
 
-    public DatabaseSchema Schema
+    public SqlDatabaseSchema Schema
     {
       get
       {
@@ -42,7 +42,7 @@
             return _Schema;
           }
           var jsonSchema = File.ReadAllText(Path.Combine(RootPath, "Databases", "Schemas", $"{Name}.json"));
-          return _Schema = new Schema.DatabaseSchema(jsonSchema);
+          return _Schema = new Schema.SqlDatabaseSchema(jsonSchema);
         }
         catch (Exception)
         {

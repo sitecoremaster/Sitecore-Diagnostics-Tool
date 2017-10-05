@@ -2,15 +2,17 @@
 {
   using System.Collections.Generic;
   using System.Linq;
-  using System.Xml;
 
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.Output;
+  using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
   using Sitecore.DiagnosticsTool.Core.Tests;
-  using Sitecore.DiagnosticsTool.Tests.Extensions;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
+  using Sitecore.Diagnostics.Objects;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   // Reviewed: OK (2017-06-13, looks valid)
   [UsedImplicitly]
@@ -33,94 +35,123 @@
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var configuration = data.SitecoreInfo.Configuration;
-      var result = new Map<Map>();
-      foreach (var database in configuration.GetDatabases())
+      var info = data.SitecoreInfo;
+      var defaults = info.SitecoreDefaults;
+      var defaultCachesPerDatabase = new Map<Map<CacheSizeDetails>>();
+      var belowDefaultCachesPerDatabase = new Map<Map<CacheSizeDetails>>();
+      foreach (var database in info.GetDatabases().Values)
       {
-        Process(data, output, database, result);
-      }
-
-      if (result.Any())
-      {
-        var message = GetMessage(result);
-
-        output.Warning(message);
-      }
-    }
-
-    private void Process(ITestResourceContext data, ITestOutputContext output, XmlElement database, Map<Map> result)
-    {
-      var defaults = data.SitecoreInfo.SitecoreDefaults.Configuration;
-      var outputCacheNames = new Map();
-      var databaseName = database.GetAttribute("id");
-      foreach (var cacheName in DatabaseCacheNames)
-      {
-        var cache = database.SelectSingleNode("cacheSizes/" + cacheName);
-        if (cache == null)
+        var defaultDatabase = defaults.GetDatabases().TryGetValue(database.Name);
+        if (defaultDatabase == null)
         {
           continue;
         }
 
-        var cacheSize = cache.InnerText;
-        output.Debug($"Database {databaseName} {cacheName} cache size: {cacheSize}");
-
-        var defaultSizeElement = defaults.SelectSingleNode(cache.GetXPath());
-        Assert.IsNotNull(defaultSizeElement, "defaultSizeElement");
-
-        var defaultSize = defaultSizeElement.InnerText;
-        if (cacheSize == defaultSize)
-        {
-          outputCacheNames.Add(cacheName, cacheSize);
-        }
+        Process(info, output, database, defaultDatabase, defaultCachesPerDatabase, belowDefaultCachesPerDatabase);
       }
 
-      var prefetchNode = database.SelectSingleNode(PrefetchXPath);
-      if (prefetchNode != null)
+      if (defaultCachesPerDatabase.Any())
       {
-        var prefetchSize = prefetchNode.InnerText;
-        if (!string.IsNullOrEmpty(prefetchSize))
-        {
-          prefetchSize = prefetchSize.Trim();
-          output.Debug($"Database {databaseName} prefetch cache size: {prefetchSize}");
-        }
+        var message = GetMessage(defaultCachesPerDatabase, $"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:");
 
-        var defaultPrefetchNode = defaults.SelectSingleNode(prefetchNode.GetXPath());
-        Assert.IsNotNull(defaultPrefetchNode, "defaultPrefetchNode: " + databaseName);
-
-        var defaultPrefetch = defaultPrefetchNode.InnerText;
-        if (!string.IsNullOrEmpty(defaultPrefetch))
-        {
-          defaultPrefetch = defaultPrefetch.Trim();
-        }
-
-        if (prefetchSize == defaultPrefetch)
-        {
-          outputCacheNames.Add("prefetch", prefetchSize);
-        }
+        output.Warning(message);
       }
 
-      if (outputCacheNames.Any())
+      if (belowDefaultCachesPerDatabase.Any())
       {
-        result.Add(databaseName, outputCacheNames);
+        var message = GetMessage(belowDefaultCachesPerDatabase, $"One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation:");
+
+        output.Error(message);
       }
     }
 
-    protected ShortMessage GetMessage(Map<Map> result)
+    private void Process(ISitecoreInformationContext info, ITestOutputContext output, LogicalDatabaseDefinition database, LogicalDatabaseDefinition defaultDatabase, Map<Map<CacheSizeDetails>> defaultCachesPerDatabase, Map<Map<CacheSizeDetails>> belowDefaultCachesPerDatabase)
+    {
+      var databaseCaches = new Map<CacheSizeDetails>();
+      var belowDefaultCaches = new Map<CacheSizeDetails>();
+      var databaseName = database.Name;
+
+      foreach (var cache in database.Caches.Values)
+      {
+        var cacheSize = cache.Size;
+        output.Debug($"Database {databaseName} {cache.Name} cache size: {cacheSize}");
+
+        var defaultSize = defaultDatabase.Caches[cache.Name].Size;
+        Assert.IsNotNull(defaultSize, "default size cannot be null");
+
+        if (cacheSize == null)
+        {
+          var fallbackSettingCacheSize = CacheSize.Parse(info.GetSetting(cache.FallbackSettingName), info.SitecoreVersion);
+          if (fallbackSettingCacheSize.Value.Bytes < defaultSize.Value.Bytes)
+          {
+            var cacheSizeDetails = new CacheSizeDetails
+            {
+              Value = fallbackSettingCacheSize,
+              Comment = $"cache size is not specified, uses {cache.FallbackSettingName} setting value as fallback"
+            };
+
+            belowDefaultCaches.Add(cache.Name, cacheSizeDetails);
+          }
+        }
+        else
+        {
+          if (cacheSize.Value == defaultSize.Value)
+          {
+            var cacheSizeDetails = new CacheSizeDetails
+            {
+              Value = cacheSize,
+              Comment = "which is default"
+            };
+
+            databaseCaches.Add(cache.Name, cacheSizeDetails);
+          }
+          else if (cacheSize.Value < defaultSize.Value)
+          {
+            var cacheSizeDetails = new CacheSizeDetails
+            {
+              Value = cacheSize,
+              Comment = $"which is below than default: {defaultSize.Value}"
+            };
+
+            belowDefaultCaches.Add(cache.Name, cacheSizeDetails);
+          }
+        }
+      }
+
+      if (databaseCaches.Any())
+      {
+        defaultCachesPerDatabase.Add(databaseName, databaseCaches);
+      }
+
+      if (belowDefaultCaches.Any())
+      {
+        belowDefaultCachesPerDatabase.Add(databaseName, belowDefaultCaches);
+      }
+    }
+
+    protected ShortMessage GetMessage(Map<Map<CacheSizeDetails>> result, string comment)
     {
       var databases = result
         .Where(x => x.Value.Any())
         .Select(x => new Container(
           new BoldText(x.Key),
           new Text($" database caches need tuning:"),
-          BulletedList.Create(x.Value, c => $"{c.Key} = {c.Value} (default)")))
+          BulletedList.Create(x.Value, c => $"{c.Key} = {c.Value.Value.Value} (\"{c.Value.Value.Text}\", {c.Value.Comment})")))
         .ToArray();
 
       var message = new ShortMessage(
-        new Text($"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:"),
+        new Text(comment),
         new BulletedList(databases),
         new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
 
       return message;
+    }
+
+    public class CacheSizeDetails
+    {
+      public CacheSize Value { get; set; }
+
+      public string Comment { get; set; } = "";
     }
   }
 }

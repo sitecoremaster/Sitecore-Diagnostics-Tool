@@ -8,6 +8,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Logging;
+  using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
 
@@ -24,17 +25,18 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     }
 
     [NotNull]
-    public static string GetSetting([NotNull] XmlDocument configuration, [NotNull] string settingName, [CanBeNull] Func<string, string> defaultValue = null)
+    public static string GetSetting([NotNull] XmlDocument configuration, [NotNull] string settingName,
+      [CanBeNull] Func<string, string> defaultValue = null)
     {
       Assert.ArgumentNotNull(configuration, nameof(configuration));
       Assert.ArgumentNotNull(settingName, nameof(settingName));
 
       return configuration
-          .SelectElements($"/configuration/sitecore/settings/setting[@name='{settingName}']")
-          .LastOrDefault() // take last setting as it is effective
-          .With(x => ParseSettingValue(x)) // if not null then get "value" attribute
-          ?? defaultValue?.Invoke(settingName)
-          ?? string.Empty;
+               .SelectElements($"/configuration/sitecore/settings/setting[@name='{settingName}']")
+               .LastOrDefault() // take last setting as it is effective
+               .With(x => ParseSettingValue(x)) // if not null then get "value" attribute
+             ?? defaultValue?.Invoke(settingName)
+             ?? string.Empty;
     }
 
     [CanBeNull]
@@ -63,7 +65,8 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     }
 
     [NotNull]
-    public static IReadOnlyDictionary<string, PipelineDefinition> GetPipelines([NotNull] XmlDocument configuration, [CanBeNull] IReadOnlyDictionary<string, PipelineDefinition> pipelinesOverride = null)
+    public static IReadOnlyDictionary<string, PipelineDefinition> GetPipelines([NotNull] XmlDocument configuration,
+      [CanBeNull] IReadOnlyDictionary<string, PipelineDefinition> pipelinesOverride = null)
     {
       Assert.ArgumentNotNull(configuration, nameof(configuration));
 
@@ -73,11 +76,13 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     /// <param name="configuration"></param>
     /// <param name="name">The name of pipeline with group prefix (for example, pipelines/itemProvider/addFromTemplate)</param>
     /// <param name="pipelinesOverride">The pipelines set to override.</param>
-    public static PipelineDefinition GetPipeline([NotNull] XmlDocument configuration, [NotNull] string name, [CanBeNull] IReadOnlyDictionary<string, PipelineDefinition> pipelinesOverride = null)
+    public static PipelineDefinition GetPipeline([NotNull] XmlDocument configuration, [NotNull] string name,
+      [CanBeNull] IReadOnlyDictionary<string, PipelineDefinition> pipelinesOverride = null)
     {
       Assert.ArgumentNotNull(configuration, nameof(configuration));
       Assert.ArgumentNotNull(name, nameof(name));
-      Assert.ArgumentCondition(name.Contains('/'), nameof(name), $"The name must contain slash to identify the group of pipelines (actual: {name})");
+      Assert.ArgumentCondition(name.Contains('/'), nameof(name),
+        $"The name must contain slash to identify the group of pipelines (actual: {name})");
 
       return GetPipelines(configuration, pipelinesOverride).TryGetValue(name);
     }
@@ -103,13 +108,14 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       return configuration
         .SelectElements("/configuration/sitecore/*/providers")
-        .Select(p => (XmlElement)p.ParentNode)
+        .Select(p => (XmlElement) p.ParentNode)
         .Select(m => ManagerDefinition.Parse(m))
         .ToDictionary(m => m.Name, x => x);
     }
 
     [NotNull]
-    private static IReadOnlyDictionary<string, PipelineDefinition> GetPipelinesInner([NotNull] XmlDocument configuration)
+    private static IReadOnlyDictionary<string, PipelineDefinition> GetPipelinesInner(
+      [NotNull] XmlDocument configuration)
     {
       Assert.ArgumentNotNull(configuration, nameof(configuration));
 
@@ -151,6 +157,13 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       }
 
       return result;
+    }
+
+    public static IReadOnlyDictionary<string, LogicalDatabaseDefinition> GetDatabases(XmlDocument configuration)
+    {
+      return configuration.SelectElements("/configuration/sitecore/databases/database")
+        .Select(x => LogicalDatabaseDefinition.Parse(x, new SitecoreVersion(8, 2, 0, 000000)))
+        .ToDictionary(x => x.Name, x => x);
     }
   }
 }

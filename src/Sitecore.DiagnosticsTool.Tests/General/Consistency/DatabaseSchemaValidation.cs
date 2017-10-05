@@ -13,7 +13,7 @@
 
   // Reviewed: TODO (2017-07-13)
   [UsedImplicitly]
-  public class DatabaseSchemaValidation : Test
+  public class SqlDatabaseSchemaValidation : Test
   {
     public override string Name { get; } = "Database schema validation";
 

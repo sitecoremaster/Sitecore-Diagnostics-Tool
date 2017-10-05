@@ -12,7 +12,7 @@
 
   public class VersionHelperTests
   {
-    [Theory]
+    [Fact]
     public void InputDataIsReturned()
     {
       var random = new Random();

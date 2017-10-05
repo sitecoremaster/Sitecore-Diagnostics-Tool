@@ -7,9 +7,9 @@
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database.Diagnostics.SqlServer;
 
-  public sealed class DatabaseSchema : Sitecore.Diagnostics.Database.Schema.DatabaseSchema
+  public sealed class SqlDatabaseSchema : Sitecore.Diagnostics.Database.Schema.SqlDatabaseSchema
   {
-    public DatabaseSchema([NotNull] Database database, [NotNull] string databaseName)
+    public SqlDatabaseSchema([NotNull] Database database, [NotNull] string databaseName)
     {
       Assert.ArgumentNotNull(database, nameof(database));
       Assert.ArgumentNotNull(databaseName, nameof(databaseName));
@@ -27,7 +27,7 @@
       StoredProcedures = storedProcedures;
     }
 
-    public DatabaseSchema(string jsonSchema)
+    public SqlDatabaseSchema(string jsonSchema)
     {
       var schema = JsonConvert.DeserializeObject<Schema>(jsonSchema, new JsonSerializerSettings
       {

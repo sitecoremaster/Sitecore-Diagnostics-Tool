@@ -15,6 +15,6 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     ///   Represents database schema.
     /// </summary>
     [NotNull]
-    DatabaseSchema Schema { get; }
+    SqlDatabaseSchema Schema { get; }
   }
 }

@@ -26,7 +26,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
       Assert.ArgumentNotNull(data, nameof(data));
 
       var ramMemory = data.WebServer.Info.RamMemoryTotal;
-      if (ramMemory.Gb < Recommended)
+      if (ramMemory.GB < Recommended)
       {
         output.Warning(Message);
       }

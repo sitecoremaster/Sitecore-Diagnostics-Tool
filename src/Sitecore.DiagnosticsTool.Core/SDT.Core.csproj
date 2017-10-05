@@ -45,26 +45,38 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights.PersistenceChannel, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.PersistenceChannel.1.2.3\lib\net45\Microsoft.ApplicationInsights.PersistenceChannel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.24\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.24\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.24\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.24\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Logging, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.1.24\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.24\lib\Sitecore.Diagnostics.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.24\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analytics.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Base\Null.cs" />
     <Compile Include="Categories\ServerRole.cs" />
@@ -72,6 +84,7 @@
     <Compile Include="Collections\Pair.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="Categories\Category.cs" />
     <Compile Include="Collections\Map.cs" />
@@ -82,7 +95,10 @@
     <Compile Include="Resources\Common\DatabaseResourceNotAvailableException.cs" />
     <Compile Include="Resources\Common\LogFilesResourceNotAvailableException.cs" />
     <Compile Include="Resources\Common\WebServerResourceNotAvailableException.cs" />
+    <Compile Include="Resources\Configuration\CacheSize.cs" />
     <Compile Include="Resources\Configuration\ConfigurationFile.cs" />
+    <Compile Include="Resources\Configuration\LogicalDatabaseCache.cs" />
+    <Compile Include="Resources\Configuration\LogicalDatabaseDefinition.cs" />
     <Compile Include="Resources\Database\DatabaseType.cs" />
     <Compile Include="Resources\Database\IDatabase.cs" />
     <Compile Include="Resources\Database\IMongoDatabase.cs" />
@@ -158,23 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Sitecore.Diagnostics.Base">
-      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.0.330\lib\Sitecore.Diagnostics.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Diagnostics.Database">
-      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.0.330\lib\Sitecore.Diagnostics.Database.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core">
-      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.0.330\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Diagnostics.Logging">
-      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.0.330\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Diagnostics.Objects">
-      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.0.330\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

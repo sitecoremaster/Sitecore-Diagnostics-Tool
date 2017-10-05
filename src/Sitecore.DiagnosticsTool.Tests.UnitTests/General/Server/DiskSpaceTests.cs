@@ -31,7 +31,7 @@
         {
           Drives = new DriveContext(new Drive("C:\\")
           {
-            AvailableFreeSpace = Size.FromGb(Recommended)
+            AvailableFreeSpace = Size.FromGB(Recommended)
           })
         })
         .Process(this)
@@ -54,11 +54,11 @@
         {
           Drives = new DriveContext(new Drive("C:\\")
           {
-            AvailableFreeSpace = Size.FromGb(0.5)
+            AvailableFreeSpace = Size.FromGB(0.5)
           })
         })
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Error, GetErrorMessage(Size.FromGb(0.5), "C:\\")))
+        .MustReturn(new TestOutput(TestResultState.Error, GetErrorMessage(Size.FromGB(0.5), "C:\\")))
         .Done();
 
       UnitTestContext
@@ -78,11 +78,11 @@
         {
           Drives = new DriveContext(new Drive("C:\\")
           {
-            AvailableFreeSpace = Size.FromGb(Recommended - 1)
+            AvailableFreeSpace = Size.FromGB(Recommended - 1)
           })
         })
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Warning, GetWarningMessage(Size.FromGb(Recommended - 1), "C:\\")))
+        .MustReturn(new TestOutput(TestResultState.Warning, GetWarningMessage(Size.FromGB(Recommended - 1), "C:\\")))
         .Done();
     }
   }
