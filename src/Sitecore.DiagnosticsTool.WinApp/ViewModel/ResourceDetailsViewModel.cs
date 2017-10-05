@@ -13,6 +13,7 @@
   using Microsoft.Win32;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -273,8 +274,15 @@
               return;
             }
 
-            InitilizePackgeDetails(openFileDialog.FileName);
-            PackagePath = openFileDialog.FileName;
+            try
+            {
+              InitilizePackgeDetails(openFileDialog.FileName);
+              PackagePath = openFileDialog.FileName;
+            }
+            catch (Exception ex)
+            {
+              MessageBox.Show(ex.PrintException());
+            }
           },
           () => true);
       }
@@ -382,9 +390,7 @@
       }
       catch (Exception ex)
       {
-        Log.Error(ex, "Failed create context");
-
-        InstanceName = MachineName = SitecoreVersion = Strings.DataIsNotAvailable;
+        throw new InvalidOperationException($"Failed to initialize context for {fileName}", ex);
       }
     }
 

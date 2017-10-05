@@ -5,6 +5,7 @@
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
@@ -56,12 +57,7 @@
       Assert.ArgumentNotNull(ex, nameof(ex));
       Assert.ArgumentNotNull(message, nameof(message));
 
-      Debug(new DetailedMessage(message.Items.Concat(new[] { new Text(". Exception:"), new CodeBlock(PrintException(ex)) })));
-    }
-
-    internal static string PrintException(Exception ex, bool inner = false)
-    {
-      return ex == null ? "" : (inner ? "\r\nInner Exception:\r\n\r\n" : "") + $"Type: {ex.GetType().FullName}\r\nMessage: {ex.Message}\r\nStackTrace: \r\n{ex.StackTrace}{PrintException(ex.InnerException, true)}";
+      Debug(new DetailedMessage(message.Items.Concat(new[] { new Text(". Exception:"), new CodeBlock(ex.PrintException()) })));
     }
 
     private void AddResult(TestResultState state, [CanBeNull] Uri link, [NotNull] ShortMessage message, [CanBeNull] DetailedMessage detailed)

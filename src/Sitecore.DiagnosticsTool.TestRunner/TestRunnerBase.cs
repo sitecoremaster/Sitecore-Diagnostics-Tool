@@ -8,6 +8,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
@@ -103,7 +104,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         if (!context.Results.All.Any())
         {
-          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, TestProcessingContext.PrintException(ex)));
+          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
         }
 
         return CreateReport(test, context, data.InstanceName);
@@ -112,7 +113,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         Log.Error(ex, "Test failed with unhandled exception");
 
-        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Checking test preconditions failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, TestProcessingContext.PrintException(ex)));
+        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Checking test preconditions failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, ex.PrintException()));
       }
 
       return RunTestInner(test, data, context);
@@ -133,7 +134,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         if (!context.Results.All.Any())
         {
-          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, TestProcessingContext.PrintException(ex)));
+          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
         }
       }
       catch (Exception ex)
@@ -145,7 +146,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
         Log.Error(ex, "Test failed with unhandled exception");
 
-        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, new DetailedMessage(new CodeBlock(TestProcessingContext.PrintException(ex)))));
+        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
       }
 
       return CreateReport(test, context, data.InstanceName);
