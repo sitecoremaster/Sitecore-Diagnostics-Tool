@@ -65,13 +65,7 @@
           throw new LogFilesResourceNotAvailableException("Sitecore logs were not found, corrupted or their limit (200MB) has been exceeded during loading");
         }
 
-        var filteredLogs = FilterLogs(logs, logLevel);
-        if (filteredLogs == null)
-        {
-          throw new LogFilesResourceNotAvailableException($"Log entries by '{logLevel}' filter were not found");
-        }
-
-        cache = filteredLogs.Select(x => new LogEntryEx(x.IsNotNull("x"))).ToArray();
+        cache = logs.All.Select(x => new LogEntryEx(x.IsNotNull("x"))).ToArray();
         _SitecoreLogs = cache;
       }
 
