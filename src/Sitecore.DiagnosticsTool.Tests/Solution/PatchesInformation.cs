@@ -98,7 +98,7 @@
         rows.Add(new TableRow(cols));
       }
 
-      return new DetailedMessage(new Text($"Solution contains {patches.Keys} patches installed"), new Table(rows.ToArray()));
+      return new DetailedMessage(new Text($"Solution contains {patches.Count} patches installed"), new Table(rows.ToArray()));
     }
 
     private static void Safe(Action<Null> func)
