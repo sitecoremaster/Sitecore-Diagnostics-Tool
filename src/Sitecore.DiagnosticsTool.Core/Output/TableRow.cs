@@ -13,6 +13,11 @@
     {
     }
 
+    public TableRow([NotNull] params Pair[] collection)
+      : this(collection as IEnumerable<Pair>)
+    {
+    }
+
     public TableRow([NotNull] IEnumerable<Pair> collection) 
       : base(collection.ToDictionary(x => x.Key, x => x.Value))
     {
