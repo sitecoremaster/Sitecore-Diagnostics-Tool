@@ -12,7 +12,7 @@
   {
     private Map<AssemblyFile> Data { get; }
 
-    public AssemblyFileCollection(IEnumerable<AssemblyFile> data)
+    public AssemblyFileCollection([NotNull] IEnumerable<AssemblyFile> data)
     {
       Data = data.ToMap(x => x.FileName.ToLower(), x => x);
     }

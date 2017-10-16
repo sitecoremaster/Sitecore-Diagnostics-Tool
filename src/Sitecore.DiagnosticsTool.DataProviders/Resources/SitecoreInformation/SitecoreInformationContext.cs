@@ -117,7 +117,7 @@
         Configuration = resultConfiguration,
         IncludeFiles = includeFiles,
         SitecoreVersionXmlFile = sitecoreVersionXml,
-        Assemblies = new AssemblyFileCollection(GetBinaries(rootPath))
+        Assemblies = new AssemblyFileCollection(GetBinaries(rootPath) ?? new AssemblyFile[0])
       };
 
       return informationContext;
