@@ -1,6 +1,6 @@
-# Sitecore Diagnostics Tool 1.3
+# Sitecore Diagnostics Tool 1.4
 
-Sitecore Diagnostics Tool 1.3 (SDT) allows automatically diagnosing Sitecore solutions. It does the following:
+Sitecore Diagnostics Tool 1.4 (SDT) allows automatically diagnosing Sitecore solutions. It does the following:
 
 - Checks all the solution sites for consistency of configuration 
 - Checks all the solution sites for symptoms described in known issues
@@ -19,7 +19,7 @@ There is a command-line version that you need to compile yourself - in source co
 
 ### SOURCE CODE & CONTRIBUTION
 
-The SDT 1.3 is open source and source code is available according to MIT license.
+The SDT 1.4 is open source and source code is available according to MIT license.
 
 ### PREREQUISITES
 
