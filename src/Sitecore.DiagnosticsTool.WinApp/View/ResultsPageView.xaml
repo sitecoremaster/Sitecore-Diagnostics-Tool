@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Sitecore.DiagnosticsTool.WinApp.View.ResultsPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="White">
+  
+  <Viewbox Stretch="Uniform">
+    <Grid Width="1000">
+      <TextBlock Text="{Binding Path=ErrorMessage}" Foreground="Red" FontSize="12" FontFamily="Segoe UI" />
+      <TextBlock>
+        <Hyperlink NavigateUri="{Binding Path=ReportPath}" TextDecorations="None" RequestNavigate="LinkRequestNavigate">
+          <TextBlock Text="{Binding Path=ReportPath}" FontSize="12" FontFamily="Segoe UI" />
+        </Hyperlink>
+      </TextBlock>
+    </Grid>
+  </Viewbox>
+</UserControl>
+

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4B64257-F8FF-4047-83A2-C745BBE97EF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.DiagnosticsTool.Tests</RootNamespace>
+    <AssemblyName>Sitecore.DiagnosticsTool.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.26\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.26\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.26\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analytics\AnonymousContactsIndexingEnabled.cs" />
+    <Compile Include="Analytics\DeploymentRegionXdbCloudKb339280.cs" />
+    <Compile Include="Analytics\EngagementAutomationConditions.cs" />
+    <Compile Include="Analytics\ErrorEvaluationOfConditionFailedIfVisitorIsRobot.cs" />
+    <Compile Include="Analytics\ExceptionIfLongDataIsStoredInCollectionDB.cs" />
+    <Compile Include="Analytics\ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518.cs" />
+    <Compile Include="Analytics\HighSqlServerLoadWhenUpdatingTheSitecoreSuggestedTestIndex.cs" />
+    <Compile Include="Analytics\ErrorWhenViewingThePageGoalsAndEventsSitecoreAnalyticsReport.cs" />
+    <Compile Include="Analytics\ErrorOnMultisiteSolutionWhenAnalyticsHostNameSettingInNonEmpty.cs" />
+    <Compile Include="Analytics\ReportingSecondaryConnectionString.cs" />
+    <Compile Include="Analytics\SessionEndPipelineErrorKb975816.cs" />
+    <Compile Include="Analytics\ShowWarningIfTheRobotDetectionIsEnabled.cs" />
+    <Compile Include="Analytics\TroubleshootingSitecoreIpGeolocationService.cs" />
+    <Compile Include="Analytics\EmailReportsTaskFailsWithoutMasterDatabase.cs" />
+    <Compile Include="Analytics\ContactIsLockedByAnotherOperationExceptionOccursWhileSavingAnalyticsDataIfAnalyticsClusterNameIsNotSpecified.cs" />
+    <Compile Include="Analytics\MaxMindNotSupported.cs" />
+    <Compile Include="Debug\ChangedSettings.cs" />
+    <Compile Include="ECM\ExMSpeakHandlerChecker.cs" />
+    <Compile Include="General\Performance\AbstractQueueSizeTest.cs" />
+    <Compile Include="General\Performance\CheckIndexFragmentation.cs" />
+    <Compile Include="Analytics\VisitInformationMayNotBeAvailableWhenEvaluatingConditionsInEngagementPlan.cs" />
+    <Compile Include="Analytics\SessionTimeoutWhenSavingRichTextFields.cs" />
+    <Compile Include="ECM\CheckConnectionString.cs" />
+    <Compile Include="ECM\ExmSqlScriptTest.cs" />
+    <Compile Include="ECM\Helpers\EcmHelper.cs" />
+    <Compile Include="ECM\Helpers\EcmVersion.cs" />
+    <Compile Include="ECM\PageNotFoundIssue.cs" />
+    <Compile Include="ECM\PublishingIssue.cs" />
+    <Compile Include="ECM\RendererUrlSetting.cs" />
+    <Compile Include="ECM\SchedulingSectionOnCd.cs" />
+    <Compile Include="ECM\SubscriptionFormIssue.cs" />
+    <Compile Include="General\Consistency\InconsistentModules.cs" />
+    <Compile Include="General\Health\EventQueuePropertyChangedRemoteEvent.cs" />
+    <Compile Include="General\Performance\DisableCacheSizeLimits.cs" />
+    <Compile Include="General\DiagCode.cs" />
+    <Compile Include="General\Server\DotNetFrameworkVersion.cs" />
+    <Compile Include="General\Server\IISVersionTest.cs" />
+    <Compile Include="General\SystemTest.cs" />
+    <Compile Include="Search\NewerSolrCompatibility.cs" />
+    <Compile Include="General\Consistency\AssembliesConsistencyMatch.cs" />
+    <Compile Include="General\Consistency\DatabaseSchemaValidation.cs" />
+    <Compile Include="General\Performance\DefaultCacheSizes.cs" />
+    <Compile Include="General\Health\ErrorWhenPublishingTheCheckInItem.cs" />
+    <Compile Include="General\Performance\CompilationDebugDisabled.cs" />
+    <Compile Include="Analytics\ContentTestingErrorKb638569.cs" />
+    <Compile Include="Search\MultipleSolrCoresHttpCache.cs" />
+    <Compile Include="Search\ObsoleteItemVersions.cs" />
+    <Compile Include="Search\ContentSearchLogging.cs" />
+    <Compile Include="Search\ContentSearchUpdateStrategies.cs" />
+    <Compile Include="General\Server\CounterCategoryDoesNotExist.cs" />
+    <Compile Include="General\Server\CpuCores.cs" />
+    <Compile Include="General\Server\DiskSpace.cs" />
+    <Compile Include="Analytics\DmsBotDetectionTurnedOn.cs" />
+    <Compile Include="General\Performance\EventQueueSize.cs" />
+    <Compile Include="General\Consistency\GlobalAsaxInheritsFrom.cs" />
+    <Compile Include="Extensions\ConfigurationExtensions.cs" />
+    <Compile Include="General\Performance\HistoryTableSize.cs" />
+    <Compile Include="Analytics\TrackingFieldAccess.cs" />
+    <Compile Include="General\Health\ImageValidatorErrors.cs" />
+    <Compile Include="General\Health\IllegalCharactersInURL.cs" />
+    <Compile Include="General\Health\AppCenterIconNotFound.cs" />
+    <Compile Include="General\Health\CleanupAgentErrors.cs" />
+    <Compile Include="General\Health\ViewStateCleanupIssue.cs" />
+    <Compile Include="General\Health\ErrorMessageInContentEditor.cs" />
+    <Compile Include="General\Health\DisableBrowserCachingIsFalseError.cs" />
+    <Compile Include="Search\FieldsWithSpaces.cs" />
+    <Compile Include="General\Health\AspxFileMissingForLayout.cs" />
+    <Compile Include="General\Health\RTESerializationError.cs" />
+    <Compile Include="Search\ErrorAfterEnablingSolr.cs" />
+    <Compile Include="General\Health\PasswordResetNotWorking.cs" />
+    <Compile Include="General\Health\PathInfoinUrlError.cs" />
+    <Compile Include="Analytics\RefreshAggregatedDataCannotBeRun.cs" />
+    <Compile Include="General\Health\MediaCachingError.cs" />
+    <Compile Include="General\Health\PublishingTimeBeforeStatusExpires.cs" />
+    <Compile Include="General\Health\InvalidWebResource.cs" />
+    <Compile Include="General\Consistency\MasterDatabaseOnCd.cs" />
+    <Compile Include="General\Server\MaximumWorkerProcesses.cs" />
+    <Compile Include="General\Performance\MediaLinkPrefixContainsTilde.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="General\Performance\PublishEndHtmlClearingHandlers.cs" />
+    <Compile Include="General\Performance\PublishEndRemoteHtmlClearingHandlers.cs" />
+    <Compile Include="General\Performance\PublishLogging.cs" />
+    <Compile Include="General\Performance\PublishQueueSize.cs" />
+    <Compile Include="General\Consistency\SchedulingConsistency.cs" />
+    <Compile Include="General\Server\ServerBitness.cs" />
+    <Compile Include="General\Server\ServerRamContentManagement.cs" />
+    <Compile Include="General\Performance\W3WpCrash.cs" />
+    <Compile Include="General\Server\WebsiteFolderReusage.cs" />
+    <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditor.cs" />
+    <Compile Include="Search\CrawlerRootItemIgnored.cs" />
+    <Compile Include="Solution\LuceneNoGo.cs" />
+    <Compile Include="Solution\PatchesInformation.cs" />
+    <Compile Include="Solution\SharedPrivateSessionInterference.cs" />
+    <Compile Include="Solution\SharedSession.cs" />
+    <Compile Include="Solution\PublishingInstance.cs" />
+    <Compile Include="TestsLibrary.cs" />
+    <Compile Include="Tools\WFFM\WFFMConstants.cs" />
+    <Compile Include="WFFM\WFFMBusinessName.cs" />
+    <Compile Include="WFFM\WFFMDoubledBrackets.cs" />
+    <Compile Include="WFFM\WFFMNoClientActions.cs" />
+    <Compile Include="WFFM\WffmObsoleteCommands.cs" />
+    <Compile Include="WFFM\WFFMSubmitFormTwice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sitecore.DiagnosticsTool.Core\SDT.Core.csproj">
+      <Project>{568d5646-d692-4aed-b575-8ef861ad8111}</Project>
+      <Name>SDT.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{568D5646-D692-4AED-B575-8EF861AD8111}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.DiagnosticsTool.Core</RootNamespace>
+    <AssemblyName>Sitecore.DiagnosticsTool.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Sitecore.DiagnosticsTool.Core.XML</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Sitecore.DiagnosticsTool.Core.XML</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.26\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.26\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.26\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.26\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Logging, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.1.26\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.26\lib\Sitecore.Diagnostics.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.26\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="Base\Null.cs" />
+    <Compile Include="Categories\ServerRole.cs" />
+    <Compile Include="Collections\MapExtensions.cs" />
+    <Compile Include="Collections\Pair.cs" />
+    <Compile Include="DataProviders\IDataProvider.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Categories\Category.cs" />
+    <Compile Include="Collections\Map.cs" />
+    <Compile Include="Output\DetailedMessage.cs" />
+    <Compile Include="Output\ShortMessage.cs" />
+    <Compile Include="Output\Table.cs" />
+    <Compile Include="Output\TableRow.cs" />
+    <Compile Include="Resources\Common\DatabaseResourceNotAvailableException.cs" />
+    <Compile Include="Resources\Common\LogFilesResourceNotAvailableException.cs" />
+    <Compile Include="Resources\Common\WebServerResourceNotAvailableException.cs" />
+    <Compile Include="Resources\Configuration\CacheSize.cs" />
+    <Compile Include="Resources\Configuration\ConfigurationFile.cs" />
+    <Compile Include="Resources\Configuration\LogicalDatabaseCache.cs" />
+    <Compile Include="Resources\Configuration\LogicalDatabaseDefinition.cs" />
+    <Compile Include="Resources\Database\DatabaseType.cs" />
+    <Compile Include="Resources\Database\IDatabase.cs" />
+    <Compile Include="Resources\Database\IMongoDatabase.cs" />
+    <Compile Include="Resources\Database\ISystemContext.cs" />
+    <Compile Include="Resources\Database\ISqlDatabase.cs" />
+    <Compile Include="Resources\Database\IDatabaseContext.cs" />
+    <Compile Include="Resources\Database\IMongoDatabaseContext.cs" />
+    <Compile Include="Resources\Database\ISqlDatabaseContext.cs" />
+    <Compile Include="Resources\Configuration\IContentSearchIndex.cs" />
+    <Compile Include="Resources\Modules\IModulesContext.cs" />
+    <Compile Include="Resources\Modules\ISitecoreModuleInfo.cs" />
+    <Compile Include="Resources\Database\IDatabaseMetrics.cs" />
+    <Compile Include="Resources\Database\IIndexHealthMetrics.cs" />
+    <Compile Include="Resources\SitecoreInformation\IInstanceName.cs" />
+    <Compile Include="Resources\SitecoreInformation\IReleaseInfo.cs" />
+    <Compile Include="Resources\Database\ITableMetrics.cs" />
+    <Compile Include="Resources\Logging\ExceptionInfo.cs" />
+    <Compile Include="Resources\Logging\LogLevel.cs" />
+    <Compile Include="Resources\Configuration\SearchProvider.cs" />
+    <Compile Include="Resources\IServerRolesContext.cs" />
+    <Compile Include="Resources\WebServer\Identity.cs" />
+    <Compile Include="Resources\WebServer\IdentityType.cs" />
+    <Compile Include="Resources\FileSystem\IDriveContext.cs" />
+    <Compile Include="Resources\SitecoreInformation\IReleaseDefaultSqlDatabase.cs" />
+    <Compile Include="Resources\WebServer\IServerInfo.cs" />
+    <Compile Include="Resources\SitecoreInformation\ISitecoreAssembliesContext.cs" />
+    <Compile Include="Resources\SitecoreInformation\ISitecoreConfigurationContext.cs" />
+    <Compile Include="Resources\SitecoreInformation\ISitecoreDefaultsContext.cs" />
+    <Compile Include="Resources\SitecoreInformation\ISitecoreInformationContext.cs" />
+    <Compile Include="Resources\FileSystem\IFileSystemContext.cs" />
+    <Compile Include="Resources\Logging\ILogEntry.cs" />
+    <Compile Include="Resources\Logging\ILoggingContext.cs" />
+    <Compile Include="Resources\Common\ResourceBase.cs" />
+    <Compile Include="Resources\Common\ResourceNotAvailableException.cs" />
+    <Compile Include="Resources\Configuration\ManagerDefinition.cs" />
+    <Compile Include="Resources\Configuration\PipelineDefinition.cs" />
+    <Compile Include="Resources\Configuration\ProcessorDefinition.cs" />
+    <Compile Include="Resources\Configuration\ProviderDefinition.cs" />
+    <Compile Include="Resources\Common\ResourceType.cs" />
+    <Compile Include="Resources\WebServer\FrameworkBitness.cs" />
+    <Compile Include="Resources\WebServer\FrameworkVersion.cs" />
+    <Compile Include="Resources\WebServer\FrameworkVersionHelper.cs" />
+    <Compile Include="Resources\WebServer\IApplicationPool.cs" />
+    <Compile Include="Resources\WebServer\IApplicationPoolCollection.cs" />
+    <Compile Include="Resources\Common\IResource.cs" />
+    <Compile Include="Resources\WebServer\ISite.cs" />
+    <Compile Include="Resources\WebServer\ISiteCollection.cs" />
+    <Compile Include="Resources\WebServer\IWebServerContext.cs" />
+    <Compile Include="Resources\WebServer\PipelineMode.cs" />
+    <Compile Include="Resources\WebServer\State.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Output\BoldText.cs" />
+    <Compile Include="Output\BulletedList.cs" />
+    <Compile Include="Output\Code.cs" />
+    <Compile Include="Output\CodeBlock.cs" />
+    <Compile Include="Output\Container.cs" />
+    <Compile Include="Tests\ISolutionTest.cs" />
+    <Compile Include="Tests\ISolutionTestResourceContext.cs" />
+    <Compile Include="Tests\ITestMetadata.cs" />
+    <Compile Include="Tests\ITestOutputContext.cs" />
+    <Compile Include="Output\Link.cs" />
+    <Compile Include="Output\Message.cs" />
+    <Compile Include="Output\MessagePart.cs" />
+    <Compile Include="Tests\ITestResourceContextBase.cs" />
+    <Compile Include="Output\OutputFormat.cs" />
+    <Compile Include="Output\Paragraph.cs" />
+    <Compile Include="Tests\SolutionTest.cs" />
+    <Compile Include="Tests\Test.cs" />
+    <Compile Include="Tests\ITestResourceContext.cs" />
+    <Compile Include="Tests\ITest.cs" />
+    <Compile Include="Tests\KbTest.cs" />
+    <Compile Include="Output\Text.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

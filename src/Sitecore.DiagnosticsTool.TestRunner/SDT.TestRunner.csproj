@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE139CA8-D1E6-4A82-9B14-F9D15A5E91BC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.DiagnosticsTool.TestRunner</RootNamespace>
+    <AssemblyName>Sitecore.DiagnosticsTool.TestRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.26\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Logging, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.1.26\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.26\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AggregatedTestRunner.cs" />
+    <Compile Include="Base\ITestProcessingContext.cs" />
+    <Compile Include="Base\ITestReport.cs" />
+    <Compile Include="Base\ITestResult.cs" />
+    <Compile Include="Base\ITestResults.cs" />
+    <Compile Include="Base\ITestResultsView.cs" />
+    <Compile Include="Base\ResultsFile.cs" />
+    <Compile Include="Base\TestResultState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SameNameInstancesAreNotSupported.cs" />
+    <Compile Include="SolutionTestManager.cs" />
+    <Compile Include="SolutionTestResourceContext.cs" />
+    <Compile Include="SolutionTestRunner.cs" />
+    <Compile Include="TestContextHelper.cs" />
+    <Compile Include="TestManager.cs" />
+    <Compile Include="TestManagerBase.cs" />
+    <Compile Include="TestResults.cs" />
+    <Compile Include="TestRunner.cs" />
+    <Compile Include="TestResourceContext.cs" />
+    <Compile Include="TestProcessingContext.cs" />
+    <Compile Include="TestReport.cs" />
+    <Compile Include="TestOutput.cs" />
+    <Compile Include="TestRunnerBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sitecore.DiagnosticsTool.Core\SDT.Core.csproj">
+      <Project>{568d5646-d692-4aed-b575-8ef861ad8111}</Project>
+      <Name>SDT.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sitecore.DiagnosticsTool.DataProviders\SDT.DataProviders.csproj">
+      <Project>{2F6C3B27-0B22-4A92-8A2C-8A76DA10015B}</Project>
+      <Name>SDT.DataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sitecore.DiagnosticsTool.Tests\SDT.Tests.csproj">
+      <Project>{A4B64257-F8FF-4047-83A2-C745BBE97EF4}</Project>
+      <Name>SDT.Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
