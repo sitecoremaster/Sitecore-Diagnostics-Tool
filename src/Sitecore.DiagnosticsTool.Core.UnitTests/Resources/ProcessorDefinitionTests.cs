@@ -1,7 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.UnitTests.Resources
 {
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
   using Xunit;
 

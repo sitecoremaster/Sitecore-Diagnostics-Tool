@@ -1,6 +1,5 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Output
 {
-  using System;
   using System.Collections.Generic;
   using System.Linq;
   using JetBrains.Annotations;

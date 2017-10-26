@@ -1,7 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
   using System.Collections.Generic;
-  using Sitecore.DiagnosticsTool.Core.Resources;
+
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   /// <summary>

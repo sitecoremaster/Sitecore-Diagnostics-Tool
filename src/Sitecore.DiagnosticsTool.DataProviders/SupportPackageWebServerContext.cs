@@ -3,7 +3,6 @@
   using System.IO;
   using System.Xml.Linq;
   using Sitecore.DiagnosticsTool.Core.Extensions;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 

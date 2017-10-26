@@ -2,7 +2,7 @@ namespace Sitecore.DiagnosticsTool.Core.DataProviders
 {
   using System.Collections.Generic;
   using JetBrains.Annotations;
-  using Sitecore.DiagnosticsTool.Core.Resources;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 

@@ -5,7 +5,6 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.FileSystem;
 
   public class DriveContext : IDriveContext

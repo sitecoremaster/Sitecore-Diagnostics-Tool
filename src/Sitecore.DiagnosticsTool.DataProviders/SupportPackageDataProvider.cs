@@ -9,13 +9,10 @@
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
-  using Sitecore.DiagnosticsTool.Core;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Extensions;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
-  using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database;

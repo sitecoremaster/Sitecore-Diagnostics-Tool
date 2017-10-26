@@ -11,7 +11,6 @@
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
-  using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   // Reviewed: OK (2017-06-13, looks valid)

@@ -5,7 +5,6 @@
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;

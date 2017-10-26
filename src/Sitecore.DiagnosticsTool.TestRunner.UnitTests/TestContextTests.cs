@@ -8,7 +8,6 @@ namespace Sitecore.DiagnosticsTool.TestRunner.UnitTests
   using Microsoft.VisualStudio.TestTools.UnitTesting;
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.Core.Tests;

@@ -5,7 +5,6 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using System.Linq;
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
 
   public class LoggingContext : ILoggingContext

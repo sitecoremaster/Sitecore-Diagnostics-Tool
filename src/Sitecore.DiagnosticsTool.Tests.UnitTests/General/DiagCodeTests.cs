@@ -2,7 +2,6 @@
 {
   using System.Xml;
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.TestRunner;

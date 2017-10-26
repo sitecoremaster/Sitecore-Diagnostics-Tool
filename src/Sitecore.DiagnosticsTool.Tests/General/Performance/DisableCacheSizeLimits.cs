@@ -1,6 +1,5 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Performance
 {
-  using System;
   using System.Collections.Generic;
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;

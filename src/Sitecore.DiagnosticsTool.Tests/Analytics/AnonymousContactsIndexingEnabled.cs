@@ -3,15 +3,11 @@
     using Sitecore.Diagnostics.Base;
     using Sitecore.Diagnostics.Objects;
     using Sitecore.DiagnosticsTool.Core.Categories;
-    using Sitecore.DiagnosticsTool.Core.Resources.Logging;
     using Sitecore.DiagnosticsTool.Core.Tests;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
-    public class AnonymousContactsIndexingEnabled : KbTest
+    using System.Collections.Generic;
+
+  public class AnonymousContactsIndexingEnabled : KbTest
     {
 
         protected string SettingName = "ContentSearch.Analytics.IndexAnonymousContacts";

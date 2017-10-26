@@ -4,7 +4,6 @@
 
 namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
-  using System;
   using System.Collections.Generic;
   using JetBrains.Annotations;
   using Sitecore.Diagnostics.Base;

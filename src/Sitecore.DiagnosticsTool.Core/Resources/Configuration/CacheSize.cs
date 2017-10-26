@@ -1,11 +1,9 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 {
   using System;
-  using System.Xml;
 
   using JetBrains.Annotations;
 
-  using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
 
   public class CacheSize
