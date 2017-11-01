@@ -33,7 +33,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
       return size;
     }
 
-    private static long GetSizeInBytes(string value, ISitecoreVersion version)
+    private static long GetSizeInBytes([CanBeNull] string value, [NotNull] ISitecoreVersion version)
     {
       if (version.MajorMinorInt == 826) // TODO: update when merged to next major release
       {
