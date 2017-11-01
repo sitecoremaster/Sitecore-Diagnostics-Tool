@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
 
   public interface IContentSearchIndex

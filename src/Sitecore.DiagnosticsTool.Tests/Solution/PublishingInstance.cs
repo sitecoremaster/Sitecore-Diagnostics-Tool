@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -17,7 +19,7 @@
 
     public override string Name { get; } = "Publishing instance is set up consistently";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

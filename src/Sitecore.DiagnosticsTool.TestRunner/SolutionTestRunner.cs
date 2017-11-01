@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using System.Linq;
+
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;

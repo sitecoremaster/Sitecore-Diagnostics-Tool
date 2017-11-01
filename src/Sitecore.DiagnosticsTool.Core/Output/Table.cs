@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
 
@@ -17,7 +19,7 @@
     [NotNull]
     [ItemNotNull]
     public string[] Headers { get; }
-    
+
     public Table([ItemNotNull] params TableRow[] rows)
       : this(new string[0], rows)
     {
@@ -74,7 +76,7 @@
           Value = x.Value
         }).ToDictionary(x => x.SortOrder, x => x.Value);
 
-      for(var i=0;i<Headers.Length;++i)
+      for (var i = 0; i < Headers.Length; ++i)
       {
         var col = cols.TryGetValue(i) ?? "";
         builder.AppendLine("<td>");
@@ -105,7 +107,7 @@
         })
         .OrderBy(x => x.SortOrder != -1 ? x.SortOrder : int.MaxValue)
         .ToArray();
-        
+
       var col0 = cols.First();
       if (col0.SortOrder == 0)
       {

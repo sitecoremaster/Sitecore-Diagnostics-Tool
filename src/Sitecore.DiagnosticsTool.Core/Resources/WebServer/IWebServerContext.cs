@@ -5,6 +5,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
 {
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
 
   /// <summary>

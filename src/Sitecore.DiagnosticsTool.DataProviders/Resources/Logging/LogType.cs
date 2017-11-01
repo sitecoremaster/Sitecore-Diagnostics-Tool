@@ -3,12 +3,19 @@
   internal enum LogType
   {
     Crawling,
+
     Log,
+
     Publishing,
+
     Search,
+
     WebDav,
+
     Fxm,
+
     Client,
+
     Custom
   }
 }

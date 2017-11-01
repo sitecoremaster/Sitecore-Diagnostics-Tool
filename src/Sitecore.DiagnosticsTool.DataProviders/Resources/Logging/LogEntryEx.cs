@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Logging
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.LogAnalyzer.Models;
   using Sitecore.Diagnostics.Objects;

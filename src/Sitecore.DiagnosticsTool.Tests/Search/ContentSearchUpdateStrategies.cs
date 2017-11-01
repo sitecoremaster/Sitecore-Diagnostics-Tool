@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -15,7 +17,7 @@
   {
     public override string Name { get; } = "ContentSearch update strategies point to correct databases";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

@@ -4,7 +4,9 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
   using System.Collections.Generic;
   using System.Diagnostics;
   using System.Xml.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
@@ -19,6 +21,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
     private string Name { get; }
 
     private Size? Ram { get; }
+
     private string Version { get; }
 
     public XmlServerInfo([NotNull] XContainer hardwareInfo)
@@ -45,6 +48,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
       {
         return;
       }
+
       if (_FrameworkVersions == null)
       {
         _FrameworkVersions = new List<FrameworkVersion>();

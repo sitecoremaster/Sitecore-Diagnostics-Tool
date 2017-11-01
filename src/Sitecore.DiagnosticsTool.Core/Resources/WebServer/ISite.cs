@@ -4,6 +4,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
   using System.Collections.Generic;
   using System.IO;
   using System.Net;
+
   using JetBrains.Annotations;
 
   public interface ISite

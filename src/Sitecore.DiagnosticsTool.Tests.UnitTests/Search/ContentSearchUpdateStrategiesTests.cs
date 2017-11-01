@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.Search
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -8,6 +9,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class ContentSearchUpdateStrategiesTests : ContentSearchUpdateStrategies
@@ -40,6 +42,7 @@
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core")
         })
         .Process(this)
+
         // .MustReturn(new TestOutput(TestResultState.Error, GetIndexStrategiesCorruptedMessage("index1"))) // DEBUG
         .Done();
     }
@@ -57,6 +60,7 @@
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core")
         })
         .Process(this)
+
         // .MustReturn(new TestOutput(TestResultState.Error, GetIndexStrategiesCorruptedMessage("index1"))) // DEBUG
         .Done();
     }
@@ -75,6 +79,7 @@
             .Add("/configuration/sitecore/contentSearch", "indexUpdateStrategies/intervalAsyncCore/param[@desc='database']") // broken strategy - no database
         })
         .Process(this)
+
         // .MustReturn(new TestOutput(TestResultState.Error, GetStrategyCorruptedMessage("intervalAsyncCore"))) // DEBUG
         .Done();
     }

@@ -7,7 +7,9 @@
   using System.Threading;
   using System.Threading.Tasks;
   using System.Windows.Input;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -19,7 +21,8 @@
   {
     #region Constructors
 
-    public DiagnosticsPageViewModel(DataSource source) : base(source)
+    public DiagnosticsPageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -33,9 +36,13 @@
     private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
     private string reportPath;
+
     private bool isThreadRunning;
+
     private int testsNumber;
+
     private bool isThreadAborted;
+
     private int currentTest;
 
     #endregion Fields
@@ -65,6 +72,7 @@
         {
           return CurrentTest * 100 / TestsNumber;
         }
+
         return 0;
       }
     }
@@ -133,6 +141,7 @@
         {
           return string.Format(Strings.DiagnosticsRunning, CurrentTest, TestsNumber);
         }
+
         return IsThreadAborted ? Strings.DiagnosticsInterrupted : Strings.DiagnosticsCompleted;
       }
     }
@@ -232,7 +241,9 @@
     #region WizardPageViewModelBase members
 
     public override string DisplayName => Strings.PageDisplayName_Diagnostics;
+
     public override string Icon => Strings.Icon_Diagnostics;
+
     public override string Title => Strings.PageTitle_Diagnostics;
 
     public override bool IsValid()

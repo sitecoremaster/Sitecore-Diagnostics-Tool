@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
@@ -13,11 +14,17 @@
   public sealed class TestResourceContext : ITestResourceContext
   {
     private ISystemContext _System;
+
     private IServerRolesContext _ServerRoleses;
+
     private IDatabaseContext _Databases;
+
     private IFileSystemContext _FileSystem;
+
     private ILoggingContext _Logs;
+
     private ISitecoreInformationContext _SitecoreInfo;
+
     private IWebServerContext _WebServer;
 
     public TestResourceContext(string instanceName)
@@ -150,7 +157,8 @@
     }
 
     [NotNull]
-    protected T1 AssertResource<T1>(T1 resource, ResourceType resourceType, string details = null) where T1 : class
+    protected T1 AssertResource<T1>(T1 resource, ResourceType resourceType, string details = null)
+      where T1 : class
     {
       if (resource == null)
       {

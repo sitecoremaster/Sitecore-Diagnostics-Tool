@@ -42,6 +42,7 @@
     #region Fields
 
     private readonly Action<T> _execute;
+
     private readonly Predicate<T> _canExecute;
 
     #endregion // Fields
@@ -89,6 +90,7 @@
     #region Fields
 
     private readonly Action _execute;
+
     private readonly Func<bool> _canExecute;
 
     #endregion // Fields

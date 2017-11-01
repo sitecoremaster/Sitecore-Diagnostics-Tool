@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Tests;

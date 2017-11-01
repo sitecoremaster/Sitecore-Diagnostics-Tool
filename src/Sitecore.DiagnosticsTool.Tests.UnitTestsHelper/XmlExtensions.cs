@@ -2,7 +2,9 @@
 {
   using System.Collections.Specialized;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Helpers.XPath;
 

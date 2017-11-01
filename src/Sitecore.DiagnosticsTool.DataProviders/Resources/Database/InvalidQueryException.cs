@@ -5,7 +5,8 @@
   [Serializable]
   public class InvalidQueryException : Exception
   {
-    public InvalidQueryException() : base("Query is invalid or contains illegal SQL statement.")
+    public InvalidQueryException()
+      : base("Query is invalid or contains illegal SQL statement.")
     {
     }
   }

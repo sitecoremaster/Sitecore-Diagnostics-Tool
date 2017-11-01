@@ -2,7 +2,9 @@
 {
   using System;
   using System.Text.RegularExpressions;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.Diagnostics.Objects;

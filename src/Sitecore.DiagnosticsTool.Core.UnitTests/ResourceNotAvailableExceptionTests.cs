@@ -3,6 +3,7 @@
   using FluentAssertions;
 
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
+
   using Xunit;
 
   public class ResourceNotAvailableExceptionTests

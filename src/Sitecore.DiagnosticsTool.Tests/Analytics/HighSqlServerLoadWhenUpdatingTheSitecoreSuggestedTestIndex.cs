@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -16,7 +18,7 @@
 
     public override string KbName { get; } = "High SQL Server load when updating the sitecore_suggested_test_index";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.DiagnosticsTool.Core.Base;
@@ -18,7 +20,7 @@
   {
     public override string Name { get; } = "Patches Information";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

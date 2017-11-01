@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;

@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.WinApp
 {
   using System;
+
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.ViewModel;
 

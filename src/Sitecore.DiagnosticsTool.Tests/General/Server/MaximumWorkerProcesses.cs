@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Server
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
@@ -13,7 +15,7 @@
   {
     public override string Name { get; } = "Maximum worker processes in application pool";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

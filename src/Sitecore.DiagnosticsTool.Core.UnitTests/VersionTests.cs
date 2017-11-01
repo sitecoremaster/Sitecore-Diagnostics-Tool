@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.UnitTests
 {
   using FluentAssertions;
+
   using Sitecore.Diagnostics.Objects;
+
   using Xunit;
 
   public class VersionTests

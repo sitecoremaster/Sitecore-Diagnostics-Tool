@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Performance
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Performance;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class PublishEndHtmlClearingHandlersTests : PublishEndHtmlClearingHandlers
@@ -20,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.Publishing },
+          ServerRoles = new[] {ServerRole.Publishing},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().TryParse(@"
 <configuration>
@@ -59,7 +61,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.Publishing },
+          ServerRoles = new[] {ServerRole.Publishing},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().TryParse(@"
 <configuration>

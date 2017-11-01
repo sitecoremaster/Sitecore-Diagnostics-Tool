@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Consistency
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -15,7 +17,7 @@
 
     public override string Name { get; } = "Global.asax should use Sitecore.Web.Application";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

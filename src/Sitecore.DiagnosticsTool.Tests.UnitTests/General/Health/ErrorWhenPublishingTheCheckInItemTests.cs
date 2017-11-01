@@ -7,6 +7,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Health;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class ErrorWhenPublishingTheCheckInItemTests : ErrorWhenPublishingTheCheckInItem

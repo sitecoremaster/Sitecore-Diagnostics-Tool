@@ -7,7 +7,8 @@
   {
     #region Constructors
 
-    public WelcomePageViewModel(DataSource source) : base(source)
+    public WelcomePageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -16,7 +17,9 @@
     #region WizardPageViewModelBase Members
 
     public override string DisplayName => Strings.PageDisplayName_Welcome;
+
     public override string Icon => Strings.Icon_Welcome;
+
     public override string Title => Strings.PageTitle_Welcome;
 
     public override bool IsValid()

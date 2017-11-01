@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Runtime.Serialization;
+
   using JetBrains.Annotations;
 
   public class Map : Dictionary<string, string>

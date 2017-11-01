@@ -7,6 +7,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
   using Sitecore.DiagnosticsTool.Tests.WFFM;
+
   using Xunit;
 
   public class WffmObsoleteCommandsTest : WffmObsoleteCommands

@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -16,7 +18,7 @@
 
     public override string Name { get; } = "Scheduling consistency";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

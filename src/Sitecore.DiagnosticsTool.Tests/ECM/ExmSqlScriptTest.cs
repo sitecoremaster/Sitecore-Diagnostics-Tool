@@ -3,7 +3,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -36,7 +38,7 @@
 
     public override string Name { get; } = "Check if EXM SQL script was run against reporting database";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

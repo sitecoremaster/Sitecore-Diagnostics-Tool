@@ -2,7 +2,9 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
 

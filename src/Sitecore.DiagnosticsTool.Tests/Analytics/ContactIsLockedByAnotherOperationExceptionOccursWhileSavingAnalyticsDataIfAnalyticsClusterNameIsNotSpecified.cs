@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -17,7 +19,7 @@
 
     public override string KbName { get; } = @"""A contact is locked by another operation"" exception occurs while saving Analytics data if Analytics.ClusterName is not specified";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

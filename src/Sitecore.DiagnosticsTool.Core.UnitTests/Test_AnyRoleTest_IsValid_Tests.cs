@@ -2,11 +2,14 @@
 {
   using System;
   using System.Collections.Generic;
+
   using FluentAssertions;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner;
+
   using Xunit;
 
   public class Test_AnyRoleTest_IsValid_Tests
@@ -17,7 +20,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0, 141212);
 
-      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] {ServerRole.ContentDelivery}, ver, new TestResourceContext(""))
         .Should()
         .BeTrue();
     }
@@ -28,7 +31,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0, 141212);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] {ServerRole.ContentManagement}, ver, new TestResourceContext(""))
         .Should()
         .BeTrue();
     }
@@ -39,7 +42,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0, 141212);
 
-      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] {ServerRole.Processing,}, ver, new TestResourceContext(""))
         .Should()
         .BeTrue();
     }
@@ -50,7 +53,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0, 141212);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] {ServerRole.ContentManagement, ServerRole.Processing,}, ver, new TestResourceContext(""))
         .Should()
         .BeTrue();
     }
@@ -59,7 +62,7 @@
     {
       public override string Name { get; } = nameof(ServerRoles);
 
-      public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+      public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {

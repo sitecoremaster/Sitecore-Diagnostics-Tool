@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Helpers.XPath
 {
   using System;
+
   using JetBrains.Annotations;
 
   public class InvalidXPathException : InvalidOperationException

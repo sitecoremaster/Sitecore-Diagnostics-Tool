@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -13,17 +15,22 @@
   public class MasterDatabaseOnCd : Test
   {
     protected const string SiteXPath = @"/configuration/sitecore/sites/site[@database='master']";
+
     protected const string IdTableXPath = @"/configuration/sitecore/IDTable/param[@connectionStringName='master']";
+
     protected const string DatabaseXPath = @"/configuration/sitecore/databases/database[@id='master']";
+
     protected const string SearchXPath = @"/configuration/sitecore/search/configuration/indexes/index/locations/master";
+
     protected const string SchedulingXPath1 = @"/configuration/sitecore/scheduling/agent/databases/database[@name='master']";
+
     protected const string SchedulingXPath2 = @"/configuration/sitecore/scheduling/agent/param";
 
     public override string Name { get; } = "Master database must not be referenced on CD instance";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
+    public override IEnumerable<ServerRole> ServerRoles => new[] {ServerRole.ContentDelivery};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

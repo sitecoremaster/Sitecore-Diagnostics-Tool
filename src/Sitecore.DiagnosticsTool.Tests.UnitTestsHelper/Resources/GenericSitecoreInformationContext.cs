@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
@@ -30,7 +31,8 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
       Version = version;
     }
 
-    public GenericSitecoreInformationContext(IServiceClient client) : base(client)
+    public GenericSitecoreInformationContext(IServiceClient client)
+      : base(client)
     {
     }
   }

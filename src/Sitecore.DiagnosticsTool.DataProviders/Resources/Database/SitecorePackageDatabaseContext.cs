@@ -5,6 +5,7 @@
   using System.Data.SqlClient;
   using System.Linq;
   using System.Xml;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Extensions;

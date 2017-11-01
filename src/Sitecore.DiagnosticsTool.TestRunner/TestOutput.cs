@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -19,7 +21,6 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     public TestResultState State { get; }
-
 
     public ShortMessage Message { get; }
 

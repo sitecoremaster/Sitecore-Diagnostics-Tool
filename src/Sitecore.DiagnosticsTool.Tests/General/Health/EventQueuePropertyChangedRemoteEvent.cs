@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Health
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -23,7 +25,7 @@
 
     public override string KbNumber => "930920";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing, Category.Performance };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing, Category.Performance};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

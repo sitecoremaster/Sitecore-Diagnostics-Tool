@@ -6,6 +6,7 @@
   using System.ComponentModel;
   using System.Linq;
   using System.Windows.Input;
+
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
 
@@ -18,10 +19,15 @@
     #region Fields
 
     private RelayCommand cancelCommand;
+
     private DataSource source;
+
     private WizardPageViewModelBase currentPage;
+
     private RelayCommand moveNextCommand;
+
     private RelayCommand movePreviousCommand;
+
     private ReadOnlyCollection<WizardPageViewModelBase> pages;
 
     #endregion // Fields
@@ -63,6 +69,7 @@
     }
 
     private bool CanMoveToPreviousPage => 0 < CurrentPageIndex;
+
     public bool IsNextButtonEnabled { get; set; }
 
     private void MoveToPreviousPage()
@@ -178,6 +185,7 @@
     }
 
     public bool IsOnLastPage => CurrentPageIndex == Pages.Count - 1;
+
     public bool IsOnFirstPage => CurrentPageIndex == 0;
 
     public ReadOnlyCollection<WizardPageViewModelBase> Pages
@@ -207,6 +215,7 @@
     {
       var welcome = new WelcomePageViewModel(source);
       var resources = new ResourcesPageViewModel(source);
+
       //var configuration = new ConfigurationPageViewModel(source);
       var diagnostics = new DiagnosticsPageViewModel(source);
       var results = new ResultsPageViewModel(source);
@@ -215,11 +224,11 @@
       {
         welcome,
         resources,
+
         //configuration,
         diagnostics,
         results
       };
-
 
       this.pages = new ReadOnlyCollection<WizardPageViewModelBase>(pages);
     }
@@ -232,6 +241,7 @@
         {
           return Pages.IndexOf(CurrentPage);
         }
+
         return -1;
       }
     }

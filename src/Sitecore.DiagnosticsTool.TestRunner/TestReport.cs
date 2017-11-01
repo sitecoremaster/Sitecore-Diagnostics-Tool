@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;

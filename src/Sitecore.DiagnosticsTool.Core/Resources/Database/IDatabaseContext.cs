@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Resources.Database
 {
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
 
   /// <summary>

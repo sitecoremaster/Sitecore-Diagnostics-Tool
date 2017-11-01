@@ -12,7 +12,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 
   public class LogicalDatabaseDefinition
   {
-    [NotNull] 
+    [NotNull]
     private static readonly Map<CacheDefinition> CacheDefinitions = new[]
     {
       new CacheDefinition("data", "cacheSizes/data", "Caching.DefaultDataCacheSize"),
@@ -52,7 +52,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
       Assert.ArgumentCondition(!string.IsNullOrWhiteSpace(name), nameof(definition), $"The id attribute is missing or whitespace.\r\nXml: {definition.OuterXml}");
 
       var caches = CacheDefinitions.Values
-        .Select(x => new { x.Name, x.FallbackSizeSettingName, Definition = definition.SelectSingleNode(x.XPath) })
+        .Select(x => new {x.Name, x.FallbackSizeSettingName, Definition = definition.SelectSingleNode(x.XPath)})
         .ToMap(x => x.Name, x => LogicalDatabaseCache.Parse(x.Name, x.FallbackSizeSettingName, x.Definition, version));
 
       return new LogicalDatabaseDefinition(name, caches, definition);
@@ -67,7 +67,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
     {
       public string Name { get; }
 
-      public string XPath { get;  }
+      public string XPath { get; }
 
       public string FallbackSizeSettingName { get; }
 

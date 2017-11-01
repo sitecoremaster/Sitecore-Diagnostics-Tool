@@ -1,12 +1,14 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Consistency
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
   using Sitecore.DiagnosticsTool.Tests.General.Consistency;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class GlobalAsaxInheritsFromTests : GlobalAsaxInheritsFrom

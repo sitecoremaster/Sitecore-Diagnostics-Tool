@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.WFFM
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -18,7 +20,7 @@
 
     public override string KbName { get; } = "Errors when a contact submits a WFFM form twice.";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Wffm };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Wffm};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using Newtonsoft.Json;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
 
   public class TableMetrics : ITableMetrics
@@ -16,6 +18,7 @@
     public virtual string Name { get; set; }
 
     public virtual long RowCount { get; set; }
+
     public virtual double PhysicalSize { get; set; }
 
     [JsonIgnore]

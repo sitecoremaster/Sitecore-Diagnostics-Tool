@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -13,8 +15,11 @@
   public class SwitchingBetweenSheerUiAndSpeakModesInExperienceEditor : KbTest
   {
     protected const string MvcPageExtendersRootNode = @"/configuration/sitecore/pipelines/mvc.renderPageExtenders";
+
     protected const string AspnetPageExtendersRootNode = @"/configuration/sitecore/pageextenders";
+
     protected const string MvcPageExtendersPath = MvcPageExtendersRootNode + "/processor[@type='{0}']";
+
     protected const string AspnetPageExtendersPath = AspnetPageExtendersRootNode + @"/pageextender[@type='{0}']";
 
     [NotNull]
@@ -49,7 +54,7 @@
 
     public override string KbName { get; } = "Switching between Sheer UI and SPEAK modes in Experience Editor";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

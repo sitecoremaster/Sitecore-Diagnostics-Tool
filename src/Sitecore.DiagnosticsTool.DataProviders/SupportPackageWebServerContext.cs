@@ -2,6 +2,7 @@
 {
   using System.IO;
   using System.Xml.Linq;
+
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
@@ -9,6 +10,7 @@
   public class SupportPackageWebServerContext : IWebServerContext
   {
     private IServerInfo Server { get; }
+
     private ISite Site { get; }
 
     private SupportPackageWebServerContext(ISite site, IServerInfo server)

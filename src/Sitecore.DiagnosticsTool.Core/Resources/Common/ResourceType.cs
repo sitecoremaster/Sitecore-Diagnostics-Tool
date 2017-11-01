@@ -3,10 +3,15 @@
   public enum ResourceType
   {
     FileSystem,
+
     SitecoreInformation,
+
     WebServer,
+
     Database,
+
     LogFiles,
+
     System
   }
 }

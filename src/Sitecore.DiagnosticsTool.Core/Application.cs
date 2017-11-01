@@ -3,7 +3,9 @@
   using System;
   using System.IO;
   using System.Reflection;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public static class Application

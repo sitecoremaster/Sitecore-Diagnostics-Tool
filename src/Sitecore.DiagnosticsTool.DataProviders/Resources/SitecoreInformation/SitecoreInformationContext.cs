@@ -5,7 +5,9 @@
   using System.IO;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Logging;
@@ -18,11 +20,13 @@
   {
     private static readonly IServiceClient _DefaultServiceClient = new ServiceClient();
 
-    public SitecoreInformationContext() : base(_DefaultServiceClient)
+    public SitecoreInformationContext()
+      : base(_DefaultServiceClient)
     {
     }
 
-    public SitecoreInformationContext(IServiceClient client) : base(client)
+    public SitecoreInformationContext(IServiceClient client)
+      : base(client)
     {
     }
 
@@ -221,6 +225,7 @@
         var name = assembly.GetAttribute("name");
         var fileVersion = assembly["fileVersion"].InnerText.Replace(", ", ".");
         var productVersion = assembly["productVersion"].InnerText.Replace(", ", ".");
+
         //TODO: enable that when SSPG saves date in ISO format var lastUpdated = DateTime.Parse(assembly["lastWriteTime"].InnerText);
         //TODO: implement md5
 

@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Output
 {
   using System.Text;
+
   using JetBrains.Annotations;
 
   public class Code : Text

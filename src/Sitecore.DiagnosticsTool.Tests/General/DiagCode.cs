@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -15,7 +17,7 @@
   {
     public override string Name { get; } = "DIAG Code";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

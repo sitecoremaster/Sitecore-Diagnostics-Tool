@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.DiagnosticsTool.Core.Collections;
 
@@ -17,7 +19,7 @@
     {
     }
 
-    public TableRow([NotNull] IEnumerable<Pair> collection) 
+    public TableRow([NotNull] IEnumerable<Pair> collection)
       : base(collection.ToDictionary(x => x.Key, x => x.Value))
     {
     }

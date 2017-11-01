@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   // Reviewed: OK (2017-06-13, looks valid)

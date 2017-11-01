@@ -6,7 +6,9 @@
   using System.IO.Compression;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -27,6 +29,7 @@
     static readonly ServiceClient client = new ServiceClient();
 
     private string _InstanceName;
+
     private IResource[] _Resources;
 
     [NotNull]
@@ -52,7 +55,7 @@
       Logger = logger;
       DiagCode = diagCode;
       Assert.ArgumentNotNull(packageFilePath, nameof(packageFilePath));
-      
+
       if (File.Exists(packageFilePath))
       {
         TempFolderPath = Path.GetTempFileName() + "dt";
@@ -153,7 +156,7 @@
           }
         }
       }
-      
+
       if (instanceName == FileName)
       {
         // if log files does not contain instance name - use package metadata

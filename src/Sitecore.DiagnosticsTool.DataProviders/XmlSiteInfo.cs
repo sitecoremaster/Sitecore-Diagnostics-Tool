@@ -5,6 +5,7 @@
   using System.IO;
   using System.Net;
   using System.Xml.Linq;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 
@@ -12,7 +13,7 @@
   {
     public XmlSiteInfo(XContainer packageInfo)
     {
-      HostNames = new[] { packageInfo.Element("package").Element("selectedInstance").Value };
+      HostNames = new[] {packageInfo.Element("package").Element("selectedInstance").Value};
     }
 
     public long Id

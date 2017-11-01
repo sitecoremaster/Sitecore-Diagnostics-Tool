@@ -3,11 +3,14 @@
   using System;
   using System.Collections.Generic;
   using System.Xml;
+
   using FluentAssertions;
+
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
+
   using Xunit;
 
   public class VersionHelperTests
@@ -23,11 +26,11 @@
       var version = new SitecoreVersion(ver, hotfixText);
       var releases = new Dictionary<string, IRelease>
       {
-        { ver.Revision.ToString(), new Release(productName, version, "whatever", DateTime.MinValue, new Dictionary<string, IDistribution>(), new ReleaseCompatibility()) }
+        {ver.Revision.ToString(), new Release(productName, version, "whatever", DateTime.MinValue, new Dictionary<string, IDistribution>(), new ReleaseCompatibility())}
       };
       var productVersions = new Dictionary<string, IProductVersion>
       {
-        { version.MajorMinor, new ProductVersion(version.MajorMinor, releases) }
+        {version.MajorMinor, new ProductVersion(version.MajorMinor, releases)}
       };
 
       var client = new MockServiceClient

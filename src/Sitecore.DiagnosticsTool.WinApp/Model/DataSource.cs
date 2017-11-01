@@ -3,6 +3,7 @@
   using System.Collections.Generic;
   using System.ComponentModel;
   using System.Runtime.CompilerServices;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   public class DataSource : INotifyPropertyChanged
@@ -10,8 +11,11 @@
     #region Properties
 
     public List<Category> Categories { get; set; }
+
     public string ReportPath { get; set; }
+
     public string ErrorMessage { get; set; }
+
     public List<SourcePackageModel> Packages { get; set; } = new List<SourcePackageModel>();
 
     #endregion

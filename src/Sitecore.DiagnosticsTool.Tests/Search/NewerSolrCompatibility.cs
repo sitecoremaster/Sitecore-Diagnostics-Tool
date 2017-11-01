@@ -5,7 +5,9 @@
   using System.IO;
   using System.Net;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -19,7 +21,7 @@
 
     public override string KbNumber => "227897";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

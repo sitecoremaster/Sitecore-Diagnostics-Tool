@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -16,7 +18,7 @@
   {
     public override string Name { get; } = "Lucene in scaled setups";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {
@@ -46,7 +48,7 @@
         foreach (var indexName in index2instances.Keys)
         {
           var instances = index2instances[indexName];
-          rows.Add(new TableRow(new[] { new Pair("Index", indexName) }
+          rows.Add(new TableRow(new[] {new Pair("Index", indexName)}
             .Concat(instances.Select(z => new Pair(z, "Lucene")))));
         }
 

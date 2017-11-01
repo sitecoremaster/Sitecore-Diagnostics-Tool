@@ -2,7 +2,9 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
 {
   using System.Collections.Generic;
   using System.Diagnostics;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Objects;
 
   public interface IServerInfo

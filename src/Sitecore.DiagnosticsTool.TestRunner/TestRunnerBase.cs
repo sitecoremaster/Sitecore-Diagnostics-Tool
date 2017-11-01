@@ -4,7 +4,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using System.Collections.Generic;
   using System.Diagnostics;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
@@ -15,7 +17,8 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
-  public abstract class TestRunnerBase<TTest, TResource, TDataSource> where TTest : ITestMetadata where TResource : IInstanceName
+  public abstract class TestRunnerBase<TTest, TResource, TDataSource>
+    where TTest : ITestMetadata where TResource : IInstanceName
   {
     protected virtual bool UnitTesting { get; } = false;
 

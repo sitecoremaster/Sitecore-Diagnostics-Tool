@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -15,7 +17,7 @@
   {
     public override string Name { get; } = "SQL Server index fragmentation level check";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

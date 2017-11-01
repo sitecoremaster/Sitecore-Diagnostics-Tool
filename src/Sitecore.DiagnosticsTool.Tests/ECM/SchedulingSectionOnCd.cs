@@ -1,16 +1,18 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   public class SchedulingSectionOnCd : Test
   {
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
+    public override IEnumerable<ServerRole> ServerRoles => new[] {ServerRole.ContentDelivery};
 
     public override string Name { get; } = "ECM scheduling section must be disabled on CD";
 

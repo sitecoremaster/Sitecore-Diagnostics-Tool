@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
 

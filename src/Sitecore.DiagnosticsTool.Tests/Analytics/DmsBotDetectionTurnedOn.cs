@@ -5,7 +5,9 @@
 namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -16,10 +18,10 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
   public class DmsBotDetectionTurnedOn : Test
   {
     protected const string ErrorMessage = "Analytics bots detection is disabled, this may lead to excessive database growth.";
-    
+
     public override string Name { get; } = "Bot detection must be turned on";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
 
     public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {

@@ -41,7 +41,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 
     public IEnumerable<IResource> GetResources()
     {
-      yield return new ServerRolesContext(ServerRoles.EmptyToNull() ?? new[] { ServerRole.ContentManagement | ServerRole.ContentDelivery | ServerRole.Publishing | ServerRole.ContentIndexing });
+      yield return new ServerRolesContext(ServerRoles.EmptyToNull() ?? new[] {ServerRole.ContentManagement | ServerRole.ContentDelivery | ServerRole.Publishing | ServerRole.ContentIndexing});
 
       var context = new GenericSitecoreInformationContext(ServiceClient ?? DefaultServiceClient);
       var instanceName = InstanceName;

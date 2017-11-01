@@ -4,8 +4,11 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Threading;
+
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
@@ -208,7 +211,7 @@
       /// <summary>
       ///   The list of categories the test belongs to.
       /// </summary>
-      public IEnumerable<Category> Categories => new[] { Category.General };
+      public IEnumerable<Category> Categories => new[] {Category.General};
     }
 
     public class UnidentifiedTest : FakeTest

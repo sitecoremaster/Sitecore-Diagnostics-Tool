@@ -2,8 +2,11 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Microsoft.Win32;
+
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.Logging;
 

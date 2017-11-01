@@ -5,7 +5,9 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System.Linq;
   using System.Runtime.Remoting;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.InfoService.Client.Model;
@@ -20,6 +22,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   public class SitecoreDefaultsContext : ISitecoreDefaultsContext
   {
     private static readonly IServiceClient _DefaultServiceClient = new ServiceClient();
+
     private const string ContactSupportMessage = "This is remote information service malfunction, please try again later. If the error is persistent, please notify Sitecore Support team.";
 
     [NotNull]
@@ -31,8 +34,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private IReadOnlyDictionary<string, AssemblyFile> _Assemblies;
 
     private XmlDocument _Configuration;
+
     private IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> _Databases;
+
     private IDistributionDefaults _Defaults;
+
     private List<ISitecoreModuleInfo> _ModulesInformation;
 
     public SitecoreDefaultsContext([NotNull] ISitecoreVersion sitecoreVersion, IServiceClient client = null)
@@ -76,7 +82,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       return ConfigurationHelper.GetSetting(Configuration, settingName);
     }
-    
+
     public bool GetBoolSetting(string settingName)
     {
       return bool.Parse(GetSetting(settingName));

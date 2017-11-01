@@ -2,7 +2,9 @@
 {
   using System;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -34,7 +36,6 @@
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
-
       AddResult(TestResultState.Warning, url, message, detailed);
     }
 
@@ -57,7 +58,7 @@
       Assert.ArgumentNotNull(ex, nameof(ex));
       Assert.ArgumentNotNull(message, nameof(message));
 
-      Debug(new DetailedMessage(message.Items.Concat(new[] { new Text(". Exception:"), new CodeBlock(ex.PrintException()) })));
+      Debug(new DetailedMessage(message.Items.Concat(new[] {new Text(". Exception:"), new CodeBlock(ex.PrintException())})));
     }
 
     private void AddResult(TestResultState state, [CanBeNull] Uri link, [NotNull] ShortMessage message, [CanBeNull] DetailedMessage detailed)

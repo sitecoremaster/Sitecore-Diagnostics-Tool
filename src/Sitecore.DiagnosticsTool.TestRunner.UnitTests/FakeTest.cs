@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;

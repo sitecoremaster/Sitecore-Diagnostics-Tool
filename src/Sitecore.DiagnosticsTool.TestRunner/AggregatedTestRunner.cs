@@ -2,7 +2,9 @@
 {
   using System;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Tests;

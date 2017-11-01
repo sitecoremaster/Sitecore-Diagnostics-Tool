@@ -4,7 +4,9 @@
   using System.IO;
   using System.Linq;
   using System.Reflection;
+
   using Fclp;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.Reporting;
@@ -192,7 +194,7 @@
         .Select(x =>
         {
           Console.WriteLine($"Parsing {x.Path}");
-          
+
           return new SupportPackageDataProvider(x.Path, x.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}");
         })
         .ToArray();

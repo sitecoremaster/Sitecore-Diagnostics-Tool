@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.WinApp.View
 {
   using System.Collections.ObjectModel;
+
   using Sitecore.DiagnosticsTool.WinApp.ViewModel;
 
   public partial class ResourceDetailsPageView

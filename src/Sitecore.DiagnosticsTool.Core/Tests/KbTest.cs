@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   /// <summary>

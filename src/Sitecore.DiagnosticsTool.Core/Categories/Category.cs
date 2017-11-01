@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Categories
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   /// <summary>

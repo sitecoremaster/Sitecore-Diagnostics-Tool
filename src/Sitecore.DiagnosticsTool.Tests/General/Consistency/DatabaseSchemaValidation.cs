@@ -2,7 +2,9 @@
 {
   using System;
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
@@ -16,7 +18,7 @@
   {
     public override string Name { get; } = "Database schema validation";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
@@ -118,6 +120,7 @@
               Actual = actualColumn.Type,
               IsError = true
             },
+
             // TODO: enable that when SSPG schema matches SDT/SIS
             //new Property
             //{
@@ -147,6 +150,7 @@
               Actual = actualColumn.ForeignKey,
               IsError = false
             }
+
             // TODO: enable that when SSPG schema matches SDT/SIS
             //new Property
             //{

@@ -3,7 +3,9 @@
   using System.IO;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.ConfigBuilder;
   using Sitecore.Diagnostics.Logging;

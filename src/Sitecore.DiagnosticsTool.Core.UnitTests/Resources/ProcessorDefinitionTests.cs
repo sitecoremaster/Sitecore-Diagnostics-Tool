@@ -2,6 +2,7 @@
 {
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
+
   using Xunit;
 
   public class ProcessorDefinitionTests
@@ -57,6 +58,7 @@
       // ReSharper disable AssignNullToNotNullAttribute
       var a = new ProcessorDefinition(TypeRef.Parse("A"), null, false, null);
       var b = new ProcessorDefinition(TypeRef.Parse("B"), null, false, null);
+
       // ReSharper enable AssignNullToNotNullAttribute
 
       var result = ProcessorDefinition.Equals(a, b);

@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -16,7 +18,7 @@
 
     public override string KbName { get; } = "Session timeout when saving Rich Text fields";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
 
     protected override bool IsActual(ITestResourceContext data)
     {

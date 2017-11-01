@@ -3,7 +3,9 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
 

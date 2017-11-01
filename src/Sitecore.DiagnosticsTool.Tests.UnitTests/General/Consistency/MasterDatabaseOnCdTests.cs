@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Consistency
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class MasterDatabaseOnCdTests : MasterDatabaseOnCd
@@ -20,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create("/configuration")
         })
@@ -35,7 +37,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(SiteXPath)
         })
@@ -51,7 +53,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentManagement },
+          ServerRoles = new[] {ServerRole.ContentManagement},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(SiteXPath)
         })
@@ -67,7 +69,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(IdTableXPath)
         })
@@ -83,7 +85,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(DatabaseXPath)
         })
@@ -99,7 +101,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(SearchXPath)
         })
@@ -115,7 +117,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(SchedulingXPath1)
         })
@@ -131,7 +133,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] { ServerRole.ContentDelivery },
+          ServerRoles = new[] {ServerRole.ContentDelivery},
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().Create(SchedulingXPath2, "master")
         })

@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -16,7 +18,7 @@
 
     public override string KbName { get; } = "Troubleshooting Sitecore IP Geolocation service";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
@@ -56,7 +58,7 @@
         .Replace("<div class=\"placeholder-cannot-run-messages\"></div>", cannotRunText)
         .Replace("<div class=\"placeholder-debug-messages\"></div>", debugText);
     }
-    
+
     private static T Safe<T>([NotNull] Func<Null, T> func)
     {
       try
@@ -176,7 +178,7 @@
       {
         throw new NotImplementedException(); // impossible
       }
-      
+
       return result;
     }
 

@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
@@ -37,8 +38,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private XmlDocument _SitecoreVersionXmlFile;
 
     private XmlDocument _WebConfigFile;
+
     private IModulesContext _ModulesInformation;
+
     private string _InstanceName;
+
     private ContentSearchIndexes _ContentSearchIndexes;
 
     protected SitecoreInformationContextBase(IServiceClient client)
@@ -171,7 +175,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     /// <inheritdoc />
     public IDictionary<string, IContentSearchIndex> ContentSearchIndexes => _ContentSearchIndexes ?? (_ContentSearchIndexes = new ContentSearchIndexes(Configuration));
-    
+
     public bool IsAnalyticsEnabled
     {
       get
@@ -215,7 +219,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       return ConfigurationHelper.GetSetting(Configuration, settingName, _ => SitecoreDefaults.GetSetting(settingName));
     }
-    
+
     public bool GetBoolSetting(string settingName)
     {
       return bool.Parse(GetSetting(settingName));

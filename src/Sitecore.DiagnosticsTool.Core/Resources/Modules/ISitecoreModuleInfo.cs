@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Resources.Modules
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   /// <summary>

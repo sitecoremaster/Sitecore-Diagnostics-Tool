@@ -3,7 +3,9 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
@@ -74,8 +76,10 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             module.AddRelease(releaseInfo);
           }
         }
+
         rv.Add(module);
       }
+
       return rv;
     }
 
@@ -138,6 +142,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           return true;
         }
       }
+
       return false;
     }
 
@@ -153,6 +158,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           correctModules.Add(module.Key, module.Value);
         }
       }
+
       return correctModules;
     }
 
@@ -166,6 +172,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           return false;
         }
       }
+
       return true;
     }
 
@@ -178,6 +185,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           return true;
         }
       }
+
       return false;
     }
   }

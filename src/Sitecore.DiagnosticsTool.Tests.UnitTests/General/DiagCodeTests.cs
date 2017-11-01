@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.General;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class DiagCodeTests : DiagCode
@@ -22,6 +24,7 @@
 
       var setting = "AliasesActive";
       var expectedValue = "true";
+
       // actualValue = true from Sitecore defaults
 
       var code = $"<tests><setting name=\"{setting}\" mode=\"default\" /></tests>";
@@ -96,6 +99,7 @@
 
       var setting = "AliasesActive";
       var expectedValue = "true";
+
       // actualValue = true from Sitecore defaults
 
       var code = $"<tests><setting name=\"{setting}\" value=\"{expectedValue}\" /></tests>";

@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.UnitTests
 {
   using FluentAssertions;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
+
   using Xunit;
 
   public class CategoryTests

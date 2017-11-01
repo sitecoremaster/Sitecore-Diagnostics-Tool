@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -13,7 +15,7 @@
 
     public override string KbNumber => "173546";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
 
     [NotNull]
     protected string ErrorMessage => "Message links and statistics may not be available in ECM after dispatch. Please refer to the following article for more information";

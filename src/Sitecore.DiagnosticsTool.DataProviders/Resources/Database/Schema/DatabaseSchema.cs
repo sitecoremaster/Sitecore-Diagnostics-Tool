@@ -2,8 +2,11 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Newtonsoft.Json;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database.Diagnostics.SqlServer;
 

@@ -1,8 +1,10 @@
 ﻿namespace Sitecore.DiagnosticsTool.Resources.SitecoreInformation.UnitTests
 {
   using System.Linq;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
+
   using Xunit;
 
   public class ModulesContextTests

@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Output
 {
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public class Container : MessagePart

@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -13,7 +15,7 @@
   {
     public override string Name { get; } = "Presence of ecm.dispatch connection string";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

@@ -6,6 +6,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Consistency;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class AssembliesConsistencyCheckTests : AssembliesConsistencyMatch
@@ -13,7 +14,9 @@
     private static readonly SitecoreVersion ProductVersion = new SitecoreVersion(6, 6, 7, 131211);
 
     private readonly AssemblyFile _Lib1 = new AssemblyFile("ComponentArt.Web.UI.dll", "2010.1.2637.35", "2010.1.2637.35", 2773680);
+
     private readonly AssemblyFile _Lib2 = new AssemblyFile("HtmlAgilityPack.dll", "1.4.6.0", "1.4.6.0", 143160);
+
     private readonly AssemblyFile _Lib3 = new AssemblyFile("ITHit.WebDAV.Server.dll", "2.1.1.108", "2.1.1.108", 99);
 
     [Fact]
@@ -24,7 +27,7 @@
         .AddResource(new SitecoreInstance
         {
           Version = ProductVersion,
-          Assemblies = new[] { _Lib1, _Lib2, _Lib3 }
+          Assemblies = new[] {_Lib1, _Lib2, _Lib3}
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetVersionInconsistencyMessage(_Lib2, "1.4.0.0")))

@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.UnitTests
 {
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
+
   using Xunit;
 
   public class FrameworkVersionTests

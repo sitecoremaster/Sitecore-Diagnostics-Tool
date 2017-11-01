@@ -5,7 +5,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using System.IO;
   using System.Linq;
   using System.Reflection;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
 

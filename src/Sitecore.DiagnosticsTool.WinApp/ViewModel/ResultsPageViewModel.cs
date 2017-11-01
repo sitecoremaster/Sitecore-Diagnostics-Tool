@@ -7,7 +7,8 @@
   {
     #region Constructors
 
-    public ResultsPageViewModel(DataSource source) : base(source)
+    public ResultsPageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -16,13 +17,17 @@
     #region WizardPageViewModelBase Members
 
     public override string DisplayName => Strings.PageDisplayName_Results;
+
     public override string Title => Strings.PageTitle_Results;
+
     public override bool IsValid() => true;
+
     public override string Icon => Strings.Icon_Results;
 
     #region Properties
 
     public string ReportPath => Source.ReportPath;
+
     public string ErrorMessage => Source.ErrorMessage;
 
     #endregion Properties

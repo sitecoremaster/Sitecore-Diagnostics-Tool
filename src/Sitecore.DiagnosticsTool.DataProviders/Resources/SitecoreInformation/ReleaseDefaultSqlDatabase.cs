@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults.DatabaseExtensions;

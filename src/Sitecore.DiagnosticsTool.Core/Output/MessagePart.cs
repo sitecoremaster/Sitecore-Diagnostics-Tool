@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.Core.Output
 {
   using System;
   using System.Text;
+
   using JetBrains.Annotations;
 
   public abstract class MessagePart

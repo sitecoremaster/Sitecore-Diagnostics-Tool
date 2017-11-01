@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -20,7 +22,7 @@
 
     public override string Name { get; } = "Content Search Verbose Logging is disabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing, Category.Production };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing, Category.Production};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

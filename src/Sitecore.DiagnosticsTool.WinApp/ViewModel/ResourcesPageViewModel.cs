@@ -3,6 +3,7 @@
   using System.Collections.ObjectModel;
   using System.Linq;
   using System.Windows.Input;
+
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.Resources;
@@ -12,7 +13,8 @@
   {
     #region Constructors
 
-    public ResourcesPageViewModel(DataSource source) : base(source)
+    public ResourcesPageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -46,6 +48,7 @@
     #region WizardPageViewModelBase Members
 
     public override string DisplayName => Strings.PageDisplayName_Resources;
+
     public override string Icon => Strings.Icon_Resources;
 
     public ObservableCollection<ResourceDetailsPageView> Resources { get; set; } = new ObservableCollection<ResourceDetailsPageView>();
@@ -74,6 +77,7 @@
         {
           continue;
         }
+
         var packageSource = new SourcePackageModel
         {
           Path = package.PackagePath,

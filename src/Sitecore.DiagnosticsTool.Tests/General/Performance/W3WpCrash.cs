@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -14,13 +16,16 @@
   public class W3WpCrash : Test
   {
     protected const string StartMessage = "Sitecore started";
+
     protected const string ShutdownMessage = "Sitecore shutting down";
+
     protected const int MaxEntriesCount = 100;
+
     protected static readonly TimeSpan ShutdownTimeout = new TimeSpan(0, 0, 2, 0, 0);
 
     public override string Name { get; } = "Hard application restarts";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

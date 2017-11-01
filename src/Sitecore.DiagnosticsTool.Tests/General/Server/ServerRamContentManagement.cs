@@ -5,7 +5,9 @@
 namespace Sitecore.DiagnosticsTool.Tests.General.Server
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -19,7 +21,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
 
     public override string Name { get; } = "Web Server RAM amount";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

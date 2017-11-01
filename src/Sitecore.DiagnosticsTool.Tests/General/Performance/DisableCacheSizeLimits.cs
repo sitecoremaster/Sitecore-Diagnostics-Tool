@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Performance
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -12,7 +14,7 @@
   {
     public override string Name { get; } = "Cache size limits are disabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

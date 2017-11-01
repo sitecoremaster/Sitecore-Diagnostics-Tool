@@ -6,6 +6,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
     x86,
 
     x64
+
     // ReSharper restore InconsistentNaming
   }
 }

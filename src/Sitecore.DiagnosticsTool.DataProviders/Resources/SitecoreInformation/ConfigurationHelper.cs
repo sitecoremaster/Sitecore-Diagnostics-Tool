@@ -4,7 +4,9 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Logging;
@@ -32,11 +34,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       Assert.ArgumentNotNull(settingName, nameof(settingName));
 
       return configuration
-               .SelectElements($"/configuration/sitecore/settings/setting[@name='{settingName}']")
-               .LastOrDefault() // take last setting as it is effective
-               .With(x => ParseSettingValue(x)) // if not null then get "value" attribute
-             ?? defaultValue?.Invoke(settingName)
-             ?? string.Empty;
+          .SelectElements($"/configuration/sitecore/settings/setting[@name='{settingName}']")
+          .LastOrDefault() // take last setting as it is effective
+          .With(x => ParseSettingValue(x)) // if not null then get "value" attribute
+        ?? defaultValue?.Invoke(settingName)
+        ?? string.Empty;
     }
 
     [CanBeNull]
@@ -108,7 +110,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       return configuration
         .SelectElements("/configuration/sitecore/*/providers")
-        .Select(p => (XmlElement) p.ParentNode)
+        .Select(p => (XmlElement)p.ParentNode)
         .Select(m => ManagerDefinition.Parse(m))
         .ToDictionary(m => m.Name, x => x);
     }

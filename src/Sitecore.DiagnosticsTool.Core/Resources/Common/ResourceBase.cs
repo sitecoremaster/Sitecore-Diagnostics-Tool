@@ -7,7 +7,8 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Common
     protected abstract ResourceType ResourceType { get; }
 
     [NotNull]
-    protected T1 AssertResource<T1>(T1 resource) where T1 : class
+    protected T1 AssertResource<T1>(T1 resource)
+      where T1 : class
     {
       if (resource == null)
       {
@@ -31,7 +32,8 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Common
     }
 
     [NotNull]
-    protected T1 AssertResource<T1>(T1 resource, string details) where T1 : class
+    protected T1 AssertResource<T1>(T1 resource, string details)
+      where T1 : class
     {
       if (resource == null)
       {

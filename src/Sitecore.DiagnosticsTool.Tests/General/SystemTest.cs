@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
@@ -10,7 +12,7 @@
   {
     public override string Name { get; } = "System information";
 
-    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
+    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

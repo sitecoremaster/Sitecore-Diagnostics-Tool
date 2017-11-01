@@ -4,8 +4,11 @@ namespace Sitecore.DiagnosticsTool.TestRunner.UnitTests
 {
   using System;
   using System.Reflection;
+
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;

@@ -5,7 +5,9 @@
   using System.IO;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.LogAnalyzer;
   using Sitecore.Diagnostics.LogAnalyzer.Managers;
@@ -109,6 +111,7 @@
           {
             continue;
           }
+
           var logItem = logType[iterrator];
 
           if (totalSize + logItem.Length < SitecoreLogsLimit)

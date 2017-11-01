@@ -2,7 +2,9 @@
 {
   using System;
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
 
   public class Link : Text

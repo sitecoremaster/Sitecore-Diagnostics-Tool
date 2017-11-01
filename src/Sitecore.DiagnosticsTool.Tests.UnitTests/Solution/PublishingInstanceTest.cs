@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.Solution
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
@@ -10,6 +11,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class PublishingInstanceTest : PublishingInstance
@@ -22,7 +24,7 @@
           new SitecoreInstance
           {
             InstanceName = "test",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
@@ -38,7 +40,7 @@
           new SitecoreInstance
           {
             InstanceName = "test",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='test']")
           })
@@ -54,7 +56,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm']")
           })
@@ -62,7 +64,7 @@
           new SitecoreInstance
           {
             InstanceName = "cd",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
@@ -78,7 +80,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm1",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
@@ -86,7 +88,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm2",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
@@ -94,7 +96,7 @@
           new SitecoreInstance
           {
             InstanceName = "cd",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
@@ -110,7 +112,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm1",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
@@ -118,7 +120,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm2",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm2']")
           })
@@ -126,15 +128,15 @@
           new SitecoreInstance
           {
             InstanceName = "cd",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Error, GetMessage(new Map<string[]>()
         {
-          { "cm1", new[] { "cm1" } },
-          { "cm2", new[] { "cm2" } }
+          {"cm1", new[] {"cm1"}},
+          {"cm2", new[] {"cm2"}}
         })))
         .Done();
     }
@@ -147,7 +149,7 @@
           new SitecoreInstance
           {
             InstanceName = "cm1",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
@@ -155,15 +157,15 @@
           new SitecoreInstance
           {
             InstanceName = "cm2",
-            ServerRoles = new[] { ServerRole.ContentManagement },
+            ServerRoles = new[] {ServerRole.ContentManagement},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Error, GetMessage(new Map<string[]>()
         {
-          { "cm1", new[] { "cm1" } },
-          { "[empty]", new[] { "cm2" } }
+          {"cm1", new[] {"cm1"}},
+          {"[empty]", new[] {"cm2"}}
         })))
         .Done();
     }

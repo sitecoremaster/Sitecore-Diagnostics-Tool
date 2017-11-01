@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -29,7 +30,7 @@
       if (Version != null)
       {
         yield return new SitecoreInformationContext(ServiceClient)
-        {          
+        {
           SitecoreVersionXmlFile = new XmlDocument()
             .Parse($"<information>" +
               $"<version>" +

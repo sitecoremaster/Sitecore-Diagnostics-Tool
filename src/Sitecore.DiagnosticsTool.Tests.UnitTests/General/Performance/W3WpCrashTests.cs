@@ -2,6 +2,7 @@
 {
   using System;
   using System.Linq;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Performance;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class W3WpCrashTests : W3WpCrash
@@ -47,7 +49,7 @@
       var start = extra.Add(ShutdownTimeout);
 
       // insert shutdown message marker
-      var entries = new[] { LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage) }.ToList();
+      var entries = new[] {LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage)}.ToList();
 
       // insert 100 (MaxEntriesCount) "Job started" messages
       entries.AddRange(Enumerable.Repeat(LogHelperEx.Parse(extra, LogLevel.Info, "Job started"), Count));
@@ -90,7 +92,6 @@
         .Done();
     }
 
-
     /// <summary>
     ///   Warning, crash happened within acceptable timeout and entries count
     /// </summary>
@@ -132,7 +133,7 @@
       var start = extra.Add(ShutdownTimeout);
 
       // insert shutdown message marker
-      var entries = new[] { LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage) }.ToList();
+      var entries = new[] {LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage)}.ToList();
 
       // insert 100 (MaxEntriesCount) "Job started" messages
       entries.AddRange(Enumerable.Repeat(LogHelperEx.Parse(extra, LogLevel.Info, "Job started"), Count));

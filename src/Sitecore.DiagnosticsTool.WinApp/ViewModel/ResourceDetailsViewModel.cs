@@ -10,7 +10,9 @@
   using System.Windows.Controls.Primitives;
   using System.Windows.Input;
   using System.Windows.Media;
+
   using Microsoft.Win32;
+
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -26,7 +28,9 @@
     #region Fields
 
     private string packagePath;
+
     private List<ServerRole> serverRoles = new List<ServerRole>();
+
     public ITestResourceContext Context { get; set; }
 
     #endregion
@@ -51,6 +55,7 @@
           {
             return;
           }
+
           CreatePackageDetailsPopup();
         });
       }
@@ -308,8 +313,11 @@
     #region Properties
 
     public ResourceDetailsPageView View { get; set; }
+
     public bool IsSitecoreVersionValid => !string.IsNullOrEmpty(SitecoreVersion) && !SitecoreVersion.Equals(Strings.DataIsNotAvailable, StringComparison.OrdinalIgnoreCase);
+
     public bool IsPackageLoaded => !string.IsNullOrEmpty(PackagePath);
+
     public bool IsResourceValid => IsPackageLoaded && ServerRoles != null && ServerRoles.Any() && IsSitecoreVersionValid;
 
     public string PackagePath

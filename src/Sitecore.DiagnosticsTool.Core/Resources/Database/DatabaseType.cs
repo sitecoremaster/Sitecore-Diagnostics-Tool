@@ -3,11 +3,17 @@
   public enum DatabaseType
   {
     Analytics,
+
     Reporting,
+
     Core,
+
     Content,
+
     Wfm,
+
     Exm,
+
     Undefined
   }
 }

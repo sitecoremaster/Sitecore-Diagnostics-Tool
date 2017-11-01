@@ -2,6 +2,7 @@
 {
   using System.Collections.Specialized;
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
@@ -11,6 +12,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class SharedSessionTests : SharedSession
@@ -23,7 +25,7 @@
           new SitecoreInstance
           {
             InstanceName = "test",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
@@ -50,11 +52,11 @@
           new SitecoreInstance
           {
             InstanceName = "test1",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
-                { "defaultProvider", "mongo" }
+                {"defaultProvider", "mongo"}
               })
               .Add("/configuration/sitecore/tracking/sharedSessionState", "providers/add[@name='mongo' and @connectionString='cstr1']")
               .Add("/configuration", "/connectionStrings/add[@name='cstr1' and @connectionString='cstr1value']")
@@ -64,11 +66,11 @@
           new SitecoreInstance
           {
             InstanceName = "test2",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
-                { "defaultProvider", "mongo" }
+                {"defaultProvider", "mongo"}
               })
               .Add("/configuration/sitecore/tracking/sharedSessionState", "providers/add[@name='mongo' and @connectionString='cstr1']")
               .Add("/configuration", "/connectionStrings/add[@name='cstr1' and @connectionString='cstr1value']")
@@ -86,11 +88,11 @@
           new SitecoreInstance
           {
             InstanceName = "test1",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
-                { "defaultProvider", "mongo" }
+                {"defaultProvider", "mongo"}
               })
               .Add("/configuration/sitecore/tracking/sharedSessionState", "providers/add[@name='mongo' and @connectionString='cstr1']")
               .Add("/configuration", "/connectionStrings/add[@name='cstr1' and @connectionString='cstr1value']")
@@ -100,11 +102,11 @@
           new SitecoreInstance
           {
             InstanceName = "test2",
-            ServerRoles = new[] { ServerRole.ContentDelivery },
+            ServerRoles = new[] {ServerRole.ContentDelivery},
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
-                { "defaultProvider", "mongo" }
+                {"defaultProvider", "mongo"}
               })
               .Add("/configuration/sitecore/tracking/sharedSessionState", "providers/add[@name='mongo' and @connectionString='cstr1']")
               .Add("/configuration", "/connectionStrings/add[@name='cstr1' and @connectionString='cstr1value12345']")
@@ -116,8 +118,8 @@
           {
             "cluster1", new Map()
             {
-              { "test1", "cstr1value" },
-              { "test2", "cstr1value12345" }
+              {"test1", "cstr1value"},
+              {"test2", "cstr1value12345"}
             }
           }
         })))
