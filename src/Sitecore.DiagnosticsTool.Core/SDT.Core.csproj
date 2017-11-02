@@ -80,6 +80,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Base\Null.cs" />
     <Compile Include="Categories\ServerRole.cs" />
+    <Compile Include="Collections\CollectionHelper.cs" />
     <Compile Include="Collections\MapExtensions.cs" />
     <Compile Include="Collections\Pair.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />

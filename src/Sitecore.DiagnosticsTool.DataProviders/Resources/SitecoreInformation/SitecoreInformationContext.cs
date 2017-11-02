@@ -95,8 +95,8 @@
         var appConfigFiles = Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
           .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));
 
-        Log.Info("Searching for \\App_Config\\Include *.config files");
-        includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Include\\");
+        Log.Info("Searching for \\App_Config\\Sitecore, Modules, Include, Environment *.config files");
+        includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Sitecore\\", "\\App_Config\\Modules\\", "\\App_Config\\Include\\", "\\App_Config\\Environment\\");
       }
 
       var globalAsaxPath = FindFile(rootPath, "global.asax");
@@ -240,12 +240,12 @@
     }
 
     [NotNull]
-    private static Dictionary<string, ConfigurationFile> FilterFiles([NotNull] Dictionary<string, ConfigurationFile> appConfigFiles, [NotNull] string filter)
+    private static Dictionary<string, ConfigurationFile> FilterFiles([NotNull] Dictionary<string, ConfigurationFile> appConfigFiles, [NotNull] params string[] filter)
     {
       Assert.ArgumentNotNull(appConfigFiles, nameof(appConfigFiles));
       Assert.ArgumentNotNull(filter, nameof(filter));
 
-      return appConfigFiles.Where(item => item.Key.StartsWith(filter)).ToDictionary(item => item.Key, item => item.Value);
+      return appConfigFiles.Where(item => filter.Any(f => item.Key.StartsWith(f))).ToDictionary(item => item.Key, item => item.Value);
     }
   }
 }

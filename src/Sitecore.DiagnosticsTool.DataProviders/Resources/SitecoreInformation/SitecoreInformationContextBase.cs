@@ -141,7 +141,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
         return AssertResource(_IncludeFiles, "Include Files");
       }
 
-      protected set
+      internal set
       {
         _IncludeFiles = value;
       }
