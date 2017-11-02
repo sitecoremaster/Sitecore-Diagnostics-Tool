@@ -1,11 +1,11 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
+  using System.Collections.Generic;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
-
-  using System.Collections.Generic;
 
   public class AnonymousContactsIndexingEnabled : KbTest
   {

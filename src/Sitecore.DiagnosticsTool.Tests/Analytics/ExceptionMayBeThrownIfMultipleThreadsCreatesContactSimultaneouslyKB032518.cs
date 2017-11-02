@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Sitecore.Diagnostics.Base;
-using Sitecore.Diagnostics.Objects;
-using Sitecore.DiagnosticsTool.Core.Categories;
-using Sitecore.DiagnosticsTool.Core.Resources.Logging;
-using Sitecore.DiagnosticsTool.Core.Tests;
-
-namespace Sitecore.DiagnosticsTool.Tests.Analytics
+﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
+  using System.Collections.Generic;
+  using System.Linq;
+
+  using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Objects;
+  using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Resources.Logging;
+  using Sitecore.DiagnosticsTool.Core.Tests;
+
   public class ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518 : KbTest
   {
     public override IEnumerable<Category> Categories => new[] {Category.Analytics};
@@ -26,9 +26,9 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      string exception = "System.IndexOutOfRangeException";
-      string exceptionMessage = "Index was outside the bounds of the array";
-      string partOfStackTrace = "Sitecore.Analytics.Model.Framework.ModelFactory.GetConcreteType(Type elementType)";
+      var exception = "System.IndexOutOfRangeException";
+      var exceptionMessage = "Index was outside the bounds of the array";
+      var partOfStackTrace = "Sitecore.Analytics.Model.Framework.ModelFactory.GetConcreteType(Type elementType)";
 
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);
 

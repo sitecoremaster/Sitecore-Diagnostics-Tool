@@ -111,12 +111,12 @@
 
       if (fieldsConfigIgnored.Count > 0)
       {
-        output.Warning("Configuration of the following field(s) is ignored:\r\n" + new BulletedList(fieldsConfigIgnored) + "\r\n", url: Link);
+        output.Warning("Configuration of the following field(s) is ignored:\r\n" + new BulletedList(fieldsConfigIgnored) + "\r\n", Link);
       }
 
       if (fieldsAnalyzerIgnored.Count > 0)
       {
-        output.Warning("Analyzer of the following field(s) is ignored:\r\n" + new BulletedList(fieldsAnalyzerIgnored), url: Link);
+        output.Warning("Analyzer of the following field(s) is ignored:\r\n" + new BulletedList(fieldsAnalyzerIgnored), Link);
       }
     }
 

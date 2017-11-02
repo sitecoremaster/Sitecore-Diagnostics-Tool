@@ -31,7 +31,7 @@
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);
       if (logs.Any(x => x != null && x.Message.Contains(Pattern)))
       {
-        output.Error(Message, url: Link);
+        output.Error(Message, Link);
       }
     }
   }

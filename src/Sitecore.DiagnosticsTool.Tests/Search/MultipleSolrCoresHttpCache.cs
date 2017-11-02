@@ -60,7 +60,7 @@
         || globalAsaxFile.Contains("Inherits=\"Sitecore.ContentSearch.SolrProvider.StructureMapIntegration.StructureMapApplication\"")
         || globalAsaxFile.Contains("Inherits=\"Sitecore.ContentSearch.SolrProvider.UnityIntegration.UnityApplication\""))
       {
-        output.Warning(WarningMsg, url: Link);
+        output.Warning(WarningMsg, Link);
       }
     }
   }

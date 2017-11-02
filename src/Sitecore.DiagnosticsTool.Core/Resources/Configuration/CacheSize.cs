@@ -69,11 +69,11 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
         value = value.Replace(".", "");
         value = value.Replace(" ", "");
 
-        int length = value.Length;
+        var length = value.Length;
 
         if (length > 0)
         {
-          int factor = 1;
+          var factor = 1;
 
           // check for KB, MB, GB
           if (value[length - 1] == 'B')
@@ -94,7 +94,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
             value = value.Substring(0, length - 2);
           }
 
-          long size = GetLong(value, -1);
+          var size = GetLong(value, -1);
 
           if (size >= 0)
           {

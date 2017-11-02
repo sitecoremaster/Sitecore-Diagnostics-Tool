@@ -20,6 +20,8 @@
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
 
+  using LogLevel = Sitecore.DiagnosticsTool.Core.Resources.Logging.LogLevel;
+
   public class LoggingContext : ILoggingContext
   {
     private const long SitecoreLogsLimit = 209715200;
@@ -42,15 +44,15 @@
 
     public IEnumerable<ILogEntry> GetSitecoreLogEntries()
     {
-      return GetSitecoreLogEntries(Core.Resources.Logging.LogLevel.All, DateTime.MinValue, DateTime.MaxValue);
+      return GetSitecoreLogEntries(LogLevel.All, DateTime.MinValue, DateTime.MaxValue);
     }
 
-    public IEnumerable<ILogEntry> GetSitecoreLogEntries(Core.Resources.Logging.LogLevel logLevel)
+    public IEnumerable<ILogEntry> GetSitecoreLogEntries(LogLevel logLevel)
     {
       return GetSitecoreLogEntries(logLevel, DateTime.MinValue, DateTime.MaxValue);
     }
 
-    public IEnumerable<ILogEntry> GetSitecoreLogEntries(Core.Resources.Logging.LogLevel logLevel, DateTime start, DateTime end)
+    public IEnumerable<ILogEntry> GetSitecoreLogEntries(LogLevel logLevel, DateTime start, DateTime end)
     {
       var cache = _SitecoreLogs;
       if (cache == null)
@@ -71,7 +73,7 @@
         _SitecoreLogs = cache;
       }
 
-      return logLevel.HasFlag(Core.Resources.Logging.LogLevel.Debug) ? cache.Where(x => start <= x.Date && x.Date <= end) : cache.Where(x => x.Level.HasFlag(logLevel) && start <= x.Date && x.Date <= end);
+      return logLevel.HasFlag(LogLevel.Debug) ? cache.Where(x => start <= x.Date && x.Date <= end) : cache.Where(x => x.Level.HasFlag(logLevel) && start <= x.Date && x.Date <= end);
     }
 
     private IEnumerable<FileInfo> GetAllLogFiles()
@@ -165,33 +167,33 @@
       }
     }
 
-    private static IEnumerable<LogEntry> FilterLogs([NotNull] ParsingResult logs, Core.Resources.Logging.LogLevel logLevel)
+    private static IEnumerable<LogEntry> FilterLogs([NotNull] ParsingResult logs, LogLevel logLevel)
     {
       Assert.ArgumentNotNull(logs, nameof(logs));
       List<LogEntry> filteredLogs = null;
       switch (logLevel)
       {
-        case Core.Resources.Logging.LogLevel.Fatal:
+        case LogLevel.Fatal:
           filteredLogs = logs.Fatals;
           break;
 
-        case Core.Resources.Logging.LogLevel.Error:
+        case LogLevel.Error:
           filteredLogs = logs.Errors;
           break;
 
-        case Core.Resources.Logging.LogLevel.Warn:
+        case LogLevel.Warn:
           filteredLogs = logs.Warns;
           break;
 
-        case Core.Resources.Logging.LogLevel.Info:
+        case LogLevel.Info:
           filteredLogs = logs.Infos;
           break;
 
-        case Core.Resources.Logging.LogLevel.Debug:
+        case LogLevel.Debug:
           filteredLogs = logs.Debugs;
           break;
 
-        case Core.Resources.Logging.LogLevel.All:
+        case LogLevel.All:
           filteredLogs = logs.All;
           break;
       }

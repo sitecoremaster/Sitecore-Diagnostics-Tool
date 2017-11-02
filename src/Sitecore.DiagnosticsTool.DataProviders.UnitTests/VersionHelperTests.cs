@@ -20,7 +20,7 @@
     {
       var random = new Random();
       var ver = new Version(random.Next(), random.Next());
-      int hotfix = random.Next();
+      var hotfix = random.Next();
       var productName = "Sitecore CMS";
       var hotfixText = $"Hotfix {hotfix}-2";
       var version = new SitecoreVersion(ver, hotfixText);

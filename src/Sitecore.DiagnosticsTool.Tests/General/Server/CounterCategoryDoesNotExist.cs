@@ -31,7 +31,7 @@
       var warnLogEntries = data.Logs.GetSitecoreLogEntries(LogLevel.Warn);
       if (warnLogEntries.Any(entry => entry.Message.StartsWith("Counter category '") && entry.Message.Contains("' does not exist on this server. Using temporary public counter for '")))
       {
-        output.Warning(CountersNotInstalledMessage, url: Link);
+        output.Warning(CountersNotInstalledMessage, Link);
       }
     }
   }

@@ -34,7 +34,7 @@
         var ex = log.RawText;
         if (ex.Contains(Exception))
         {
-          output.Error(Message, url: Url);
+          output.Error(Message, Url);
           return;
         }
       }

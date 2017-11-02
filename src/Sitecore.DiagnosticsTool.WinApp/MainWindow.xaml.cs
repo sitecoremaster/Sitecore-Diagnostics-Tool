@@ -17,14 +17,14 @@
       _mainWindowViewModel.RequestClose += OnViewModelRequestClose;
       DataContext = _mainWindowViewModel;
 
-      Title = string.Format(Title, this.GetType().Assembly.GetName().Version);
+      Title = string.Format(Title, GetType().Assembly.GetName().Version);
     }
 
     #endregion
 
     #region Fields
 
-    readonly MainWindowViewModel _mainWindowViewModel;
+    private readonly MainWindowViewModel _mainWindowViewModel;
 
     #endregion
 

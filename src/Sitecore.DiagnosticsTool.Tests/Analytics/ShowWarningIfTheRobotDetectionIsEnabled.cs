@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Sitecore.DiagnosticsTool.Core.Categories;
-using Sitecore.DiagnosticsTool.Core.Tests;
-
-namespace Sitecore.DiagnosticsTool.Tests.Analytics
+﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
+  using System.Collections.Generic;
+  using System.Linq;
+
+  using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Tests;
+
   public class ShowWarningIfTheRobotDetectionIsEnabled : Test
   {
     protected const string ErrorMessage = "Sitecore automatic robot detection functionality is disabled. This functionality filters out unwanted interactions from automated browsers and robots. Sitecore recommends enabling 'Analytics.AutoDetectBots' setting to reduce the growth of the xDB";

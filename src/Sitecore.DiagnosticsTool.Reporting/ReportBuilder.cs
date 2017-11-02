@@ -168,7 +168,7 @@
       result += Token;
       if (testResult.Link != null)
       {
-        result += (testResult.Link != null ? $"Get more information in <a href='{testResult.Link.AbsoluteUri}'>this document</a>.<hr />" : "");
+        result += testResult.Link != null ? $"Get more information in <a href='{testResult.Link.AbsoluteUri}'>this document</a>.<hr />" : "";
       }
       else if (testResult.Detailed != null)
       {
@@ -263,7 +263,7 @@
       }
     }
 
-    const string Token = "/--!!--/*--!!--*/--!!--/";
+    private const string Token = "/--!!--/*--!!--*/--!!--/";
 
     private static string Render(string id, string testName, string pair)
     {

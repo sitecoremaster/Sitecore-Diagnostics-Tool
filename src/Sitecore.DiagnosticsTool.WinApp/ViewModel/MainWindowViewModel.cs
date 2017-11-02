@@ -20,8 +20,6 @@
 
     private RelayCommand cancelCommand;
 
-    private DataSource source;
-
     private WizardPageViewModelBase currentPage;
 
     private RelayCommand moveNextCommand;
@@ -36,7 +34,7 @@
 
     public MainWindowViewModel()
     {
-      source = new DataSource();
+      Source = new DataSource();
       CurrentPage = Pages[0];
     }
 
@@ -50,7 +48,7 @@
 
     private void CancelOrder()
     {
-      source = null;
+      Source = null;
       OnRequestClose();
     }
 
@@ -151,7 +149,7 @@
 
     #region Properties
 
-    public DataSource Source => source;
+    public DataSource Source { get; private set; }
 
     public WizardPageViewModelBase CurrentPage
     {
@@ -213,12 +211,12 @@
 
     private void CreatePages()
     {
-      var welcome = new WelcomePageViewModel(source);
-      var resources = new ResourcesPageViewModel(source);
+      var welcome = new WelcomePageViewModel(Source);
+      var resources = new ResourcesPageViewModel(Source);
 
       //var configuration = new ConfigurationPageViewModel(source);
-      var diagnostics = new DiagnosticsPageViewModel(source);
-      var results = new ResultsPageViewModel(source);
+      var diagnostics = new DiagnosticsPageViewModel(Source);
+      var results = new ResultsPageViewModel(Source);
 
       var pages = new List<WizardPageViewModelBase>
       {

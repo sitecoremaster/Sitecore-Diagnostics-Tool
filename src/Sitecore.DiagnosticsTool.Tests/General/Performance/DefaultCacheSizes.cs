@@ -6,13 +6,13 @@
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
-  using Sitecore.DiagnosticsTool.Core.Tests;
-  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.Core.Tests;
 
   // Reviewed: OK (2017-06-13, looks valid)
   [UsedImplicitly]

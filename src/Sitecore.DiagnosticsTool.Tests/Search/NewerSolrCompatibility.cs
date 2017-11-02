@@ -86,7 +86,7 @@
       var version = Version.Parse(versionNodeValue);
       if (version >= Version.Parse("4.8"))
       {
-        output.Warning("Solr 4.8+ is used. Issues with generating schema are possible.", url: Link);
+        output.Warning("Solr 4.8+ is used. Issues with generating schema are possible.", Link);
       }
     }
   }

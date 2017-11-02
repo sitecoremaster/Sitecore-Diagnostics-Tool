@@ -15,6 +15,8 @@
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.UnitTests.Common.DataProviders;
 
+  using Assert = Sitecore.Diagnostics.Base.Assert;
+
   [TestClass]
   public class TestResultsTests
   {
@@ -145,7 +147,7 @@
     {
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
         output.Error("Error-Expected");
       }
     }
@@ -154,7 +156,7 @@
     {
       public void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
         output.Error("Error-Expected");
       }
 
@@ -162,7 +164,7 @@
 
       public bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
+        Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
 
         return false;
       }
@@ -176,7 +178,7 @@
     {
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
         output.Warning("Warning-Expected");
       }
     }
@@ -185,7 +187,7 @@
     {
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
       }
     }
 
@@ -193,7 +195,7 @@
     {
       public void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
       }
 
       public IEnumerable<ServerRole> ServerRoles { get; }
@@ -226,7 +228,7 @@
     {
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
 
         var fileSystem = data.FileSystem;
         throw new InvalidOperationException("This code must not be reached" + fileSystem);
@@ -237,7 +239,7 @@
     {
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
-        Diagnostics.Base.Assert.ArgumentNotNull(data, nameof(data));
+        Assert.ArgumentNotNull(data, nameof(data));
 
         Thread.Sleep(1050); // 1050 is because the value is not very accurate
       }

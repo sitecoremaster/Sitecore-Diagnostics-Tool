@@ -26,7 +26,7 @@
   /// </summary>
   public class SupportPackageDataProvider : IDataProvider, IDisposable
   {
-    static readonly ServiceClient client = new ServiceClient();
+    private static readonly ServiceClient client = new ServiceClient();
 
     private string _InstanceName;
 

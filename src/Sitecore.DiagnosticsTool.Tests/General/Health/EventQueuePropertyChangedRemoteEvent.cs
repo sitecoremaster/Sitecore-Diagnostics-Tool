@@ -81,11 +81,11 @@
 
       if (ratio < RateHigh)
       {
-        output.Warning(message, url: Link);
+        output.Warning(message, Link);
         return;
       }
 
-      output.Error(message, url: Link);
+      output.Error(message, Link);
     }
   }
 }
