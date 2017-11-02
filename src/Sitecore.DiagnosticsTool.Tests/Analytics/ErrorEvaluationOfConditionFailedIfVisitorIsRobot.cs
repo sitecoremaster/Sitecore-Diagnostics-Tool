@@ -18,7 +18,7 @@
 
     public override string KbName { get; } = "'Evaluation of condition failed' errors appear when the website visitors are identified as robots";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

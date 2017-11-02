@@ -39,9 +39,11 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 
     public Map<IReleaseInfo> InstalledModules { get; set; }
 
+    public Map<ConfigurationFile> IncludeFiles { get; set; }
+
     public IEnumerable<IResource> GetResources()
     {
-      yield return new ServerRolesContext(ServerRoles.EmptyToNull() ?? new[] {ServerRole.ContentManagement | ServerRole.ContentDelivery | ServerRole.Publishing | ServerRole.ContentIndexing});
+      yield return new ServerRolesContext(ServerRoles.EmptyToNull() ?? new[] { ServerRole.ContentManagement | ServerRole.ContentDelivery | ServerRole.Publishing | ServerRole.ContentIndexing });
 
       var context = new GenericSitecoreInformationContext(ServiceClient ?? DefaultServiceClient);
       var instanceName = InstanceName;
@@ -67,6 +69,12 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
       {
         context.Configuration = configuration;
         context.WebConfigFile = configuration;
+      }
+
+      var include = IncludeFiles;
+      if (include != null)
+      {
+        context.IncludeFiles = include;
       }
 
       var globalAsax = GlobalAsaxFile;

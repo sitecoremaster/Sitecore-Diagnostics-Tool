@@ -15,7 +15,7 @@
 
     public override string KbNumber => "173546";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
     [NotNull]
     protected string ErrorMessage => "Message links and statistics may not be available in ECM after dispatch. Please refer to the following article for more information";

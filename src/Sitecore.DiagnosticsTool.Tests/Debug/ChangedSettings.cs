@@ -13,7 +13,7 @@
   {
     public override string Name { get; } = "Changed Settings";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

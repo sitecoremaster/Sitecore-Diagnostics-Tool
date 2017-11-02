@@ -27,7 +27,7 @@
         .AddResource(new SitecoreInstance
         {
           Version = ProductVersion,
-          Assemblies = new[] {_Lib1, _Lib2, _Lib3}
+          Assemblies = new[] { _Lib1, _Lib2, _Lib3 }
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetVersionInconsistencyMessage(_Lib2, "1.4.0.0")))

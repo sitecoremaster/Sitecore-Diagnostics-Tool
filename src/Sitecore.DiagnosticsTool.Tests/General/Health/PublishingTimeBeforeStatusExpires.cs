@@ -20,7 +20,7 @@
 
     public override string KbName { get; } = "Publishing may be interrupted due to the value of the Publishing.TimeBeforeStatusExpires setting";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

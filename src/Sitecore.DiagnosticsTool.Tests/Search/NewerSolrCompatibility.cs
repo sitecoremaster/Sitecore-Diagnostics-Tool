@@ -21,7 +21,7 @@
 
     public override string KbNumber => "227897";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

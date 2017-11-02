@@ -19,7 +19,7 @@
 
     public override string KbName { get; } = "Error on multisite solution when Analytics.HostName setting is non-empty";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

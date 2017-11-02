@@ -17,7 +17,7 @@
   {
     public override string Name { get; } = "ContentSearch update strategies point to correct databases";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

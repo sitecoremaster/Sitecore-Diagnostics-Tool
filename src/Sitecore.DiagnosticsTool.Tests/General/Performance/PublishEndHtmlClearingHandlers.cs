@@ -16,11 +16,11 @@
   public class PublishEndHtmlClearingHandlers : Test
   {
     [NotNull]
-    protected string[] SystemSites { get; } = {"shell", "login", "admin", "service", "modules_shell", "modules_website", "scheduler", "system", "system_layouts", "publisher", "exm"};
+    protected string[] SystemSites { get; } = { "shell", "login", "admin", "service", "modules_shell", "modules_website", "scheduler", "system", "system_layouts", "publisher", "exm" };
 
     public override string Name => $"The {EventName} HTML cache cleanup configuration";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
     [NotNull]
     protected virtual string EventName { get; } = "publish:end";

@@ -21,7 +21,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Solution
   {
     public override string Name { get; } = "Shared and Private sessions interference";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

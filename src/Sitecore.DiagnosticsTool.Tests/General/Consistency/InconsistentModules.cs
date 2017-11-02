@@ -12,7 +12,7 @@
   [UsedImplicitly]
   public class InconsistentModules : Test
   {
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override string Name { get; } = "Inconsistent Modules";
 

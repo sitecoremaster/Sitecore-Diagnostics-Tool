@@ -17,7 +17,7 @@
   {
     public override string Name { get; } = ".NET Framework version";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

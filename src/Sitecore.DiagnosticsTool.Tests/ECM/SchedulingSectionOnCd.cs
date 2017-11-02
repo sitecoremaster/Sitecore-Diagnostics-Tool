@@ -10,9 +10,9 @@
 
   public class SchedulingSectionOnCd : Test
   {
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] {ServerRole.ContentDelivery};
+    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
 
     public override string Name { get; } = "ECM scheduling section must be disabled on CD";
 

@@ -18,7 +18,7 @@
 
     public override string Name { get; } = "Scheduling consistency";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

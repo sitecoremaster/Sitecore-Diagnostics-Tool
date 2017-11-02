@@ -22,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] {ServerRole.ContentDelivery},
+          ServerRoles = new[] { ServerRole.ContentDelivery },
           Configuration = new XmlDocument().TryParse(@"
 <configuration>
   <sitecore>
@@ -61,7 +61,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] {ServerRole.ContentDelivery},
+          ServerRoles = new[] { ServerRole.ContentDelivery },
           Configuration = new XmlDocument().TryParse(@"
 <configuration>
   <sitecore>

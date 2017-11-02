@@ -17,7 +17,7 @@
 
     public override string Name { get; } = "Global.asax should use Sitecore.Web.Application";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

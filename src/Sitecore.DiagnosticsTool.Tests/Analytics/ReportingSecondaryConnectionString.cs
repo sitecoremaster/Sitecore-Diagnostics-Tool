@@ -18,7 +18,7 @@
 
     public override string Name { get; } = "Connection string reporting.secondary is present";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ITestResourceContext data)
     {

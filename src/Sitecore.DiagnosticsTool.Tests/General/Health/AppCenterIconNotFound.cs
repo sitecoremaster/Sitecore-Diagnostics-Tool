@@ -17,7 +17,7 @@
 
     public override string KbName { get; } = "AppCenter icon not found";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

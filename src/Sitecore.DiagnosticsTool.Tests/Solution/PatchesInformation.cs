@@ -20,7 +20,7 @@
   {
     public override string Name { get; } = "Patches Information";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

@@ -19,7 +19,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Performance
 
     public override string Name => TableName + " table size";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

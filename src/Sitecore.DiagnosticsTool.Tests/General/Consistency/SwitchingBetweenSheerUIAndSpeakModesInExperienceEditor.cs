@@ -54,7 +54,7 @@
 
     public override string KbName { get; } = "Switching between Sheer UI and SPEAK modes in Experience Editor";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

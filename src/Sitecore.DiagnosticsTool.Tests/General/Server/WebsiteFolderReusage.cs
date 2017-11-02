@@ -19,7 +19,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
   {
     public override string Name { get; } = "Website folder reusage by other IIS sites";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

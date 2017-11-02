@@ -28,9 +28,9 @@
 
     public override string Name { get; } = "Master database must not be referenced on CD instance";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] {ServerRole.ContentDelivery};
+    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

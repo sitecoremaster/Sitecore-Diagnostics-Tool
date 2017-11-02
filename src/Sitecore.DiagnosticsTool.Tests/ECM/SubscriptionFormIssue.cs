@@ -16,7 +16,7 @@
 
     public override string KbNumber => "363521";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

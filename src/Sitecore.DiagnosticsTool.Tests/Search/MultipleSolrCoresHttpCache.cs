@@ -21,7 +21,7 @@
 
     public override string KbName { get; } = "Issues with multiple SOLR cores and the EnableHttpCache setting";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

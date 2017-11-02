@@ -19,9 +19,9 @@
 
     public override string KbName { get; } = "\"The form has no actions\" warning is added to the log if no client actions were found";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Wffm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Wffm };
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] {ServerRole.ContentDelivery};
+    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

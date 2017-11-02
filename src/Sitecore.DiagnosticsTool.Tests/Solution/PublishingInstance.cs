@@ -19,7 +19,7 @@
 
     public override string Name { get; } = "Publishing instance is set up consistently";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

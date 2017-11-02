@@ -213,7 +213,7 @@
       /// <summary>
       ///   The list of categories the test belongs to.
       /// </summary>
-      public IEnumerable<Category> Categories => new[] {Category.General};
+      public IEnumerable<Category> Categories => new[] { Category.General };
     }
 
     public class UnidentifiedTest : FakeTest

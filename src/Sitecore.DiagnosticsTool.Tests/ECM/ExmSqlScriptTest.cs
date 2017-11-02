@@ -38,7 +38,7 @@
 
     public override string Name { get; } = "Check if EXM SQL script was run against reporting database";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

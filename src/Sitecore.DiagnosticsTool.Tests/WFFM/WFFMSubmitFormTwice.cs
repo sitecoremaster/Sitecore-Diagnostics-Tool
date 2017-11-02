@@ -20,7 +20,7 @@
 
     public override string KbName { get; } = "Errors when a contact submits a WFFM form twice.";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Wffm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Wffm };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

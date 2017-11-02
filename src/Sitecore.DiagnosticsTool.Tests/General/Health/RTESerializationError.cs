@@ -17,7 +17,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Health
 
     public override string KbName { get; } = "\"Cannot deserialize dialog parameters\" error in the Rich Text Editor";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

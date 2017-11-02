@@ -18,7 +18,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Search
 
     public override string KbName { get; } = "Error after enabling Solr in Sitecore 8";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

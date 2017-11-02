@@ -32,7 +32,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
       {
         try
         {
-          report = runner.RunTests(new[] {test}, context).Single();
+          report = runner.RunTests(new[] { test }, context).Single();
         }
         catch (ResourceNotAvailableException)
         {
@@ -41,7 +41,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
 
       if (report == null)
       {
-        report = runner.RunTests(new[] {test}, context).Single();
+        report = runner.RunTests(new[] { test }, context).Single();
       }
 
       // run test

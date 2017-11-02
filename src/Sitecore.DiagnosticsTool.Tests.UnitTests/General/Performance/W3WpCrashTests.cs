@@ -49,7 +49,7 @@
       var start = extra.Add(ShutdownTimeout);
 
       // insert shutdown message marker
-      var entries = new[] {LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage)}.ToList();
+      var entries = new[] { LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage) }.ToList();
 
       // insert 100 (MaxEntriesCount) "Job started" messages
       entries.AddRange(Enumerable.Repeat(LogHelperEx.Parse(extra, LogLevel.Info, "Job started"), Count));
@@ -133,7 +133,7 @@
       var start = extra.Add(ShutdownTimeout);
 
       // insert shutdown message marker
-      var entries = new[] {LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage)}.ToList();
+      var entries = new[] { LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage) }.ToList();
 
       // insert 100 (MaxEntriesCount) "Job started" messages
       entries.AddRange(Enumerable.Repeat(LogHelperEx.Parse(extra, LogLevel.Info, "Job started"), Count));

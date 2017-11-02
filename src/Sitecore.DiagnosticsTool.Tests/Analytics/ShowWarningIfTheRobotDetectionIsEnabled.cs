@@ -12,7 +12,7 @@
 
     public override string Name => "Sitecore robot detection functionality is disabled.";
 
-    public override IEnumerable<Category> Categories => new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories => new[] { Category.Analytics };
 
     protected override bool IsActual(ITestResourceContext data)
     {

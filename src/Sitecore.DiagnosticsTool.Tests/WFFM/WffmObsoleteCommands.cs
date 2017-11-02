@@ -24,7 +24,7 @@
 
     public override string KbName { get; } = "WFFM errors due to obsolete commands in the Sitecore.Forms.config file.";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Wffm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Wffm };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

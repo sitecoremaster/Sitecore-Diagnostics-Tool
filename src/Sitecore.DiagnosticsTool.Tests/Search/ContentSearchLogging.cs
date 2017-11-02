@@ -22,7 +22,7 @@
 
     public override string Name { get; } = "Content Search Verbose Logging is disabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing, Category.Production};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing, Category.Production };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

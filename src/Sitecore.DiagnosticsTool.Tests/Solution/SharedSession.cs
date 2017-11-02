@@ -22,7 +22,7 @@
 
     public override string Name { get; } = "Shared Session is set up consistently";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {

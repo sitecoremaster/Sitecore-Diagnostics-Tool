@@ -23,7 +23,7 @@
 
     public override string KbName { get; } = "Issues with the Lucene search provider and Sitecore fields that have spaces in the names";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

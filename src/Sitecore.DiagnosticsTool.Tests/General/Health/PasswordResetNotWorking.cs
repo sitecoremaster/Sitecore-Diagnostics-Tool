@@ -17,7 +17,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Health
 
     public override string KbName { get; } = "Membership provider password reset functionality does not work when question/answer option is enabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

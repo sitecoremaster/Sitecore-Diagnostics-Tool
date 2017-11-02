@@ -15,7 +15,7 @@
     // http://sdn.sitecore.net/upload/sitecore7/75/installation_guide_sc75-a4.pdf
     public override string Name { get; } = "Number of CPU cores";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

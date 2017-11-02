@@ -18,7 +18,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Health
 
     public override string KbName { get; } = "Errors when the URL includes path info";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

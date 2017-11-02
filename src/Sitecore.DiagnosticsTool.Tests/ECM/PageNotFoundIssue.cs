@@ -31,7 +31,7 @@
 
     public override string KbName { get; } = "Troubleshooting Page Not Found errors for links in ECM messages";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

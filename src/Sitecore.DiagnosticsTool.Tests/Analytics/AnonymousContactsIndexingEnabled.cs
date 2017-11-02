@@ -15,7 +15,7 @@
 
     public override string KbName { get; } = "Issues caused by indexing anonymous contacts";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

@@ -19,7 +19,7 @@
 
     public override string KbName { get; } = "Deployment region must be configured in Sitecore xDB Cloud";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

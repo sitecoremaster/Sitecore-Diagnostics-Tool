@@ -21,7 +21,7 @@
 
     public override string Name { get; } = "The ASP.NET debugging must be disabled on production";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Production};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Production };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

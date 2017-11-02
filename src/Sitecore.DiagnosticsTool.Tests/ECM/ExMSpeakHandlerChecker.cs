@@ -14,7 +14,7 @@
 
     public override string Name { get; } = "SPEAK handlers are present in web.config";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Ecm};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

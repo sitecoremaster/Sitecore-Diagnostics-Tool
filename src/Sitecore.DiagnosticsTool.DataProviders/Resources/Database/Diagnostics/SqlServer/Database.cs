@@ -92,7 +92,7 @@
 
         var definition = row["DEFINITION"].ToString();
 
-        var parts = definition.Split(new[] {"\nAS\nBEGIN\n"}, StringSplitOptions.None);
+        var parts = definition.Split(new[] { "\nAS\nBEGIN\n" }, StringSplitOptions.None);
         var storedProcedure = new StoredProcedure
         {
           Name = row["NAME"].ToString()

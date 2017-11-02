@@ -17,7 +17,7 @@
 
     public override string Name { get; } = "Publish Trace logging is disabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Production, Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Production, Category.Performance };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

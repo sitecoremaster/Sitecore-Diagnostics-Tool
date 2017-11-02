@@ -58,7 +58,7 @@
       Assert.ArgumentNotNull(ex, nameof(ex));
       Assert.ArgumentNotNull(message, nameof(message));
 
-      Debug(new DetailedMessage(message.Items.Concat(new[] {new Text(". Exception:"), new CodeBlock(ex.PrintException())})));
+      Debug(new DetailedMessage(message.Items.Concat(new[] { new Text(". Exception:"), new CodeBlock(ex.PrintException()) })));
     }
 
     private void AddResult(TestResultState state, [CanBeNull] Uri link, [NotNull] ShortMessage message, [CanBeNull] DetailedMessage detailed)

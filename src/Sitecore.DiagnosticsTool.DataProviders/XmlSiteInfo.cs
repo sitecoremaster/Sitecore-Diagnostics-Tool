@@ -13,7 +13,7 @@
   {
     public XmlSiteInfo(XContainer packageInfo)
     {
-      HostNames = new[] {packageInfo.Element("package").Element("selectedInstance").Value};
+      HostNames = new[] { packageInfo.Element("package").Element("selectedInstance").Value };
     }
 
     public long Id

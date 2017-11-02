@@ -11,7 +11,7 @@
 
   public class ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518 : KbTest
   {
-    public override IEnumerable<Category> Categories => new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories => new[] { Category.Analytics };
 
     public override string KbName => "Exception may be thrown if multiple threads try to create a contact at the same time";
 

@@ -25,7 +25,7 @@
           new SitecoreInstance
           {
             InstanceName = "cd1",
-            ServerRoles = new[] {ServerRole.ContentDelivery}, // cd1 uses mongo shared session w/ sessionType1
+            ServerRoles = new[] { ServerRole.ContentDelivery }, // cd1 uses mongo shared session w/ sessionType1
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
@@ -55,7 +55,7 @@
           new SitecoreInstance
           {
             InstanceName = "cd2",
-            ServerRoles = new[] {ServerRole.ContentDelivery}, // cd2 uses mongo private session w/ sessionType1
+            ServerRoles = new[] { ServerRole.ContentDelivery }, // cd2 uses mongo private session w/ sessionType1
             Version = new SitecoreVersion(8, 2, 2, 161221),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
@@ -82,7 +82,7 @@
               " </configuration>")
           })
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Error, GetMessage("#sessionType1", new[] {"cd2"}, new[] {"cd1"})))
+        .MustReturn(new TestOutput(TestResultState.Error, GetMessage("#sessionType1", new[] { "cd2" }, new[] { "cd1" })))
         .Done();
     }
   }

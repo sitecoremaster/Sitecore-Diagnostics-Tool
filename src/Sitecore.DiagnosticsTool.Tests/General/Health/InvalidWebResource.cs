@@ -17,7 +17,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Health
 
     public override string KbName { get; } = "\"This is an invalid webresource request\" error message";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.General};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

@@ -18,7 +18,7 @@
 
     public override string KbName { get; } = "Visit information may not be available when evaluating conditions in Engagement Plan";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

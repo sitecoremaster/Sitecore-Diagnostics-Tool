@@ -21,7 +21,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
 
     public override string Name { get; } = "Web Server RAM amount";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

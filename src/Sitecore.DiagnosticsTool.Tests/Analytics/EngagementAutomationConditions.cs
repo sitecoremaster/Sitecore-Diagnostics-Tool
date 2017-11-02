@@ -21,7 +21,7 @@
 
     public override string KbName { get; } = "Issue with using Engagement Automation conditions in personalization";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

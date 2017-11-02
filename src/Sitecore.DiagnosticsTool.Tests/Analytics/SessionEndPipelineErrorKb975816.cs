@@ -21,7 +21,7 @@
 
     public override string KbName { get; } = "SessionEndPipeline failed errors appear in the log when Analytics tracking is disabled";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

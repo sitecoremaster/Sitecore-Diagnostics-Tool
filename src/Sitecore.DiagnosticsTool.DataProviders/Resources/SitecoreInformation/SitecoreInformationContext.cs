@@ -93,7 +93,7 @@
 
         Log.Info("Parsing App_Config files");
         var appConfigFiles = Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
-          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file));
+          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));
 
         Log.Info("Searching for \\App_Config\\Include *.config files");
         includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Include\\");

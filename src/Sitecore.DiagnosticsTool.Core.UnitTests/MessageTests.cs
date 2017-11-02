@@ -49,19 +49,19 @@
                 new Table(
                   new TableRow
                   {
-                    {"Header1", "H1-1"},
-                    {"Header3", "H3-1"},
-                    {"Header4", "H4-1"},
+                    { "Header1", "H1-1" },
+                    { "Header3", "H3-1" },
+                    { "Header4", "H4-1" },
                   },
                   new TableRow
                   {
-                    {"Header2", "H2-2"},
-                    {"Header1", "H1-2"},
-                    {"Header3", "H3-2"},
+                    { "Header2", "H2-2" },
+                    { "Header1", "H1-2" },
+                    { "Header3", "H3-2" },
                   },
                   new TableRow
                   {
-                    {"Header2", "H2-2"},
+                    { "Header2", "H2-2" },
                   }
                 )
               ),

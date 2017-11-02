@@ -18,7 +18,7 @@
 
     public override string KbName { get; } = "EmailReportsTask fails without Master database";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     protected override bool IsActual(ITestResourceContext data)
     {

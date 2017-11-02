@@ -21,7 +21,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
 
     public override string Name { get; } = "Bot detection must be turned on";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.Analytics};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
     public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {

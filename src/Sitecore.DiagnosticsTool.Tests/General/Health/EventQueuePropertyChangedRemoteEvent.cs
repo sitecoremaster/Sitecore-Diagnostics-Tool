@@ -25,7 +25,7 @@
 
     public override string KbNumber => "930920";
 
-    public override IEnumerable<Category> Categories { get; } = new[] {Category.SearchIndexing, Category.Performance};
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing, Category.Performance };
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {

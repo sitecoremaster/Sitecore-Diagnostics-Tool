@@ -22,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] {ServerRole.Publishing},
+          ServerRoles = new[] { ServerRole.Publishing },
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().TryParse(@"
 <configuration>
@@ -61,7 +61,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          ServerRoles = new[] {ServerRole.Publishing},
+          ServerRoles = new[] { ServerRole.Publishing },
           Version = new SitecoreVersion(8, 2, 2, 161221),
           Configuration = new XmlDocument().TryParse(@"
 <configuration>
