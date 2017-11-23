@@ -90,10 +90,6 @@
       {
         output.Error(GetErrorMessage(name));
       }
-      else
-      {
-        output.Debug($"Connection string '{name}' is defined as {value}");
-      }
     }
     
     [NotNull]
