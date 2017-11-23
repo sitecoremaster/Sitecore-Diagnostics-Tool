@@ -104,6 +104,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
                 && !assembly.Value.FileName.StartsWith("microsoft.", StringComparison.OrdinalIgnoreCase)
                 && !assembly.Value.FileName.StartsWith("system.", StringComparison.OrdinalIgnoreCase)
                 && !assembly.Value.FileName.StartsWith("newtonsoft.", StringComparison.OrdinalIgnoreCase)
+                && !assembly.Value.FileName.StartsWith("WebGrease.", StringComparison.OrdinalIgnoreCase)
               )
               {
                 installedModules.Add(module.Name, release);
