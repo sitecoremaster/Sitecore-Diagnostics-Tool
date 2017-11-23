@@ -9,6 +9,7 @@
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
 
   internal static class EcmHelper
   {
@@ -22,20 +23,11 @@
       return configuration.SelectElements(nodeXPath).LastOrDefault().With(x => x.Attributes[attributeName].With(a => a.Value) ?? x.InnerText);
     }
 
-    public static EcmVersion GetEcmVersion([NotNull] ITestResourceContext data)
+    public static ISitecoreVersion GetEcmVersion([NotNull] ITestResourceContext data)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      AssemblyFile assembly;
-      if (!data.SitecoreInfo.Assemblies.TryGetValue("Sitecore.EmailCampaign.dll".ToLower(), out assembly) || assembly == null)
-      {
-        return null;
-      }
-
-      var productVersion = assembly.ProductVersion;
-      Assert.IsNotNullOrEmpty(productVersion, "productVersion");
-
-      return new EcmVersion(productVersion);
+      return data.SitecoreInfo.ModulesInformation.InstalledModules.TryGetValue("Email Experience Manager")?.Release.Version;
     }
   }
 }

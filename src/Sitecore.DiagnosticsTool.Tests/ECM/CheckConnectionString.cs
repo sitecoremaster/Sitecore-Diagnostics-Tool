@@ -6,6 +6,7 @@
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -20,6 +21,13 @@
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {
       return sitecoreVersion.Major >= 8;
+    }
+
+    protected override bool IsActual(ITestResourceContext data)
+    {
+      var exmMajor = EcmHelper.GetEcmVersion(data)?.Major;
+
+      return exmMajor == 3 || exmMajor == 2;
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
