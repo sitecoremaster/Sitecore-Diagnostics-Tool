@@ -14,7 +14,7 @@
 
   public class CheckConnectionString : Test
   {
-    public override string Name { get; } = "Presence of ecm.dispatch connection string";
+    public override string Name { get; } = "Presence of EXM-specific connection strings";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
@@ -40,6 +40,32 @@
         return;
       }
 
+      if (ecmVersion.Major == 3 && ecmVersion.Minor >= 3)
+      {
+        Error(data, output, "exm.web");
+        Error(data, output, "EXM.CryptographicKey");
+        Error(data, output, "EXM.AuthenticationKey");
+
+        if (data.Databases.ConnectionStrings.ContainsKey("master"))
+        {
+          Error(data, output, "exm.master");
+        }
+
+        if (data.ServerRoles.Contains(ServerRole.ContentDelivery) &&
+            !data.ServerRoles.Contains(ServerRole.ContentManagement))
+        {
+          Error(data, output, "EXM.InternalApiKey");
+          Error(data, output, "EmailCampaignClientService");
+        }
+
+        return;
+      }
+
+      if (!data.ServerRoles.Contains(ServerRole.ContentManagement))
+      {
+        return;
+      }
+
       if (ecmVersion.Major == 3 && ecmVersion.Minor >= 1)
       {
         if (!data.Databases.Sql.DatabaseNames.Contains("exm.dispatch"))
@@ -47,7 +73,7 @@
           output.Error(GetErrorMessage("exm.dispatch"));
         }
       }
-
+        
       if (ecmVersion.Major == 2 && ecmVersion.Minor == 2 || ecmVersion.Major == 3 && ecmVersion.Minor == 0)
       {
         if (!data.Databases.Mongo.DatabaseNames.Contains("ecm.dispatch"))
@@ -57,6 +83,19 @@
       }
     }
 
+    private void Error(ITestResourceContext data, ITestOutputContext output, string name)
+    {
+      var value = data.Databases.ConnectionStrings.TryGetValue(name.ToLower());
+      if (value == null)
+      {
+        output.Error(GetErrorMessage(name));
+      }
+      else
+      {
+        output.Debug($"Connection string '{name}' is defined as {value}");
+      }
+    }
+    
     [NotNull]
     public string GetErrorMessage([NotNull] string connectionString)
     {
