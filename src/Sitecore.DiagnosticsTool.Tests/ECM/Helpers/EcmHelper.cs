@@ -37,13 +37,5 @@
 
       return new EcmVersion(productVersion);
     }
-
-    [NotNull]
-    public static string WebsiteRootPath([NotNull] ITestResourceContext data)
-    {
-      Assert.ArgumentNotNull(data, nameof(data));
-
-      return data.WebServer.CurrentSite.WebRoot.FullName;
-    }
   }
 }
