@@ -13,6 +13,7 @@
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.DiagnosticsTool.Tests.ECM.Helpers;
 
   public class ExmSqlScriptTest : Test
   {
@@ -56,15 +57,9 @@
     /// <inheritdoc />
     public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {
-      try
+      if (EcmHelper.GetEcmVersion(data) == null)
       {
-        if (!data.SitecoreInfo.Assemblies.ContainsKey("Sitecore.EmailCampaign.dll".ToLower()))
-        {
-          return false;
-        }
-      }
-      catch
-      {
+        return false;
       }
 
       try
@@ -76,6 +71,7 @@
       }
       catch
       {
+        // ignored
       }
 
       return true;
