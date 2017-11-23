@@ -43,7 +43,7 @@
       Console.WriteLine();
       Console.WriteLine(" 3. Run 'sdt list [-n workplace-name]' to list all added packages and their roles");
       Console.WriteLine();
-      Console.WriteLine(" 4. Run 'sdt run -o C:\\output.json [-n workplace-name]' to start analysis");
+      Console.WriteLine(" 4. Run 'sdt run -o C:\\report.html [-n workplace-name]' to start analysis");
       Console.WriteLine();
     }
 
