@@ -28,7 +28,7 @@
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var globalAsaxFile = data.SitecoreInfo.GlobalAsaxFile.Replace(" ", string.Empty).ToLower();
+      var globalAsaxFile = data.SitecoreInfo.GlobalAsaxFile.Replace(" ", string.Empty).ToLower().Replace("'", "\"");
 
       // If inherits points to System.Web.HttpApplication, output an error. 
       if (globalAsaxFile.Contains("Inherits=\"System.Web.HttpApplication\"".ToLower()))
