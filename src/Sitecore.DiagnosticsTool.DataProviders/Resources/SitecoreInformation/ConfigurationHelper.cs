@@ -164,7 +164,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     public static IReadOnlyDictionary<string, LogicalDatabaseDefinition> GetDatabases(XmlDocument configuration)
     {
       return configuration.SelectElements("/configuration/sitecore/databases/database")
-        .Select(x => LogicalDatabaseDefinition.Parse(x, new SitecoreVersion(8, 2, 0, 000000)))
+        .Select(x => LogicalDatabaseDefinition.Parse(x, new SitecoreVersion(8, 2, 0)))
         .ToDictionary(x => x.Name, x => x);
     }
   }

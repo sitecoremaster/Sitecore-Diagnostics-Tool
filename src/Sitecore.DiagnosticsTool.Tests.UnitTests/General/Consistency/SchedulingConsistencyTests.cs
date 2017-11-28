@@ -21,7 +21,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling")
         })
         .Process(this) // missing frequency - that's okay, default value is used               
@@ -35,7 +35,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency")
         })
         .Process(this)
@@ -49,7 +49,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency", "ololo")
         })
         .Process(this)
@@ -67,7 +67,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
         })
         .Process(this)
@@ -85,7 +85,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
         })
         .Process(this)

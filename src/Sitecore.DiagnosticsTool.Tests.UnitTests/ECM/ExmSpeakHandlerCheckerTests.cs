@@ -21,7 +21,7 @@
       {
         Configuration = new XmlDocument()
           .Create("/configuration/system.web/httpHandlers"),
-        Version = new SitecoreVersion(8, 1, 0, 151207),
+        Version = new SitecoreVersion(8, 1, 0),
         Assemblies = new[]
         {
           new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")
@@ -43,7 +43,7 @@
       var sitecoreConfiguration = new SitecoreInstance
       {
         Configuration = configuration,
-        Version = new SitecoreVersion(8, 1, 1, 151207),
+        Version = new SitecoreVersion(8, 1, 1),
         Assemblies = new[]
         {
           new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")

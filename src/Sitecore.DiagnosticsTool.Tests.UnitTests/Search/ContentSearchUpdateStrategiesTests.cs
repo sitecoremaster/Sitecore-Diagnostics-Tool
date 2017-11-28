@@ -22,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
         })
         .Process(this)
@@ -36,7 +36,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']/strategies/strategy") // index points to a strategy with empty name
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core")
@@ -54,7 +54,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']/strategies/strategy[@ref='contentSearch/indexUpdateStrategies/intervalAsyncCore']") // no strategy at all, so index refers to missing strategy
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core")
@@ -72,7 +72,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']/strategies/strategy[@ref='contentSearch/indexUpdateStrategies/intervalAsyncCore']")
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core")
@@ -91,7 +91,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']/strategies/strategy[@ref='contentSearch/indexUpdateStrategies/intervalAsyncCore']")
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "core") // core index
@@ -108,7 +108,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']/strategies/strategy[@ref='contentSearch/indexUpdateStrategies/intervalAsyncCore']")
             .Add("/configuration/sitecore/contentSearch/configuration/indexes/index[@id='index1']", "locations/crawler/Database", "web") // web index

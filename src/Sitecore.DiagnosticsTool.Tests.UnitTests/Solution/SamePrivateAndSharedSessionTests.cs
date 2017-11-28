@@ -26,7 +26,7 @@
           {
             InstanceName = "cd1",
             ServerRoles = new[] { ServerRole.ContentDelivery }, // cd1 uses mongo shared session w/ sessionType1
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <connectionStrings>" +
@@ -56,7 +56,7 @@
           {
             InstanceName = "cd2",
             ServerRoles = new[] { ServerRole.ContentDelivery }, // cd2 uses mongo private session w/ sessionType1
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <connectionStrings>" +

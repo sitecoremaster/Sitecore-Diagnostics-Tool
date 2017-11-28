@@ -28,7 +28,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage),
@@ -61,7 +61,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(entries.ToArray()))
         .Process(this)
@@ -80,7 +80,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(start, LogLevel.Info, "HttpModule is being initialized"),
@@ -105,7 +105,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(crash, LogLevel.Info, "Job Started"),
@@ -145,7 +145,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(entries.ToArray()))
         .Process(this)

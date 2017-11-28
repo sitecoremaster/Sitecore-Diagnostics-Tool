@@ -18,7 +18,7 @@
     public void CmCdRoleTest_ContentDelivery_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext(""))
         .Should()
@@ -29,7 +29,7 @@
     public void CmCdRoleTest_ContentMangement_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext(""))
         .Should()
@@ -40,7 +40,7 @@
     public void CmCdRoleTest_Processing_IsValid_False()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext(""))
         .Should()
@@ -51,7 +51,7 @@
     public void CmCdRoleTest_ContentManagement_Processing_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext(""))
         .Should()

@@ -21,14 +21,14 @@
           new SitecoreInstance
           {
             InstanceName = "cm",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .AddInstance(
           new SitecoreInstance
           {
             InstanceName = "cd",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .Process(this)
@@ -43,14 +43,14 @@
           new SitecoreInstance
           {
             InstanceName = "cm",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .AddInstance(
           new SitecoreInstance
           {
             InstanceName = "cd",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/ONE.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .Process(this)
@@ -65,14 +65,14 @@
           new SitecoreInstance
           {
             InstanceName = "cm",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .AddInstance(
           new SitecoreInstance
           {
             InstanceName = "cd",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<ONE />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .Process(this)
@@ -88,14 +88,14 @@
           new SitecoreInstance
           {
             InstanceName = "cm",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/one.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .AddInstance(
           new SitecoreInstance
           {
             InstanceName = "cd",
-            Version = new SitecoreVersion(9, 0, 0, 171002),
+            Version = new SitecoreVersion(9, 0, 0),
             IncludeFiles = new[] { new ConfigurationFile("/App_Config/Include/two.config", "<one />") }.ToMap(x => x.FilePath.ToLowerInvariant(), x => x)
           })
         .Process(this)

@@ -20,7 +20,7 @@
 
     private const string CacheSizesXPath = WebDatabaseXPath + "/cacheSizes";
 
-    private SitecoreVersion Sc711 { get; } = new SitecoreVersion(7, 1, 1, 140130);
+    private SitecoreVersion Sc711 { get; } = new SitecoreVersion(7, 1, 1);
 
     [Fact]
     public void TestPassed()

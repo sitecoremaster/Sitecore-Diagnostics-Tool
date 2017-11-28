@@ -26,7 +26,7 @@
       var testRunner = new TestRunner();
       var test = new PassedTestITest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(7, 2, 2, 140526)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(7, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Should().NotBeNull();
@@ -41,7 +41,7 @@
       var testRunner = new TestRunner();
       var test = new CannotStartTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(0);
@@ -58,7 +58,7 @@
       var testRunner = new TestRunner();
       var test = new ErrorTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(1);
@@ -75,7 +75,7 @@
       var testRunner = new TestRunner();
       var test = new NonActualTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(7, 2, 2, 140526)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(7, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(0);
@@ -90,7 +90,7 @@
       var testRunner = new TestRunner();
       var test = new UnidentifiedTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(0);
@@ -105,7 +105,7 @@
       var testRunner = new TestRunner();
       var test = new PassedTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(0);
@@ -120,7 +120,7 @@
       var testRunner = new TestRunner();
       var test = new WarningTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.Results.Errors.Count().Should().Be(0);
@@ -137,7 +137,7 @@
       var testRunner = new TestRunner();
       var test = new OneSecondRunTest();
       var processing = new TestProcessingContext();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var report = testRunner.RunTest(test, data, processing);
 
       report.ExecutionTime.TotalMilliseconds.Should().BeGreaterOrEqualTo(new TimeSpan(0, 0, 0, 1).TotalMilliseconds);

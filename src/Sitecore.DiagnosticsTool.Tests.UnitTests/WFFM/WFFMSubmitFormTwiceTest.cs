@@ -19,7 +19,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 0, 2, 161221),
+          Version = new SitecoreVersion(8, 0, 2),
         })
         .AddResource(new LoggingContext())
         .Process(this)
@@ -33,7 +33,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 0, 2, 161221),
+          Version = new SitecoreVersion(8, 0, 2),
         })
         .AddResource(
           new LoggingContext(

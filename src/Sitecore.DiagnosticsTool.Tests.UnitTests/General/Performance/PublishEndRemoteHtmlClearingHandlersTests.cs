@@ -48,7 +48,7 @@
     </sites>
   </sitecore>
 </configuration>"),
-          Version = new SitecoreVersion(6, 3, 0, 000000)
+          Version = new SitecoreVersion(6, 3, 0)
         })
         .Process(this)
         .Done();
@@ -90,7 +90,7 @@
     </sites>
   </sitecore>
 </configuration>"),
-          Version = new SitecoreVersion(6, 3, 0, 000000)
+          Version = new SitecoreVersion(6, 3, 0)
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetErrorMessage("website.site2")))

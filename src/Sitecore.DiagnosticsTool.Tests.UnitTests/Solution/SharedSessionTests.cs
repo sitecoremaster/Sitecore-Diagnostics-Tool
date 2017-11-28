@@ -26,7 +26,7 @@
           {
             InstanceName = "test",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <sitecore>" +
@@ -53,7 +53,7 @@
           {
             InstanceName = "test1",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -67,7 +67,7 @@
           {
             InstanceName = "test2",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -89,7 +89,7 @@
           {
             InstanceName = "test1",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -103,7 +103,7 @@
           {
             InstanceName = "test2",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }

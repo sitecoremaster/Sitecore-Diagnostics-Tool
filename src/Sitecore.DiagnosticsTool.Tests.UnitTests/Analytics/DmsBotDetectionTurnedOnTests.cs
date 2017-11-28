@@ -22,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore")
         })
         .Process(this)
@@ -32,7 +32,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']") // indicate DMS enabled
             .Add("/configuration/sitecore", "pipelines/startTracking") // indicate DMS enabled
@@ -45,7 +45,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']")
         })

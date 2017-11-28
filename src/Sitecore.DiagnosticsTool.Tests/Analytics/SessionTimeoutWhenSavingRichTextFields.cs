@@ -32,7 +32,8 @@
       var pipeline = data.SitecoreInfo.GetPipeline("pipelines/initializeTracker");
       Assert.IsNotNull(pipeline);
 
-      var revision = data.SitecoreInfo.SitecoreVersion.Revision;
+      //var revision = data.SitecoreInfo.SitecoreVersion.Revision;
+      var update = data.SitecoreInfo.SitecoreVersion.Update;
       var majorMinor = data.SitecoreInfo.SitecoreVersion.MajorMinorInt;
       if (majorMinor <= 71)
       {
@@ -43,10 +44,10 @@
         }
       }
       else if (
-        majorMinor == 72 && revision < 151021
+        majorMinor == 72 && update < 5
         || majorMinor == 75
-        || majorMinor == 80 && revision < 151127
-        || majorMinor == 81 && revision < 151207
+        || majorMinor == 80 && update < 6
+        || majorMinor == 81 && update < 7
       )
       {
         var supportProcessor = TypeRef.Parse("Sitecore.Support.Analytics.RobotDetection.Pipelines.InitializeTracker.Robots", AssemblyRef.Parse("Sitecore.Support.414299"));

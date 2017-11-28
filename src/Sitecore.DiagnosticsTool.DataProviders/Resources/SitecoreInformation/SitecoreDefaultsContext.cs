@@ -9,6 +9,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults;
@@ -51,7 +52,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       try
       {
-        Release = _Client.GetRelease("Sitecore CMS", sitecoreVersion);
+        Release = _Client.Products["Sitecore CMS"].Versions[sitecoreVersion.MajorMinorUpdate];
       }
       catch (Exception ex)
       {

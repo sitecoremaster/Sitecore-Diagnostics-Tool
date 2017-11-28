@@ -20,7 +20,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(6, 4, 0, 112233)
+          Version = new SitecoreVersion(6, 4, 0)
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.CannotRun, "Test is not actual for given conditions"))
@@ -36,7 +36,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -52,7 +52,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -68,7 +68,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -84,7 +84,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -100,7 +100,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -116,7 +116,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -132,7 +132,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -149,7 +149,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -166,7 +166,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(header)
         })
         .Process(this)
@@ -201,7 +201,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(6, 4, 0, 112233)
+          Version = new SitecoreVersion(6, 4, 0)
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.CannotRun, "Test is not actual for given conditions"))
@@ -217,7 +217,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -233,7 +233,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -249,7 +249,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -265,7 +265,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -281,7 +281,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -297,7 +297,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -313,7 +313,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -330,7 +330,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
         })
         .Process(this)
@@ -347,7 +347,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(7, 2, 2, 140526),
+          Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(header)
         })
         .Process(this)

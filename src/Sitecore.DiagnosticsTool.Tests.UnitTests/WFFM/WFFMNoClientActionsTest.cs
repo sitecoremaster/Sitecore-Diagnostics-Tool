@@ -21,7 +21,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext())
         .Process(this)
@@ -36,7 +36,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(
           new LoggingContext(

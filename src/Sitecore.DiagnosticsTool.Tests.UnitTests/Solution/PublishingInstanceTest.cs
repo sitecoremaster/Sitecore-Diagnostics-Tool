@@ -25,7 +25,7 @@
           {
             InstanceName = "test",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
@@ -41,7 +41,7 @@
           {
             InstanceName = "test",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='test']")
           })
         .Process(this)
@@ -57,7 +57,7 @@
           {
             InstanceName = "cm",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm']")
           })
         .AddInstance(
@@ -65,7 +65,7 @@
           {
             InstanceName = "cd",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
@@ -81,7 +81,7 @@
           {
             InstanceName = "cm1",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
         .AddInstance(
@@ -89,7 +89,7 @@
           {
             InstanceName = "cm2",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
         .AddInstance(
@@ -97,7 +97,7 @@
           {
             InstanceName = "cd",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
@@ -113,7 +113,7 @@
           {
             InstanceName = "cm1",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
         .AddInstance(
@@ -121,7 +121,7 @@
           {
             InstanceName = "cm2",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm2']")
           })
         .AddInstance(
@@ -129,7 +129,7 @@
           {
             InstanceName = "cd",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)
@@ -150,7 +150,7 @@
           {
             InstanceName = "cm1",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='cm1']")
           })
         .AddInstance(
@@ -158,7 +158,7 @@
           {
             InstanceName = "cm2",
             ServerRoles = new[] { ServerRole.ContentManagement },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create($"/configuration/sitecore/settings/setting[@name='{PublishingInstanceSetting}' and @value='']")
           })
         .Process(this)

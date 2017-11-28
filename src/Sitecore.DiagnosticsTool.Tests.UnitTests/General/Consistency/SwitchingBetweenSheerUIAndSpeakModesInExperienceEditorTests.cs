@@ -81,7 +81,7 @@
       return new SitecoreInstance
       {
         Configuration = doc,
-        Version = new SitecoreVersion(8, 0, 0, 141212)
+        Version = new SitecoreVersion(8, 0, 0)
       };
     }
 
@@ -106,7 +106,7 @@
       return new SitecoreInstance
       {
         Configuration = doc,
-        Version = new SitecoreVersion(8, 0, 0, 141212)
+        Version = new SitecoreVersion(8, 0, 0)
       };
     }
 
@@ -122,7 +122,7 @@
     {
       return new SitecoreInstance
       {
-        Version = new SitecoreVersion(7, 5, 0, 141003)
+        Version = new SitecoreVersion(7, 5, 0)
       };
     }
   }

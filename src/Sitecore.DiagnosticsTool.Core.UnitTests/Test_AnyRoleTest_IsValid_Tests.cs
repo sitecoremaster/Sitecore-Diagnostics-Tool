@@ -18,7 +18,7 @@
     public void AnyRoleTest_ContentDelivery_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext(""))
         .Should()
@@ -29,7 +29,7 @@
     public void AnyRoleTest_ContentManagement_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext(""))
         .Should()
@@ -40,7 +40,7 @@
     public void AnyRoleTest_Processing_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext(""))
         .Should()
@@ -51,7 +51,7 @@
     public void AnyRoleTest_ContentManagement_Processing_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
       sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext(""))
         .Should()

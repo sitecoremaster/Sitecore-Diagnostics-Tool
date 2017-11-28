@@ -23,7 +23,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration")
         })
         .Process(this)
@@ -38,7 +38,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(SiteXPath)
         })
         .Process(this)
@@ -54,7 +54,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentManagement },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(SiteXPath)
         })
         .Process(this)
@@ -70,7 +70,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(IdTableXPath)
         })
         .Process(this)
@@ -86,7 +86,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(DatabaseXPath)
         })
         .Process(this)
@@ -102,7 +102,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(SearchXPath)
         })
         .Process(this)
@@ -118,7 +118,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(SchedulingXPath1)
         })
         .Process(this)
@@ -134,7 +134,7 @@
         .AddResource(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(SchedulingXPath2, "master")
         })
         .Process(this)

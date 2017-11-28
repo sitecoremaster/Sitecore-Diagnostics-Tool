@@ -11,7 +11,7 @@
 
   public class AssembliesConsistencyCheckTests : AssembliesConsistencyMatch
   {
-    private static readonly SitecoreVersion ProductVersion = new SitecoreVersion(6, 6, 7, 131211);
+    private static readonly SitecoreVersion ProductVersion = new SitecoreVersion(6, 6, 7);
 
     private readonly AssemblyFile _Lib1 = new AssemblyFile("ComponentArt.Web.UI.dll", "2010.1.2637.35", "2010.1.2637.35", 2773680);
 

@@ -32,7 +32,7 @@
       Headers = new string[0]
         .Concat(headers)
         .Concat(rows.SelectMany(x => x.Headers))
-        .Where(Str.IsNotNullOrWhiteSpace)
+        .Where(x => !string.IsNullOrWhiteSpace(x))
         .Distinct()
         .ToArray();
 

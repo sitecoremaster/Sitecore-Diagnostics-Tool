@@ -24,7 +24,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner.UnitTests
     {
       var testRunner = new TestRunner();
       var test = new ContextNotNullTest();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var context = new TestProcessingContext();
       test.Process(data, context);
     }
@@ -34,7 +34,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner.UnitTests
     {
       var test = new ResourcesNotNullTest();
       var testRunner = new TestRunner();
-      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2, 161221)));
+      var data = testRunner.CreateContext(new EmptyDataProvider(new SitecoreVersion(8, 2, 2)));
       var context = new TestProcessingContext();
       test.Process(data, context);
     }

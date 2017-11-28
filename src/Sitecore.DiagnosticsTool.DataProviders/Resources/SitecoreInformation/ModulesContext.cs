@@ -57,12 +57,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       {
         var module = new SitecoreModuleInfo(moduleName);
         var versions = _Client.GetVersions(moduleName);
-        foreach (var version in versions)
+        foreach (var release in versions)
         {
-          foreach (var relese in version.Releases.Values)
           {
-            IReleaseInfo releaseInfo = new ReleaseInfo(relese);
-            var distr = relese.DefaultDistribution;
+            IReleaseInfo releaseInfo = new ReleaseInfo(release);
+            var distr = release.DefaultDistribution;
             if (distr == null)
             {
               continue;

@@ -36,14 +36,14 @@
       var versionText = $"{major}.{minor}";
       var release = client.GetRelease(productName, versionText, revisionText);
       var update = release.Version.Update;
-      var revision = int.Parse(revisionText);
+      //var revision = int.Parse(revisionText);
 
       if (string.IsNullOrEmpty(hotfixText))
       {
-        return new SitecoreVersion(major, minor, update, revision);
+        return new SitecoreVersion(major, minor, update/*, revision*/);
       }
 
-      return new SitecoreVersion(major, minor, update, revision, hotfixText);
+      return new SitecoreVersion(major, minor, update, /*revision, */hotfixText);
     }
   }
 }

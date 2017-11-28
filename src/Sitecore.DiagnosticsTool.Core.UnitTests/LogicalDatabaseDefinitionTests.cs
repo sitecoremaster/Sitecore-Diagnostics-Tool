@@ -21,7 +21,7 @@
       xml.LoadXml($"<database/>");
 
       // act and assert
-      new Action(() => LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0, 000000)))
+      new Action(() => LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0)))
         .ShouldThrow<ArgumentException>()
         .WithMessage("The id attribute is missing or whitespace.\r\nXml: <database />\r\nParameter name: definition");
     }
@@ -34,7 +34,7 @@
       xml.LoadXml($"<database id='db123'/>");
 
       // act
-      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0, 000000));
+      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0));
 
       // assert
       Assert.Equal("db123", db.Name);
@@ -50,7 +50,7 @@
       xml.LoadXml($"<database id='db123'><cacheSizes><data>4MB</data></cacheSizes></database>");
 
       // act
-      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0, 000000));
+      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0));
 
       // assert
       Assert.Equal("db123", db.Name);
@@ -75,7 +75,7 @@
       xml.LoadXml($"<database id='db123'><cacheSizes><data>4mb</data></cacheSizes></database>");
 
       // act
-      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0, 000000));
+      var db = LogicalDatabaseDefinition.Parse(xml.DocumentElement, new SitecoreVersion(8, 2, 0));
 
       // assert
       Assert.Equal("db123", db.Name);

@@ -15,7 +15,7 @@
 
   public class DiagCodeTests : DiagCode
   {
-    private static readonly SitecoreVersion ProductVersion = new SitecoreVersion(7, 2, 6, 160123);
+    private static readonly SitecoreVersion ProductVersion = new SitecoreVersion(7, 2, 6);
 
     [Fact]
     public void DefaultPassed1Test()
