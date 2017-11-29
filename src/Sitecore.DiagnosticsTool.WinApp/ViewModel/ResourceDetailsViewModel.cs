@@ -41,7 +41,7 @@
     {
       get
       {
-        return new RelayCommand(() => { View.SourcePackages.Remove(View); }, () => true);
+        return new RelayCommand(_ => { View.SourcePackages.Remove(View); }, () => true);
       }
     }
 
@@ -49,7 +49,7 @@
     {
       get
       {
-        return new RelayCommand(() =>
+        return new RelayCommand(_ =>
         {
           if (!IsPackageLoaded)
           {
@@ -268,21 +268,28 @@
     {
       get
       {
-        return new RelayCommand(() =>
+        return new RelayCommand(param =>
           {
-            var openFileDialog = new OpenFileDialog
+            var path = param as string;
+            if (string.IsNullOrEmpty(path))
             {
-              Filter = "SSPG package|*.zip"
-            };
-            if (openFileDialog.ShowDialog() != true)
-            {
-              return;
+              var openFileDialog = new OpenFileDialog
+              {
+                Filter = "SSPG package|*.zip"
+              };
+
+              if (openFileDialog.ShowDialog() != true)
+              {
+                return;
+              }
+
+              path = openFileDialog.FileName;
             }
 
             try
             {
-              InitilizePackgeDetails(openFileDialog.FileName);
-              PackagePath = openFileDialog.FileName;
+              InitilizePackgeDetails(path);
+              PackagePath = path;
             }
             catch (Exception ex)
             {
@@ -303,7 +310,7 @@
     {
       get
       {
-        return new RelayCommand(() => { ServerRoles = View.ServerRolesCheckList.SelectedItems.Cast<string>().Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r)).ToList(); },
+        return new RelayCommand(_ => { ServerRoles = View.ServerRolesCheckList.SelectedItems.Cast<string>().Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r)).ToList(); },
           () => true);
       }
     }

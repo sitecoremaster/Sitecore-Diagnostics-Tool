@@ -257,7 +257,7 @@
 
     public ICommand CancelButtonCommand => cancelButtonCommand ?? (cancelButtonCommand = new RelayCommand(CancelButtonClick, CanCancelButtonClick));
 
-    private void CancelButtonClick()
+    private void CancelButtonClick(object param)
     {
       tokenSource.Cancel();
       IsThreadAborted = true;

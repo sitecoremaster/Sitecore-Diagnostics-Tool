@@ -89,7 +89,7 @@
   {
     #region Fields
 
-    private readonly Action _execute;
+    private readonly Action<object> _execute;
 
     private readonly Func<bool> _canExecute;
 
@@ -101,7 +101,7 @@
     ///   Creates a new command that can always execute.
     /// </summary>
     /// <param name="execute">The execution logic.</param>
-    public RelayCommand(Action execute)
+    public RelayCommand(Action<object> execute)
       : this(execute, null)
     {
     }
@@ -111,7 +111,7 @@
     /// </summary>
     /// <param name="execute">The execution logic.</param>
     /// <param name="canExecute">The execution status logic.</param>
-    public RelayCommand(Action execute, Func<bool> canExecute)
+    public RelayCommand(Action<object> execute, Func<bool> canExecute)
     {
       if (execute == null)
       {
@@ -152,7 +152,7 @@
 
     public void Execute(object parameter)
     {
-      _execute();
+      _execute(parameter);
     }
 
     #endregion // ICommand Members

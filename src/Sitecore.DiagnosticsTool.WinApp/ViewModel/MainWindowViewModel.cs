@@ -46,7 +46,7 @@
 
     public ICommand CancelCommand => cancelCommand ?? (cancelCommand = new RelayCommand(CancelOrder));
 
-    private void CancelOrder()
+    private void CancelOrder(object o)
     {
       Source = null;
       OnRequestClose();
@@ -70,7 +70,7 @@
 
     public bool IsNextButtonEnabled { get; set; }
 
-    private void MoveToPreviousPage()
+    private void MoveToPreviousPage(object o)
     {
       if (CanMoveToPreviousPage)
       {
@@ -117,7 +117,7 @@
       }
     }
 
-    private void MoveToNextPage()
+    private void MoveToNextPage(object o)
     {
       if (!CanMoveToNextPage)
       {
