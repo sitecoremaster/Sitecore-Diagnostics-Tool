@@ -46,8 +46,8 @@
       Assert.Equal("150128", correctModule.Value?.Release?.Revision);
 
       Assert.Equal("Web Forms for Marketers", incorrectModule.Key);
-      Assert.Equal("8.2", incorrectModule.Value?.Release?.Version.MajorMinor);
-      Assert.Equal("160801", incorrectModule.Value?.Release?.Revision);
+      Assert.Equal("8.2", incorrectModule.Value.Single()?.Release?.Version.MajorMinor);
+      Assert.Equal("160801", incorrectModule.Value.Single()?.Release?.Revision);
 
       Assert.Equal(1, correct.Count);
       Assert.Equal(1, incorrect.Count);

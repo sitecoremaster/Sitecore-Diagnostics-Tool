@@ -4,6 +4,7 @@
   using System.Collections.Generic;
   using System.IO;
   using System.Linq;
+  using System.Text;
 
   using JetBrains.Annotations;
 
@@ -53,6 +54,7 @@
         .Replace("<span class=\"placeholder-instances-count\"></span>", Safe(_ => GetInstancesCount(resultsFile)))
         .Replace("<span class=\"placeholder-report-created\"></span>", Safe(_ => GetReportCreated()))
         .Replace("<div class=\"placeholder-instances-roles\"></div>", Safe(_ => GetInstancesRoles(resultsFile)))
+        .Replace("<div class=\"placeholder-instances-modules\"></div>", Safe(_ => GetInstancesModules(resultsFile)))
         .Replace("<div class=\"placeholder-error-messages\"></div>", Safe(_ => errorText))
         .Replace("<div class=\"placeholder-warning-messages\"></div>", warningText)
         .Replace("<div class=\"placeholder-cannot-run-messages\"></div>", cannotRunText)
@@ -136,6 +138,36 @@
         .JoinToString("\r\n");
 
       return instancesRoles;
+    }
+
+    private static string GetInstancesModules(ResultsFile resultsFile)
+    {
+      var contexts = resultsFile.Packages.Values
+        .ToArray(x => 
+          x.GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault());
+
+      var map = contexts.SelectMany(x => x.ModulesInformation.InstalledModules.Values.Select(z => new
+        
+        {
+          InstanceName = x.InstanceName,
+          ProductName = $"{z.Release.ProductName}", 
+          Version = $"{z.Release.Version}",
+        })).GroupBy(x => x.ProductName);
+
+      if (!map.Any())
+      {
+        return "";
+      }
+
+      var sb = new StringBuilder();
+      new Table(map.ToArray(x => 
+        new TableRow(
+          new[] { new Pair("Module", x.Key) }
+            .Concat(x.Select(z => new Pair(z.InstanceName, z.Version)))
+            .ToArray())))
+        .ToHtml(sb);
+
+      return sb.ToString();
     }
 
     [NotNull]
