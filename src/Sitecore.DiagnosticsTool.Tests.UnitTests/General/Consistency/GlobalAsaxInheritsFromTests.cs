@@ -351,7 +351,7 @@
           GlobalAsaxFile = GetGlobalAsaxFile(header)
         })
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Warning, SystemWebMessage), ComparisonMode.StartsWith)
+        .MustReturn(new TestOutput(TestResultState.Warning, SystemWebMessage + Comment))
         .Done();
     }
   }
