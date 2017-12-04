@@ -41,6 +41,11 @@
       var belowDefaultCachesPerDatabase = new Map<Map<CacheSizeDetails>>();
       foreach (var database in info.GetDatabases().Values)
       {
+        if (database.Name == "filesystem")
+        {
+          continue;
+        }
+
         var defaultDatabase = defaults.GetDatabases().TryGetValue(database.Name);
         if (defaultDatabase == null)
         {
@@ -74,10 +79,14 @@
       foreach (var cache in database.Caches.Values)
       {
         var cacheSize = cache.Size;
-        output.Debug($"Database {databaseName} {cache.Name} cache size: {cacheSize}");
+        output.Debug($"{databaseName}[{cache.Name}] = {cacheSize}");
 
         var defaultSize = defaultDatabase.Caches[cache.Name].Size;
-        Assert.IsNotNull(defaultSize, "default size cannot be null");
+        if (defaultSize == null)
+        {
+          // custom cache, or filesystem database
+          continue;
+        }
 
         if (cacheSize == null)
         {
@@ -100,7 +109,7 @@
             var cacheSizeDetails = new CacheSizeDetails
             {
               Value = cacheSize,
-              Comment = "which is default"
+              Comment = "cache size is default"
             };
 
             databaseCaches.Add(cache.Name, cacheSizeDetails);
@@ -110,7 +119,7 @@
             var cacheSizeDetails = new CacheSizeDetails
             {
               Value = cacheSize,
-              Comment = $"which is below than default: {defaultSize.Value}"
+              Comment = $"cache size is below than default: {defaultSize.Value}"
             };
 
             belowDefaultCaches.Add(cache.Name, cacheSizeDetails);
@@ -131,17 +140,20 @@
 
     protected ShortMessage GetMessage(Map<Map<CacheSizeDetails>> result, string comment)
     {
-      var databases = result
+      var rows = result
         .Where(x => x.Value.Any())
-        .Select(x => new Container(
-          new BoldText(x.Key),
-          new Text($" database caches need tuning:"),
-          BulletedList.Create(x.Value, c => $"{c.Key} = {c.Value.Value.Value} (\"{c.Value.Value.Text}\", {c.Value.Comment})")))
+        .SelectMany(d =>
+          d.Value.Select(c =>
+            new TableRow(              
+              new Pair("Cache",  $"{d.Key}[{c.Key}]"),
+              new Pair("Size", c.Value.Value.Value.ToString()),
+              new Pair("Comment", c.Value.Comment)
+            )))
         .ToArray();
 
-      var message = new ShortMessage(
+    var message = new ShortMessage(
         new Text(comment),
-        new BulletedList(databases),
+        new Table(rows),
         new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
 
       return message;
