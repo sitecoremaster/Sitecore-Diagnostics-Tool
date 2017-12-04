@@ -16,29 +16,6 @@ namespace Sitecore.DiagnosticsTool.TestRunner.Base
     [CanBeNull]
     public Map<IDataProvider> Packages { [UsedImplicitly] get; set; }
 
-    public ITestReport[] Solution
-    {
-      get
-      {
-        if (!Instances.ContainsKey(""))
-        {
-          Instances.Add("", new ITestReport[0]);
-        }
-
-        return Instances[""];
-      }
-
-      set
-      {
-        if (!Instances.ContainsKey(""))
-        {
-          Instances.Add("", value);
-        }
-        else
-        {
-          Instances[""] = value;
-        }
-      }
-    }
+    public ITestReport[] Solution { [UsedImplicitly] get; set; }
   }
 }
