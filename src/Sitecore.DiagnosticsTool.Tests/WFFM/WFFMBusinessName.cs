@@ -28,7 +28,7 @@
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {
-      return sitecoreVersion.Major == 8;
+      return sitecoreVersion.MajorMinorInt == 80 || sitecoreVersion.MajorMinorInt == 81;
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
