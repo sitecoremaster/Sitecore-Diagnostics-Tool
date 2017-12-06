@@ -1,10 +1,12 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
 {
+  using System;
   using System.IO;
   using System.Linq;
 
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
 
   public class PackageHelper
   {
@@ -27,16 +29,47 @@
     {
       var extracted = file.ExtractZipToDirectory();
       var directories = extracted.GetDirectories();
-      foreach (var directory in directories)
+
+      // workaround for #197008 - we need to expand .link.link.link before .link.link and before .link
+      var depth = extracted.GetFiles("*.link", SearchOption.AllDirectories).Max(x => GetDepth(x.Name));
+      for (var i = depth; i > 0; --i)
       {
-        var links = directory.GetFiles("*.link", SearchOption.AllDirectories);
-        foreach (var link in links)
+        var suffix = Enumerable.Repeat(".link", i).JoinToString("");
+
+        foreach (var directory in directories)
         {
-          TryExpandingLinkFile(link);
+          var links = directory.GetFiles("*" + suffix, SearchOption.AllDirectories);
+          foreach (var link in links)
+          {
+            TryExpandingLinkFile(link);
+          }
         }
       }
 
       return directories;
+    }
+
+    public static int GetDepth(string name)
+    {
+      var count = 0;
+      var shift = name.Length;
+      while (true)
+      {
+        if (!EndsWith(name, ".link", shift))
+        {
+          break;
+        }
+
+        shift -= ".link".Length;
+        count++;
+      }
+
+      return count;
+    }
+
+    private static bool EndsWith(string name, string suffix, int maxLength)
+    {
+      return maxLength - suffix.Length >= 0 && name.IndexOf(suffix, maxLength - suffix.Length) == maxLength - suffix.Length;
     }
 
     private static void TryExpandingLinkFile(IFile link)
