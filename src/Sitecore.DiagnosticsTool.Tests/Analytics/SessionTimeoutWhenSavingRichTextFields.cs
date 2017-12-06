@@ -14,29 +14,50 @@
   [UsedImplicitly]
   public class SessionTimeoutWhenSavingRichTextFields : KbTest
   {
-    public override string KbNumber { get; } = "135940";
+    public override string KbNumber => "135940";
 
     public override string KbName { get; } = "Session timeout when saving Rich Text fields";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    protected override bool IsActual(ITestResourceContext data) 
-      => data.SitecoreInfo.IsAnalyticsEnabled;
+    protected override bool IsActual(ITestResourceContext data)
+    {
+      var info = data.SitecoreInfo;
+      var ver = info.SitecoreVersion.MajorMinorUpdateInt;
+
+      return ver < 817 && info.IsAnalyticsEnabled;
+    }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
-      var pipeline = data.SitecoreInfo.GetPipeline("pipelines/initializeTracker");
-      var majorMinor = data.SitecoreInfo.SitecoreVersion.MajorMinorInt;
-      if (majorMinor > 71)
-      {
-        return;
-      }
+      Assert.IsNotNull(data, "context");
 
-      var patchedAssembly = AssemblyRef.Parse("Sitecore.Support.387512");
-      var patchedType = TypeRef.Parse("Sitecore.Support.Analytics.Pipelines.InitializeTracker.Robots", patchedAssembly);
-      if (pipeline.Processors.All(x => x.Type != patchedType))
+      var pipeline = data.SitecoreInfo.GetPipeline("pipelines/initializeTracker");
+      Assert.IsNotNull(pipeline);
+
+      var version = data.SitecoreInfo.SitecoreVersion;
+      var ver = version.MajorMinorUpdateInt;
+      if (ver < 720)
       {
-        Report(output);
+        var supportProcessor = TypeRef.Parse("Sitecore.Support.Analytics.Pipelines.InitializeTracker.Robots", AssemblyRef.Parse("Sitecore.Support.387512"));
+        if (pipeline.Processors.All(x => x.Type != supportProcessor))
+        {
+          Report(output);
+        }
+
+      }
+      else if (false
+        || ver >= 720 && ver <  725 
+        || ver >= 750 && ver <= 752
+        || ver >= 800 && ver <  806
+        || ver >= 810 && ver <  817
+      )
+      {
+        var supportProcessor = TypeRef.Parse("Sitecore.Support.Analytics.RobotDetection.Pipelines.InitializeTracker.Robots", AssemblyRef.Parse("Sitecore.Support.414299"));
+        if (pipeline.Processors.All(x => x.Type != supportProcessor))
+        {
+          Report(output);
+        }
       }
     }
   }
