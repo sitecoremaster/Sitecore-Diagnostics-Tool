@@ -67,11 +67,12 @@
           continue;
         }
 
-        var expectedSize = defaultAssembly.FileSize;
-        if (expectedSize != actualSize)
-        {
-          output.Warning(GetSizeInconsistencyMessage(actualAssembly, expectedSize));
-        }
+        // disabled because currently SIS returns invalid values for defaultAssembly.FileSize
+        // var expectedSize = defaultAssembly.FileSize;
+        // if (expectedSize != actualSize)
+        // {
+        //   output.Warning(GetSizeInconsistencyMessage(actualAssembly, expectedSize));
+        // }
       }
     }
 
