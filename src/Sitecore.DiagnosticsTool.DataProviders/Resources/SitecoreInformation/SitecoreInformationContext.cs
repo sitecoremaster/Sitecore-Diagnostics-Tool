@@ -173,7 +173,8 @@
       Assert.ArgumentNotNull(rootPath, nameof(rootPath));
       try
       {
-        var kernel = FindFile(rootPath, "Sitecore.Kernel.dll");
+        // in 9.0 sitecore.kernel.dll is always present in support package, so check Client.dll
+        var kernel = FindFile(rootPath, "Sitecore.Client.dll");
         if (kernel == null)
         {
           var assemblyInfoPath = FindFile(rootPath, "AssemblyInfo.xml");
