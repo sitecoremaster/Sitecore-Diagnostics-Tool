@@ -293,6 +293,24 @@
 
         yield return GetMessage(alertType, header + Render(id, test, content));
       }
+
+      foreach (ITestReport testReport in resultsFile.Solution)
+      {
+        var test = testReport.Owner.Name;
+        var content = getMessages(testReport).JoinToString("\r\n");
+        if (string.IsNullOrWhiteSpace(content))
+        {
+          continue;
+        }
+
+        var id = $"{prefix}{counter++}";
+        var header = $"" +
+                     $"<h4 class='alert-heading'>" +
+                     $"  <a href='#{id}'>{id}</a>. <span class='test-name'>{test}</span>" +
+                     $"</h4>";
+
+        yield return GetMessage(alertType, header + Render(id, test, content));
+      }
     }
 
     private const string Token = "/--!!--/*--!!--*/--!!--/";
