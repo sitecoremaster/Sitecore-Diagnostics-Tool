@@ -1,12 +1,16 @@
 ﻿namespace Sitecore.DiagnosticsTool
 {
   using System;
+  using System.Diagnostics;
   using System.IO;
   using System.Linq;
   using System.Reflection;
+  using System.Windows.Forms;
 
   using Fclp;
 
+  using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.Reporting;
@@ -14,6 +18,7 @@
 
   internal class Program
   {
+    [STAThread]
     private static void Main(string[] args)
     {
       if (args.Length == 0)
@@ -33,17 +38,21 @@
       Console.WriteLine("Sitecore Diagnostics Tool");
       Console.WriteLine();
       Console.WriteLine("How to use it: ");
-      Console.WriteLine(" 1. Run 'sdt new [-n workplace-name]' to prepare workspace");
-      Console.WriteLine("    This command (re)creates .sdt file in current directory");
+      Console.WriteLine(" A. For Sitecore 9.0 mega-package run 'sdt run -p {path-to-sspg} -o C:\\report.html'");
       Console.WriteLine();
-      Console.WriteLine(" 2. For each SSPG package run 'sdt add -p {path-to-sspg} -r {roles-of-given-instance}");
-      Console.WriteLine("    For example: ");
-      Console.WriteLine("    > sdt add -p C:\\sspg1.zip -r ContentManagement|Processing [-n workplace-name]");
-      Console.WriteLine("    > sdt add -p C:\\sspg2.zip -r ContentDelivery [-n workplace-name]");
+      Console.WriteLine(" B. For previous versions, or 9.0 separate pacakges do as follows:");
       Console.WriteLine();
-      Console.WriteLine(" 3. Run 'sdt list [-n workplace-name]' to list all added packages and their roles");
+      Console.WriteLine(" B1. Run 'sdt new [-n workplace-name]' to prepare workspace");
+      Console.WriteLine("     This command (re)creates .sdt file in current directory");
       Console.WriteLine();
-      Console.WriteLine(" 4. Run 'sdt run -o C:\\report.html [-n workplace-name]' to start analysis");
+      Console.WriteLine(" B2. For each SSPG package run 'sdt add -p {path-to-sspg} -r {roles-of-given-instance}");
+      Console.WriteLine("     For example: ");
+      Console.WriteLine("     > sdt add -p C:\\sspg1.zip -r ContentManagement|Processing [-n workplace-name]");
+      Console.WriteLine("     > sdt add -p C:\\sspg2.zip -r ContentDelivery [-n workplace-name]");
+      Console.WriteLine();
+      Console.WriteLine(" B3. Run 'sdt list [-n workplace-name]' to list all added packages and their roles");
+      Console.WriteLine();
+      Console.WriteLine(" B4. Run 'sdt run -o C:\\report.html [-n workplace-name]' to start analysis");
       Console.WriteLine();
     }
 
@@ -163,6 +172,21 @@
         .Required()
         .Callback(x => outputPath = x);
 
+      var showDialog = false;
+      parser.Setup<bool>('d', "diaog")
+        .WithDescription("Show popup dialog to choose mega SSPG file")
+        .Callback(x => showDialog = x);
+
+      var openReport = false;
+      parser.Setup<bool>('e', "open")
+        .WithDescription("Open report after generating")
+        .Callback(x => openReport = x);
+
+      var mega = "";
+      parser.Setup<string>('p', "package")
+        .WithDescription("Path to the mega SSPG package file")
+        .Callback(x => mega = x);
+        
       var workplaceName = "";
       parser.Setup<string>('n', "name")
         .WithDescription("Workplace name.")
@@ -174,30 +198,67 @@
         return;
       }
 
-      var filePath = $"{workplaceName}.sdt";
-      if (!File.Exists(filePath))
+      var assemblyName = Assembly.GetExecutingAssembly().GetName();
+      SupportPackageDataProvider[] packages;
+      if (showDialog)
       {
-        ShowHelp();
-        return;
+        var dialog = new OpenFileDialog
+        {
+          Filter = "Mega Support Package|*.zip",
+          Multiselect = false,
+        };
+
+        var dialogResult = dialog.ShowDialog();
+
+        if (dialogResult == DialogResult.Cancel)
+        {
+          return;
+        }
+
+        mega = dialog.FileName;
       }
 
-      var assemblyName = Assembly.GetExecutingAssembly().GetName();
-      var packages = File.ReadAllLines(filePath)
-        .Select(x => x.Split('?'))
-        .Select(x => new
+      if (!string.IsNullOrEmpty(mega))
+      {
+        var file = new FileSystem().ParseFile(mega);
+        if (!file.Exists)
         {
-          Path = x[0],
-          Roles = x[1].Split('|')
-            .Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r))
-            .ToArray()
-        })
-        .Select(x =>
-        {
-          Console.WriteLine($"Parsing {x.Path}");
+          Console.WriteLine($"File does not exist: {file}");
 
-          return new SupportPackageDataProvider(x.Path, x.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}");
-        })
-        .ToArray();
+          return;
+        }
+
+        packages = PackageHelper.ExtractMegaPackage(file)
+          .ToArray(x =>
+            new SupportPackageDataProvider(x.FullName, null, null, null,
+              $"{assemblyName.Name}, {assemblyName.Version.ToString()}"));
+      }
+      else
+      {
+        var filePath = $"{workplaceName}.sdt";
+        if (!File.Exists(filePath))
+        {
+          ShowHelp();
+          return;
+        }
+
+        packages = File.ReadAllLines(filePath)
+          .Select(x => x.Split('?'))
+          .Select(x => new
+          {
+            Path = x[0],
+            Roles = x[1].Split('|')
+              .Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r))
+              .ToArray()
+          })
+          .Select(x =>
+          {
+            Console.WriteLine($"Parsing {x.Path}");
+
+            return new SupportPackageDataProvider(x.Path, x.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}");
+          })
+          .ToArray();
+      }
 
       try
       {
@@ -213,6 +274,11 @@
           File.WriteAllText(
             outputPath,
             ReportBuilder.GenerateReport(resultsFile));
+
+          if (openReport)
+          {
+            Process.Start("explorer", $"\"{outputPath}\"");
+          }
         }
       }
       finally

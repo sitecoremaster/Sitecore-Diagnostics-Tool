@@ -7,6 +7,7 @@
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
 
+  /// <inheritdoc />
   /// <summary>
   ///   Base interface that is required for every test to implement.
   /// </summary>

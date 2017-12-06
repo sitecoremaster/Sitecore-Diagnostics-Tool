@@ -10,16 +10,15 @@
   public interface ISolutionTest : ITestMetadata
   {
     /// <summary>
-    ///   The method indicates if this specific test is actual for Sitecore version of the instance under test.
+    ///   Indicate if the test is actual for given Sitecore solution.
     /// </summary>
     bool IsActual([NotNull] ISolutionTestResourceContext data, [NotNull] ISitecoreVersion sitecoreVersion);
 
     /// <summary>
-    ///   All the test logic must be placed here. Use data parameter to access the resources API, use output parameter to give
-    ///   results.
+    ///   Perform complete test and provide output.
     /// </summary>
-    /// <param name="data">An interface to test resources.</param>
-    /// <param name="output">An interface to test output.</param>
+    /// <param name="data">An interface to the resources API.</param>
+    /// <param name="output">An interface to the output messages API.</param>
     void Process([NotNull] ISolutionTestResourceContext data, [NotNull] ITestOutputContext output);
   }
 }

@@ -12,6 +12,7 @@
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
   using Sitecore.DiagnosticsTool.Core.Extensions;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.Resources;
@@ -59,38 +60,14 @@
             }
 
             var file = new FileSystem().ParseFile(openFileDialog.FileName);
-            if (IsLegacyPackage(file))
+            if (PackageHelper.IsLegacyPackage(file))
             {
               var viewModel = (ResourceDetailsViewModel)view.DataContext;
               viewModel.LoadPackageCommand.Execute(file.FullName);
             }
             else
             {
-              var extracted = file.ExtractZipToDirectory();
-              var directories = extracted.GetDirectories();
-              foreach (var directory in directories)
-              {
-                foreach (var link in directory.GetFiles("*.link", SearchOption.AllDirectories))
-                {
-                  var value = link.ReadAllText();
-                  if (!value.StartsWith("[link] "))
-                  {
-                    continue;
-                  }
-
-                  var relativePath = value.Substring("[link] ".Length).Replace("%20", " ");
-                  var fullPath = link.FileSystem.Internals.Path.GetFullPath(link.FileSystem.Internals.Path.Combine(link.Directory.FullName, relativePath));
-                  var target = link.FileSystem.ParseFile(fullPath);
-                  if (!target.Exists)
-                  {                    
-                    continue;
-                  }
-
-                  link.Delete();
-                  link.Directory.Create();
-                  target.CopyTo(link.Directory, link.NameWithoutExtension);
-                }
-              }
+              var directories = PackageHelper.ExtractMegaPackage(file);
 
               if (true)
               {
@@ -109,21 +86,6 @@
             }
           },
           () => true));
-      }
-    }
-
-    private static bool IsLegacyPackage(IFile file)
-    {
-      // legacy package has PackageInfo.xml in zip root
-      using (var zip = file.FileSystem.ZipManager.OpenRead(file))
-      {
-        var fileNamesInZipRoot = zip.Entries
-          .Where(x => !x.FullName.Contains('/'))
-          .Select(x => x.FullName)
-          .Distinct()
-          .ToArray();
-
-        return fileNamesInZipRoot.Any(x => x == "PackageInfo.xml");
       }
     }
 
