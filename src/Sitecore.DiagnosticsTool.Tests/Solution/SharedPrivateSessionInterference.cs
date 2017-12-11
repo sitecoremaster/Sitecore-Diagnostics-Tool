@@ -32,7 +32,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Solution
         .Select(x => new
         {
           x.SitecoreInfo,
-          SharedSessionState = XmlExtensions.SelectSingleElement(x.SitecoreInfo.Configuration, "/configuration/sitecore/tracking/sharedSessionState")
+          SharedSessionState = x.SitecoreInfo.Configuration.SelectSingleElement("/configuration/sitecore/tracking/sharedSessionState")
         })
         .Where(x => x.SharedSessionState != null || // skip those that don't have shared session at all - like publishing instance
           ReturnFalse(_ => output.Debug($"Shared session state configuration is missing in {x.SitecoreInfo.InstanceName}")))
