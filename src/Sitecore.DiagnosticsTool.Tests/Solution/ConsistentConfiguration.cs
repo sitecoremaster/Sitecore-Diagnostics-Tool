@@ -9,6 +9,7 @@
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   [UsedImplicitly]
@@ -32,6 +33,7 @@
 
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {
+      var files = new List<string>();
       var identical = CollectionHelper.AreIdenticalByPairs(
         data.Values.ToArray(),
         (instanceA, instanceB) =>
@@ -40,12 +42,29 @@
             CollectionHelper.AreIdentical(
               instanceA.SitecoreInfo.IncludeFiles,
               instanceB.SitecoreInfo.IncludeFiles,
-              (nameA, nameB) => string.Equals(nameA, nameB, StringComparison.OrdinalIgnoreCase),
-              (fileA, fileB) => string.Equals(fileA.RawText, fileB.RawText, StringComparison.Ordinal)));
+              (nameA, nameB) =>
+              {
+                var result = string.Equals(nameA, nameB, StringComparison.OrdinalIgnoreCase);
+                if (!result)
+                {
+                  return false;
+                }
+                return result;
+              },
+              (fileA, fileB) =>
+              {
+                var result = string.Equals(fileA.RawText, fileB.RawText, StringComparison.Ordinal);
+                if (!result)
+                {
+                  files.Add(fileA.FilePath.Substring(fileA.FilePath.IndexOf("App_Config")));
+                }
+
+                return result;
+              }));
 
       if (!identical)
       {
-        output.Warning(ShortMessage);
+        output.Warning(ShortMessage, detailed: new DetailedMessage(new BulletedList(files)));
       }
     }
   }
