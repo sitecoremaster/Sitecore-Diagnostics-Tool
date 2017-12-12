@@ -25,7 +25,7 @@
     }
 
     public BulletedList([NotNull] IEnumerable<object> arr)
-      : base(arr.Select(x => x.ToString()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(x => new Text(x)))
+      : base(arr.Where(x => x is MessagePart || !string.IsNullOrWhiteSpace(x.ToString())).ToArray(x => (x as MessagePart) ?? new Text(x.ToString())))
     {
     }
 
