@@ -38,7 +38,10 @@
       Assert.ArgumentNotNull(xpath, nameof(xpath));
 
       var element = document.DocumentElement;
-      Assert.IsNotNull(element, "element");
+      if (element == null)
+      {
+        return new XmlElement[0];
+      }
 
       return SelectElements(element, xpath);
     }
