@@ -139,6 +139,7 @@
     <Compile Include="General\Server\MaximumWorkerProcessesTests.cs" />
     <Compile Include="General\Performance\MediaLinkPrefixContainsTildeTests.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditorTests.cs" />
+    <Compile Include="Search\ContentSearchConfigurationsDuplicatesTests.cs" />
     <Compile Include="Search\ObsoleteLuceneConfigurationTests.cs" />
     <Compile Include="Solution\ConsistentConfigurationTest.cs" />
     <Compile Include="Solution\SamePrivateAndSharedSessionTests.cs" />

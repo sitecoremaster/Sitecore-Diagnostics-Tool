@@ -112,6 +112,7 @@
     <Compile Include="General\Server\DotNetFrameworkVersion.cs" />
     <Compile Include="General\Server\IISVersionTest.cs" />
     <Compile Include="General\SystemTest.cs" />
+    <Compile Include="Search\ContentSearchConfigurationsDuplicates.cs" />
     <Compile Include="Search\NewerSolrCompatibility.cs" />
     <Compile Include="General\Consistency\AssembliesConsistencyMatch.cs" />
     <Compile Include="General\Consistency\DatabaseSchemaValidation.cs" />
