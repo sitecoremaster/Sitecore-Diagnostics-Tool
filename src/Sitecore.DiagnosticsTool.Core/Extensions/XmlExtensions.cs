@@ -111,5 +111,44 @@
       that.LoadXml(xml);
       return that;
     }
+
+    [NotNull]
+    public static string ToString([NotNull] this XmlElement that, XmlPrintMode mode)
+    {
+      var removed = false;
+      var xml = new XmlDocument().Parse(that.OuterXml).DocumentElement;
+      foreach (var attr in xml.Attributes.Cast<XmlAttribute>().ToArray())
+      {
+        if (attr.Prefix != "")
+        {
+          removed = true;
+          xml.Attributes.Remove(attr);
+        }
+      }
+
+      return ToStringInner(xml, mode, removed);
+    }
+
+    private static string ToStringInner(XmlElement that, XmlPrintMode mode, bool removed)
+    {
+      var removedText = removed ? " ... " : "";
+      var xml = that.OuterXml;
+      var prefix = xml.Substring(0, xml.IndexOf('>')).TrimEnd();
+
+      switch (mode)
+      {
+        case XmlPrintMode.Default:
+          return prefix + removedText + xml.Substring(xml.IndexOf('>'));
+
+        case XmlPrintMode.HeaderOnly:
+          return prefix + removedText + ">";
+
+        case XmlPrintMode.WithoutChildren:
+          return prefix.Trim(" /".ToCharArray()) + removedText.TrimEnd() + " />";
+
+        default:
+          throw new NotImplementedException();
+      }
+    }
   }
 }

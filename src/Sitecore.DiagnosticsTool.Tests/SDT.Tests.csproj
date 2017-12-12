@@ -164,6 +164,7 @@
     <Compile Include="General\Server\WebsiteFolderReusage.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditor.cs" />
     <Compile Include="Search\CrawlerRootItemIgnored.cs" />
+    <Compile Include="Search\ObsoleteLuceneConfiguration.cs" />
     <Compile Include="Solution\ConsistentConfiguration.cs" />
     <Compile Include="Solution\LuceneNoGo.cs" />
     <Compile Include="Solution\PatchesInformation.cs" />

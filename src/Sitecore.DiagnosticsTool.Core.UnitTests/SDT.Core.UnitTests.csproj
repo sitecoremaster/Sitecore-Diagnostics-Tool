@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="CacheSizeTests.cs" />
     <Compile Include="Collections\CollectionHelperTests.cs" />
+    <Compile Include="Extensions\XmlExtensionsTests.cs" />
     <Compile Include="LogicalDatabaseDefinitionTests.cs" />
     <Compile Include="MessageTests.cs" />
     <Compile Include="Test_CmCdRoleTest_IsValid_Tests.cs" />
