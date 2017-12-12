@@ -57,7 +57,7 @@
       }
       set
       {
-        currentTest = value;
+        currentTest = value + 1;
         OnPropertyChanged("CurrentTest");
         OnPropertyChanged("CurrentValue");
         OnPropertyChanged("StatusLabel");
@@ -161,7 +161,6 @@
 
       try
       {
-        var counter = 1;
         var assemblyName = Assembly.GetExecutingAssembly().GetName();
         var packages = Source.Packages
           .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}"))
@@ -169,7 +168,7 @@
 
         try
         {
-          var resultsFile = AggregatedTestRunner.RunTests(packages, _ => OnTestRun(packages.Length, ++counter));
+          var resultsFile = AggregatedTestRunner.RunTests(packages, (test, index, count) => OnTestRun(index));
 
           if (tokenSource.IsCancellationRequested)
           {
@@ -213,14 +212,9 @@
       }
     }
 
-    private void OnTestRun(int count, int counter)
+    private void OnTestRun(int index)
     {
-      if (counter % count != 0)
-      {
-        return;
-      }
-
-      CurrentTest = counter / count;
+      CurrentTest = index;
       if (tokenSource.IsCancellationRequested)
       {
         throw new OperationCanceledException();
@@ -231,7 +225,7 @@
     {
       IsThreadRunning = true;
       IsThreadAborted = false;
-      TestsNumber = AggregatedTestRunner.GetTotalTestsCount();
+      TestsNumber = AggregatedTestRunner.GetTotalTestsCount(Source.Packages.Count);
       CurrentTest = 0;
       reportPath = null;
     }

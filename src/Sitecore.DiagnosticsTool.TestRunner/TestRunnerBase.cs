@@ -23,7 +23,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     protected virtual bool UnitTesting { get; } = false;
 
     [NotNull]
-    public IEnumerable<ITestReport> RunTests([NotNull] IEnumerable<TTest> tests, [NotNull] TDataSource dataSource, [CanBeNull] Action<ITestMetadata> onTestRun = null)
+    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TDataSource dataSource, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
     {
       Assert.ArgumentNotNull(tests, nameof(tests));
       Assert.ArgumentNotNull(dataSource, nameof(dataSource));
@@ -37,20 +37,17 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     [NotNull]
-    public IEnumerable<ITestReport> RunTests([NotNull] IEnumerable<TTest> tests, [NotNull] TResource data, [NotNull] TestProcessingContext process, [CanBeNull] Action<ITestMetadata> onTestRun = null)
+    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TResource data, [NotNull] TestProcessingContext process, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
     {
       Assert.ArgumentNotNull(tests, nameof(tests));
       Assert.ArgumentNotNull(data, nameof(data));
       Assert.ArgumentNotNull(process, nameof(process));
 
-      foreach (var test in tests)
+      for (var i = 0; i < tests.Count; i++)
       {
-        if (test == null)
-        {
-          continue;
-        }
+        var test = tests[i];
 
-        onTestRun?.Invoke(test);
+        onTestRun?.Invoke(test, i);
 
         // run test
         yield return RunTest(test, data, process);
