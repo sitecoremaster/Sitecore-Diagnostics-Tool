@@ -51,7 +51,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
     public override string ToString()
     {
-      return $"{State}, {Message}";
+      return $"{State}, {Message}{Detailed}";
     }
   }
 }

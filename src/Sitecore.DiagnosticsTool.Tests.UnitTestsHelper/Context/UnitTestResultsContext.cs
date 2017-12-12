@@ -47,9 +47,9 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
     {
       Assert.ArgumentNotNull(testResult, nameof(testResult));
 
-      var list = Results;
+     var list = Results;
       var result = list.FirstOrDefault(x => testResult.State == x.State && (mode == ComparisonMode.Strict ? testResult.Message.ToString() == x.Message.ToString() : x.Message.ToString().StartsWith(testResult.Message.ToString())));
-      if (result == null)
+      if (result == null || (mode == ComparisonMode.StartsWith || result.Detailed != testResult.Detailed))
       {
         if (list.Any())
         {

@@ -2,8 +2,12 @@
 {
   using System.Xml;
 
+  using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Collections;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
   using Sitecore.DiagnosticsTool.Tests.ECM;
@@ -23,7 +27,10 @@
         ServerRoles = new[] { ServerRole.ContentManagement },
         Configuration = new XmlDocument().Create("/configuration/sitecore/settings/setting[@name='ECM.RendererUrl' and @value='http://sitecore.net']"),
         Version = new SitecoreVersion(7, 2, 2),
-        Assemblies = new[] { new AssemblyFile("Sitecore.EmailCampaign.dll", "1.3.3.4334", "1.3.3 rev. 130212") } // ExM 1.3.3 has only 1 assembly - that's why it was chosen
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
+        {
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["2.2.0"]) }
+        },
       };
 
       UnitTestContext
@@ -41,14 +48,17 @@
         ServerRoles = new[] { ServerRole.ContentManagement },
         Configuration = new XmlDocument().Create("/configuration/sitecore/settings"),
         Version = new SitecoreVersion(7, 2, 2),
-        Assemblies = new[] { new AssemblyFile("Sitecore.EmailCampaign.dll", "1.3.3.4334", "1.3.3 rev. 130212") } // ExM 1.3.3 has only 1 assembly - that's why it was chosen
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
+        {
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["2.2.0"]) }
+        },
       };
 
       UnitTestContext
         .Create(this)
         .AddResource(sitecoreConfiguration)
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Warning, ErrorMessage, Link))
+        .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormatWithMessage, KbNumber, ErrorMessage, KbName), Link))
         .Done();
     }
   }

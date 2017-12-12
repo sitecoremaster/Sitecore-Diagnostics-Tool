@@ -27,27 +27,37 @@
         })
         .Process(this)
         .Done();
+    }
 
+    [Fact]
+    public void Test1()
+    {
+      UnitTestContext
+          .Create(this)
+          .AddResource(new SitecoreInstance
+          {
+            Version = new SitecoreVersion(8, 2, 2),
+            Configuration = new XmlDocument()
+              .Create("/configuration/sitecore/settings/setting[@name='Xdb.Enabled' and @value='true']") // indicate xDB enabled
+              .Add("/configuration/sitecore", "pipelines/createTracker") // indicate xDB enabled
+              .Add("/configuration/sitecore", "analyticsExcludeRobots") // indicate exclude robots enabled
+          })
+          .Process(this)
+          .Done();
+
+    }
+
+    [Fact]
+    public void Test2()
+    {
       UnitTestContext
         .Create(this)
         .AddResource(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
-            .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']") // indicate DMS enabled
-            .Add("/configuration/sitecore", "pipelines/startTracking") // indicate DMS enabled
-            .Add("/configuration/sitecore", "analyticsExcludeRobots") // indicate exclude robots enabled
-        })
-        .Process(this)
-        .Done();
-
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
-        {
-          Version = new SitecoreVersion(8, 2, 2),
-          Configuration = new XmlDocument()
-            .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']")
+            .Create("/configuration/sitecore/settings/setting[@name='Xdb.Enabled' and @value='true']")
+            .Add("/configuration/sitecore", "pipelines/createTracker") // indicate xDB enabled
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, ErrorMessage))

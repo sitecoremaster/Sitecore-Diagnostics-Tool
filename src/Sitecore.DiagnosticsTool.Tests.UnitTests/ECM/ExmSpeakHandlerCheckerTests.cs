@@ -2,7 +2,12 @@
 {
   using System.Xml;
 
+  using Sitecore.Diagnostics.InfoService.Client;
+  using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
+  using Sitecore.DiagnosticsTool.Core.Collections;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
   using Sitecore.DiagnosticsTool.Tests.ECM;
@@ -22,10 +27,10 @@
         Configuration = new XmlDocument()
           .Create("/configuration/system.web/httpHandlers"),
         Version = new SitecoreVersion(8, 1, 0),
-        Assemblies = new[]
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
         {
-          new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")
-        }
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
+        },
       };
       UnitTestContext
         .Create(this)
@@ -44,10 +49,10 @@
       {
         Configuration = configuration,
         Version = new SitecoreVersion(8, 1, 1),
-        Assemblies = new[]
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
         {
-          new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")
-        }
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
+        },
       };
 
       UnitTestContext

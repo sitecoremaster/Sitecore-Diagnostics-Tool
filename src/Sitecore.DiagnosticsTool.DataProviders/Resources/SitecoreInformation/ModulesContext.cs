@@ -16,7 +16,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   public class ModulesContext : IModulesContext
   {
     [NotNull]
-    private readonly IServiceClient _Client = new ServiceClient();
+    private static readonly IServiceClient _Client = new ServiceClient();
 
     [CanBeNull]
     private IReadOnlyList<ISitecoreModuleInfo> _ModulesInformation;
@@ -49,7 +49,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     public IReadOnlyList<ISitecoreModuleInfo> ModulesInformation => _ModulesInformation ?? (_ModulesInformation = GetModulesInformation());
 
     [NotNull]
-    private List<ISitecoreModuleInfo> GetModulesInformation()
+    public static List<ISitecoreModuleInfo> GetModulesInformation()
     {
       var rv = new List<ISitecoreModuleInfo>();
       var products = _Client.GetProductNames();

@@ -37,7 +37,7 @@
               $"<major>{Version.Major}</major>" +
               $"<minor>{Version.Minor}</minor>" +
               $"<build>{0}</build>" +
-              $"<revision>000000</revision>" +
+              $"<revision>{ServiceClient.Products["Sitecore CMS"].Versions[Version.MajorMinorUpdate].Revision}</revision>" +
               $"</version><title>Sitecore.NET</title><company>Sitecore Corporation</company><copyright>© Sitecore. All rights reserved.</copyright></information>")
         };
       }

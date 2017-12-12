@@ -211,7 +211,17 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       }
     }
 
-    public IModulesContext ModulesInformation => _ModulesInformation ?? (_ModulesInformation = new ModulesContext(Assemblies));
+    public IModulesContext ModulesInformation
+    {
+      get
+      {
+        return _ModulesInformation ?? (_ModulesInformation = new ModulesContext(Assemblies));
+      }
+      set
+      {
+        _ModulesInformation = value;
+      }
+    }
 
     public virtual string GetSetting(string settingName)
     {
