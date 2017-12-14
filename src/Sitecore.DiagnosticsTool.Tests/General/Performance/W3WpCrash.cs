@@ -8,6 +8,7 @@
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
@@ -70,7 +71,9 @@
 
       if (moments.Count > 0)
       {
-        output.Warning(GetMessage(moments));
+        var message = "There are potential hard application restarts have been detected.";
+
+        output.Warning(message, detailed: GetMessage(moments));
       }
     }
 
@@ -90,13 +93,13 @@
     [NotNull]
     protected string GetMessage(DateTime moment)
     {
-      return $"Potential hard application restart has been detected around {moment.ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}.";
+      return $"{moment.ToUniversalTime():dd-MMM-yyyy, HH:mm UTC}.";
     }
 
     [NotNull]
-    protected string GetMessage(List<DateTime> moments)
+    protected DetailedMessage GetMessage(List<DateTime> moments)
     {
-      return moments.Count == 1 ? GetMessage(moments.First()) : $"Potential {moments.Count} hard application restarts have been detected. First occurrence around {moments.First().ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}, last occurrence around {moments.Last().ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}.";
+      return new DetailedMessage(new BulletedList(moments.Select(GetMessage)));
     }
   }
 }

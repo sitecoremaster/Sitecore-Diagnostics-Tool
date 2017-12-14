@@ -57,16 +57,16 @@
 
       if (defaultCachesPerDatabase.Any())
       {
-        var message = GetMessage(defaultCachesPerDatabase, $"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:");
+        var message = "One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation";
 
-        output.Warning(message);
+        output.Warning(message, detailed: GetMessage(defaultCachesPerDatabase));
       }
 
       if (belowDefaultCachesPerDatabase.Any())
       {
-        var message = GetMessage(belowDefaultCachesPerDatabase, $"One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation:");
+        var message = "One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation.";
 
-        output.Error(message);
+        output.Error(message, detailed: GetMessage(belowDefaultCachesPerDatabase));
       }
     }
 
@@ -138,23 +138,22 @@
       }
     }
 
-    protected ShortMessage GetMessage(Map<Map<CacheSizeDetails>> result, string comment)
+    protected DetailedMessage GetMessage(Map<Map<CacheSizeDetails>> result)
     {
       var rows = result
         .Where(x => x.Value.Any())
         .SelectMany(d =>
           d.Value.Select(c =>
-            new TableRow(              
-              new Pair("Cache",  $"{d.Key}[{c.Key}]"),
+            new TableRow(
+              new Pair("Cache", $"{d.Key}[{c.Key}]"),
               new Pair("Size", c.Value.Value.Value.ToString()),
               new Pair("Comment", c.Value.Comment)
             )))
         .ToArray();
 
-    var message = new ShortMessage(
-        new Text(comment),
-        new Table(rows),
-        new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
+      var message = new DetailedMessage(
+          new Table(rows),
+          new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
 
       return message;
     }

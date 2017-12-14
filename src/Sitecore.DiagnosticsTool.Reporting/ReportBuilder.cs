@@ -343,7 +343,7 @@
         $"        <div class='modal-body'>" +
         $"          {summary}" +
         $"          <hr />" +
-        $"          {detailed}" +
+        $"          {detailed.Replace(Token, "")}" +
         $"        </div>" +
         $"      </div>" +
         $"    </div>" +
