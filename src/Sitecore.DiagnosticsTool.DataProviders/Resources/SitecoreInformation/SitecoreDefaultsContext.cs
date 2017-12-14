@@ -77,16 +77,16 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       return ConfigurationHelper.GetSettings(Configuration);
     }
 
-    public virtual string GetSetting(string settingName)
+    public virtual string GetSetting(string settingName, string defaultValue = null)
     {
       Assert.ArgumentNotNull(settingName, nameof(settingName));
 
-      return ConfigurationHelper.GetSetting(Configuration, settingName);
+      return ConfigurationHelper.GetSetting(Configuration, settingName, _ => defaultValue);
     }
 
-    public bool GetBoolSetting(string settingName)
+    public bool GetBoolSetting(string settingName, bool? defaultValue = null)
     {
-      return bool.Parse(GetSetting(settingName));
+      return bool.Parse(GetSetting(settingName, defaultValue?.ToString()));
     }
 
     public virtual string GetConnectionString(string connectionStringName)

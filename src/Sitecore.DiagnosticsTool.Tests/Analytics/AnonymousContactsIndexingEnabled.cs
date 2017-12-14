@@ -31,7 +31,7 @@
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      if (data.SitecoreInfo.GetBoolSetting(SettingName))
+      if (data.SitecoreInfo.GetBoolSetting(SettingName, true))
       {
         Report(output);
       }
