@@ -1,5 +1,6 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 {
+  using System.Diagnostics;
   using System.Xml;
 
   using JetBrains.Annotations;
@@ -7,6 +8,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Extensions;
 
+  [DebuggerDisplay("{" + nameof(FilePath) + "}")]
   public class ConfigurationFile
   {
     [CanBeNull]

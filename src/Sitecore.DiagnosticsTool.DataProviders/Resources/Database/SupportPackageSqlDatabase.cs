@@ -49,7 +49,13 @@
             return _Schema;
           }
 
-          var jsonSchema = File.ReadAllText(Path.Combine(RootPath, "Databases", "Schemas", $"{Name}.json"));
+          var filePath = Path.Combine(RootPath, "Databases", "Schemas", $"{Name}.json");
+          if (!File.Exists(filePath))
+          {
+            throw new DatabaseResourceNotAvailableException();
+          }
+
+          var jsonSchema = File.ReadAllText(filePath);
           return _Schema = new Schema.SqlDatabaseSchema(jsonSchema);
         }
         catch (Exception)
@@ -70,7 +76,13 @@
             return _Metrics;
           }
 
-          var jsonMetrics = File.ReadAllText(Path.Combine(RootPath, "Databases", "Metrics", $"{Name}.json"));
+          var filePath = Path.Combine(RootPath, "Databases", "Metrics", $"{Name}.json");
+          if (!File.Exists(filePath))
+          {
+            throw new DatabaseResourceNotAvailableException();
+          }
+
+          var jsonMetrics = File.ReadAllText(filePath);
           return _Metrics = JsonConvert.DeserializeObject<Database>(jsonMetrics);
         }
         catch (Exception)
