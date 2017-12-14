@@ -6,6 +6,7 @@
 
   using JetBrains.Annotations;
 
+  using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
@@ -42,24 +43,32 @@
             CollectionHelper.AreIdentical(
               instanceA.SitecoreInfo.IncludeFiles,
               instanceB.SitecoreInfo.IncludeFiles,
-              (nameA, nameB) =>
-              {
-                var result = string.Equals(nameA, nameB, StringComparison.OrdinalIgnoreCase);
-                if (!result)
-                {
-                  return false;
-                }
-                return result;
-              },
+              (nameA, nameB) => string.Equals(nameA, nameB, StringComparison.OrdinalIgnoreCase),
               (fileA, fileB) =>
               {
-                var result = string.Equals(fileA.RawText, fileB.RawText, StringComparison.Ordinal);
-                if (!result)
+                if (fileA == null)
                 {
-                  files.Add(fileA.FilePath.Substring(fileA.FilePath.IndexOf("App_Config")));
+                  Assert.IsNotNull(fileB);
+
+                  files.Add(fileB.FilePath.Substring(fileB.FilePath.IndexOf("App_Config")));
+                  return false;
                 }
 
-                return result;
+                if(fileB == null)
+                {
+                  Assert.IsNotNull(fileA);
+
+                  files.Add(fileA.FilePath.Substring(fileA.FilePath.IndexOf("App_Config")));
+                  return false;
+                }
+
+                if (!string.Equals(fileA.RawText, fileB.RawText, StringComparison.Ordinal))
+                {
+                  files.Add(fileA.FilePath.Substring(fileA.FilePath.IndexOf("App_Config")));
+                  return false;
+                }
+
+                return true;
               }));
 
       if (!identical)
