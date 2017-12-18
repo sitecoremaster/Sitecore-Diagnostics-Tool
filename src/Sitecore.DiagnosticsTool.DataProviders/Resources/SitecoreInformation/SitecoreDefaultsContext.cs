@@ -131,7 +131,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       Log.Info($"Initializing defatult configuration for {release}");
       var configuration = Defaults.Configs.Configuration;
-      Assert.IsNotNull(configuration, $"Configuration is not available for {release}. " + ContactSupportMessage);
+      Assert.IsNotNull(configuration, $"Configuration is not available for {release.ProductName} {release.Version}. " + ContactSupportMessage);
 
       Log.Info("Configuration: \r\n" + configuration.OuterXml);
 

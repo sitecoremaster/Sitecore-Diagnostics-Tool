@@ -15,7 +15,7 @@
   public class GlobalAsaxInheritsFrom : Test
   {
     protected const string SystemWebMessage = "The Global.asax file must use the Sitecore.Web.Application base class or inherit from it.";
-    protected const string Comment = "The given Global.asax file contains a referenc to the custom application class. therefore manual verification is required.";
+    protected const string Comment = "The given Global.asax file contains a reference to the custom application class, therefore manual verification is required.";
 
     public override string Name { get; } = "Global.asax should use Sitecore.Web.Application";
 
