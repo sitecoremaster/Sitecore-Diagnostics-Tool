@@ -16,13 +16,20 @@
 
     protected override bool IsActual(ITestResourceContext data)
     {
-      var isCd = data.ServerRoles.Any(x => x == ServerRole.ContentDelivery);
-      return !data.SitecoreInfo.GetBoolSetting("Analytics.AutoDetectBots") && data.SitecoreInfo.IsAnalyticsEnabled && isCd;
+      return data.SitecoreInfo.IsAnalyticsEnabled;
+    }
+
+    protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+    {
+      return roles.Contains(ServerRole.ContentDelivery);
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
-      output.Warning(ErrorMessage);
+      if (!data.SitecoreInfo.GetBoolSetting("Analytics.AutoDetectBots"))
+      {
+        output.Warning(ErrorMessage);
+      }
     }
   }
 }
