@@ -4,6 +4,7 @@
 
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Collections;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -73,7 +74,8 @@
           Version = Sc711
         })
         .Process(this)
-        .MustReturn(new TestOutput(TestResultState.Warning, GetMessage(new Map<Map<CacheSizeDetails>>
+        .MustReturn(new TestOutput(TestResultState.Warning, new ShortMessage(new Text($"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:")), 
+        data: GetMessage(new Map<Map<CacheSizeDetails>>
         {
           {
             "web", new Map<CacheSizeDetails>
@@ -82,8 +84,8 @@
               { "items", new CacheSizeDetails { Value = CacheSize.Parse(data["items"], Sc711), Comment = "which is default" } },
             }
           }
-        }, $"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:")))
-        .MustReturn(new TestOutput(TestResultState.Error, GetMessage(new Map<Map<CacheSizeDetails>>
+        })))
+        .MustReturn(new TestOutput(TestResultState.Error, new ShortMessage(new Text($"One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation:")), data: GetMessage(new Map<Map<CacheSizeDetails>>
         {
           {
             "web", new Map<CacheSizeDetails>
@@ -94,7 +96,7 @@
               { "prefetch", new CacheSizeDetails { Value = CacheSize.Parse(data["prefetch"], Sc711), Comment = $"which is below than default: {Size.FromMB(10)}" } }
             }
           }
-        }, $"One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation:")))
+        })))
         .Done();
     }
   }
