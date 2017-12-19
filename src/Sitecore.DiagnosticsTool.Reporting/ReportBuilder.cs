@@ -167,7 +167,7 @@
             .ToArray())))
         .ToHtml(sb);
 
-      return sb.ToString();
+      return "<h3>Modules:</h3>" + sb;
     }
 
     [NotNull]
