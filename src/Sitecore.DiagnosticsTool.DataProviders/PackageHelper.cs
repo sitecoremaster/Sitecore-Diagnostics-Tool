@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
 {
   using System;
+  using System.Collections.Generic;
   using System.IO;
   using System.Linq;
 
@@ -30,8 +31,33 @@
       var extracted = file.ExtractZipToDirectory();
       var directories = extracted.GetDirectories();
 
+      if (directories.Length == 0)
+      {
+        var zipFiles = extracted.GetFiles("*.zip");
+        if (zipFiles.Length == 0)
+        {
+          throw new InvalidOperationException("Zip file does not contain enither subfolders or inner zip files: " + file);
+        }
+
+        var newDirs = new List<IDirectory>();
+        foreach (var zipFile in zipFiles)
+        {
+          var newDir = extracted.GetChildDirectory(zipFile.NameWithoutExtension);
+          zipFile.ExtractZipToDirectory(newDir);
+          newDirs.Add(newDir);
+        }
+
+        directories = newDirs.ToArray();
+      }
+
       // workaround for #197008 - we need to expand .link.link.link before .link.link and before .link
-      var depth = extracted.GetFiles("*.link", SearchOption.AllDirectories).Max(x => GetDepth(x.Name));
+      var linkFiles = extracted.GetFiles("*.link", SearchOption.AllDirectories);
+      if (linkFiles.Length == 0)
+      {
+        return directories;
+      }
+
+      var depth = linkFiles.Max(x => GetDepth(x.Name));
       for (var i = depth; i > 0; --i)
       {
         var suffix = Enumerable.Repeat(".link", i).JoinToString("");
