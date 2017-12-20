@@ -167,7 +167,7 @@
             .ToArray())))
         .ToHtml(sb);
 
-      return "<h3>Modules:</h3>" + sb;
+      return "<h3>Modules:</h3><div>" + sb + "</div>";
     }
 
     [NotNull]
@@ -183,6 +183,15 @@
     }
 
     [NotNull]
+    private static string[] GetDebugMessages(ResultsFile resultsFile)
+    {
+      return GetMessages("info", "D", resultsFile, r => 
+        r.Results.DebugLogs.Select(m => m.Items.Length == 1 
+          ? Render(new ShortMessage(m.Items), null, null) 
+          : Render(new ShortMessage(new Text("There is additional debugging information")), null, m))).ToArray();
+    }
+
+    [NotNull]
     private static string[] GetCannotRunMessages(ResultsFile resultsFile)
     {
       return GetMessages("info", "C", resultsFile, r => r.Results.CannotRun.Select(x => Render(x))).ToArray();
@@ -190,21 +199,29 @@
 
     private static string Render(ITestResult testResult)
     {
-      var result = testResult.Message.ToString(OutputFormat.Html);
+      var shortMessage = testResult.Message;
+      var link = testResult.Link;
+      var detailed = testResult.Detailed;
 
-      if (testResult.Link == null && testResult.Detailed == null)
+      return Render(shortMessage, link, detailed);
+    }
+
+    private static string Render(ShortMessage shortMessage, Uri link, DetailedMessage detailed)
+    {
+      var result = shortMessage.ToString(OutputFormat.Html);
+      if (link == null && detailed == null)
       {
         return result;
       }
 
       result += Token;
-      if (testResult.Link != null)
+      if (link != null)
       {
-        result += testResult.Link != null ? $"Get more information in <a href='{testResult.Link.AbsoluteUri}'>this document</a>.<hr />" : "";
+        result += link != null ? $"Get more information in <a href='{link.AbsoluteUri}'>this document</a>.<hr />" : "";
       }
-      else if (testResult.Detailed != null)
+      else if (detailed != null)
       {
-        result += testResult.Detailed?.ToString(OutputFormat.Html);
+        result += detailed?.ToString(OutputFormat.Html);
       }
       else
       {
@@ -212,12 +229,6 @@
       }
 
       return result;
-    }
-
-    [NotNull]
-    private static string[] GetDebugMessages(ResultsFile resultsFile)
-    {
-      return GetMessages("info", "D", resultsFile, r => r.Results.DebugLogs.Select(m => m.ToString(OutputFormat.Html))).ToArray();
     }
 
     [NotNull]
