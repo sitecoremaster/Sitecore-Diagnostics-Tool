@@ -173,28 +173,28 @@
     [NotNull]
     private static string[] GetErrorMessages(ResultsFile resultsFile)
     {
-      return GetMessages("danger", "E", resultsFile, r => r.Results.Errors.Select(x => Render(x))).ToArray();
+      return GetMessages("danger", "E", resultsFile, r => r.Results.Errors.Select(Render)).ToArray();
     }
 
     [NotNull]
     private static string[] GetWarningMessages(ResultsFile resultsFile)
     {
-      return GetMessages("warning", "W", resultsFile, r => r.Results.Warnings.Select(x => Render(x))).ToArray();
+      return GetMessages("warning", "W", resultsFile, r => r.Results.Warnings.Select(Render)).ToArray();
     }
 
     [NotNull]
     private static string[] GetDebugMessages(ResultsFile resultsFile)
     {
       return GetMessages("info", "D", resultsFile, r => 
-        r.Results.DebugLogs.Select(m => m.Items.Length == 1 
-          ? Render(new ShortMessage(m.Items), null, null) 
-          : Render(new ShortMessage(new Text("There is additional debugging information")), null, m))).ToArray();
+        r.Results.DebugLogs.Select(m => m.Items.Length == 1 && m.Items.Single() is Text
+          ? Render(m.Items.Single(), null, null) 
+          : Render(new Text("There is additional debugging information"), null, m))).ToArray();
     }
 
     [NotNull]
     private static string[] GetCannotRunMessages(ResultsFile resultsFile)
     {
-      return GetMessages("info", "C", resultsFile, r => r.Results.CannotRun.Select(x => Render(x))).ToArray();
+      return GetMessages("info", "C", resultsFile, r => r.Results.CannotRun.Select(Render)).ToArray();
     }
 
     private static string Render(ITestResult testResult)
@@ -206,7 +206,7 @@
       return Render(shortMessage, link, detailed);
     }
 
-    private static string Render(ShortMessage shortMessage, Uri link, DetailedMessage detailed)
+    private static string Render(MessagePart shortMessage, Uri link, MessagePart detailed)
     {
       var result = shortMessage.ToString(OutputFormat.Html);
       if (link == null && detailed == null)
@@ -217,15 +217,11 @@
       result += Token;
       if (link != null)
       {
-        result += link != null ? $"Get more information in <a href='{link.AbsoluteUri}'>this document</a>.<hr />" : "";
-      }
-      else if (detailed != null)
-      {
-        result += detailed?.ToString(OutputFormat.Html);
+        result += $"Get more information in <a href='{link.AbsoluteUri}'>this document</a>.<hr />";
       }
       else
       {
-        throw new NotImplementedException(); // impossible
+        result += detailed.ToString(OutputFormat.Html);
       }
 
       return result;
