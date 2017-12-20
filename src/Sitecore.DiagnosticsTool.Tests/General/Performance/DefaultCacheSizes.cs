@@ -79,8 +79,6 @@
       foreach (var cache in database.Caches.Values)
       {
         var cacheSize = cache.Size;
-        output.Debug($"{databaseName}[{cache.Name}] = {cacheSize}");
-
         var defaultSize = defaultDatabase.Caches[cache.Name].Size;
         if (defaultSize == null)
         {
