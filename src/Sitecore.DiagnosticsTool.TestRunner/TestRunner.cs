@@ -2,6 +2,7 @@
 {
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
+  using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
@@ -24,7 +25,7 @@
       test.Process(data, context);
     }
 
-    protected override ITestResourceContext CreateResoureContext(IDataProvider data)
+    protected override ITestResourceContext CreateResoureContext(IDataProvider data, ISystemContext system)
     {
       return CreateContext(data);
     }

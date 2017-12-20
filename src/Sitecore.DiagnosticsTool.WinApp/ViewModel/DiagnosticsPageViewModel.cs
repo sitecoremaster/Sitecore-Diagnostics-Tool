@@ -11,6 +11,7 @@
   using JetBrains.Annotations;
 
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.WinApp.Command;
@@ -161,14 +162,15 @@
 
       try
       {
-        var assemblyName = Assembly.GetExecutingAssembly().GetName();
+        var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
+        var system = new SystemContext(assemblyName);
         var packages = Source.Packages
-          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}"))
+          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null))
           .ToArray();
 
         try
         {
-          var resultsFile = AggregatedTestRunner.RunTests(packages, (test, index, count) => OnTestRun(index));
+          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
 
           if (tokenSource.IsCancellationRequested)
           {

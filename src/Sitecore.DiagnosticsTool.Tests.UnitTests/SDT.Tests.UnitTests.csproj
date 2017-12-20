@@ -127,7 +127,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
-    <Compile Include="General\DiagCodeTests.cs" />
     <Compile Include="Search\ContentSearchUpdateStrategiesTests.cs" />
     <Compile Include="General\Server\CounterCategoryDoesNotExistTests.cs" />
     <Compile Include="General\Server\DiskSpaceTests.cs" />

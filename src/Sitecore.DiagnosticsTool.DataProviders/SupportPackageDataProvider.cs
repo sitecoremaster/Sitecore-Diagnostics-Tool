@@ -36,24 +36,17 @@
     public IReadOnlyCollection<ServerRole> Roles { get; }
 
     [CanBeNull]
-    private string DiagCode { get; }
-
-    [CanBeNull]
     private Action<string> Logger { get; }
-
-    public string ApplicationInfo { get; }
 
     [NotNull]
     private string TempFolderPath { get; }
 
-    public SupportPackageDataProvider([NotNull] string packageFilePath, [CanBeNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger, [CanBeNull] string diagCode, [CanBeNull] string applicationInfo)
+    public SupportPackageDataProvider([NotNull] string packageFilePath, [CanBeNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger)
     {
-      ApplicationInfo = applicationInfo;
       SourcePath = packageFilePath;
       FileName = Path.GetFileName(packageFilePath);
       Roles = roles;
       Logger = logger;
-      DiagCode = diagCode;
       Assert.ArgumentNotNull(packageFilePath, nameof(packageFilePath));
 
       if (File.Exists(packageFilePath))
@@ -92,8 +85,6 @@
       var rootPath = GetRootPath();
 
       var instanceName = FileName;
-
-      yield return new SystemContext(DiagCode, ApplicationInfo, FileName);
       
       Logger?.Invoke("Parsing log files...");
       var logFolder = Path.GetDirectoryName(Directory.GetFiles(TempFolderPath, "log*.txt", SearchOption.AllDirectories).OrderBy(x => x.Length).FirstOrDefault());

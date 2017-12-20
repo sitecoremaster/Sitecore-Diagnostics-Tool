@@ -13,12 +13,6 @@
     ///   Reserved for system use.
     /// </summary>
     [Obsolete("Reserved for system use")]
-    string DiagCode { get; }
-
-    /// <summary>
-    ///   Reserved for system use.
-    /// </summary>
-    [Obsolete("Reserved for system use")]
     string ApplicationInfo { get; }
   }
 }

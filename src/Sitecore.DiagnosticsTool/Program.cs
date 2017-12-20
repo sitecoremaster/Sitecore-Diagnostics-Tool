@@ -15,6 +15,7 @@
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
 
@@ -204,7 +205,8 @@
         return;
       }
 
-      var assemblyName = Assembly.GetExecutingAssembly().GetName();
+      var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
+      var system = new SystemContext(assemblyName);
       IFile workplaceFile = null;
       SupportPackageDataProvider[] packages;
       if (showDialog)
@@ -254,8 +256,7 @@
 
         packages = PackageHelper.ExtractMegaPackage(mega)
           .ToArray(x =>
-            new SupportPackageDataProvider(x.FullName, null, null, null,
-              $"{assemblyName.Name}, {assemblyName.Version.ToString()}"));
+            new SupportPackageDataProvider(x.FullName, null, null));
       }
       else
       {
@@ -279,7 +280,7 @@
           {
             Console.WriteLine($"Parsing {x.Path}");
 
-            return new SupportPackageDataProvider(x.Path, x.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}");
+            return new SupportPackageDataProvider(x.Path, x.Roles, null);
           })
           .ToArray();
       }
@@ -288,7 +289,7 @@
       {
         {
           Console.WriteLine("Running tests...");
-          var resultsFile = AggregatedTestRunner.RunTests(packages, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
+          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
           
           outputFile.Directory.Create();
 

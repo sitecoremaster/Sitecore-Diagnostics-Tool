@@ -7,6 +7,7 @@
 
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
+  using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -14,7 +15,7 @@
 
   public static class AggregatedTestRunner
   {
-    public static ResultsFile RunTests([NotNull] SupportPackageDataProvider[] packages, [CanBeNull] Action<ITestMetadata, int, int> onTestRun = null)
+    public static ResultsFile RunTests([NotNull] SupportPackageDataProvider[] packages, [NotNull] ISystemContext system, [CanBeNull] Action<ITestMetadata, int, int> onTestRun = null)
     {
       // get tests
       TestsLibrary.Init();
@@ -35,7 +36,7 @@
       {
         var package = packages[i];
         var results = testRunner
-          .RunTests(tests, package, (test, index) => onTestRun?.Invoke(test, index + tests.Length * i, totalCount))
+          .RunTests(tests, package, system, (test, index) => onTestRun?.Invoke(test, index + tests.Length * i, totalCount))
           .ToArray();
 
         resultsFile.Instances
@@ -44,7 +45,7 @@
 
       // run solution tests
       resultsFile.Solution = new SolutionTestRunner()
-        .RunTests(solutionTests, packages, (test, index) => onTestRun?.Invoke(test, index + tests.Length * packages.Length, totalCount))
+        .RunTests(solutionTests, packages, system, (test, index) => onTestRun?.Invoke(test, index + tests.Length * packages.Length, totalCount))
         .ToArray();
 
       resultsFile.Packages = packages.ToMap(x => x.FileName, x => x as IDataProvider);

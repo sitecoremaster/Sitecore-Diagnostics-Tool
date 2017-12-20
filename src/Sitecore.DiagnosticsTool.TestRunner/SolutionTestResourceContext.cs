@@ -7,18 +7,16 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
-  using Sitecore.DiagnosticsTool.Core.Base;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   public sealed class SolutionTestResourceContext : Dictionary<string, ITestResourceContext>, ISolutionTestResourceContext
   {
-    public SolutionTestResourceContext([NotNull] ITestResourceContext[] dataContexts)
+    public SolutionTestResourceContext([NotNull] ITestResourceContext[] dataContexts, [NotNull] ISystemContext system)
       : base(CreateDictionary(dataContexts))
     {
+      System = system;
       Assert.ArgumentNotNull(dataContexts);
-
-      System = dataContexts.Select(x => Safe.Run(_ => x.System)).First(x => x != null);
     }
 
     [NotNull]

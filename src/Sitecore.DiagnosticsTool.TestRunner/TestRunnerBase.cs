@@ -13,7 +13,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
-  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
@@ -23,13 +23,13 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     protected virtual bool UnitTesting { get; } = false;
 
     [NotNull]
-    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TDataSource dataSource, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
+    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TDataSource dataSource, [NotNull] ISystemContext system, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
     {
       Assert.ArgumentNotNull(tests, nameof(tests));
       Assert.ArgumentNotNull(dataSource, nameof(dataSource));
 
       var process = new TestProcessingContext();
-      var data = CreateResoureContext(dataSource);
+      var data = CreateResoureContext(dataSource, system);
       foreach (var testReport in RunTests(tests, data, process, onTestRun))
       {
         yield return testReport;
@@ -203,6 +203,6 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
     protected abstract void ProcessTest(TTest test, TResource data, ITestProcessingContext context);
 
-    protected abstract TResource CreateResoureContext(TDataSource data);
+    protected abstract TResource CreateResoureContext([NotNull] TDataSource data, [NotNull] ISystemContext system);
   }
 }

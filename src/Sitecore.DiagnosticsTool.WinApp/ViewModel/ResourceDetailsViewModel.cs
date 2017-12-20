@@ -368,7 +368,7 @@
       {
         var testRunner = new TestRunner();
         var assemblyName = Assembly.GetExecutingAssembly().GetName();
-        Context = testRunner.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}"));
+        Context = testRunner.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null));
 
         try
         {

@@ -104,7 +104,6 @@
     <Compile Include="General\Consistency\InconsistentModules.cs" />
     <Compile Include="General\Health\EventQueuePropertyChangedRemoteEvent.cs" />
     <Compile Include="General\Performance\DisableCacheSizeLimits.cs" />
-    <Compile Include="General\DiagCode.cs" />
     <Compile Include="General\Server\DotNetFrameworkVersion.cs" />
     <Compile Include="General\Server\IISVersionTest.cs" />
     <Compile Include="General\SystemTest.cs" />
