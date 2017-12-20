@@ -7,16 +7,18 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.DiagnosticsTool.Core.Base;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
-  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
 
   public sealed class SolutionTestResourceContext : Dictionary<string, ITestResourceContext>, ISolutionTestResourceContext
   {
-    public SolutionTestResourceContext([NotNull] IEnumerable<ITestResourceContext> dataContexts)
+    public SolutionTestResourceContext([NotNull] ITestResourceContext[] dataContexts)
       : base(CreateDictionary(dataContexts))
     {
       Assert.ArgumentNotNull(dataContexts);
+
+      System = dataContexts.Select(x => Safe.Run(_ => x.System)).First(x => x != null);
     }
 
     [NotNull]
@@ -32,12 +34,10 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       }
       catch (ArgumentException)
       {
-        throw new SameNameInstancesAreNotSupported(array.FirstOrDefault().SitecoreInfo.InstanceName);
+        throw new SameNameInstancesAreNotSupported(array.First().SitecoreInfo.InstanceName);
       }
     }
 
-    public string InstanceName { get; set; } = "";
-
-    public ISystemContext System { get; } = new SystemContext();
+    public ISystemContext System { get; }
   }
 }

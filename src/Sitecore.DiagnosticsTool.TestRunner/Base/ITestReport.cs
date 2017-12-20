@@ -14,8 +14,5 @@ namespace Sitecore.DiagnosticsTool.TestRunner.Base
     ITestResultsView Results { get; }
 
     TimeSpan ExecutionTime { get; set; }
-
-    [CanBeNull]
-    string InstanceName { get; }
   }
 }

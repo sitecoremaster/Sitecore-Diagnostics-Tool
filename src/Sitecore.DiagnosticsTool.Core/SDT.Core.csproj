@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Base\Null.cs" />
+    <Compile Include="Base\Safe.cs" />
     <Compile Include="Categories\ServerRole.cs" />
     <Compile Include="Collections\CollectionHelper.cs" />
     <Compile Include="Collections\MapExtensions.cs" />

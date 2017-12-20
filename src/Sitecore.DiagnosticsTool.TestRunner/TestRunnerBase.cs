@@ -18,7 +18,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
   public abstract class TestRunnerBase<TTest, TResource, TDataSource>
-    where TTest : ITestMetadata where TResource : IInstanceName
+    where TTest : ITestMetadata
   {
     protected virtual bool UnitTesting { get; } = false;
 
@@ -96,7 +96,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
             context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test is not actual for given conditions"));
           }
 
-          return CreateReport(test, context, data.InstanceName);
+          return CreateReport(test, context);
         }
       }
       catch (ResourceNotAvailableException ex)
@@ -106,7 +106,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
           context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
         }
 
-        return CreateReport(test, context, data.InstanceName);
+        return CreateReport(test, context);
       }
       catch (Exception ex)
       {
@@ -148,7 +148,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
       }
 
-      return CreateReport(test, context, data.InstanceName);
+      return CreateReport(test, context);
     }
 
     public ITestResourceContext CreateContext(IDataProvider dataProivder)
@@ -191,12 +191,12 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     [NotNull]
-    private ITestReport CreateReport([NotNull] TTest test, [NotNull] ITestProcessingContext context, [CanBeNull] string instanceName)
+    private ITestReport CreateReport([NotNull] TTest test, [NotNull] ITestProcessingContext context)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(context, nameof(context));
 
-      return new TestReport(test, context.Results, instanceName);
+      return new TestReport(test, context.Results);
     }
 
     protected abstract bool IsTestActual(TTest test, TResource data);

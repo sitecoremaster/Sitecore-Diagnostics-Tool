@@ -94,8 +94,7 @@
       var instanceName = FileName;
 
       yield return new SystemContext(DiagCode, ApplicationInfo, FileName);
-
-
+      
       Logger?.Invoke("Parsing log files...");
       var logFolder = Path.GetDirectoryName(Directory.GetFiles(TempFolderPath, "log*.txt", SearchOption.AllDirectories).OrderBy(x => x.Length).FirstOrDefault());
 

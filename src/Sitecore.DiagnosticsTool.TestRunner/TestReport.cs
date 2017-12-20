@@ -13,14 +13,13 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     [NotNull]
     private ITestResults _Results { get; }
 
-    public TestReport([NotNull] ITestMetadata test, [NotNull] ITestResults results, [CanBeNull] string instanceName)
+    public TestReport([NotNull] ITestMetadata test, [NotNull] ITestResults results)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(results, nameof(results));
 
       Owner = test;
       _Results = results;
-      InstanceName = instanceName;
     }
 
     public ITestMetadata Owner { get; }
@@ -28,7 +27,5 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     public ITestResultsView Results => _Results;
 
     public TimeSpan ExecutionTime { get; set; }
-
-    public string InstanceName { get; }
   }
 }
