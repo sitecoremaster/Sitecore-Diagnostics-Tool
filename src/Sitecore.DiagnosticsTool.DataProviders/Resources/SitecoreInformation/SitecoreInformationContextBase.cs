@@ -187,11 +187,12 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             return false;
           }
 
-          var pipeline = GetPipeline("pipelines/createTracker") ?? GetPipeline("pipelines/initializeTracker");
-          if (pipeline == null)
-          {
-            return false;
-          }
+          // disabled because is related to tracking, not xdb itself
+          // var pipeline = GetPipeline("pipelines/createTracker") ?? GetPipeline("pipelines/initializeTracker");
+          // if (pipeline == null)
+          // {
+          //   return false;
+          // }
         }
         else
         {
@@ -200,11 +201,12 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             return false;
           }
 
-          var pipeline = GetPipeline("pipelines/startAnalytics");
-          if (pipeline == null)
-          {
-            return false;
-          }
+          // disabled because is related to tracking, not xdb itself
+          // var pipeline = GetPipeline("pipelines/startAnalytics");
+          // if (pipeline == null)
+          // {
+          //   return false;
+          // }
         }
 
         return true;
