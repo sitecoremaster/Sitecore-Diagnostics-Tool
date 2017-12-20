@@ -11,13 +11,17 @@
 
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.FileSystem;
+  using Sitecore.Diagnostics.FileSystem.Extensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
 
   internal class Program
   {
+    private static IFileSystem FileSystem { get; } = new FileSystem();
+
     [STAThread]
     private static void Main(string[] args)
     {
@@ -94,8 +98,9 @@
         return;
       }
 
-      var filePath = $"{workplaceName}.sdt";
-      File.WriteAllText(filePath, "");
+      var file = GetWorkplaceFile(workplaceName);
+      file.WriteAllText("");
+
       Console.WriteLine("Workspace is created");
     }
 
@@ -115,8 +120,8 @@
         return;
       }
 
-      var filePath = $"{workplaceName}.sdt";
-      var lines = File.ReadAllLines(filePath);
+      var file = GetWorkplaceFile(workplaceName);
+      var lines = File.ReadAllLines(file.FullName);
       foreach (var line in lines)
       {
         Console.WriteLine(line);
@@ -159,18 +164,19 @@
         return;
       }
 
-      var filePath = $"{workplaceName}.sdt";
-      File.AppendAllText(filePath, $"{path}?{string.Join("|", roles.Select(x => x.ToString()))}\r\n");
+      var file = GetWorkplaceFile(workplaceName);
+      var rolesText = string.Join("|", roles.Select(x => x.ToString()));
+      File.AppendAllText(file.FullName, $"{path}?{rolesText}\r\n");
     }
 
     private static void RunCommand(string[] options)
     {
       var parser = new FluentCommandLineParser();
-      var outputPath = "";
+      IFile outputFile = null;
       parser.Setup<string>('o', "output")
         .WithDescription("Output report html file path to be created.")
         .Required()
-        .Callback(x => outputPath = x);
+        .Callback(x => outputFile = FileSystem.ParseFile(x));
 
       var showDialog = false;
       parser.Setup<bool>('d', "diaog")
@@ -182,10 +188,10 @@
         .WithDescription("Open report after generating")
         .Callback(x => openReport = x);
 
-      var mega = "";
+      IFile mega = null;
       parser.Setup<string>('p', "package")
         .WithDescription("Path to the mega SSPG package file")
-        .Callback(x => mega = x);
+        .Callback(x => mega = FileSystem.ParseFile(x));
         
       var workplaceName = "";
       parser.Setup<string>('n', "name")
@@ -199,6 +205,7 @@
       }
 
       var assemblyName = Assembly.GetExecutingAssembly().GetName();
+      IFile workplaceFile = null;
       SupportPackageDataProvider[] packages;
       if (showDialog)
       {
@@ -215,34 +222,33 @@
           return;
         }
 
-        mega = dialog.FileName;
+        mega = FileSystem.ParseFile(dialog.FileName);
       }
 
-      if (!string.IsNullOrEmpty(mega))
+      if (mega != null)
       {
-        var file = new FileSystem().ParseFile(mega);
-        if (!file.Exists)
+        if (!mega.Exists)
         {
-          Console.WriteLine($"File does not exist: {file}");
+          Console.WriteLine($"File does not exist: {mega}");
 
           return;
         }
 
-        packages = PackageHelper.ExtractMegaPackage(file)
+        packages = PackageHelper.ExtractMegaPackage(mega)
           .ToArray(x =>
             new SupportPackageDataProvider(x.FullName, null, null, null,
               $"{assemblyName.Name}, {assemblyName.Version.ToString()}"));
       }
       else
       {
-        var filePath = $"{workplaceName}.sdt";
-        if (!File.Exists(filePath))
+        workplaceFile = workplaceFile ?? GetWorkplaceFile(workplaceName);
+        if (!workplaceFile.Exists)
         {
           ShowHelp();
           return;
         }
 
-        packages = File.ReadAllLines(filePath)
+        packages = File.ReadAllLines(workplaceFile.FullName)
           .Select(x => x.Split('?'))
           .Select(x => new
           {
@@ -265,19 +271,16 @@
         {
           Console.WriteLine("Running tests...");
           var resultsFile = AggregatedTestRunner.RunTests(packages, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
-
-          var file = new FileInfo(outputPath);
-          file.Directory.Create();
+          
+          outputFile.Directory.Create();
 
           Console.WriteLine("Building report...");
 
-          File.WriteAllText(
-            outputPath,
-            ReportBuilder.GenerateReport(resultsFile));
+          outputFile.WriteAllText(ReportBuilder.GenerateReport(resultsFile));
 
           if (openReport)
           {
-            Process.Start("explorer", $"\"{outputPath}\"");
+            Process.Start("explorer", $"\"{outputFile}\"");
           }
         }
       }
@@ -288,6 +291,11 @@
           package?.Dispose();
         }
       }
+    }
+
+    private static IFile GetWorkplaceFile(string workplaceName)
+    {
+      return FileSystem.ParseFile($"{workplaceName.TrimEnd(".sdt", StringComparison.OrdinalIgnoreCase)}.sdt");
     }
   }
 }
