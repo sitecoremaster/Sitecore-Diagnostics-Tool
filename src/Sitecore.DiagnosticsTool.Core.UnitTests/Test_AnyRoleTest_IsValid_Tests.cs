@@ -60,7 +60,7 @@
 
     private class AnyRoleTest : Test
     {
-      public override string Name { get; } = nameof(ServerRoles);
+      public override string Name { get; } = "AnyRoleTest";
 
       public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 

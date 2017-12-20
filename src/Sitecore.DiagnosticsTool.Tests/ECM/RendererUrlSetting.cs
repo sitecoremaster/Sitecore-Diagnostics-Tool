@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+  using System.Linq;
 
   using JetBrains.Annotations;
 
@@ -16,7 +17,10 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentManagement };
+    protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+    {
+      return roles.Contains(ServerRole.ContentManagement);
+    }
 
     [NotNull]
     protected string ErrorMessage => "The ECM.RendererUrl setting doesn't exist. This can cause issues with message dispatch in some environments.";

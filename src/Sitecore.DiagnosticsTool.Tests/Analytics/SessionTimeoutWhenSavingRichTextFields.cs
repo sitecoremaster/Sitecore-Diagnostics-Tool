@@ -22,10 +22,12 @@
 
     protected override bool IsActual(ITestResourceContext data)
     {
-      var info = data.SitecoreInfo;
-      var ver = info.SitecoreVersion.MajorMinorUpdateInt;
+      return data.SitecoreInfo.IsAnalyticsEnabled;
+    }
 
-      return ver < 817 && info.IsAnalyticsEnabled;
+    protected override bool IsActual(ISitecoreVersion sitecoreVersion)
+    {
+      return sitecoreVersion.MajorMinorUpdateInt < 817;
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)

@@ -2,6 +2,7 @@
 {
   using System;
   using System.Collections.Generic;
+  using System.Linq;
 
   using FluentAssertions;
 
@@ -60,11 +61,14 @@
 
     private class CmCdRoleTest : Test
     {
-      public override string Name { get; } = nameof(ServerRoles);
+      public override string Name { get; } = "CmCdTest";
 
       public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-      public override IEnumerable<ServerRole> ServerRoles { get; } = new[] { ServerRole.ContentManagement, ServerRole.ContentDelivery };
+      protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+      {
+        return roles.Contains(ServerRole.ContentManagement) || roles.Contains(ServerRole.ContentDelivery);
+      }
 
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {
