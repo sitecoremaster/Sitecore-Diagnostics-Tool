@@ -211,18 +211,36 @@
       {
         var dialog = new OpenFileDialog
         {
-          Filter = "Mega Support Package|*.zip",
+          Filter = "Mega Support Package|*.zip|Diagnostics Tool Workspace|*.sdt",
           Multiselect = false,
         };
 
-        var dialogResult = dialog.ShowDialog();
-
-        if (dialogResult == DialogResult.Cancel)
+        IFile file;
+        while (true)
         {
-          return;
+          var dialogResult = dialog.ShowDialog();
+
+          if (dialogResult == DialogResult.Cancel)
+          {
+            return;
+          }
+
+          file = FileSystem.ParseFile(dialog.FileName);
+          if (file.Exists)
+          {
+            break;
+          }
         }
 
-        mega = FileSystem.ParseFile(dialog.FileName);
+        if (file.Extension.Equals(".sdt", StringComparison.OrdinalIgnoreCase))
+        {
+          mega = null;
+          workplaceFile = file;
+        }
+        else
+        {
+          mega = file;
+        }
       }
 
       if (mega != null)
