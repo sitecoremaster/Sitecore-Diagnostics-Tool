@@ -123,9 +123,6 @@
   <ItemGroup>
     <Compile Include="ECM\ExmSpeakHandlerCheckerTests.cs" />
     <Compile Include="ECM\RendererUrlSettingTests.cs" />
-    <Compile Include="General\Consistency\AssembliesConsistencyCheckTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
     <Compile Include="Search\ContentSearchUpdateStrategiesTests.cs" />
     <Compile Include="General\Performance\DefaultCacheSizesTest.cs" />
