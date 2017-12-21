@@ -12,6 +12,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
@@ -32,7 +33,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
       {
         try
         {
-          report = runner.RunTests(new[] { test }, context).Single();
+          report = runner.RunTests(new[] { test }, context, new SystemContext("unit tests")).Single();
         }
         catch (ResourceNotAvailableException)
         {
@@ -41,7 +42,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
 
       if (report == null)
       {
-        report = runner.RunTests(new[] { test }, context).Single();
+        report = runner.RunTests(new[] { test }, context, new SystemContext("unit tests")).Single();
       }
 
       // run test

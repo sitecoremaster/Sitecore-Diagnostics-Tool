@@ -155,7 +155,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     {
       Assert.ArgumentNotNull(dataProivder, nameof(dataProivder));
 
-      var context = new TestResourceContext(dataProivder.InstanceName);
+      var context = new TestResourceContext();
       var properties = TestContextHelper.GetContextResourceProperties().ToArray();
       Assert.IsTrue(properties.Length > 0, "No resources found on ITestResourceContext");
 

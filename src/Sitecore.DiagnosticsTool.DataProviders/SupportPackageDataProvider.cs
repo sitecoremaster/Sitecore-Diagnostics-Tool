@@ -28,8 +28,6 @@
   {
     private static readonly ServiceClient client = new ServiceClient();
 
-    private string _InstanceName;
-
     private IResource[] _Resources;
 
     [CanBeNull]
@@ -268,19 +266,6 @@
       if (SourcePath != TempFolderPath)
       {
         Directory.Delete(TempFolderPath, true);
-      }
-    }
-
-    public string InstanceName
-    {
-      get
-      {
-        return _InstanceName ?? (_InstanceName = GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault()?.InstanceName);
-      }
-
-      set
-      {
-        throw new NotImplementedException();
       }
     }
   }

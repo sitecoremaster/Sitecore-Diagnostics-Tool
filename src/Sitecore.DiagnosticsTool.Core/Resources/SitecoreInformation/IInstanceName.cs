@@ -8,6 +8,6 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     ///   The name of the Sitecore instance.
     /// </summary>
     [NotNull]
-    string InstanceName { get; set; }
+    string InstanceName { get; }
   }
 }

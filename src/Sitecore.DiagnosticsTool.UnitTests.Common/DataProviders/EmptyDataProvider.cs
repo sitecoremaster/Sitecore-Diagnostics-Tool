@@ -42,7 +42,5 @@
         };
       }
     }
-
-    public string InstanceName { get; set; } = "";
   }
 }

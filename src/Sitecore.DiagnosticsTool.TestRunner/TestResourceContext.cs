@@ -27,12 +27,7 @@
 
     private IWebServerContext _WebServer;
 
-    public TestResourceContext(string instanceName)
-    {
-      InstanceName = instanceName;
-    }
-
-    public string InstanceName { get; set; }
+    public string InstanceName => SitecoreInfo.InstanceName;
 
     public IServerRolesContext ServerRoles
     {
