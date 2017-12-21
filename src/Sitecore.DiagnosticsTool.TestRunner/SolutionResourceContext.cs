@@ -10,9 +10,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public sealed class SolutionTestResourceContext : Dictionary<string, ITestResourceContext>, ISolutionTestResourceContext
+  public sealed class SolutionResourceContext : Dictionary<string, IInstanceResourceContext>, ISolutionResourceContext
   {
-    public SolutionTestResourceContext([NotNull] ITestResourceContext[] dataContexts, [NotNull] ISystemContext system)
+    public SolutionResourceContext([NotNull] IInstanceResourceContext[] dataContexts, [NotNull] ISystemContext system)
       : base(CreateDictionary(dataContexts))
     {
       System = system;
@@ -20,7 +20,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     [NotNull]
-    private static Dictionary<string, ITestResourceContext> CreateDictionary([NotNull] IEnumerable<ITestResourceContext> dataContexts)
+    private static Dictionary<string, IInstanceResourceContext> CreateDictionary([NotNull] IEnumerable<IInstanceResourceContext> dataContexts)
     {
       Assert.ArgumentNotNull(dataContexts);
 
@@ -32,7 +32,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       }
       catch (ArgumentException)
       {
-        throw new SameNameInstancesAreNotSupported(array.First().SitecoreInfo.InstanceName);
+        throw new SameNameInstancesAreNotSupportedException(array.First().SitecoreInfo.InstanceName);
       }
     }
 

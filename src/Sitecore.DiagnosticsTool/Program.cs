@@ -289,7 +289,7 @@
       {
         {
           Console.WriteLine("Running tests...");
-          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
+          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
           
           outputFile.Directory.Create();
 

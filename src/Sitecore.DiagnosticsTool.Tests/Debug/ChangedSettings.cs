@@ -3,6 +3,8 @@
   using System.Collections.Generic;
   using System.Linq;
 
+  using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
@@ -11,11 +13,16 @@
 
   public class ChangedSettings : Test
   {
+    [UsedImplicitly]
+    public ChangedSettings()
+    {
+    }
+
     public override string Name { get; } = "Changed Settings";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var rows = new List<TableRow>();
       foreach (var settingName in data.SitecoreInfo.SitecoreDefaults.GetSettings().Keys)

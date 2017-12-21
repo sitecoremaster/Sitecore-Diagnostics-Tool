@@ -100,19 +100,10 @@
     <Compile Include="Helpers\XPath\XPathHelper.cs" />
     <Compile Include="Helpers\XPath\XPathSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ApplicationPool.cs" />
-    <Compile Include="Resources\Drive.cs" />
-    <Compile Include="Resources\DriveContext.cs" />
-    <Compile Include="Resources\FileSystemContext.cs" />
-    <Compile Include="Resources\MockDataProvider.cs" />
     <Compile Include="Resources\GenericSitecoreInformationContext.cs" />
-    <Compile Include="Resources\LoggingContext.cs" />
-    <Compile Include="Resources\LogHelperEx.cs" />
-    <Compile Include="Resources\Site.cs" />
+    <Compile Include="Resources\MockModulesContext.cs" />
     <Compile Include="Resources\SitecoreInstance.cs" />
-    <Compile Include="Resources\WebServer.cs" />
     <Compile Include="XmlExtensions.cs" />
-    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

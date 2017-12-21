@@ -23,12 +23,12 @@ namespace Sitecore.DiagnosticsTool.Tests.Analytics
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, IInstanceResourceContext data)
     {
       return data.SitecoreInfo.IsAnalyticsEnabled;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

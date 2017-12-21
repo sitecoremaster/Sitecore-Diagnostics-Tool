@@ -11,7 +11,7 @@
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public sealed class TestResourceContext : ITestResourceContext
+  public sealed class InstanceResourceContext : IInstanceResourceContext
   {
     private ISystemContext _System;
 
@@ -130,24 +130,6 @@
       set
       {
         _Databases = value;
-      }
-    }
-
-    /// <summary>
-    ///   The read-only interface for accessing Sitecore databases
-    /// </summary>
-    /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
-    public ISystemContext System
-    {
-      get
-      {
-        return AssertResource(_System, ResourceType.System);
-      }
-
-      [UsedImplicitly]
-      set
-      {
-        _System = value;
       }
     }
 

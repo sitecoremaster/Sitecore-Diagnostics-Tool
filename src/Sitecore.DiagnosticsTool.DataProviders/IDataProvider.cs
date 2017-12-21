@@ -1,4 +1,4 @@
-namespace Sitecore.DiagnosticsTool.Core.DataProviders
+﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage
 {
   using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace Sitecore.DiagnosticsTool.Core.DataProviders
   /// <summary>
   ///   The data provider represents a way of retrieving data like LocalServer or SSPG package.
   /// </summary>
-  public interface IDataProvider 
+  public interface IDataProvider
   {
     /// <summary>
     ///   The method returns the resources that data provider can offer.

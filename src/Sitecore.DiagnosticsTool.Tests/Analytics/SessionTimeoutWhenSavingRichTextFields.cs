@@ -20,7 +20,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    protected override bool IsActual(ITestResourceContext data)
+    protected override bool IsActual(IInstanceResourceContext data)
     {
       return data.SitecoreInfo.IsAnalyticsEnabled;
     }
@@ -30,7 +30,7 @@
       return sitecoreVersion.MajorMinorUpdateInt < 817;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.IsNotNull(data, "context");
 

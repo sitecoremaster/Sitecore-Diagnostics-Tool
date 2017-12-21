@@ -1,17 +1,11 @@
 ﻿namespace Sitecore.DiagnosticsTool.WinApp.ViewModel
 {
   using System.Collections.ObjectModel;
-  using System.IO;
-  using System.IO.Compression;
   using System.Linq;
-  using System.Windows;
 
   using Microsoft.Win32;
 
-  using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.FileSystem;
-  using Sitecore.Diagnostics.FileSystem.Extensions;
-  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;

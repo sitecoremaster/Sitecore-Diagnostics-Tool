@@ -94,11 +94,7 @@
 
     private static string GetTotalTestsCount()
     {
-      var totalInstanceTestsCount = new TestManager().GetTests().Count();
-      var totalSolutionTestsCount = new SolutionTestManager().GetTests().Count();
-      var totalTestsCount = $"{totalInstanceTestsCount + totalSolutionTestsCount}";
-
-      return totalTestsCount;
+      return new TestManager().GetTests().Count().ToString();
     }
 
     private static string GetInstancesCount(ResultsFile resultsFile)

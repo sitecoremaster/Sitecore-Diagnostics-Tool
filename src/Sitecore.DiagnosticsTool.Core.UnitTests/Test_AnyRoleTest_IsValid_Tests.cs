@@ -20,7 +20,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext())
+      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new InstanceResourceContext())
         .Should()
         .BeTrue();
     }
@@ -31,7 +31,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext())
+      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new InstanceResourceContext())
         .Should()
         .BeTrue();
     }
@@ -42,7 +42,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext())
+      sut.IsActual(new[] { ServerRole.Processing, }, ver, new InstanceResourceContext())
         .Should()
         .BeTrue();
     }
@@ -53,7 +53,7 @@
       var sut = new AnyRoleTest();
       var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext())
+      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new InstanceResourceContext())
         .Should()
         .BeTrue();
     }
@@ -64,7 +64,7 @@
 
       public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-      public override void Process(ITestResourceContext data, ITestOutputContext output)
+      public override void Process(IInstanceResourceContext data, ITestOutputContext output)
       {
         throw new NotImplementedException();
       }

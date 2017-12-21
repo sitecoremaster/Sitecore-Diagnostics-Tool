@@ -20,11 +20,11 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      if (data.WebServer.Info.OperationSystemBitness != FrameworkBitness.x64)
+      if (data.WebServer.Server.OperationSystemBitness != FrameworkBitness.x64)
       {
         output.Warning("The 32-bit Operation System is used, upgrade to 64-bit OS is recommended. Read more in Installation Guide, section Sitecore Hosting Environment Requirements");
       }

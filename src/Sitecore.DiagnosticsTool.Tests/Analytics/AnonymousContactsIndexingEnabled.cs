@@ -2,6 +2,8 @@
 {
   using System.Collections.Generic;
 
+  using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -10,6 +12,11 @@
   public class AnonymousContactsIndexingEnabled : KbTest
   {
     protected string SettingName = "ContentSearch.Analytics.IndexAnonymousContacts";
+
+    [UsedImplicitly]
+    public AnonymousContactsIndexingEnabled()
+    {
+    }
 
     public override string KbNumber => "171238";
 
@@ -22,12 +29,12 @@
       return sitecoreVersion.MajorMinorUpdateInt >= 812;
     }
 
-    protected override bool IsActual(ITestResourceContext data)
+    protected override bool IsActual(IInstanceResourceContext data)
     {
       return data.SitecoreInfo.IsAnalyticsEnabled;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

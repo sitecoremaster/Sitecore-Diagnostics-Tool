@@ -27,12 +27,12 @@
       return sitecoreVersion.Major >= 9;
     }
 
-    protected override bool IsActual(ISolutionTestResourceContext data)
+    protected override bool IsActual(ISolutionResourceContext data)
     {
       return data.Count > 1; // test only makes sense if there are several instances
     }
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var files = new List<string>();
       var identical = CollectionHelper.AreIdenticalByPairs(

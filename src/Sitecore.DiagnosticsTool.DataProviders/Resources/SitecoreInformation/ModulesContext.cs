@@ -1,6 +1,5 @@
 namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation
 {
-  using System;
   using System.Collections.Generic;
   using System.Linq;
 

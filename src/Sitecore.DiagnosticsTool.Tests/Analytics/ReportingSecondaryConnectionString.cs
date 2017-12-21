@@ -20,12 +20,12 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    protected override bool IsActual(ITestResourceContext data)
+    protected override bool IsActual(IInstanceResourceContext data)
     {
       return data.SitecoreInfo.IsAnalyticsEnabled;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var reportingSecondary = data.Databases.Sql.DatabaseNames.Contains(ConnectionString);
       if (reportingSecondary)

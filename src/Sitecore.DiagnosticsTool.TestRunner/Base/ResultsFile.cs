@@ -5,7 +5,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner.Base
   using JetBrains.Annotations;
 
   using Sitecore.DiagnosticsTool.Core.Collections;
-  using Sitecore.DiagnosticsTool.Core.DataProviders;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
 
   public sealed class ResultsFile
   {

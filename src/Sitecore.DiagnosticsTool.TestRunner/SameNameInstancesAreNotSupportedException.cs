@@ -6,9 +6,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
   using Sitecore.Diagnostics.Base;
 
-  public class SameNameInstancesAreNotSupported : NotSupportedException
+  public class SameNameInstancesAreNotSupportedException : NotSupportedException
   {
-    public SameNameInstancesAreNotSupported([NotNull] string name)
+    public SameNameInstancesAreNotSupportedException([NotNull] string name)
       : base($"Several same-name instances are not supported: {name}")
     {
       Assert.ArgumentNotNullOrEmpty(name);

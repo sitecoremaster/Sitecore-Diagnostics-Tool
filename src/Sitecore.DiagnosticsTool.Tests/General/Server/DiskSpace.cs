@@ -21,11 +21,11 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var driveName = data.WebServer.CurrentSite.WebRoot.Root.Name;
+      var driveName = data.WebServer.Site.WebRoot.Root.Name;
       var size = data.FileSystem.Drives.GetAvailableFreeSpace(driveName);
       if (size.GB < Minimum)
       {

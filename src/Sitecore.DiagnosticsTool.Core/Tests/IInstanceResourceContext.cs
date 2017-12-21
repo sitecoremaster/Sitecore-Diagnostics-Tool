@@ -17,7 +17,7 @@ namespace Sitecore.DiagnosticsTool.Core.Tests
   /// <summary>
   ///   The base context interface for providing access to resources.
   /// </summary>
-  public interface ITestResourceContext : IInstanceName, ITestResourceContextBase
+  public interface IInstanceResourceContext : IInstanceName
   {
     /// <summary>
     ///   The read-only interface to the categories list selected by user

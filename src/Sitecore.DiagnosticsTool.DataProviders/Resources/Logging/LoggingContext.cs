@@ -167,40 +167,6 @@
       }
     }
 
-    private static IEnumerable<LogEntry> FilterLogs([NotNull] ParsingResult logs, LogLevel logLevel)
-    {
-      Assert.ArgumentNotNull(logs, nameof(logs));
-      List<LogEntry> filteredLogs = null;
-      switch (logLevel)
-      {
-        case LogLevel.Fatal:
-          filteredLogs = logs.Fatals;
-          break;
-
-        case LogLevel.Error:
-          filteredLogs = logs.Errors;
-          break;
-
-        case LogLevel.Warn:
-          filteredLogs = logs.Warns;
-          break;
-
-        case LogLevel.Info:
-          filteredLogs = logs.Infos;
-          break;
-
-        case LogLevel.Debug:
-          filteredLogs = logs.Debugs;
-          break;
-
-        case LogLevel.All:
-          filteredLogs = logs.All;
-          break;
-      }
-
-      return filteredLogs;
-    }
-
     public static LoggingContext ParseFolder([CanBeNull] string logFolderPath)
     {
       if (logFolderPath == null || !Directory.Exists(logFolderPath))

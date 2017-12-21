@@ -20,7 +20,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
@@ -51,7 +51,7 @@
       }
     }
 
-    private static void ProcessDatabase([NotNull] ISqlDatabase database, [NotNull] IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> defaultDatabases, [NotNull] ITestResourceContext data, ITestOutputContext output)
+    private static void ProcessDatabase([NotNull] ISqlDatabase database, [NotNull] IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> defaultDatabases, [NotNull] IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(database, nameof(database));
       Assert.ArgumentNotNull(defaultDatabases, nameof(defaultDatabases));
@@ -325,7 +325,7 @@
     }
 
     [StringFormatMethod("pathFormat")]
-    private static void ProcessProperties([NotNull] ITestResourceContext data, ITestOutputContext output, [NotNull] IEnumerable<Property> properties, [NotNull] string pathFormat, params object[] arguments)
+    private static void ProcessProperties([NotNull] IInstanceResourceContext data, ITestOutputContext output, [NotNull] IEnumerable<Property> properties, [NotNull] string pathFormat, params object[] arguments)
     {
       Assert.ArgumentNotNull(data, nameof(data));
       Assert.ArgumentNotNull(properties, nameof(properties));

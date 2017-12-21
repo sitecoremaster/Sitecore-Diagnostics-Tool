@@ -170,7 +170,7 @@
 
         try
         {
-          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
+          var resultsFile = TestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
 
           if (tokenSource.IsCancellationRequested)
           {
@@ -227,7 +227,7 @@
     {
       IsThreadRunning = true;
       IsThreadAborted = false;
-      TestsNumber = AggregatedTestRunner.GetTotalTestsCount(Source.Packages.Count);
+      TestsNumber = new TestManager().GetTests().Count();
       CurrentTest = 0;
       reportPath = null;
     }

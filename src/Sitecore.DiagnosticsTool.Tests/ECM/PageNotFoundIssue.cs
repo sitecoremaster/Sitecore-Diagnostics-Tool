@@ -27,13 +27,18 @@
       "speak"
     };
 
+    [UsedImplicitly]
+    public PageNotFoundIssue()
+    {
+    }
+
     public override string KbNumber => "264285";
 
     public override string KbName { get; } = "Troubleshooting Page Not Found errors for links in ECM messages";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
       Assert.ArgumentNotNull(output, nameof(output));
@@ -76,7 +81,7 @@
     //  return true;
     //}
 
-    protected bool CheckLinkProvider([NotNull] ITestResourceContext data, [NotNull] ITestOutputContext output)
+    protected bool CheckLinkProvider([NotNull] IInstanceResourceContext data, [NotNull] ITestOutputContext output)
     {
       var managerXPath = "/configuration/sitecore/linkManager";
       var configuration = data.SitecoreInfo.Configuration;
@@ -100,7 +105,7 @@
       return false;
     }
 
-    protected bool CheckPhysicalFolder([NotNull] ITestResourceContext data, ITestOutputContext output)
+    protected bool CheckPhysicalFolder([NotNull] IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

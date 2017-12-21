@@ -25,7 +25,7 @@
       return sitecoreVersion.MajorMinorUpdateInt >= 804;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var pipeline = data.SitecoreInfo.GetPipeline("pipelines/interactions");
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);

@@ -69,6 +69,10 @@
       <Project>{568d5646-d692-4aed-b575-8ef861ad8111}</Project>
       <Name>SDT.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sitecore.DiagnosticsTool.DataProviders\SDT.DataProviders.csproj">
+      <Project>{2F6C3B27-0B22-4A92-8A2C-8A76DA10015B}</Project>
+      <Name>SDT.DataProviders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sitecore.DiagnosticsTool.TestRunner\SDT.TestRunner.csproj">
       <Project>{AE139CA8-D1E6-4A82-9B14-F9D15A5E91BC}</Project>
       <Name>SDT.TestRunner</Name>

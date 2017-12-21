@@ -4,7 +4,6 @@
   using System.Collections.Generic;
   using System.ComponentModel;
   using System.Linq;
-  using System.Reflection;
   using System.Windows;
   using System.Windows.Controls;
   using System.Windows.Controls.Primitives;
@@ -31,7 +30,7 @@
 
     private List<ServerRole> serverRoles = new List<ServerRole>();
 
-    public ITestResourceContext Context { get; set; }
+    public IInstanceResourceContext Context { get; set; }
 
     #endregion
 
@@ -366,9 +365,7 @@
     {
       try
       {
-        var testRunner = new TestRunner();
-        var assemblyName = Assembly.GetExecutingAssembly().GetName();
-        Context = testRunner.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null));
+        Context = TestRunnerBase<ITest, IInstanceResourceContext, SupportPackageDataProvider>.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null));
 
         try
         {
@@ -383,7 +380,7 @@
 
         try
         {
-          MachineName = Context.WebServer.Info.MachineName;
+          MachineName = Context.WebServer.Server.MachineName;
         }
         catch (Exception ex)
         {

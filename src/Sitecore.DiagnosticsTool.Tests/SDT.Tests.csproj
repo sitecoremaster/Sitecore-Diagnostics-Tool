@@ -109,7 +109,7 @@
     <Compile Include="General\SystemTest.cs" />
     <Compile Include="Search\ContentSearchConfigurationsDuplicates.cs" />
     <Compile Include="General\Consistency\AssembliesConsistencyMatch.cs" />
-    <Compile Include="General\Consistency\DatabaseSchemaValidation.cs" />
+    <Compile Include="General\Consistency\SqlDatabaseSchemaValidation.cs" />
     <Compile Include="General\Performance\DefaultCacheSizes.cs" />
     <Compile Include="General\Health\ErrorWhenPublishingTheCheckInItem.cs" />
     <Compile Include="General\Performance\CompilationDebugDisabled.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="Analytics\DmsBotDetectionTurnedOn.cs" />
     <Compile Include="General\Performance\EventQueueSize.cs" />
     <Compile Include="General\Consistency\GlobalAsaxInheritsFrom.cs" />
-    <Compile Include="Extensions\ConfigurationExtensions.cs" />
     <Compile Include="General\Performance\HistoryTableSize.cs" />
     <Compile Include="Analytics\TrackingFieldAccess.cs" />
     <Compile Include="General\Health\ImageValidatorErrors.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="General\Server\ServerBitness.cs" />
     <Compile Include="General\Server\ServerRamContentManagement.cs" />
     <Compile Include="General\Performance\W3WpCrash.cs" />
-    <Compile Include="General\Server\WebsiteFolderReusage.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditor.cs" />
     <Compile Include="Search\ObsoleteLuceneConfiguration.cs" />
     <Compile Include="Solution\ConsistentConfiguration.cs" />
@@ -163,7 +161,6 @@
     <Compile Include="Solution\SharedSession.cs" />
     <Compile Include="Solution\PublishingInstance.cs" />
     <Compile Include="TestsLibrary.cs" />
-    <Compile Include="Tools\WFFM\WFFMConstants.cs" />
     <Compile Include="WFFM\WFFMBusinessName.cs" />
     <Compile Include="WFFM\WFFMDoubledBrackets.cs" />
     <Compile Include="WFFM\WFFMNoClientActions.cs" />
@@ -176,7 +173,9 @@
       <Name>SDT.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

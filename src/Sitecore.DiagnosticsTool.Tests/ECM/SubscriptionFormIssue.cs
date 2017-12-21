@@ -3,6 +3,8 @@
   using System.Collections.Generic;
   using System.Linq;
 
+  using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -12,6 +14,11 @@
 
   public class SubscriptionFormIssue : KbTest
   {
+    [UsedImplicitly]
+    public SubscriptionFormIssue()
+    {
+    }
+
     public override string KbName { get; } = "Parser error in the Subscription form control";
 
     public override string KbNumber => "363521";
@@ -23,7 +30,7 @@
       return sitecoreVersion.MajorMinorInt == 80;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

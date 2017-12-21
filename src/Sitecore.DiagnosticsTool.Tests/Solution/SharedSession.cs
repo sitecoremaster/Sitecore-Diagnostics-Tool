@@ -24,7 +24,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var inprocMap = new Map<string[]>();
       var inconsistencyMap = new Map<Map>();

@@ -3,7 +3,6 @@
   using System.Xml;
 
   using Sitecore.Diagnostics.InfoService.Client;
-  using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;

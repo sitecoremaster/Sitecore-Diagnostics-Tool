@@ -24,12 +24,12 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
-    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, IInstanceResourceContext data)
     {
       return data.SitecoreInfo.Configuration.SelectElements($"{ContentSearchXPath}/*").Any();
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var obsoleteConfigurations = GetObsoleteConfigurations(data).ToArray();
 
@@ -69,7 +69,7 @@
     }
 
     [ItemNotNull]
-    private IEnumerable<ObsoleteConfiguration> GetObsoleteConfigurations(ITestResourceContext data)
+    private IEnumerable<ObsoleteConfiguration> GetObsoleteConfigurations(IInstanceResourceContext data)
     {
       var configurationElements = data.SitecoreInfo.Configuration.SelectElements($"{ContentSearchXPath}/*");
       foreach (var configurationElement in configurationElements)

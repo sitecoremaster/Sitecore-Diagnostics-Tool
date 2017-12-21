@@ -14,6 +14,11 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
 
   public class ServerRamContentManagement : Test
   {
+    [UsedImplicitly]
+    public ServerRamContentManagement()
+    {
+    }
+
     protected const int Recommended = 8;
 
     [NotNull]
@@ -23,11 +28,11 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Server
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var ramMemory = data.WebServer.Info.RamMemoryTotal;
+      var ramMemory = data.WebServer.Server.RamMemoryTotal;
       if (ramMemory.GB < Recommended)
       {
         output.Warning(Message);

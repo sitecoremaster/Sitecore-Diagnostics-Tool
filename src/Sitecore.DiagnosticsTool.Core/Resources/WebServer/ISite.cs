@@ -20,23 +20,10 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
     [NotNull]
     IEnumerable<string> HostNames { get; }
 
-    State State { get; }
-
     [NotNull]
     IApplicationPool ApplicationPool { get; }
 
     [NotNull]
     DirectoryInfo WebRoot { get; }
-
-    [NotNull]
-    string Protocol { get; }
-
-    bool IsLocal { get; }
-
-    [NotNull]
-    HttpWebRequest CreateWebRequest(string path);
-
-    [NotNull]
-    HttpWebRequest CreateWebRequest(Uri uri);
   }
 }

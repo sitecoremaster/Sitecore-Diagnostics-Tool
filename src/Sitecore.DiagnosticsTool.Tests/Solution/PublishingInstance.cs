@@ -21,7 +21,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var map = data
 

@@ -14,15 +14,9 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
   public interface IWebServerContext : IResource
   {
     [NotNull]
-    ISiteCollection Sites { get; }
+    ISite Site { get; }
 
     [NotNull]
-    IApplicationPoolCollection ApplicationPools { get; }
-
-    [NotNull]
-    ISite CurrentSite { get; }
-
-    [NotNull]
-    IServerInfo Info { get; }
+    IServerInfo Server { get; }
   }
 }

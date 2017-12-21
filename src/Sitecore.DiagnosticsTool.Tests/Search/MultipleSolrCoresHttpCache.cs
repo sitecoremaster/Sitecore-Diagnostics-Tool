@@ -28,7 +28,7 @@
       return sitecoreVersion.MajorMinorUpdateInt < 751 || sitecoreVersion.Major == 8 && sitecoreVersion.MajorMinorUpdateInt < 802;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

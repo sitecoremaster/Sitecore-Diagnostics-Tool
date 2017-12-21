@@ -17,11 +17,11 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var pool = data.WebServer.CurrentSite.ApplicationPool;
+      var pool = data.WebServer.Site.ApplicationPool;
       if (pool.MaxWorkerProcesses > 1)
       {
         output.Error(GetErrorMessage(pool));

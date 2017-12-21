@@ -51,11 +51,6 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
     IEnumerable<int> WorkerProcessesIds { get; }
 
     /// <summary>
-    ///   The state of the application pool (Started, Stopped, ...)
-    /// </summary>
-    State State { get; }
-
-    /// <summary>
     ///   The maximum number of worker processes allowed to have for application pool.
     /// </summary>
     int MaxWorkerProcesses { get; }

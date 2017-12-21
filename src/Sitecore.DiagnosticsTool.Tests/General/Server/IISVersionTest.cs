@@ -22,11 +22,11 @@
       return sitecoreVersion.Major == 8;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      if (data.WebServer.Info.IisVersion.ProductMajorPart < 7)
+      if (data.WebServer.Server.IisVersion.ProductMajorPart < 7)
       {
         output.Error("IIS version is earlier one than officially supported. Sitecore XP supports IIS versions: 7.0, 7.5, 8.0, 8.5");
       }
