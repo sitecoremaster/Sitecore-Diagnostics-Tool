@@ -32,9 +32,9 @@
           { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
         },
       };
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .Done();
     }
@@ -55,9 +55,9 @@
         },
       };
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetErrorMessage("<httpHandlers>", false)))
         .Done();

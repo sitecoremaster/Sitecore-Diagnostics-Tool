@@ -94,7 +94,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Extensions.cs" />
-    <Compile Include="Resources\LoggingContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlExtensionsTests.cs" />
   </ItemGroup>

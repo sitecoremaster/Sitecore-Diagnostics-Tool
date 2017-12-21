@@ -16,9 +16,9 @@
     [Fact]
     public void RunTestNotActual()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(6, 4, 0)
         })
@@ -32,9 +32,9 @@
     {
       const string Header = "<%@  ApplicatiON LANGUAGE = 'C#' Inherits = \"Sitecore.Web.Application \" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -48,9 +48,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"Sitecore.ContentSearch.SolrProvider.CastleWindsorIntegration.WindsorApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -64,9 +64,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"Sitecore.ContentSearch.SolrProvider.AutoFacIntegration.AutoFacApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -80,9 +80,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"Sitecore.ContentSearch.SolrProvider.NinjectIntegration.NinjectApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -96,9 +96,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"Sitecore.ContentSearch.SolrProvider.StructureMapIntegration.StructureMapApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -112,9 +112,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"Sitecore.ContentSearch.SolrProvider.UnityIntegration.UnityApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -128,9 +128,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits=\"System.Web.HttpApplication\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -145,9 +145,9 @@
     {
       const string Header = "<%@Application Language='C#' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -162,9 +162,9 @@
     {
       var header = "<%@Application Language='C#' Inherits=\"Sitecore.Web.Application2\" %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(header)
@@ -197,9 +197,9 @@
     [Fact]
     public void RunTestSingleQuoteNotActual()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(6, 4, 0)
         })
@@ -213,9 +213,9 @@
     {
       const string Header = "<%@  ApplicatiON LANGUAGE = 'C#' Inherits = 'Sitecore.Web.Application ' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -229,9 +229,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='Sitecore.ContentSearch.SolrProvider.CastleWindsorIntegration.WindsorApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -245,9 +245,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='Sitecore.ContentSearch.SolrProvider.AutoFacIntegration.AutoFacApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -261,9 +261,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='Sitecore.ContentSearch.SolrProvider.NinjectIntegration.NinjectApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -277,9 +277,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='Sitecore.ContentSearch.SolrProvider.StructureMapIntegration.StructureMapApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -293,9 +293,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='Sitecore.ContentSearch.SolrProvider.UnityIntegration.UnityApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -309,9 +309,9 @@
     {
       const string Header = "<%@Application Language='C#' Inherits='System.Web.HttpApplication' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -326,9 +326,9 @@
     {
       const string Header = "<%@Application Language='C#' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(Header)
@@ -343,9 +343,9 @@
     {
       var header = "<%@Application Language='C#' Inherits='Sitecore.Web.Application2' %>";
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(7, 2, 2),
           GlobalAsaxFile = GetGlobalAsaxFile(header)

@@ -17,9 +17,9 @@
     [Fact]
     public void Test()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument().Create("/configuration"),
           Version = new SitecoreVersion(6, 6, 0)
@@ -28,9 +28,9 @@
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Media.MediaLinkPrefix']"),
@@ -40,9 +40,9 @@
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Media.MediaLinkPrefix' and @value='~/media']"),
@@ -52,9 +52,9 @@
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Media.MediaLinkPrefix' and @value='/prefix/~/media']"),
@@ -64,9 +64,9 @@
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Media.MediaLinkPrefix' and @value='-/media']")
@@ -77,9 +77,9 @@
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create("/configuration/sitecore/settings/setting[@name='Media.MediaLinkPrefix' and @value='~/media']")

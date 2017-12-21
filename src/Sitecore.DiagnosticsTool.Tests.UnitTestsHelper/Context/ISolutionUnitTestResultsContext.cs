@@ -7,7 +7,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
   public interface ISolutionUnitTestResultsContext
   {
     [NotNull]
-    ISolutionUnitTestResultsContext MustReturn([NotNull] ITestResult testResult);
+    ISolutionUnitTestResultsContext MustReturn([NotNull] ITestResult testResult, ComparisonMode mode = ComparisonMode.Strict);
 
     void Done();
   }

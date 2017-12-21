@@ -128,14 +128,10 @@
     </Compile>
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
     <Compile Include="Search\ContentSearchUpdateStrategiesTests.cs" />
-    <Compile Include="General\Server\CounterCategoryDoesNotExistTests.cs" />
-    <Compile Include="General\Server\DiskSpaceTests.cs" />
     <Compile Include="General\Performance\DefaultCacheSizesTest.cs" />
     <Compile Include="Analytics\DmsBotDetectionTurnedOnTests.cs" />
-    <Compile Include="General\Health\ErrorWhenPublishingTheCheckInItemTests.cs" />
     <Compile Include="General\Consistency\GlobalAsaxInheritsFromTests.cs" />
     <Compile Include="General\Consistency\MasterDatabaseOnCdTests.cs" />
-    <Compile Include="General\Server\MaximumWorkerProcessesTests.cs" />
     <Compile Include="General\Performance\MediaLinkPrefixContainsTildeTests.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditorTests.cs" />
     <Compile Include="Search\ContentSearchConfigurationsDuplicatesTests.cs" />
@@ -144,19 +140,12 @@
     <Compile Include="Solution\SamePrivateAndSharedSessionTests.cs" />
     <Compile Include="Solution\SharedSessionTests.cs" />
     <Compile Include="Solution\PublishingInstanceTest.cs" />
-    <Compile Include="WFFM\WFFMDoubledBracketsTest.cs" />
-    <Compile Include="WFFM\WFFMNoClientActionsTest.cs" />
-    <Compile Include="WFFM\WFFMSubmitFormTwiceTest.cs" />
-    <Compile Include="WFFM\WFFMObsoleteCommandsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="General\Performance\PublishEndHtmlClearingHandlersTests.cs" />
     <Compile Include="General\Performance\PublishEndRemoteHtmlClearingHandlersTests.cs" />
     <Compile Include="General\Consistency\SchedulingConsistencyTests.cs" />
-    <Compile Include="General\Performance\W3WpCrashTests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="General\Security\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

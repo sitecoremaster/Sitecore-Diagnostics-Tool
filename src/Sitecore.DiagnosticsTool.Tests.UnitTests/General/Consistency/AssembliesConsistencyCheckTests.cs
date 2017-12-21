@@ -23,9 +23,9 @@
     [Fact]
     public void AssembliesConsistencyCheckTest()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = ProductVersion,
           Assemblies = new[] { _Lib1, _Lib2, _Lib3 }

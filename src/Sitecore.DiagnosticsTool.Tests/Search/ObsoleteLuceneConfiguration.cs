@@ -13,23 +13,23 @@
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class ObsoleteLuceneConfiguration : ILegacyTest
+  public class ObsoleteLuceneConfiguration : Test
   {
     private const string ContentSearchXPath = "/configuration/sitecore/contentSearch";
 
     [NotNull]
     private TypeRef ObsoleteType { get; } = TypeRef.Parse("Sitecore.ContentSearch.LuceneProvider.LuceneSearchConfiguration, Sitecore.ContentSearch.LuceneProvider");
 
-    public string Name { get; } = "Obsolete lucene configuration";
+    public override string Name { get; } = "Obsolete lucene configuration";
 
-    public IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
-    public bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {
       return data.SitecoreInfo.Configuration.SelectElements($"{ContentSearchXPath}/*").Any();
     }
 
-    public void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
       var obsoleteConfigurations = GetObsoleteConfigurations(data).ToArray();
 

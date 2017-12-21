@@ -33,9 +33,9 @@
         },
       };
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .Done();
     }
@@ -54,9 +54,9 @@
         },
       };
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormatWithMessage, KbNumber, ErrorMessage, KbName), Link))
         .Done();

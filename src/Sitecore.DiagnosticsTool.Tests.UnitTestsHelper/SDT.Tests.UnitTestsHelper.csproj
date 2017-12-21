@@ -94,16 +94,12 @@
     <Compile Include="Context\ComparisonMode.cs" />
     <Compile Include="Context\ISolutionUnitTestContext.cs" />
     <Compile Include="Context\ISolutionUnitTestResultsContext.cs" />
-    <Compile Include="Context\IUnitTestContext.cs" />
-    <Compile Include="Context\IUnitTestResultsContext.cs" />
     <Compile Include="Context\SolutionUnitTestContext.cs" />
     <Compile Include="Context\SolutionUnitTestResultsContext.cs" />
     <Compile Include="Helpers\XPath\InvalidXPathException.cs" />
     <Compile Include="Helpers\XPath\XPathHelper.cs" />
     <Compile Include="Helpers\XPath\XPathSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Context\UnitTestContext.cs" />
-    <Compile Include="Context\UnitTestResultsContext.cs" />
     <Compile Include="Resources\ApplicationPool.cs" />
     <Compile Include="Resources\Drive.cs" />
     <Compile Include="Resources\DriveContext.cs" />

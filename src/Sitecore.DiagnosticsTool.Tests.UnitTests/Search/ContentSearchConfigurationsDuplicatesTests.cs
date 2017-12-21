@@ -20,9 +20,9 @@
     public void CannotRun()
     {
       // no indexes, no errors
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -35,9 +35,9 @@
     [Fact]
     public void AllGood()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -54,9 +54,9 @@
     [Fact]
     public void Problem()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()

@@ -11,20 +11,20 @@
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class ContentSearchConfigurationsDuplicates : ILegacyTest
+  public class ContentSearchConfigurationsDuplicates : Test
   {
     private const string ContentSearchXPath = "/configuration/sitecore/contentSearch";
 
-    public string Name { get; } = "Duplication ContentSearch configuration nodes";
+    public override string Name { get; } = "Duplication ContentSearch configuration nodes";
 
-    public IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
+    public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
-    public bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {
       return data.SitecoreInfo.Configuration.SelectElements(ContentSearchXPath + "/*").Any();
     }
 
-    public void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
       var duplicates = new Map<List<string>>();
       var resultConfig = data.SitecoreInfo.Configuration;

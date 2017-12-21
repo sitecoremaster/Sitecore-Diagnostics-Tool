@@ -18,9 +18,9 @@
     [Fact]
     public void Test()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().TryParse("<configuration />")
@@ -28,9 +28,9 @@
         .Process(this)
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath)
@@ -38,9 +38,9 @@
         .Process(this)
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath + "[@debug='false']")
@@ -48,9 +48,9 @@
         .Process(this)
         .Done();
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath + "[@debug='true']")

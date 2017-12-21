@@ -21,9 +21,9 @@
     [Fact]
     public void CheckIsSheerUiRibbon()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(GetCorrectSheeruiConfig())
+      new SolutionUnitTestContext()
+        
+        .AddInstance(GetCorrectSheeruiConfig())
         .Process(this)
         .Done();
     }
@@ -31,9 +31,9 @@
     [Fact]
     public void CheckIsSpeakRibbon()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(GetCorrectSpeakConfig())
+      new SolutionUnitTestContext()
+        
+        .AddInstance(GetCorrectSpeakConfig())
         .Process(this)
         .Done();
     }
@@ -41,9 +41,9 @@
     [Fact]
     public void CheckMixedModeRibbon()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(GetMixedConfig())
+      new SolutionUnitTestContext()
+        
+        .AddInstance(GetMixedConfig())
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, string.Format(ErrorFormat, KbNumber), Link))
         .Done();
@@ -52,9 +52,9 @@
     [Fact]
     public void CheckInvalidVersion()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(GetInvalidVersion())
+      new SolutionUnitTestContext()
+        
+        .AddInstance(GetInvalidVersion())
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.CannotRun, "Test is not actual for given conditions"))
         .Done();

@@ -18,9 +18,9 @@
     public void Test1()
     {
       // no indexes, no errors
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -32,9 +32,9 @@
     [Fact]
     public void Test2()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -50,9 +50,9 @@
     [Fact]
     public void Test3()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -68,9 +68,9 @@
     [Fact]
     public void Test4()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -87,9 +87,9 @@
     [Fact]
     public void Test5()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
@@ -104,9 +104,9 @@
     [Fact]
     public void Test6()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()

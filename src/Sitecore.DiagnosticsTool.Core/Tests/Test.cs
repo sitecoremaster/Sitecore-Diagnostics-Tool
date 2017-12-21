@@ -13,7 +13,7 @@
   /// <summary>
   ///   Abstract class that implements ITest interface to simplify test development.
   /// </summary>
-  public abstract class Test : ILegacyTest
+  public abstract class Test : ISolutionTest
   {
     /// <summary>
     ///   Easy to remember and share test name.
@@ -62,6 +62,24 @@
     /// </summary>
     /// <param name="data">An interface to test resources.</param>
     /// <param name="output">An interface to test output.</param>
-    public abstract void Process(ITestResourceContext data, ITestOutputContext output);
+    public virtual void Process(ITestResourceContext data, ITestOutputContext output)
+    {
+    }
+
+    public bool IsActual(ISolutionTestResourceContext data, ISitecoreVersion sitecoreVersion)
+    {
+      return data.Values.Any(x => IsActual(x.ServerRoles, sitecoreVersion, x));
+    }
+
+    public void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    {
+      foreach (var instance in data.Values)
+      {
+        if (IsActual(instance.ServerRoles, instance.SitecoreInfo.SitecoreVersion, instance))
+        {
+          Process(instance, output);
+        }
+      }
+    }
   }
 }

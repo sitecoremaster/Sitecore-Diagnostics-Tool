@@ -18,9 +18,9 @@
     [Fact]
     public void PublishEndHtmlClearingHandlersTest_Passed()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.Publishing },
           Version = new SitecoreVersion(8, 2, 2),
@@ -57,9 +57,9 @@
     [Fact]
     public void PublishEndHtmlClearingHandlersTest_Error()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.Publishing },
           Version = new SitecoreVersion(8, 2, 2),

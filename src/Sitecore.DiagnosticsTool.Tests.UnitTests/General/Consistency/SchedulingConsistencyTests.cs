@@ -17,9 +17,9 @@
     [Fact]
     public void Passed_MissingElement()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling")
@@ -31,9 +31,9 @@
     [Fact]
     public void Passed_Empty()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency")
@@ -45,9 +45,9 @@
     [Fact]
     public void Warn_Wrong()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency", "ololo")
@@ -63,9 +63,9 @@
       var configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency", "00:00:00");
       var frequencyElement = configuration.SelectSingleNode("/configuration/sitecore/scheduling/frequency") as XmlElement;
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
@@ -81,9 +81,9 @@
       var configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency", "01:00:00");
       var frequencyElement = configuration.SelectSingleNode("/configuration/sitecore/scheduling/frequency") as XmlElement;
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
