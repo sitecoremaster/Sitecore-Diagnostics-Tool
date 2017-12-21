@@ -226,11 +226,15 @@
         var name = assembly.GetAttribute("name");
         var fileVersion = assembly["fileVersion"].InnerText.Replace(", ", ".");
         var productVersion = assembly["productVersion"].InnerText.Replace(", ", ".");
+        var md5 = assembly["md5"].InnerText;
+        var fileSize = assembly["fileSize"]?.InnerText;
+        var fileSizeLong = fileSize == null ? null : (long?)long.Parse(fileSize);
+        var lastModified = assembly["lastWriteTime"]?.InnerText;
 
         //TODO: enable that when SSPG saves date in ISO format var lastUpdated = DateTime.Parse(assembly["lastWriteTime"].InnerText);
         //TODO: implement md5
 
-        return new AssemblyFile(name, fileVersion, productVersion);
+        return new AssemblyFile(name, fileVersion, productVersion, fileSizeLong, null, md5);
       }
       catch (Exception ex)
       {
