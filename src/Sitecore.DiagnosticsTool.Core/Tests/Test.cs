@@ -13,7 +13,7 @@
   /// <summary>
   ///   Abstract class that implements ITest interface to simplify test development.
   /// </summary>
-  public abstract class Test : ITest
+  public abstract class Test : ILegacyTest
   {
     /// <summary>
     ///   Easy to remember and share test name.

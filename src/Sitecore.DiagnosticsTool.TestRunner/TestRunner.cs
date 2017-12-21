@@ -6,9 +6,9 @@
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
-  public class TestRunner : TestRunnerBase<ITest, ITestResourceContext, IDataProvider>
+  public class TestRunner : TestRunnerBase<ILegacyTest, ITestResourceContext, IDataProvider>
   {
-    protected override bool IsTestActual(ITest test, ITestResourceContext data)
+    protected override bool IsTestActual(ILegacyTest test, ITestResourceContext data)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(data, nameof(data));
@@ -16,7 +16,7 @@
       return test.IsActual(data.ServerRoles, data.SitecoreInfo.SitecoreVersion, data);
     }
 
-    protected override void ProcessTest(ITest test, ITestResourceContext data, ITestProcessingContext context)
+    protected override void ProcessTest(ILegacyTest test, ITestResourceContext data, ITestProcessingContext context)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(data, nameof(data));

@@ -22,6 +22,6 @@
     IUnitTestContext AddResource([NotNull] IDataProvider dataProvider);
 
     [NotNull]
-    IUnitTestResultsContext Process([NotNull] ITest testBase);
+    IUnitTestResultsContext Process([NotNull] ILegacyTest testBase);
   }
 }

@@ -13,7 +13,7 @@
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class ObsoleteLuceneConfiguration : ITest
+  public class ObsoleteLuceneConfiguration : ILegacyTest
   {
     private const string ContentSearchXPath = "/configuration/sitecore/contentSearch";
 

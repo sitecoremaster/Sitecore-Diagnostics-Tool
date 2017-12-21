@@ -20,7 +20,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
     [NotNull]
     private IList<ITestResult> Results { get; }
 
-    public UnitTestResultsContext([NotNull] ITest test, IReadOnlyList<IResource> resources)
+    public UnitTestResultsContext([NotNull] ILegacyTest test, IReadOnlyList<IResource> resources)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(resources, nameof(resources));

@@ -51,7 +51,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
       return this;
     }
 
-    public IUnitTestResultsContext Process(ITest test)
+    public IUnitTestResultsContext Process(ILegacyTest test)
     {
       Assert.ArgumentNotNull(test, nameof(test));
 
@@ -70,7 +70,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
     }
 
     [NotNull]
-    public static IUnitTestContext Create([NotNull] ITest test)
+    public static IUnitTestContext Create([NotNull] ILegacyTest test)
     {
       Assert.ArgumentNotNull(test, nameof(test));
 

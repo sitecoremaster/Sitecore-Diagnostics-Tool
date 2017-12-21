@@ -1,5 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
+  using System;
   using System.Collections.Generic;
 
   using JetBrains.Annotations;
@@ -12,7 +13,8 @@
   ///   Base interface that is required for every test to implement.
   /// </summary>
   [UsedImplicitly]
-  public interface ITest : ITestMetadata
+  [Obsolete]
+  public interface ILegacyTest : ITestMetadata
   {
     /// <summary>
     ///   Indicate if the test is actual for given Sitecore instance.

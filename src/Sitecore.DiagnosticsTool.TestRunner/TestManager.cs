@@ -2,7 +2,7 @@
 {
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class TestManager : TestManagerBase<ITest>
+  public class TestManager : TestManagerBase<ILegacyTest>
   {
   }
 }

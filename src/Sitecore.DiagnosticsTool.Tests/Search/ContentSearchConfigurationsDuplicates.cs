@@ -11,7 +11,7 @@
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class ContentSearchConfigurationsDuplicates : ITest
+  public class ContentSearchConfigurationsDuplicates : ILegacyTest
   {
     private const string ContentSearchXPath = "/configuration/sitecore/contentSearch";
 
