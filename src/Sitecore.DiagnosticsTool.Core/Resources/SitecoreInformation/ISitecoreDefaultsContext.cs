@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
 
   public interface ISitecoreDefaultsContext : ISitecoreConfigurationContext, ISitecoreAssembliesContext

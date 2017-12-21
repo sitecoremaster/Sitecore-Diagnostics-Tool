@@ -1,10 +1,10 @@
-﻿<UserControl 
+﻿<UserControl
   x:Class="Sitecore.DiagnosticsTool.WinApp.View.MainWindowView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:res="clr-namespace:Sitecore.DiagnosticsTool.WinApp.Resources"
   xmlns:view="clr-namespace:Sitecore.DiagnosticsTool.WinApp.View"
-  xmlns:viewModel="clr-namespace:Sitecore.DiagnosticsTool.WinApp.ViewModel" >
+  xmlns:viewModel="clr-namespace:Sitecore.DiagnosticsTool.WinApp.ViewModel">
 
   <UserControl.Resources>
 
@@ -67,8 +67,7 @@
                   TextBlock.FontWeight="SemiBold"
                   TextBlock.Foreground="#595959"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Center"
-                  />
+                  VerticalAlignment="Center" />
               </Grid>
               <Grid>
                 <Rectangle Fill="{TemplateBinding Background}" />
@@ -112,20 +111,19 @@
 
     <!-- Wizard step template -->
     <DataTemplate x:Key="wizardStepTemplate">
-      <Grid Name="StepContainer"  >
+      <Grid Name="StepContainer">
         <Grid.RowDefinitions>
-          <RowDefinition/>
-          <RowDefinition/>
-          <RowDefinition/>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="{Binding Path=Icon}" Width="64" Height="64" Margin="20 20 20 3"/>
+        <Image Grid.Row="0" Source="{Binding Path=Icon}" Width="64" Height="64" Margin="20 20 20 3" />
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontFamily="Segoe UI" FontSize="18" Foreground="White"
-            x:Name="txt"
-            Margin="20 0 20 20"
-            Text="{Binding Path=DisplayName}" 
-            />
-        <StackPanel Name="SplitLine"  Grid.Row="2" Height="2" Background="#6f6f6f"/>
+                   x:Name="txt"
+                   Margin="20 0 20 20"
+                   Text="{Binding Path=DisplayName}" />
+        <StackPanel Name="SplitLine" Grid.Row="2" Height="2" Background="#6f6f6f" />
       </Grid>
 
       <DataTemplate.Triggers>
@@ -133,13 +131,11 @@
           <Setter
             TargetName="StepContainer"
             Property="Background"
-            Value="#4f82dd" 
-            />
+            Value="#4f82dd" />
           <Setter
             TargetName="SplitLine"
             Property="Background"
-            Value="#4f82dd" 
-            />
+            Value="#4f82dd" />
         </DataTrigger>
       </DataTemplate.Triggers>
     </DataTemplate>
@@ -149,7 +145,7 @@
 
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200"/>
+      <ColumnDefinition Width="200" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
@@ -162,21 +158,24 @@
 
     <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#676767">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="270"></ColumnDefinition>
-        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition Width="270" />
+        <ColumnDefinition />
       </Grid.ColumnDefinitions>
 
       <StackPanel Grid.Column="0" Width="270" Height="120">
         <StackPanel.Background>
-          <ImageBrush AlignmentX="Right" ImageSource="/Images/SitecoreLogo.png"/>
+          <ImageBrush AlignmentX="Right" ImageSource="/Images/SitecoreLogo.png" />
         </StackPanel.Background>
-        <TextBlock HorizontalAlignment="Right" FontFamily="Segoe UI" FontSize="45" Foreground="White" FontWeight="SemiBold">Sit</TextBlock>
+        <TextBlock HorizontalAlignment="Right" FontFamily="Segoe UI" FontSize="45" Foreground="White"
+                   FontWeight="SemiBold">
+          Sit
+        </TextBlock>
         <TextBlock HorizontalAlignment="Right" FontFamily="Segoe UI" FontSize="22" Foreground="White">Solut</TextBlock>
       </StackPanel>
 
       <StackPanel Grid.Column="1">
         <StackPanel.Background>
-          <ImageBrush ></ImageBrush>
+          <ImageBrush />
         </StackPanel.Background>
         <TextBlock FontFamily="Segoe UI" FontSize="45" Foreground="White" FontWeight="SemiBold">ecore Diagnostics Tool</TextBlock>
         <TextBlock FontFamily="Segoe UI" FontSize="22" Foreground="White">ion troubleshooting and analysis</TextBlock>
@@ -188,8 +187,8 @@
 
     <!-- Wizard step listing -->
     <StackPanel Name="Steps" Background="#676767" Grid.Column="0" Grid.Row="1">
-      <ItemsControl 
-        ItemsSource="{Binding Path=Pages}" 
+      <ItemsControl
+        ItemsSource="{Binding Path=Pages}"
         ItemTemplate="{StaticResource wizardStepTemplate}" />
     </StackPanel>
 
@@ -199,14 +198,15 @@
 
     <Grid Background="White" Grid.Column="1" Grid.Row="1" MinWidth="500">
       <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="40"/>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="40" />
       </Grid.RowDefinitions>
 
       <!--Page content-->
 
-      <ScrollViewer Name="MainScrollViewer" Grid.Row="0" PanningMode="VerticalOnly" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <HeaderedContentControl Content="{Binding Path=CurrentPage}" Header="{Binding CurrentPage.Title}" Margin="20"/>
+      <ScrollViewer Name="MainScrollViewer" Grid.Row="0" PanningMode="VerticalOnly" VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled">
+        <HeaderedContentControl Content="{Binding Path=CurrentPage}" Header="{Binding CurrentPage.Title}" Margin="20" />
       </ScrollViewer>
 
       <!--End of Page content-->
@@ -214,8 +214,10 @@
       <!--Buttons-->
 
       <DockPanel Grid.Row="1">
-        <Button Command="{Binding Path=MovePreviousCommand}" Style="{StaticResource moveBackButtonStyle}" HorizontalAlignment="Left" Margin="10 0 0 10"/>
-        <Button Command="{Binding Path=MoveNextCommand}" Style="{StaticResource moveNextButtonStyle}" HorizontalAlignment="Right" Margin="0 0 10 10"/>
+        <Button Command="{Binding Path=MovePreviousCommand}" Style="{StaticResource moveBackButtonStyle}"
+                HorizontalAlignment="Left" Margin="10 0 0 10" />
+        <Button Command="{Binding Path=MoveNextCommand}" Style="{StaticResource moveNextButtonStyle}"
+                HorizontalAlignment="Right" Margin="0 0 10 10" />
       </DockPanel>
 
       <!--End of Buttons-->
@@ -230,18 +232,22 @@
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
-      <DockPanel Grid.Column="0" Background="#676767"></DockPanel>
-      <DockPanel Grid.Column="1"  Background="#4d4d4d">
+      <DockPanel Grid.Column="0" Background="#676767" />
+      <DockPanel Grid.Column="1" Background="#4d4d4d">
         <TextBlock>
-        <Hyperlink NavigateUri="https://marketplace.sitecore.net/Modules/S/Sitecore_Diagnostics_Tool.aspx" TextDecorations="None" RequestNavigate="LinkRequestNavigate">
-            <Image Source="/Images/SitecoreLogoIcon.png" Width="30" Height="30" HorizontalAlignment="Left" Margin="10 5 0 0" />
-        </Hyperlink>
+          <Hyperlink NavigateUri="https://marketplace.sitecore.net/Modules/S/Sitecore_Diagnostics_Tool.aspx"
+                     TextDecorations="None" RequestNavigate="LinkRequestNavigate">
+            <Image Source="/Images/SitecoreLogoIcon.png" Width="30" Height="30" HorizontalAlignment="Left"
+                   Margin="10 5 0 0" />
+          </Hyperlink>
         </TextBlock>
 
         <TextBlock>
-        <Hyperlink NavigateUri="https://github.com/Sitecore/Sitecore-Diagnostics-Tool" TextDecorations="None" RequestNavigate="LinkRequestNavigate">
-            <Image Source="/Images/GitHubLogoIcon.png" Width="30" Height="30" HorizontalAlignment="Left" Margin="10 5 0 0" />
-        </Hyperlink>
+          <Hyperlink NavigateUri="https://github.com/Sitecore/Sitecore-Diagnostics-Tool" TextDecorations="None"
+                     RequestNavigate="LinkRequestNavigate">
+            <Image Source="/Images/GitHubLogoIcon.png" Width="30" Height="30" HorizontalAlignment="Left"
+                   Margin="10 5 0 0" />
+          </Hyperlink>
         </TextBlock>
       </DockPanel>
 

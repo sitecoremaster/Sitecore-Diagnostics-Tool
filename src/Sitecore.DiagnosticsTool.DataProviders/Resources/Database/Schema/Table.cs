@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public sealed class Table : Sitecore.Diagnostics.Database.Schema.Table

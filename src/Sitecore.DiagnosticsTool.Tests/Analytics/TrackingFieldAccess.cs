@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.Analytics
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;

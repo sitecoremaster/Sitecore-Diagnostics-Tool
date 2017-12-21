@@ -28,3 +28,4 @@ src/Sitecore.DiagnosticsTool.WinApp/obj/
 src/Sitecore.DiagnosticsTool/bin/
 src/Sitecore.DiagnosticsTool/obj/
 src/packages/
+*.user

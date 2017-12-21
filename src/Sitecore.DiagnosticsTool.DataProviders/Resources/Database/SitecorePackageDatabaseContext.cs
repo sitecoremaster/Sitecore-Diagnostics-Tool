@@ -5,6 +5,7 @@
   using System.Data.SqlClient;
   using System.Linq;
   using System.Xml;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -18,11 +19,14 @@
 
     protected ISqlDatabaseContext SqlContext { get; }
 
+    public IReadOnlyDictionary<string, string> ConnectionStrings { get; }
+
     protected SitecorePackageDatabaseContext(ISqlDatabaseContext sqlDatabaseContext,
-      IMongoDatabaseContext mongoDatabaseContext)
+      IMongoDatabaseContext mongoDatabaseContext, IReadOnlyDictionary<string, string> connectionStrings)
     {
       SqlContext = sqlDatabaseContext;
       MongoContext = mongoDatabaseContext;
+      ConnectionStrings = connectionStrings;
     }
 
     protected override ResourceType ResourceType => ResourceType.Database;
@@ -91,7 +95,16 @@
         }
       }
 
-      return new SitecorePackageDatabaseContext(SupportPackageSqlDatabaseContext.Parse(sqlConnectionStrings, root), MongoDatabaseContext.Parse(mongoConnectionStrings));
+      var connectionStrings = new Dictionary<string, string>();
+      foreach (var connectionStringElement in connectionStringsList.OfType<XmlElement>())
+      {
+        var name = connectionStringElement.GetAttribute("name");
+        var connectionString = connectionStringElement.GetAttribute("connectionString");
+
+        connectionStrings.Add(name.ToLower(), connectionString);
+      }
+
+      return new SitecorePackageDatabaseContext(SupportPackageSqlDatabaseContext.Parse(sqlConnectionStrings, root), MongoDatabaseContext.Parse(mongoConnectionStrings), connectionStrings);
     }
   }
 }

@@ -1,10 +1,13 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Consistency
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   // Reviewed: OK (2017-06-13, looks valid)
@@ -12,6 +15,7 @@
   public class GlobalAsaxInheritsFrom : Test
   {
     protected const string SystemWebMessage = "The Global.asax file must use the Sitecore.Web.Application base class or inherit from it.";
+    protected const string Comment = "The given Global.asax file contains a reference to the custom application class, therefore manual verification is required.";
 
     public override string Name { get; } = "Global.asax should use Sitecore.Web.Application";
 
@@ -26,7 +30,8 @@
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var globalAsaxFile = data.SitecoreInfo.GlobalAsaxFile.Replace(" ", string.Empty).ToLower();
+      var originalGlobalAsaxFile = data.SitecoreInfo.GlobalAsaxFile;
+      var globalAsaxFile = originalGlobalAsaxFile.Replace(" ", string.Empty).ToLower().Replace("'", "\"");
 
       // If inherits points to System.Web.HttpApplication, output an error. 
       if (globalAsaxFile.Contains("Inherits=\"System.Web.HttpApplication\"".ToLower()))
@@ -50,7 +55,11 @@
         || globalAsaxFile.Contains("Inherits=\"Sitecore.ContentSearch.SolrProvider.StructureMapIntegration.StructureMapApplication\"".ToLower())
         || globalAsaxFile.Contains("Inherits=\"Sitecore.ContentSearch.SolrProvider.UnityIntegration.UnityApplication\"".ToLower())))
       {
-        output.Warning(SystemWebMessage + " Actual value is " + globalAsaxFile);
+        output.Warning(
+          new ShortMessage(
+            new Text(SystemWebMessage), 
+            new Text(Comment)), 
+          detailed: new DetailedMessage(new Text("The actual value is:"), new CodeBlock(originalGlobalAsaxFile)));
       }
     }
   }

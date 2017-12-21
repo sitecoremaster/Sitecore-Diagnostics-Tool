@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -37,6 +39,7 @@
       Assert.ArgumentNotNull(output, nameof(output));
 
       var errorsDetected = false;
+
       //if (CheckFiles(data, output))
       //{
       //  errorsDetected = true;

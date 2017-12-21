@@ -2,6 +2,7 @@
 {
   using System.Collections.Specialized;
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
@@ -11,6 +12,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class SharedSessionTests : SharedSession
@@ -24,7 +26,7 @@
           {
             InstanceName = "test",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <sitecore>" +
@@ -51,7 +53,7 @@
           {
             InstanceName = "test1",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -65,7 +67,7 @@
           {
             InstanceName = "test2",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -87,7 +89,7 @@
           {
             InstanceName = "test1",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }
@@ -101,7 +103,7 @@
           {
             InstanceName = "test2",
             ServerRoles = new[] { ServerRole.ContentDelivery },
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().Create("/configuration/sitecore/tracking/sharedSessionState", new NameValueCollection()
               {
                 { "defaultProvider", "mongo" }

@@ -2,6 +2,7 @@
 {
   using System.Net;
   using System.Text;
+
   using JetBrains.Annotations;
 
   public class Text : MessagePart

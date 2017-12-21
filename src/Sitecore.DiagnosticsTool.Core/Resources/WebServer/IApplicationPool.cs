@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.WebServer
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
 
   public interface IApplicationPool

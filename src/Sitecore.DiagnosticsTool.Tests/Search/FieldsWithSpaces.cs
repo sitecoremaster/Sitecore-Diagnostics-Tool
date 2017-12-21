@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -41,7 +43,7 @@
       {
         return;
       }
-      
+
       var defaultIndexConfigurationPath = data.SitecoreInfo.GetSetting("ContentSearch.DefaultIndexConfigurationPath");
       var defaultFieldMapPath = defaultIndexConfigurationPath + "/fieldMap";
       var defaultFieldNames = ExtractFieldNames(config.SelectElements(@"/configuration/sitecore/" + defaultFieldMapPath).FirstOrDefault());
@@ -109,12 +111,12 @@
 
       if (fieldsConfigIgnored.Count > 0)
       {
-        output.Warning("Configuration of the following field(s) is ignored:\r\n" + new BulletedList(fieldsConfigIgnored) + "\r\n", url: Link);
+        output.Warning("Configuration of the following field(s) is ignored:\r\n" + new BulletedList(fieldsConfigIgnored) + "\r\n", Link);
       }
 
       if (fieldsAnalyzerIgnored.Count > 0)
       {
-        output.Warning("Analyzer of the following field(s) is ignored:\r\n" + new BulletedList(fieldsAnalyzerIgnored), url: Link);
+        output.Warning("Analyzer of the following field(s) is ignored:\r\n" + new BulletedList(fieldsAnalyzerIgnored), Link);
       }
     }
 

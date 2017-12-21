@@ -9,7 +9,7 @@
 
   public class CacheSizeTests
   {
-    private ISitecoreVersion Sc825 { get; } = new SitecoreVersion(8, 2, 5, 0);
+    private ISitecoreVersion Sc825 { get; } = new SitecoreVersion(8, 2, 5);
 
     [Theory]
     [AutoData]

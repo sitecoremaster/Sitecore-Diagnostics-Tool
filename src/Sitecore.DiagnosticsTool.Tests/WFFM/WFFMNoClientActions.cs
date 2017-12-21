@@ -1,7 +1,10 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.WFFM
 {
   using System.Collections.Generic;
+  using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -19,7 +22,10 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Wffm };
 
-    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
+    protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+    {
+      return roles.Contains(ServerRole.ContentDelivery);
+    }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

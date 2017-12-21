@@ -2,8 +2,11 @@
 {
   using System;
   using System.Linq;
+
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
 

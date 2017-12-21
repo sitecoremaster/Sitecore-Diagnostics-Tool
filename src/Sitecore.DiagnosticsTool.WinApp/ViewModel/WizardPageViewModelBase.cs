@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.WinApp.ViewModel
 {
   using System.ComponentModel;
+
   using Sitecore.DiagnosticsTool.WinApp.Model;
 
   /// <summary>
@@ -28,7 +29,9 @@
     public DataSource Source { get; set; }
 
     public abstract string DisplayName { get; }
+
     public abstract string Icon { get; }
+
     public abstract string Title { get; }
 
     public bool IsCurrentPage

@@ -1,7 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 {
   using System.Collections.Generic;
-  using Sitecore.DiagnosticsTool.Core.Resources;
+
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 
   public class ApplicationPool : IApplicationPool

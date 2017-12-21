@@ -3,9 +3,12 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
@@ -14,8 +17,11 @@
   public class W3WpCrash : Test
   {
     protected const string StartMessage = "Sitecore started";
+
     protected const string ShutdownMessage = "Sitecore shutting down";
+
     protected const int MaxEntriesCount = 100;
+
     protected static readonly TimeSpan ShutdownTimeout = new TimeSpan(0, 0, 2, 0, 0);
 
     public override string Name { get; } = "Hard application restarts";
@@ -65,7 +71,9 @@
 
       if (moments.Count > 0)
       {
-        output.Warning(GetMessage(moments));
+        var message = "There are potential hard application restarts have been detected.";
+
+        output.Warning(message, detailed: GetMessage(moments));
       }
     }
 
@@ -85,13 +93,13 @@
     [NotNull]
     protected string GetMessage(DateTime moment)
     {
-      return $"Potential hard application restart has been detected around {moment.ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}.";
+      return $"{moment.ToUniversalTime():dd-MMM-yyyy, HH:mm UTC}.";
     }
 
     [NotNull]
-    protected string GetMessage(List<DateTime> moments)
+    protected DetailedMessage GetMessage(List<DateTime> moments)
     {
-      return moments.Count == 1 ? GetMessage(moments.First()) : $"Potential {moments.Count} hard application restarts have been detected. First occurrence around {moments.First().ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}, last occurrence around {moments.Last().ToUniversalTime().ToString("dd-MMM-yyyy, HH:mm UTC")}.";
+      return new DetailedMessage(new BulletedList(moments.Select(GetMessage)));
     }
   }
 }

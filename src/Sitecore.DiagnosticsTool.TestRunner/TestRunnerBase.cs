@@ -4,30 +4,32 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using System.Collections.Generic;
   using System.Diagnostics;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Output;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
-  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
 
-  public abstract class TestRunnerBase<TTest, TResource, TDataSource> where TTest : ITestMetadata where TResource : IInstanceName
+  public abstract class TestRunnerBase<TTest, TResource, TDataSource>
+    where TTest : ITestMetadata
   {
     protected virtual bool UnitTesting { get; } = false;
 
     [NotNull]
-    public IEnumerable<ITestReport> RunTests([NotNull] IEnumerable<TTest> tests, [NotNull] TDataSource dataSource, [CanBeNull] Action<ITestMetadata> onTestRun = null)
+    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TDataSource dataSource, [NotNull] ISystemContext system, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
     {
       Assert.ArgumentNotNull(tests, nameof(tests));
       Assert.ArgumentNotNull(dataSource, nameof(dataSource));
 
       var process = new TestProcessingContext();
-      var data = CreateResoureContext(dataSource);
+      var data = CreateResoureContext(dataSource, system);
       foreach (var testReport in RunTests(tests, data, process, onTestRun))
       {
         yield return testReport;
@@ -35,20 +37,17 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     [NotNull]
-    public IEnumerable<ITestReport> RunTests([NotNull] IEnumerable<TTest> tests, [NotNull] TResource data, [NotNull] TestProcessingContext process, [CanBeNull] Action<ITestMetadata> onTestRun = null)
+    public IEnumerable<ITestReport> RunTests([NotNull] IReadOnlyList<TTest> tests, [NotNull] TResource data, [NotNull] TestProcessingContext process, [CanBeNull] Action<ITestMetadata, int> onTestRun = null)
     {
       Assert.ArgumentNotNull(tests, nameof(tests));
       Assert.ArgumentNotNull(data, nameof(data));
       Assert.ArgumentNotNull(process, nameof(process));
 
-      foreach (var test in tests)
+      for (var i = 0; i < tests.Count; i++)
       {
-        if (test == null)
-        {
-          continue;
-        }
+        var test = tests[i];
 
-        onTestRun?.Invoke(test);
+        onTestRun?.Invoke(test, i);
 
         // run test
         yield return RunTest(test, data, process);
@@ -97,7 +96,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
             context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test is not actual for given conditions"));
           }
 
-          return CreateReport(test, context, data.InstanceName);
+          return CreateReport(test, context);
         }
       }
       catch (ResourceNotAvailableException ex)
@@ -107,7 +106,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
           context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
         }
 
-        return CreateReport(test, context, data.InstanceName);
+        return CreateReport(test, context);
       }
       catch (Exception ex)
       {
@@ -149,14 +148,14 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         context.Results.Add(new TestOutput(TestResultState.CannotRun, "Test failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
       }
 
-      return CreateReport(test, context, data.InstanceName);
+      return CreateReport(test, context);
     }
 
     public ITestResourceContext CreateContext(IDataProvider dataProivder)
     {
       Assert.ArgumentNotNull(dataProivder, nameof(dataProivder));
 
-      var context = new TestResourceContext(dataProivder.InstanceName);
+      var context = new TestResourceContext();
       var properties = TestContextHelper.GetContextResourceProperties().ToArray();
       Assert.IsTrue(properties.Length > 0, "No resources found on ITestResourceContext");
 
@@ -192,18 +191,18 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     }
 
     [NotNull]
-    private ITestReport CreateReport([NotNull] TTest test, [NotNull] ITestProcessingContext context, [CanBeNull] string instanceName)
+    private ITestReport CreateReport([NotNull] TTest test, [NotNull] ITestProcessingContext context)
     {
       Assert.ArgumentNotNull(test, nameof(test));
       Assert.ArgumentNotNull(context, nameof(context));
 
-      return new TestReport(test, context.Results, instanceName);
+      return new TestReport(test, context.Results);
     }
 
     protected abstract bool IsTestActual(TTest test, TResource data);
 
     protected abstract void ProcessTest(TTest test, TResource data, ITestProcessingContext context);
 
-    protected abstract TResource CreateResoureContext(TDataSource data);
+    protected abstract TResource CreateResoureContext([NotNull] TDataSource data, [NotNull] ISystemContext system);
   }
 }

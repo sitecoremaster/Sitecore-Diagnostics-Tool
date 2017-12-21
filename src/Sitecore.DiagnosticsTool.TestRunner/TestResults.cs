@@ -2,7 +2,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.TestRunner.Base;

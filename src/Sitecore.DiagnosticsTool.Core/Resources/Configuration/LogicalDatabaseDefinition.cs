@@ -12,7 +12,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 
   public class LogicalDatabaseDefinition
   {
-    [NotNull] 
+    [NotNull]
     private static readonly Map<CacheDefinition> CacheDefinitions = new[]
     {
       new CacheDefinition("data", "cacheSizes/data", "Caching.DefaultDataCacheSize"),
@@ -67,7 +67,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
     {
       public string Name { get; }
 
-      public string XPath { get;  }
+      public string XPath { get; }
 
       public string FallbackSizeSettingName { get; }
 

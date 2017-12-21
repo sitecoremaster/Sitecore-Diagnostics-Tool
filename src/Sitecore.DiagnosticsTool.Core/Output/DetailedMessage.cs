@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.Core.Output
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
 
   public sealed class DetailedMessage : Message

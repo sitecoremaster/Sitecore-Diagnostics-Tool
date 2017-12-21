@@ -3,8 +3,11 @@
   using System;
   using System.Linq;
   using System.Xml;
+
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Helpers.XPath;
 

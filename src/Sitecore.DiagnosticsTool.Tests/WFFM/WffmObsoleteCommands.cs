@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.WFFM
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -13,7 +15,9 @@
   public class WffmObsoleteCommands : KbTest
   {
     protected const string Message1 = "Could not instantiate \"Sitecore.Forms.Core.Commands.View.Refresh,Sitecore.Forms.Core\" command object.";
+
     protected const string Message2 = "Could not instantiate \"Sitecore.Forms.Core.Commands.Fields.SelectFields,Sitecore.Forms.Core\" command object.";
+
     protected const string Message3 = "Could not instantiate \"Sitecore.Form.Core.Commands.OpenSession,Sitecore.Forms.Core\" command object.";
 
     public override string KbNumber => "878954";

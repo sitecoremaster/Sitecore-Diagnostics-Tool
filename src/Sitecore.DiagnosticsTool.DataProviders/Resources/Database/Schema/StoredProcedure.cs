@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database.Schema
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public sealed class StoredProcedure : Sitecore.Diagnostics.Database.Schema.StoredProcedure

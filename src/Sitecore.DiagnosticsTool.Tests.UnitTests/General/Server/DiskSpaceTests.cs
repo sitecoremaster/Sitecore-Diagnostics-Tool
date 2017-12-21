@@ -1,12 +1,14 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Server
 {
   using System.IO;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
   using Sitecore.DiagnosticsTool.Tests.General.Server;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class DiskSpaceTests : DiskSpace
@@ -18,7 +20,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new WebServer
         {
@@ -41,7 +43,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new WebServer
         {
@@ -65,7 +67,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new WebServer
         {

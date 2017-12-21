@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.Tests.Search
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;

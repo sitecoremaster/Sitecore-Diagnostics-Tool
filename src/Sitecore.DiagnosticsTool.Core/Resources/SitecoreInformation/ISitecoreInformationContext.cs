@@ -2,7 +2,9 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
@@ -56,7 +58,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     ISitecoreDefaultsContext SitecoreDefaults { get; }
 
     /// <summary>
-    ///   All the App_Config\Include\*.config files
+    ///   All the *.config files that are merged into showconfig.xml
     /// </summary>
     /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
     [NotNull]

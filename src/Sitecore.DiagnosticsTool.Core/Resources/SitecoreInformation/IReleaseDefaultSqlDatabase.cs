@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Database.Schema;
 
   public interface IReleaseDefaultSqlDatabase

@@ -5,7 +5,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using System.IO;
   using System.Linq;
   using System.Reflection;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
 
@@ -27,7 +29,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         return GlobalTests;
       }
 
-      var assemblyPaths = Enumerable.Concat(Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories), Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories));
+      var assemblyPaths = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories).Concat(Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories));
       foreach (var assemblyPath in assemblyPaths)
       {
         try

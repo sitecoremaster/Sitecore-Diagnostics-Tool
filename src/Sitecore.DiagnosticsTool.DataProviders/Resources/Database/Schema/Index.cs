@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database.Schema
 {
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public sealed class Index : Sitecore.Diagnostics.Database.Schema.Index

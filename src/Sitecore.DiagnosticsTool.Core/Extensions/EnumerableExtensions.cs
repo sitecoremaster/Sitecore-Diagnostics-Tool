@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Extensions
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
 
   public static class EnumerableExtensions

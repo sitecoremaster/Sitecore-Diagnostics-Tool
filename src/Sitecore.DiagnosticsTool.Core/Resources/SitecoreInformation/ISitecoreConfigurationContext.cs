@@ -2,7 +2,9 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
 
@@ -27,13 +29,13 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     /// </summary>
     /// <returns>Returns a string value of the setting, or default value if the setting is not presented in the configuration.</returns>
     [NotNull]
-    string GetSetting([NotNull] string settingName);
+    string GetSetting([NotNull] string settingName, [CanBeNull] string defaultValue = null);
 
     /// <summary>
     ///   Retrieves Sitecore setting value from actual showconfig.
     /// </summary>
     /// <returns>Returns a bool value of the setting.</returns>
-    bool GetBoolSetting([NotNull] string settingName);
+    bool GetBoolSetting([NotNull] string settingName, [CanBeNull] bool? defaultValue = null);
 
     /// <summary>
     ///   Retrieves Sitecore connection string value from actual showconfig.

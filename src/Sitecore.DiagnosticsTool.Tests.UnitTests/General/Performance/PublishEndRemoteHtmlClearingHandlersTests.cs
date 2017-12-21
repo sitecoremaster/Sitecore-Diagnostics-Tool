@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Performance
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Performance;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class PublishEndRemoteHtmlClearingHandlersTests : PublishEndRemoteHtmlClearingHandlers
@@ -46,7 +48,7 @@
     </sites>
   </sitecore>
 </configuration>"),
-          Version = new SitecoreVersion(6, 3, 0, 000000)
+          Version = new SitecoreVersion(6, 3, 0)
         })
         .Process(this)
         .Done();
@@ -88,7 +90,7 @@
     </sites>
   </sitecore>
 </configuration>"),
-          Version = new SitecoreVersion(6, 3, 0, 000000)
+          Version = new SitecoreVersion(6, 3, 0)
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetErrorMessage("website.site2")))

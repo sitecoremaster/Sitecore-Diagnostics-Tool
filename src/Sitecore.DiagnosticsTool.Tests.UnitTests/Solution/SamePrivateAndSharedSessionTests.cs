@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.Solution
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class SamePrivateAndSharedSessionTests : SharedPrivateSessionInterference
@@ -24,7 +26,7 @@
           {
             InstanceName = "cd1",
             ServerRoles = new[] { ServerRole.ContentDelivery }, // cd1 uses mongo shared session w/ sessionType1
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <connectionStrings>" +
@@ -54,7 +56,7 @@
           {
             InstanceName = "cd2",
             ServerRoles = new[] { ServerRole.ContentDelivery }, // cd2 uses mongo private session w/ sessionType1
-            Version = new SitecoreVersion(8, 2, 2, 161221),
+            Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument().FromXml(
               " <configuration>" +
               "   <connectionStrings>" +

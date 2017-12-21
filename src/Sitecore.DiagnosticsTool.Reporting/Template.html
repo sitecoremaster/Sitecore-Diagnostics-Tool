@@ -9,16 +9,13 @@
   <title>Sitecore Diagnostics Tool - Report</title>
 
   <!-- Bootstrap -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-    crossorigin="anonymous"/>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous" />
 
   <style>
-    
-    .modal-body
-    {
+    .modal-body {
       overflow: scroll;
       padding: 20px;
       max-height: 750px;
@@ -31,13 +28,15 @@
     }
 
 
-      /*
+    /*
        * Globals
        */
 
-     @media (min-width: 48em) {
-       html { font-size: 18px; }
-     }
+    @media (min-width: 48em) {
+      html {
+        font-size: 18px;
+      }
+    }
 
     body {
       font-family: Georgia, "Times New Roman", Times, serif;
@@ -60,7 +59,9 @@
      * Override Bootstrap's default container.
      */
 
-    .container { max-width: 60rem; }
+    .container {
+      max-width: 60rem;
+    }
 
 
     /*
@@ -83,29 +84,31 @@
       color: #cdddeb;
     }
 
-    .nav-link:hover,
-    .nav-link:focus {
-      color: #fff;
-      background-color: transparent;
-    }
+      .nav-link:hover,
+      .nav-link:focus {
+        color: #fff;
+        background-color: transparent;
+      }
 
-    /* Active state gets a caret at the bottom */
+      /* Active state gets a caret at the bottom */
 
-    .nav-link.active { color: #fff; }
+      .nav-link.active {
+        color: #fff;
+      }
 
-    .nav-link.active:after {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 0;
-      margin-left: -.3rem;
-      vertical-align: middle;
-      content: "";
-      border-right: .3rem solid transparent;
-      border-bottom: .3rem solid;
-      border-left: .3rem solid transparent;
-    }
+        .nav-link.active:after {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 0;
+          margin-left: -.3rem;
+          vertical-align: middle;
+          content: "";
+          border-right: .3rem solid transparent;
+          border-bottom: .3rem solid;
+          border-left: .3rem solid transparent;
+        }
 
 
     /*
@@ -130,7 +133,9 @@
     }
 
     @media (min-width: 40em) {
-      .report-title { font-size: 3.5rem; }
+      .report-title {
+        font-size: 3.5rem;
+      }
     }
 
 
@@ -151,23 +156,31 @@
       border-radius: .25rem;
     }
 
-    .sidebar-module-inset p:last-child,
-    .sidebar-module-inset ul:last-child,
-    .sidebar-module-inset ol:last-child { margin-bottom: 0; }
+      .sidebar-module-inset p:last-child,
+      .sidebar-module-inset ul:last-child,
+      .sidebar-module-inset ol:last-child {
+        margin-bottom: 0;
+      }
 
 
     /* Pagination */
 
-    .report-pagination { margin-bottom: 4rem; }
+    .report-pagination {
+      margin-bottom: 4rem;
+    }
 
-    .report-pagination > .btn { border-radius: 2rem; }
+      .report-pagination > .btn {
+        border-radius: 2rem;
+      }
 
 
     /*
      * report sections
      */
 
-    .report-section { margin-bottom: 4rem; }
+    .report-section {
+      margin-bottom: 4rem;
+    }
 
     .report-section-title {
       margin-bottom: .25rem;
@@ -192,165 +205,172 @@
       border-top: .05rem solid #e5e5e5;
     }
 
-    .report-footer p:last-child { margin-bottom: 0; }
+      .report-footer p:last-child {
+        margin-bottom: 0;
+      }
   </style>
 </head>
 <body>
 
-<div class="report-masthead">
-  <div class="container">
-    <nav class="nav report-nav">
-      <a class="nav-link active" href="#top">Report</a>
-      <a class="nav-link" href="https://marketplace.sitecore.net/en/Modules/S/Sitecore_Diagnostics_Tool.aspx">Marketplace</a>
-      <a class="nav-link" href="https://github.com/sitecore/sitecore-diagnostics-tool">GitHub</a>
-    </nav>
-  </div>
-</div>
-
-<div class="report-header">
-  <div class="container">
-    <h1 class="report-title">Sitecore Diagnostics Tool</h1>
-    <p class="lead report-description">Result of recent Sitecore solution analysis.</p>
-  </div>
-</div>
-
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-sm-12 report-main">
-
-      <div class="report-section" id="top">
-
-        <h2 class="report-section-title">Report</h2>
-        <p class="report-section-meta">
-          <span class="placeholder-report-created"></span>
-        </p>
-
-      </div>
-
-      <div class="report-section" id="summary">
-
-        <h2>Summary</h2>
-
-        <p>Diagnostics Tool managed to execute <b>
-            <span class="placeholder-run-tests-count"></span>
-          </b> tests (of total <b>
-            <span class="placeholder-total-tests-count"></span>
-          </b> available) and there are some messages that require your attention.
-        </p>
-
-        <p>
-          After looking through <a href="#errors">errors</a> and <a href="#warnings">warnings</a> you can also check <a href="#debug">debug information</a>
-          that certain tests left while running. If you wonder why certain tests didn't run, you can always check <a href="#cannotRun">cannot run messages</a>.
-        </p>
-
-        <div class="alert alert-danger" role="alert">
-          <strong>Important!</strong> <a href="#errors" class="alert-link"><span class="placeholder-error-messages-count"></span> error(s)</a> require immediate attention and should be treated nearly seriously.
-        </div>
-
-        <div class="alert alert-warning" role="alert">
-          <strong>Warning!</strong> Out of urgency <a href="#warnings" class="alert-link">check <span class="placeholder-warning-messages-count"></span> warnings</a> that can improve things a lot.
-        </div>
-      </div>
-      <div class="report-section" id="solutionInfo">
-        <h2>Solution Info</h2>
-        <p>Diagnostics Tool analyzed <b>
-            <span class="placeholder-instances-count"></span>
-          </b> packages that represent <b>
-            <span class="placeholder-instances-count"></span>
-          </b> Sitecore instances that work as one solution.
-        </p>
-
-        <table class="table table-striped">
-          <tr><th>Name<th>Roles<!--<th>Errors<th>Warnings-->
-          <div class="placeholder-instances-roles"></div>
-        </table>
-        <!--<p>There are <b>2</b> SQL servers that hold <b>5</b> SQL databases, and <b>1</b> MongoDB instance with <b>3</b> Mongo databases.</p>
-        <table class="table table-striped">
-          <tr><th>Type<th>Name<th>Server
-          <tr><td>SQL <td>sc82u3Sitecore_Core <td>.\SQLEXPRESS
-          <tr><td>SQL <td>sc82u3Sitecore_Master <td>.\MSSQLSERVER
-          <tr><td>SQL <td>sc82u3Sitecore_Web <td>.\MSSQLSERVER
-          <tr><td>SQL <td>sc82u3Sitecore_Reporting <td>.\MSSQLSERVER
-          <tr><td>SQL <td>sc82u3Sitecore_Reporting_Secondary<td>.\SQLEXPRESS
-          <tr><td>MongoDB<td>sc82u3_tracking_live <td>localhost:27017
-          <tr><td>MongoDB<td>sc82u3_tracking_history <td>localhost:27017
-          <tr><td>MongoDB<td>sc82u3_tracking_contact <td>localhost:27017
-        </table>-->
-      </div>
-    </div><!-- /.report-main -->
-
-    <div class="col-sm-12">
-      <div class="report-section" id="messages">
-        <h2>Messages</h2>
-
-        <br/>
-
-        <h3>Errors</h3>
-
-        <p>Messages of this type outline situations like data loss, security vulnerability, service failures etc.</p>
-
-        <div id="errors">
-          <div class="placeholder-error-messages"></div>
-        </div>
-
-        <h3>Warnings</h3>
-
-        <p>These messages are only designed to get your attention to particular subject.</p>
-
-        <div id="warnings">
-          <div class="placeholder-warning-messages"></div>
-        </div>
-
-        <h3 id="debug">Debug Logs</h3>
-
-        <p>These messages contain some diagnostics information that may be useful in complicated cases.</p>
-
-        <p>
-          <a class="btn btn-primary" data-toggle="collapse" href="#debugLogs" aria-expanded="false" aria-controls="debugLogs">
-            Show debug logs
-          </a>
-        </p>
-
-        <div id="debugLogs" class="collapse">
-          <div class="placeholder-debug-messages"></div>
-        </div>
-
-        <h3 id="cannotRun">Cannot Run</h3>
-
-        <p>If certain tests didn't run, they leave cannot-run messages explaining why. It can be either expected behavior (certain test is not designed for given Sitecore version, or when some information is missing), or when test failed to complete due to a bug.</p>
-
-        <p>
-          <a class="btn btn-primary" data-toggle="collapse" href="#cannotRunData" aria-expanded="false" aria-controls="cannotRunData">
-            Show Cannot Run
-          </a>
-        </p>
-
-        <div id="cannotRunData" class="collapse">
-          <div class="placeholder-cannot-run-messages"></div>
-        </div>
-      </div><!-- /.report-section -->
-    </div>
-
-    <div>
-      <nav class="report-pagination">
-        <a class="btn btn-outline-primary" href="#top">Back to top</a>
+  <div class="report-masthead">
+    <div class="container">
+      <nav class="nav report-nav">
+        <a class="nav-link active" href="#top">Report</a>
+        <a class="nav-link" href="https://marketplace.sitecore.net/en/Modules/S/Sitecore_Diagnostics_Tool.aspx">Marketplace</a>
+        <a class="nav-link" href="https://github.com/sitecore/sitecore-diagnostics-tool">GitHub</a>
       </nav>
     </div>
+  </div>
 
-  </div><!-- /.row -->
+  <div class="report-header">
+    <div class="container">
+      <h1 class="report-title">Sitecore Diagnostics Tool</h1>
+      <p class="lead report-description">Result of recent Sitecore solution analysis.</p>
+    </div>
+  </div>
 
-</div><!-- /.container -->
+  <div class="container">
 
-<footer class="report-footer">
+    <div class="row">
 
-</footer>
+      <div class="col-sm-12 report-main">
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <div class="report-section" id="top">
+
+          <h2 class="report-section-title">Report</h2>
+          <p class="report-section-meta">
+            <span class="placeholder-report-created"></span>
+          </p>
+
+        </div>
+
+        <div class="report-section" id="summary">
+
+          <h2>Summary</h2>
+
+          <p>
+            Diagnostics Tool managed to execute <b>
+              <span class="placeholder-run-tests-count"></span>
+            </b> tests (of total <b>
+              <span class="placeholder-total-tests-count"></span>
+            </b> available) and there are some messages that require your attention.
+          </p>
+
+          <p>
+            After looking through <a href="#errors">errors</a> and <a href="#warnings">warnings</a> you can also check <a href="#debug">debug information</a>
+            that certain tests left while running. If you wonder why certain tests didn't run, you can always check <a href="#cannotRun">cannot run messages</a>.
+          </p>
+
+          <div class="alert alert-danger" role="alert">
+            <strong>Important!</strong> <a href="#errors" class="alert-link"><span class="placeholder-error-messages-count"></span> error(s)</a> require immediate attention and should be treated nearly seriously.
+          </div>
+
+          <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> Out of urgency <a href="#warnings" class="alert-link">check <span class="placeholder-warning-messages-count"></span> warnings</a> that can improve things a lot.
+          </div>
+        </div>
+        <div class="report-section" id="solutionInfo">
+          <h2>Solution Info</h2>
+          <p>
+            Diagnostics Tool analyzed <b>
+              <span class="placeholder-instances-count"></span>
+            </b> packages that represent <b>
+              <span class="placeholder-instances-count"></span>
+            </b> Sitecore instances that work as one solution.
+          </p>
+
+          <table class="table table-striped">
+            <tr>
+              <th>Name
+              <th>
+                Roles<!--<th>Errors<th>Warnings-->
+                <div class="placeholder-instances-roles"></div>
+          </table>
+
+          <div class="placeholder-instances-modules"></div>
+          <!--<p>There are <b>2</b> SQL servers that hold <b>5</b> SQL databases, and <b>1</b> MongoDB instance with <b>3</b> Mongo databases.</p>
+          <table class="table table-striped">
+            <tr><th>Type<th>Name<th>Server
+            <tr><td>SQL <td>sc82u3Sitecore_Core <td>.\SQLEXPRESS
+            <tr><td>SQL <td>sc82u3Sitecore_Master <td>.\MSSQLSERVER
+            <tr><td>SQL <td>sc82u3Sitecore_Web <td>.\MSSQLSERVER
+            <tr><td>SQL <td>sc82u3Sitecore_Reporting <td>.\MSSQLSERVER
+            <tr><td>SQL <td>sc82u3Sitecore_Reporting_Secondary<td>.\SQLEXPRESS
+            <tr><td>MongoDB<td>sc82u3_tracking_live <td>localhost:27017
+            <tr><td>MongoDB<td>sc82u3_tracking_history <td>localhost:27017
+            <tr><td>MongoDB<td>sc82u3_tracking_contact <td>localhost:27017
+          </table>-->
+        </div>
+      </div><!-- /.report-main -->
+
+      <div class="col-sm-12">
+        <div class="report-section" id="messages">
+          <h2>Messages</h2>
+
+          <br />
+
+          <h3>Errors</h3>
+
+          <p>Messages of this type outline situations like data loss, security vulnerability, service failures etc.</p>
+
+          <div id="errors">
+            <div class="placeholder-error-messages"></div>
+          </div>
+
+          <h3>Warnings</h3>
+
+          <p>These messages are only designed to get your attention to particular subject.</p>
+
+          <div id="warnings">
+            <div class="placeholder-warning-messages"></div>
+          </div>
+
+          <h3 id="debug">Debug Logs</h3>
+
+          <p>These messages contain some diagnostics information that may be useful in complicated cases.</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#debugLogs" aria-expanded="false" aria-controls="debugLogs">
+              Show debug logs
+            </a>
+          </p>
+
+          <div id="debugLogs" class="collapse">
+            <div class="placeholder-debug-messages"></div>
+          </div>
+
+          <h3 id="cannotRun">Cannot Run</h3>
+
+          <p>If certain tests didn't run, they leave cannot-run messages explaining why. It can be either expected behavior (certain test is not designed for given Sitecore version, or when some information is missing), or when test failed to complete due to a bug.</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#cannotRunData" aria-expanded="false" aria-controls="cannotRunData">
+              Show Cannot Run
+            </a>
+          </p>
+
+          <div id="cannotRunData" class="collapse">
+            <div class="placeholder-cannot-run-messages"></div>
+          </div>
+        </div><!-- /.report-section -->
+      </div>
+
+      <div>
+        <nav class="report-pagination">
+          <a class="btn btn-outline-primary" href="#top">Back to top</a>
+        </nav>
+      </div>
+
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+  <footer class="report-footer"></footer>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
 </html>

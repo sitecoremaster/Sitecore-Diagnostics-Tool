@@ -4,7 +4,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
 
@@ -23,7 +25,7 @@
     }
 
     public BulletedList([NotNull] IEnumerable<object> arr)
-      : base(arr.Select(x => x.ToString()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(x => new Text(x)))
+      : base(arr.Where(x => x is MessagePart || !string.IsNullOrWhiteSpace(x.ToString())).ToArray(x => (x as MessagePart) ?? new Text(x.ToString())))
     {
     }
 

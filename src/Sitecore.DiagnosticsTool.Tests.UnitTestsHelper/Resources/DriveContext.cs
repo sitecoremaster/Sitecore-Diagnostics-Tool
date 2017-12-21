@@ -2,10 +2,11 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.FileSystem;
 
   public class DriveContext : IDriveContext

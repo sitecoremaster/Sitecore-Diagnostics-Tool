@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.Extensions
 {
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public static class ConfigurationExtensions

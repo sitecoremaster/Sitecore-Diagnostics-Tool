@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources
 {
   using System.Collections.Generic;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
 

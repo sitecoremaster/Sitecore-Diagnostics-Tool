@@ -2,6 +2,7 @@
 {
   using System;
   using System.Linq;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Performance;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class W3WpCrashTests : W3WpCrash
@@ -26,7 +28,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(shutdown, LogLevel.Warn, ShutdownMessage),
@@ -59,7 +61,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(entries.ToArray()))
         .Process(this)
@@ -78,7 +80,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(start, LogLevel.Info, "HttpModule is being initialized"),
@@ -89,7 +91,6 @@
         .Process(this)
         .Done();
     }
-
 
     /// <summary>
     ///   Warning, crash happened within acceptable timeout and entries count
@@ -104,7 +105,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(
           LogHelperEx.Parse(crash, LogLevel.Info, "Job Started"),
@@ -144,7 +145,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(entries.ToArray()))
         .Process(this)

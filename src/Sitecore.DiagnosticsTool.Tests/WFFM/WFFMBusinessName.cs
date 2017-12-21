@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -12,6 +14,7 @@
   public class WffmBusinessName : KbTest
   {
     protected const string FormsDataProvider80 = "Sitecore.WFFM.Analytics.Providers.AnalyticsDataProvider, Sitecore.WFFM.Analytics";
+
     protected const string FormsDataProvider81 = "Sitecore.WFFM.Analytics.Providers.AnalyticsFormsDataProvider, Sitecore.WFFM.Analytics";
 
     public override string KbNumber => "505444";
@@ -25,7 +28,7 @@
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {
-      return sitecoreVersion.Major == 8;
+      return sitecoreVersion.MajorMinorInt == 80 || sitecoreVersion.MajorMinorInt == 81;
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)

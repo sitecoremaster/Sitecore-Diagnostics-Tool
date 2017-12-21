@@ -12,6 +12,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
+  using Sitecore.DiagnosticsTool.Core.Resources.Modules;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
 
@@ -38,6 +39,8 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
     public ServerRole[] ServerRoles { get; set; }
 
     public Map<IReleaseInfo> InstalledModules { get; set; }
+
+    public Map<ConfigurationFile> IncludeFiles { get; set; }
 
     public IEnumerable<IResource> GetResources()
     {
@@ -69,6 +72,12 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
         context.WebConfigFile = configuration;
       }
 
+      var include = IncludeFiles;
+      if (include != null)
+      {
+        context.IncludeFiles = include;
+      }
+
       var globalAsax = GlobalAsaxFile;
       if (globalAsax != null)
       {
@@ -87,7 +96,27 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
         context.DefaultsContext.Pipelines = defaultPipelines.ToDictionary(x => x.Name, x => x);
       }
 
+      var installedModules = InstalledModules;
+      if (installedModules != null)
+      {
+        context.ModulesInformation = new MockModulesContext(installedModules);
+      }
+
       yield return context;
     }
+  }
+
+  public class MockModulesContext : IModulesContext
+  {
+    public MockModulesContext(Map<IReleaseInfo> installedModules)
+    {
+      InstalledModules = installedModules;
+    }
+
+    public IReadOnlyList<ISitecoreModuleInfo> ModulesInformation { get; } = ModulesContext.GetModulesInformation();
+
+    public IReadOnlyDictionary<string, IReleaseInfo[]> IncorrectlyInstalledModules { get; } = new Dictionary<string, IReleaseInfo[]>();
+
+    public IReadOnlyDictionary<string, IReleaseInfo> InstalledModules { get; }
   }
 }

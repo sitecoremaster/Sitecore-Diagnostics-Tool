@@ -14,7 +14,7 @@
     </ObjectDataProvider>
 
     <Style TargetType="{x:Type Image}" x:Key="InfoButtonStyle">
-      <Setter Property="Source" Value="/Images/InfoButtonDisabled.png"/>
+      <Setter Property="Source" Value="/Images/InfoButtonDisabled.png" />
       <Style.Triggers>
         <DataTrigger Binding="{Binding Path=IsPackageLoaded}" Value="True">
           <Setter Property="Source" Value="/Images/InfoButtonEnabled.png" />
@@ -23,7 +23,7 @@
     </Style>
 
     <Style TargetType="{x:Type Image}" x:Key="CheckButtonStyle">
-      <Setter Property="Source" Value="/Images/CheckButtonDisabled.png"/>
+      <Setter Property="Source" Value="/Images/CheckButtonDisabled.png" />
       <Style.Triggers>
         <DataTrigger Binding="{Binding Path=IsResourceValid}" Value="True">
           <Setter Property="Source" Value="/Images/CheckButtonEnabled.png" />
@@ -32,9 +32,9 @@
     </Style>
     <Style TargetType="{x:Type ListBoxItem}">
       <Style.Resources>
-        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
-        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
       </Style.Resources>
     </Style>
 
@@ -66,41 +66,48 @@
     <Border Height="120" BorderThickness="0.7" BorderBrush="#cccccc" Margin="0 0 0 20" MaxWidth="2000">
       <Grid Background="White">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"></ColumnDefinition>
-          <ColumnDefinition Width="40"></ColumnDefinition>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-          <RowDefinition></RowDefinition>
-          <RowDefinition></RowDefinition>
-          <RowDefinition></RowDefinition>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
           <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition Width="50" />
           </Grid.ColumnDefinitions>
-          <TextBox IsReadOnly="True" Height="20" Margin="10 10 10 0" Text="{Binding Path=PackagePath}"/>
-          <Button Grid.Column="1" Margin="0,12,10,1" Content="..." HorizontalContentAlignment="Center" Command="{Binding Path=LoadPackageCommand}" HorizontalAlignment="Right" Width="40"/>
+          <TextBox IsReadOnly="True" Height="20" Margin="10 10 10 0" Text="{Binding Path=PackagePath}" />
+          <Button Grid.Column="1" Margin="0,12,10,1" Content="..." HorizontalContentAlignment="Center"
+                  Command="{Binding Path=LoadPackageCommand}" HorizontalAlignment="Right" Width="40" />
         </Grid>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Width="900" CanVerticallyScroll="False" Margin="3 5 0 10">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Width="900"
+                    CanVerticallyScroll="False" Margin="3 5 0 10">
           <Border BorderBrush="#cccccc" BorderThickness="0.4" Margin="7 0 10 0">
-            <ListBox Width="500" SelectionMode="Multiple" Name="ServerRolesCheckList" BorderThickness="0" ItemsSource="{Binding Source={StaticResource ServerRole}}">
+            <ListBox Width="500" SelectionMode="Multiple" Name="ServerRolesCheckList" BorderThickness="0"
+                     ItemsSource="{Binding Source={StaticResource ServerRole}}">
               <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                  <UniformGrid Columns="3"/>
+                  <UniformGrid Columns="3" />
                 </ItemsPanelTemplate>
               </ListBox.ItemsPanel>
               <ListBox.ItemTemplate>
                 <DataTemplate>
-                  <CheckBox Name="ServerRoleCheckbox"  IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Content="{Binding}" Foreground="#595959"  FontSize="10" VerticalContentAlignment="Center">
+                  <CheckBox Name="ServerRoleCheckbox"
+                            IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                            Content="{Binding}" Foreground="#595959" FontSize="10" VerticalContentAlignment="Center">
                     <i:Interaction.Triggers>
                       <i:EventTrigger EventName="Checked">
-                        <i:InvokeCommandAction Command="{Binding DataContext.ServerRolesChangedCommand, ElementName=ServerRolesCheckList}" />
+                        <i:InvokeCommandAction
+                          Command="{Binding DataContext.ServerRolesChangedCommand, ElementName=ServerRolesCheckList}" />
                       </i:EventTrigger>
                       <i:EventTrigger EventName="Unchecked">
-                        <i:InvokeCommandAction Command="{Binding DataContext.ServerRolesChangedCommand, ElementName=ServerRolesCheckList}" />
+                        <i:InvokeCommandAction
+                          Command="{Binding DataContext.ServerRolesChangedCommand, ElementName=ServerRolesCheckList}" />
                       </i:EventTrigger>
                     </i:Interaction.Triggers>
                   </CheckBox>
@@ -109,81 +116,49 @@
             </ListBox>
           </Border>
 
-          <Border Width="322" BorderBrush="#cccccc" BorderThickness="0.4" >
+          <Border Width="322" BorderBrush="#cccccc" BorderThickness="0.4">
             <StackPanel DataContext="{Binding}">
               <StackPanel Orientation="Horizontal" Margin="0 -2 0 0">
                 <Label Content="Instance name: " Foreground="#595959" FontSize="10" Margin="0 0 10 0" />
                 <Label Name="InstanceName" Content="{Binding Path=InstanceName}" Foreground="#595959" FontSize="10"
-                       VerticalContentAlignment="Center">
-                </Label>
+                       VerticalContentAlignment="Center" />
               </StackPanel>
 
               <StackPanel Orientation="Horizontal" Margin="0 -2 0 0">
                 <Label Content="Machine name: " Foreground="#595959" FontSize="10" Margin="0 0 9 0" />
                 <Label Name="MachineName" Content="{Binding Path=MachineName}" Foreground="#595959" FontSize="10"
-                       VerticalContentAlignment="Center">
-                </Label>
+                       VerticalContentAlignment="Center" />
               </StackPanel>
 
               <StackPanel Orientation="Horizontal" Margin="0 -2 0 0 ">
                 <Label Content="Sitecore version: " Foreground="#595959" FontSize="10" Margin="0 0 4 0" />
                 <Label Name="SitecoreVersion" Content="{Binding Path=SitecoreVersion}" Foreground="#595959"
                        FontSize="10"
-                       VerticalContentAlignment="Center">
-                </Label>
+                       VerticalContentAlignment="Center" />
               </StackPanel>
-            </StackPanel></Border>
+            </StackPanel>
+          </Border>
         </StackPanel>
 
 
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 5 5 0">
-            <Hyperlink TextDecorations="None" Command="{Binding Path=CloseCommand}">
-                <Image Source="/Images/CloseButton.png" Width="20" Height="20"/>
-            </Hyperlink>
+          <Hyperlink TextDecorations="None" Command="{Binding Path=CloseCommand}">
+            <Image Source="/Images/CloseButton.png" Width="20" Height="20" />
+          </Hyperlink>
         </TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0 0 5 0">
-            <Hyperlink TextDecorations="None" Command="{Binding Path=InfoCommand}">
-                <Image Name="InfoIcon" Width="20" Height="20" HorizontalAlignment="Left" Style="{StaticResource InfoButtonStyle}"/>
-            </Hyperlink>
+        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0">
+          <Hyperlink TextDecorations="None" Command="{Binding Path=InfoCommand}">
+            <Image Name="InfoIcon" Width="20" Height="20" HorizontalAlignment="Left"
+                   Style="{StaticResource InfoButtonStyle}" />
+          </Hyperlink>
         </TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 5 5" >
-            <Hyperlink TextDecorations="None">
-                <Image Width="20" Height="20" HorizontalAlignment="Left" Style="{StaticResource CheckButtonStyle}"/>
-            </Hyperlink>
+        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 5 5">
+          <Hyperlink TextDecorations="None">
+            <Image Width="20" Height="20" HorizontalAlignment="Left" Style="{StaticResource CheckButtonStyle}" />
+          </Hyperlink>
         </TextBlock>
 
       </Grid>
     </Border>
   </Viewbox>
 </UserControl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

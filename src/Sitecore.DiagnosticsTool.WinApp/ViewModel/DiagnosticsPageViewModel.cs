@@ -7,8 +7,11 @@
   using System.Threading;
   using System.Threading.Tasks;
   using System.Windows.Input;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.WinApp.Command;
@@ -19,7 +22,8 @@
   {
     #region Constructors
 
-    public DiagnosticsPageViewModel(DataSource source) : base(source)
+    public DiagnosticsPageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -33,9 +37,13 @@
     private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
     private string reportPath;
+
     private bool isThreadRunning;
+
     private int testsNumber;
+
     private bool isThreadAborted;
+
     private int currentTest;
 
     #endregion Fields
@@ -50,7 +58,7 @@
       }
       set
       {
-        currentTest = value;
+        currentTest = value + 1;
         OnPropertyChanged("CurrentTest");
         OnPropertyChanged("CurrentValue");
         OnPropertyChanged("StatusLabel");
@@ -65,6 +73,7 @@
         {
           return CurrentTest * 100 / TestsNumber;
         }
+
         return 0;
       }
     }
@@ -133,6 +142,7 @@
         {
           return string.Format(Strings.DiagnosticsRunning, CurrentTest, TestsNumber);
         }
+
         return IsThreadAborted ? Strings.DiagnosticsInterrupted : Strings.DiagnosticsCompleted;
       }
     }
@@ -152,15 +162,15 @@
 
       try
       {
-        var counter = 1;
-        var assemblyName = Assembly.GetExecutingAssembly().GetName();
+        var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
+        var system = new SystemContext(assemblyName);
         var packages = Source.Packages
-          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}"))
+          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null))
           .ToArray();
 
         try
         {
-          var resultsFile = AggregatedTestRunner.RunTests(packages, _ => OnTestRun(packages.Length, ++counter));
+          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
 
           if (tokenSource.IsCancellationRequested)
           {
@@ -204,14 +214,9 @@
       }
     }
 
-    private void OnTestRun(int count, int counter)
+    private void OnTestRun(int index)
     {
-      if (counter % count != 0)
-      {
-        return;
-      }
-
-      CurrentTest = counter / count;
+      CurrentTest = index;
       if (tokenSource.IsCancellationRequested)
       {
         throw new OperationCanceledException();
@@ -222,7 +227,7 @@
     {
       IsThreadRunning = true;
       IsThreadAborted = false;
-      TestsNumber = AggregatedTestRunner.GetTotalTestsCount();
+      TestsNumber = AggregatedTestRunner.GetTotalTestsCount(Source.Packages.Count);
       CurrentTest = 0;
       reportPath = null;
     }
@@ -232,7 +237,9 @@
     #region WizardPageViewModelBase members
 
     public override string DisplayName => Strings.PageDisplayName_Diagnostics;
+
     public override string Icon => Strings.Icon_Diagnostics;
+
     public override string Title => Strings.PageTitle_Diagnostics;
 
     public override bool IsValid()
@@ -246,7 +253,7 @@
 
     public ICommand CancelButtonCommand => cancelButtonCommand ?? (cancelButtonCommand = new RelayCommand(CancelButtonClick, CanCancelButtonClick));
 
-    private void CancelButtonClick()
+    private void CancelButtonClick(object param)
     {
       tokenSource.Cancel();
       IsThreadAborted = true;

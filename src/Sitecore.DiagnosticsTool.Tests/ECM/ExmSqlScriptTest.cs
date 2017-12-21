@@ -4,12 +4,16 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.DiagnosticsTool.Tests.ECM.Helpers;
 
   public class ExmSqlScriptTest : Test
   {
@@ -35,7 +39,7 @@
       "Fact_AutomationStatesStatisticsByAbnMessage"
     };
 
-    public override string Name { get; } = "Check if EXM SQL script was run against reporting database";
+    public override string Name { get; } = "EXM objects in reporting database";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
 
@@ -53,15 +57,9 @@
     /// <inheritdoc />
     public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
     {
-      try
+      if (EcmHelper.GetEcmVersion(data) == null)
       {
-        if (!data.SitecoreInfo.Assemblies.ContainsKey("Sitecore.EmailCampaign.dll".ToLower()))
-        {
-          return false;
-        }
-      }
-      catch
-      {
+        return false;
       }
 
       try
@@ -73,6 +71,7 @@
       }
       catch
       {
+        // ignored
       }
 
       return true;
@@ -102,14 +101,14 @@
 
       var schema = reporting.Schema;
 
-      var sb = new StringBuilder();
+      var sb = new List<string>();
 
       // check tables
       foreach (var tableName in TableNames)
       {
         if (!schema.Tables.ContainsKey(tableName))
         {
-          sb.AppendFormat("\r\n- {0}.Tables.dbo.{1}", name, tableName);
+          sb.Add($"{name}.Tables.dbo.{tableName}");
         }
       }
 
@@ -117,16 +116,16 @@
       {
         if (!schema.StoredProcedures.ContainsKey(procedureName))
         {
-          sb.AppendFormat("\r\n- {0}.Programmability.Stored Procedures.dbo.{1}", name, procedureName);
+          sb.Add($"{name}.Programmability.Stored Procedures.dbo.{procedureName}");
         }
       }
 
-      if (sb.Length > 0)
+      if (sb.Count > 0)
       {
-        var message = $"One or several objects are missing in the reporting database. This may happen if EXM SQL script was not run or ended with error. Please refer to EXM installation guide for more details.:{sb}";
+        var message = "One or several objects are missing in the reporting database. This may happen if EXM SQL script was not run or ended with error. Please refer to EXM installation guide for more details.";
         if (xdbEnabled)
         {
-          output.Error(message);
+          output.Error(message, detailed: new DetailedMessage(new BulletedList(sb)));
         }
         else
         {

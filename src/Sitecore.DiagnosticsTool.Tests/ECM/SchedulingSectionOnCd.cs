@@ -1,7 +1,10 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+  using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -9,13 +12,16 @@
   public class SchedulingSectionOnCd : Test
   {
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
-
-    public override IEnumerable<ServerRole> ServerRoles => new[] { ServerRole.ContentDelivery };
-
-    public override string Name { get; } = "ECM scheduling section must be disabled on CD";
+    
+    public override string Name { get; } = "EXM scheduling section must be disabled on ContentDelivery instance";
 
     [NotNull]
-    protected string ErrorMessage => "ECM agents found in scheduling section. These agents should be disabled on CD.";
+    protected string ErrorMessage => "EXM agents found in scheduling section. These agents should be disabled on ContentDelivery instance.";
+
+    protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+    {
+      return roles.Contains(ServerRole.ContentDelivery) && !roles.Contains(ServerRole.ContentManagement);
+    }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {

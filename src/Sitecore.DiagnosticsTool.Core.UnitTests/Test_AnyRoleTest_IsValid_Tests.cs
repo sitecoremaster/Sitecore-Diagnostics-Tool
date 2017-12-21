@@ -2,11 +2,14 @@
 {
   using System;
   using System.Collections.Generic;
+
   using FluentAssertions;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner;
+
   using Xunit;
 
   public class Test_AnyRoleTest_IsValid_Tests
@@ -15,9 +18,9 @@
     public void AnyRoleTest_ContentDelivery_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
@@ -26,9 +29,9 @@
     public void AnyRoleTest_ContentManagement_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
@@ -37,9 +40,9 @@
     public void AnyRoleTest_Processing_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
@@ -48,16 +51,16 @@
     public void AnyRoleTest_ContentManagement_Processing_IsValid_True()
     {
       var sut = new AnyRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
 
     private class AnyRoleTest : Test
     {
-      public override string Name { get; } = nameof(ServerRoles);
+      public override string Name { get; } = "AnyRoleTest";
 
       public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 

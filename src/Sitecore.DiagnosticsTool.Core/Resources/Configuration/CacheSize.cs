@@ -1,11 +1,9 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 {
   using System;
-  using System.Xml;
 
   using JetBrains.Annotations;
 
-  using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
 
   public class CacheSize
@@ -35,7 +33,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
       return size;
     }
 
-    private static long GetSizeInBytes(string value, ISitecoreVersion version)
+    private static long GetSizeInBytes([CanBeNull] string value, [NotNull] ISitecoreVersion version)
     {
       if (version.MajorMinorInt == 826) // TODO: update when merged to next major release
       {
@@ -71,11 +69,11 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
         value = value.Replace(".", "");
         value = value.Replace(" ", "");
 
-        int length = value.Length;
+        var length = value.Length;
 
         if (length > 0)
         {
-          int factor = 1;
+          var factor = 1;
 
           // check for KB, MB, GB
           if (value[length - 1] == 'B')
@@ -96,7 +94,7 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
             value = value.Substring(0, length - 2);
           }
 
-          long size = GetLong(value, -1);
+          var size = GetLong(value, -1);
 
           if (size >= 0)
           {

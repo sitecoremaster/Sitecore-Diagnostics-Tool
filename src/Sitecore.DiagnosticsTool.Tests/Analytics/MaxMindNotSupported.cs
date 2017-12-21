@@ -2,7 +2,9 @@
 {
   using System;
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -32,7 +34,7 @@
         var ex = log.RawText;
         if (ex.Contains(Exception))
         {
-          output.Error(Message, url: Url);
+          output.Error(Message, Url);
           return;
         }
       }

@@ -4,17 +4,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources
 
   public class SystemContext : ISystemContext
   {
-    public SystemContext(string code = null, string applicationInfo = null, string fileName = null)
+    public SystemContext(string applicationInfo = null)
     {
-      DiagCode = code;
-      PackageName = fileName;
       ApplicationInfo = applicationInfo;
     }
-
-    public string PackageName { get; }
-
+    
     public string ApplicationInfo { get; }
-
-    public string DiagCode { get; }
   }
 }

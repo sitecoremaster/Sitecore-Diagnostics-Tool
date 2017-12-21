@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -29,7 +31,7 @@
       var warnLogEntries = data.Logs.GetSitecoreLogEntries(LogLevel.Warn);
       if (warnLogEntries.Any(entry => entry.Message.StartsWith("Counter category '") && entry.Message.Contains("' does not exist on this server. Using temporary public counter for '")))
       {
-        output.Warning(CountersNotInstalledMessage, url: Link);
+        output.Warning(CountersNotInstalledMessage, Link);
       }
     }
   }

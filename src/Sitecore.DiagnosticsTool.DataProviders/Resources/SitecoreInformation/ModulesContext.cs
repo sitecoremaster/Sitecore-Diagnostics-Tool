@@ -3,8 +3,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Modules;
@@ -13,16 +16,16 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   public class ModulesContext : IModulesContext
   {
     [NotNull]
-    private readonly IServiceClient _Client = new ServiceClient();
+    private static readonly IServiceClient _Client = new ServiceClient();
 
     [CanBeNull]
     private IReadOnlyList<ISitecoreModuleInfo> _ModulesInformation;
 
     [CanBeNull]
-    private IReadOnlyDictionary<string, IReleaseInfo> _PotentiallyInstalledModules;
+    private IReadOnlyDictionary<string, IReleaseInfo[]> _PotentiallyInstalledModules;
 
     [CanBeNull]
-    private IReadOnlyDictionary<string, IReleaseInfo> _IncorrectlyInstalledModules;
+    private IReadOnlyDictionary<string, IReleaseInfo[]> _IncorrectlyInstalledModules;
 
     [CanBeNull]
     private IReadOnlyDictionary<string, IReleaseInfo> _InstalledModules;
@@ -37,16 +40,16 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     [NotNull]
     private IReadOnlyDictionary<string, AssemblyFile> Assemblies { get; }
 
-    public virtual IReadOnlyDictionary<string, IReleaseInfo> IncorrectlyInstalledModules => _IncorrectlyInstalledModules ?? (_IncorrectlyInstalledModules = GetIncorrectModules());
+    public virtual IReadOnlyDictionary<string, IReleaseInfo[]> IncorrectlyInstalledModules => _IncorrectlyInstalledModules ?? (_IncorrectlyInstalledModules = GetIncorrectModules());
 
     public virtual IReadOnlyDictionary<string, IReleaseInfo> InstalledModules => _InstalledModules ?? (_InstalledModules = GetCorrectModules());
 
-    protected virtual IReadOnlyDictionary<string, IReleaseInfo> PotentiallyInstalledModules => _PotentiallyInstalledModules ?? (_PotentiallyInstalledModules = GetPotentiallyInstalledModules());
+    protected virtual IReadOnlyDictionary<string, IReleaseInfo[]> PotentiallyInstalledModules => _PotentiallyInstalledModules ?? (_PotentiallyInstalledModules = GetPotentiallyInstalledModules());
 
     public IReadOnlyList<ISitecoreModuleInfo> ModulesInformation => _ModulesInformation ?? (_ModulesInformation = GetModulesInformation());
 
     [NotNull]
-    private List<ISitecoreModuleInfo> GetModulesInformation()
+    public static List<ISitecoreModuleInfo> GetModulesInformation()
     {
       var rv = new List<ISitecoreModuleInfo>();
       var products = _Client.GetProductNames();
@@ -55,12 +58,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       {
         var module = new SitecoreModuleInfo(moduleName);
         var versions = _Client.GetVersions(moduleName);
-        foreach (var version in versions)
+        foreach (var release in versions)
         {
-          foreach (var relese in version.Releases.Values)
           {
-            IReleaseInfo releaseInfo = new ReleaseInfo(relese);
-            var distr = relese.DefaultDistribution;
+            IReleaseInfo releaseInfo = new ReleaseInfo(release);
+            var distr = release.DefaultDistribution;
             if (distr == null)
             {
               continue;
@@ -74,91 +76,78 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             module.AddRelease(releaseInfo);
           }
         }
+
         rv.Add(module);
       }
+
       return rv;
     }
 
     [NotNull]
-    private IReadOnlyDictionary<string, IReleaseInfo> GetPotentiallyInstalledModules()
+    private IReadOnlyDictionary<string, IReleaseInfo[]> GetPotentiallyInstalledModules()
     {
       var installedAssemblies = Assemblies;
       var modulesInfo = ModulesInformation;
 
-      var installedModules = new Dictionary<string, IReleaseInfo>();
+      var installedModules = new Dictionary<string, List<IReleaseInfo>>();
 
+      // for each assembly in solution
       foreach (var assembly in installedAssemblies)
       {
+        // for each module in SIS
         foreach (var module in modulesInfo)
         {
+          var list = new List<IReleaseInfo>();
+
+          // for each release of module in SIS
           foreach (var release in module.Releases)
           {
             foreach (var library in release.Assemblies)
             {
-              if (assembly.Value.FileName == library.FileName && assembly.Value.FileVersion == library.FileVersion
-                && !installedModules.ContainsKey(module.Name)
-                && !assembly.Value.FileName.StartsWith("microsoft.", StringComparison.OrdinalIgnoreCase)
-                && !assembly.Value.FileName.StartsWith("system.", StringComparison.OrdinalIgnoreCase)
-                && !assembly.Value.FileName.StartsWith("newtonsoft.", StringComparison.OrdinalIgnoreCase)
-              )
+              // if release contains exactly the same assembly (via name and fileversion only)
+              if (assembly.Value.FileName == library.FileName && assembly.Value.FileVersion == library.FileVersion)
               {
-                installedModules.Add(module.Name, release);
+                // the release becomes potentially installed release of the given module
+                list.Add(release);
+
+                break;
               }
             }
+          }
+
+          if (list.Any())
+          {
+            installedModules.GetOrAdd(module.Name, new List<IReleaseInfo>()).AddRange(list);
           }
         }
       }
 
-      return installedModules;
+      return installedModules.ToDictionary(x => x.Key, x => x.Value.ToArray());
     }
 
     [NotNull]
-    private IReadOnlyDictionary<string, IReleaseInfo> GetIncorrectModules()
+    private IReadOnlyDictionary<string, IReleaseInfo[]> GetIncorrectModules()
     {
-      var incorrectModules = new Dictionary<string, IReleaseInfo>();
-
-      foreach (var item in PotentiallyInstalledModules)
-      {
-        var installed = CheckIfModuleInstalled(item);
-        if (!installed)
-        {
-          incorrectModules.Add(item.Key, item.Value);
-        }
-      }
-
-      return incorrectModules;
-    }
-
-    private bool CheckIfModuleInstalled(KeyValuePair<string, IReleaseInfo> item)
-    {
-      foreach (var correctModule in InstalledModules)
-      {
-        if (correctModule.Key == item.Key)
-        {
-          return true;
-        }
-      }
-      return false;
+      return PotentiallyInstalledModules
+        .Where(x => !InstalledModules.ContainsKey(x.Key))
+        .ToDictionary(x => x.Key, x => x.Value);
     }
 
     private IReadOnlyDictionary<string, IReleaseInfo> GetCorrectModules()
     {
-      var correctModules = new Dictionary<string, IReleaseInfo>();
-
-      foreach (var module in PotentiallyInstalledModules)
-      {
-        var correct = CheckIfModuleInstalledCorrectly(module);
-        if (correct)
+      var data = PotentiallyInstalledModules.Select(x =>
+        new
         {
-          correctModules.Add(module.Key, module.Value);
-        }
-      }
-      return correctModules;
+          x.Key,
+          Release = x.Value.FirstOrDefault(CheckIfModuleInstalledCorrectly)
+        });
+
+      return data.Where(x => x.Release != null).ToDictionary(x => x.Key, x => x.Release);
     }
 
-    private bool CheckIfModuleInstalledCorrectly(KeyValuePair<string, IReleaseInfo> module)
+    private bool CheckIfModuleInstalledCorrectly(IReleaseInfo module)
     {
-      foreach (var assembly in module.Value.Assemblies)
+      foreach (var assembly in module.Assemblies)
       {
         var correct = CheckIfLibraryInstalled(assembly);
         if (!correct)
@@ -166,6 +155,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           return false;
         }
       }
+
       return true;
     }
 
@@ -178,6 +168,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
           return true;
         }
       }
+
       return false;
     }
   }

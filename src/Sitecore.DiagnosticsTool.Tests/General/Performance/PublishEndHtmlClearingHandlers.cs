@@ -3,7 +3,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -34,7 +36,7 @@
 
     protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
     {
-      return roles.Contains(ServerRole.Publishing);
+      return roles.Contains(ServerRole.ContentDelivery);
     }
 
     public override void Process(ITestResourceContext data, ITestOutputContext output)

@@ -3,7 +3,7 @@
   /// <summary>
   ///   Sync global DataSoure with a data collected by a paricular PageViewModel
   /// </summary>
-  interface ISyncableModel
+  internal interface ISyncableModel
   {
     void Sync();
   }

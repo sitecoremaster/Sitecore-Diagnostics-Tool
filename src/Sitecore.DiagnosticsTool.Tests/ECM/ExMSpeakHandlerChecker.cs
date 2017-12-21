@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
   using System.Collections.Generic;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -20,15 +21,17 @@
       return sitecoreVersion.Major >= 7;
     }
 
+    protected override bool IsActual(ITestResourceContext data)
+    {
+      return EcmHelper.GetEcmVersion(data) != null;
+    }
+
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
       var ecmVersion = EcmHelper.GetEcmVersion(data);
-      if (ecmVersion == null)
-      {
-        return;
-      }
+      Assert.IsNotNull(ecmVersion);
 
       var majorMinor = ecmVersion.MajorMinorInt;
       if (majorMinor >= 31)

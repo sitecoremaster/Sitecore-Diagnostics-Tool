@@ -3,7 +3,9 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.Diagnostics.Objects;
@@ -21,7 +23,7 @@
     public override string Name { get; } = "Shared Session is set up consistently";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
-    
+
     public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
     {
       var inprocMap = new Map<string[]>();
@@ -69,7 +71,6 @@
             DefaultProviderType = TypeRef.Parse(x.DefaultProvider.GetAttribute("type"))
           })
           .ToArray();
-
 
         // check that all instances don't use InProc
 

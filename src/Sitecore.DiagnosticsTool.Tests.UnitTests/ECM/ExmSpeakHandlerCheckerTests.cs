@@ -1,13 +1,20 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.ECM
 {
   using System.Xml;
+
+  using Sitecore.Diagnostics.InfoService.Client;
+  using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
+  using Sitecore.DiagnosticsTool.Core.Collections;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
   using Sitecore.DiagnosticsTool.Tests.ECM;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class ExmSpeakHandlerCheckerTests : ExmSpeakHandlerChecker
@@ -19,11 +26,11 @@
       {
         Configuration = new XmlDocument()
           .Create("/configuration/system.web/httpHandlers"),
-        Version = new SitecoreVersion(8, 1, 0, 151207),
-        Assemblies = new[]
+        Version = new SitecoreVersion(8, 1, 0),
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
         {
-          new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")
-        }
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
+        },
       };
       UnitTestContext
         .Create(this)
@@ -41,11 +48,11 @@
       var sitecoreConfiguration = new SitecoreInstance
       {
         Configuration = configuration,
-        Version = new SitecoreVersion(8, 1, 1, 151207),
-        Assemblies = new[]
+        Version = new SitecoreVersion(8, 1, 1),
+        InstalledModules = new Map<IReleaseInfo>(x => x.Release.ProductName)
         {
-          new AssemblyFile("Sitecore.EmailCampaign.dll", productVersion: "3.2 rev. 160127")
-        }
+          { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
+        },
       };
 
       UnitTestContext

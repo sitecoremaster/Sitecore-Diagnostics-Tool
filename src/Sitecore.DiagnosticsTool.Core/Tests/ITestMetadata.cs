@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   /// <summary>

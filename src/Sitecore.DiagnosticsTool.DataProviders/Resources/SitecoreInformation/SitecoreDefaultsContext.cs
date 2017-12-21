@@ -5,8 +5,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System.Linq;
   using System.Runtime.Remoting;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults;
@@ -20,6 +23,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   public class SitecoreDefaultsContext : ISitecoreDefaultsContext
   {
     private static readonly IServiceClient _DefaultServiceClient = new ServiceClient();
+
     private const string ContactSupportMessage = "This is remote information service malfunction, please try again later. If the error is persistent, please notify Sitecore Support team.";
 
     [NotNull]
@@ -31,8 +35,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private IReadOnlyDictionary<string, AssemblyFile> _Assemblies;
 
     private XmlDocument _Configuration;
+
     private IReadOnlyDictionary<string, IReleaseDefaultSqlDatabase> _Databases;
+
     private IDistributionDefaults _Defaults;
+
     private List<ISitecoreModuleInfo> _ModulesInformation;
 
     public SitecoreDefaultsContext([NotNull] ISitecoreVersion sitecoreVersion, IServiceClient client = null)
@@ -45,7 +52,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       try
       {
-        Release = _Client.GetRelease("Sitecore CMS", sitecoreVersion);
+        Release = _Client.Products["Sitecore CMS"].Versions[sitecoreVersion.MajorMinorUpdate];
       }
       catch (Exception ex)
       {
@@ -70,16 +77,16 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
       return ConfigurationHelper.GetSettings(Configuration);
     }
 
-    public virtual string GetSetting(string settingName)
+    public virtual string GetSetting(string settingName, string defaultValue = null)
     {
       Assert.ArgumentNotNull(settingName, nameof(settingName));
 
-      return ConfigurationHelper.GetSetting(Configuration, settingName);
+      return ConfigurationHelper.GetSetting(Configuration, settingName, _ => defaultValue);
     }
-    
-    public bool GetBoolSetting(string settingName)
+
+    public bool GetBoolSetting(string settingName, bool? defaultValue = null)
     {
-      return bool.Parse(GetSetting(settingName));
+      return bool.Parse(GetSetting(settingName, defaultValue?.ToString()));
     }
 
     public virtual string GetConnectionString(string connectionStringName)
@@ -124,7 +131,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
       Log.Info($"Initializing defatult configuration for {release}");
       var configuration = Defaults.Configs.Configuration;
-      Assert.IsNotNull(configuration, $"Configuration is not available for {release}. " + ContactSupportMessage);
+      Assert.IsNotNull(configuration, $"Configuration is not available for {release.ProductName} {release.Version}. " + ContactSupportMessage);
 
       Log.Info("Configuration: \r\n" + configuration.OuterXml);
 

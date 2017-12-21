@@ -46,17 +46,29 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.26\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.26\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.104\lib\Sitecore.Diagnostics.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.26\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.104\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.104\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.104\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.104\lib\Sitecore.Diagnostics.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.104\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,38 +82,32 @@
     <Compile Include="Analytics\ExceptionIfLongDataIsStoredInCollectionDB.cs" />
     <Compile Include="Analytics\ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518.cs" />
     <Compile Include="Analytics\HighSqlServerLoadWhenUpdatingTheSitecoreSuggestedTestIndex.cs" />
-    <Compile Include="Analytics\ErrorWhenViewingThePageGoalsAndEventsSitecoreAnalyticsReport.cs" />
     <Compile Include="Analytics\ErrorOnMultisiteSolutionWhenAnalyticsHostNameSettingInNonEmpty.cs" />
     <Compile Include="Analytics\ReportingSecondaryConnectionString.cs" />
     <Compile Include="Analytics\SessionEndPipelineErrorKb975816.cs" />
     <Compile Include="Analytics\ShowWarningIfTheRobotDetectionIsEnabled.cs" />
     <Compile Include="Analytics\TroubleshootingSitecoreIpGeolocationService.cs" />
     <Compile Include="Analytics\EmailReportsTaskFailsWithoutMasterDatabase.cs" />
-    <Compile Include="Analytics\ContactIsLockedByAnotherOperationExceptionOccursWhileSavingAnalyticsDataIfAnalyticsClusterNameIsNotSpecified.cs" />
     <Compile Include="Analytics\MaxMindNotSupported.cs" />
     <Compile Include="Debug\ChangedSettings.cs" />
     <Compile Include="ECM\ExMSpeakHandlerChecker.cs" />
     <Compile Include="General\Performance\AbstractQueueSizeTest.cs" />
     <Compile Include="General\Performance\CheckIndexFragmentation.cs" />
-    <Compile Include="Analytics\VisitInformationMayNotBeAvailableWhenEvaluatingConditionsInEngagementPlan.cs" />
     <Compile Include="Analytics\SessionTimeoutWhenSavingRichTextFields.cs" />
     <Compile Include="ECM\CheckConnectionString.cs" />
     <Compile Include="ECM\ExmSqlScriptTest.cs" />
     <Compile Include="ECM\Helpers\EcmHelper.cs" />
-    <Compile Include="ECM\Helpers\EcmVersion.cs" />
     <Compile Include="ECM\PageNotFoundIssue.cs" />
-    <Compile Include="ECM\PublishingIssue.cs" />
     <Compile Include="ECM\RendererUrlSetting.cs" />
     <Compile Include="ECM\SchedulingSectionOnCd.cs" />
     <Compile Include="ECM\SubscriptionFormIssue.cs" />
     <Compile Include="General\Consistency\InconsistentModules.cs" />
     <Compile Include="General\Health\EventQueuePropertyChangedRemoteEvent.cs" />
     <Compile Include="General\Performance\DisableCacheSizeLimits.cs" />
-    <Compile Include="General\DiagCode.cs" />
     <Compile Include="General\Server\DotNetFrameworkVersion.cs" />
     <Compile Include="General\Server\IISVersionTest.cs" />
     <Compile Include="General\SystemTest.cs" />
-    <Compile Include="Search\NewerSolrCompatibility.cs" />
+    <Compile Include="Search\ContentSearchConfigurationsDuplicates.cs" />
     <Compile Include="General\Consistency\AssembliesConsistencyMatch.cs" />
     <Compile Include="General\Consistency\DatabaseSchemaValidation.cs" />
     <Compile Include="General\Performance\DefaultCacheSizes.cs" />
@@ -122,7 +128,6 @@
     <Compile Include="General\Performance\HistoryTableSize.cs" />
     <Compile Include="Analytics\TrackingFieldAccess.cs" />
     <Compile Include="General\Health\ImageValidatorErrors.cs" />
-    <Compile Include="General\Health\IllegalCharactersInURL.cs" />
     <Compile Include="General\Health\AppCenterIconNotFound.cs" />
     <Compile Include="General\Health\CleanupAgentErrors.cs" />
     <Compile Include="General\Health\ViewStateCleanupIssue.cs" />
@@ -133,10 +138,8 @@
     <Compile Include="General\Health\RTESerializationError.cs" />
     <Compile Include="Search\ErrorAfterEnablingSolr.cs" />
     <Compile Include="General\Health\PasswordResetNotWorking.cs" />
-    <Compile Include="General\Health\PathInfoinUrlError.cs" />
     <Compile Include="Analytics\RefreshAggregatedDataCannotBeRun.cs" />
     <Compile Include="General\Health\MediaCachingError.cs" />
-    <Compile Include="General\Health\PublishingTimeBeforeStatusExpires.cs" />
     <Compile Include="General\Health\InvalidWebResource.cs" />
     <Compile Include="General\Consistency\MasterDatabaseOnCd.cs" />
     <Compile Include="General\Server\MaximumWorkerProcesses.cs" />
@@ -152,7 +155,8 @@
     <Compile Include="General\Performance\W3WpCrash.cs" />
     <Compile Include="General\Server\WebsiteFolderReusage.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditor.cs" />
-    <Compile Include="Search\CrawlerRootItemIgnored.cs" />
+    <Compile Include="Search\ObsoleteLuceneConfiguration.cs" />
+    <Compile Include="Solution\ConsistentConfiguration.cs" />
     <Compile Include="Solution\LuceneNoGo.cs" />
     <Compile Include="Solution\PatchesInformation.cs" />
     <Compile Include="Solution\SharedPrivateSessionInterference.cs" />

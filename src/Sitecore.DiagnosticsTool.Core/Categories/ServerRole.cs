@@ -41,6 +41,6 @@
     /// <summary>
     ///   Responsible for the email dispatch process. This role is only relevant when using EXM module.
     /// </summary>
-    EmailDispatcher = 1 << 8,
+    EmailDispatching = 1 << 8,
   }
 }

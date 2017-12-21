@@ -1,12 +1,12 @@
 namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Database.Schema;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults;
   using Sitecore.Diagnostics.InfoService.Client.Model.Defaults.DatabaseExtensions;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
-
-  using SqlDatabaseSchema = Sitecore.Diagnostics.Database.Schema.SqlDatabaseSchema;
 
   public class ReleaseDefaultSqlDatabase : IReleaseDefaultSqlDatabase
   {

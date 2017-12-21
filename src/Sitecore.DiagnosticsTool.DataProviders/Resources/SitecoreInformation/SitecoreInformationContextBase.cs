@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
@@ -37,8 +38,11 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private XmlDocument _SitecoreVersionXmlFile;
 
     private XmlDocument _WebConfigFile;
+
     private IModulesContext _ModulesInformation;
+
     private string _InstanceName;
+
     private ContentSearchIndexes _ContentSearchIndexes;
 
     protected SitecoreInformationContextBase(IServiceClient client)
@@ -137,7 +141,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
         return AssertResource(_IncludeFiles, "Include Files");
       }
 
-      protected set
+      internal set
       {
         _IncludeFiles = value;
       }
@@ -171,7 +175,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     /// <inheritdoc />
     public IDictionary<string, IContentSearchIndex> ContentSearchIndexes => _ContentSearchIndexes ?? (_ContentSearchIndexes = new ContentSearchIndexes(Configuration));
-    
+
     public bool IsAnalyticsEnabled
     {
       get
@@ -183,11 +187,12 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             return false;
           }
 
-          var pipeline = GetPipeline("pipelines/createTracker") ?? GetPipeline("pipelines/initializeTracker");
-          if (pipeline == null)
-          {
-            return false;
-          }
+          // disabled because is related to tracking, not xdb itself
+          // var pipeline = GetPipeline("pipelines/createTracker") ?? GetPipeline("pipelines/initializeTracker");
+          // if (pipeline == null)
+          // {
+          //   return false;
+          // }
         }
         else
         {
@@ -196,29 +201,40 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
             return false;
           }
 
-          var pipeline = GetPipeline("pipelines/startAnalytics");
-          if (pipeline == null)
-          {
-            return false;
-          }
+          // disabled because is related to tracking, not xdb itself
+          // var pipeline = GetPipeline("pipelines/startAnalytics");
+          // if (pipeline == null)
+          // {
+          //   return false;
+          // }
         }
 
         return true;
       }
     }
 
-    public IModulesContext ModulesInformation => _ModulesInformation ?? (_ModulesInformation = new ModulesContext(Assemblies));
+    public IModulesContext ModulesInformation
+    {
+      get
+      {
+        return _ModulesInformation ?? (_ModulesInformation = new ModulesContext(Assemblies));
+      }
+      set
+      {
+        _ModulesInformation = value;
+      }
+    }
 
-    public virtual string GetSetting(string settingName)
+    public virtual string GetSetting(string settingName, string defaultValue = null)
     {
       Assert.ArgumentNotNull(settingName, nameof(settingName));
 
-      return ConfigurationHelper.GetSetting(Configuration, settingName, _ => SitecoreDefaults.GetSetting(settingName));
+      return ConfigurationHelper.GetSetting(Configuration, settingName, _ => defaultValue ?? SitecoreDefaults.GetSetting(settingName));
     }
-    
-    public bool GetBoolSetting(string settingName)
+
+    public bool GetBoolSetting(string settingName, bool? defaultValue = null)
     {
-      return bool.Parse(GetSetting(settingName));
+      return bool.Parse(GetSetting(settingName, defaultValue?.ToString()));
     }
 
     public virtual string GetConnectionString(string connectionStringName)

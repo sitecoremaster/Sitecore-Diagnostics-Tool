@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
@@ -29,7 +31,7 @@
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);
       if (logs.Any(x => x != null && x.Message.Contains(Pattern)))
       {
-        output.Error(Message, url: Link);
+        output.Error(Message, Link);
       }
     }
   }

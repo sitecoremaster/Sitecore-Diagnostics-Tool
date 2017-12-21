@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Helpers.XPath
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public class XPathSegment

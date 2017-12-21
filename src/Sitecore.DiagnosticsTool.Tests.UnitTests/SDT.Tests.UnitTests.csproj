@@ -57,11 +57,11 @@
     <Reference Include="FluentAssertions.Core, Version=4.19.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ploeh.AutoFixture, Version=3.50.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.3.50.7\lib\net40\Ploeh.AutoFixture.dll</HintPath>
@@ -69,32 +69,32 @@
     <Reference Include="Ploeh.AutoFixture.Xunit2, Version=3.50.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.Xunit2.3.50.7\lib\net45\Ploeh.AutoFixture.Xunit2.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.26\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.104\lib\Sitecore.Diagnostics.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.ConfigBuilder, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.ConfigBuilder.2.0.1.26\lib\Sitecore.Diagnostics.ConfigBuilder.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.ConfigBuilder, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.ConfigBuilder.2.0.1.104\lib\Sitecore.Diagnostics.ConfigBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.ConfigBuilder.Base, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.ConfigBuilder.Base.2.0.1.26\lib\Sitecore.Diagnostics.ConfigBuilder.Base.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.ConfigBuilder.Base, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.ConfigBuilder.Base.2.0.1.104\lib\Sitecore.Diagnostics.ConfigBuilder.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.26\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.104\lib\Sitecore.Diagnostics.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.26\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.104\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.26\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.104\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Databases, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Databases.2.0.1.26\lib\Sitecore.Diagnostics.InfoService.Client.Databases.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Databases, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Databases.2.0.1.104\lib\Sitecore.Diagnostics.InfoService.Client.Databases.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.26\lib\Sitecore.Diagnostics.Net.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.104\lib\Sitecore.Diagnostics.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.26, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.26\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.104\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
@@ -127,7 +127,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
-    <Compile Include="General\DiagCodeTests.cs" />
     <Compile Include="Search\ContentSearchUpdateStrategiesTests.cs" />
     <Compile Include="General\Server\CounterCategoryDoesNotExistTests.cs" />
     <Compile Include="General\Server\DiskSpaceTests.cs" />
@@ -139,6 +138,9 @@
     <Compile Include="General\Server\MaximumWorkerProcessesTests.cs" />
     <Compile Include="General\Performance\MediaLinkPrefixContainsTildeTests.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditorTests.cs" />
+    <Compile Include="Search\ContentSearchConfigurationsDuplicatesTests.cs" />
+    <Compile Include="Search\ObsoleteLuceneConfigurationTests.cs" />
+    <Compile Include="Solution\ConsistentConfigurationTest.cs" />
     <Compile Include="Solution\SamePrivateAndSharedSessionTests.cs" />
     <Compile Include="Solution\SharedSessionTests.cs" />
     <Compile Include="Solution\PublishingInstanceTest.cs" />

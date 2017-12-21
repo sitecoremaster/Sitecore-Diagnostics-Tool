@@ -3,10 +3,13 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   // Reviewed: OK (2017-06-13, looks valid)
@@ -17,12 +20,21 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
+    protected const string VersionInconsistencyMessage = "Assembly version inconsistency detected";
+
+    protected const string SizeInconsistencyMessage = "Assembly size inconsistency detected";
+
+    protected const string AssemblyIsMissingMessage = "Assembly presence inconsistency detected";
+
     public override void Process(ITestResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
       var actualAssemblies = data.SitecoreInfo.Assemblies;
       var defaultAssemblies = data.SitecoreInfo.SitecoreDefaults.Assemblies;
+
+      var missing = new List<string>();
+      var version = new List<string>();
 
       foreach (var defaultAssembly in defaultAssemblies.Values)
       {
@@ -42,7 +54,7 @@
         var key = actualAssemblies.Keys.FirstOrDefault(x => fileName.Equals(x, StringComparison.OrdinalIgnoreCase)) ?? actualAssemblies.Keys.FirstOrDefault(x => fileName.EndsWith(x, StringComparison.OrdinalIgnoreCase));
         if (key == null)
         {
-          output.Error(GetAssemblyIsMissingMessage(fileName));
+          missing.Add(GetAssemblyIsMissingMessage(fileName));
           continue;
         }
 
@@ -52,7 +64,7 @@
         var expectedVersion = defaultAssembly.FileVersion;
         if (!string.Equals(expectedVersion, actualAssembly.FileVersion, StringComparison.Ordinal))
         {
-          output.Warning(GetVersionInconsistencyMessage(actualAssembly, expectedVersion));
+          version.Add(GetVersionInconsistencyMessage(actualAssembly, expectedVersion));
 
           continue;
         }
@@ -65,11 +77,24 @@
           continue;
         }
 
-        var expectedSize = defaultAssembly.FileSize;
-        if (expectedSize != actualSize)
-        {
-          output.Warning(GetSizeInconsistencyMessage(actualAssembly, expectedSize));
-        }
+        // disabled because currently SIS returns invalid values for defaultAssembly.FileSize
+        // var expectedSize = defaultAssembly.FileSize;
+        // if (expectedSize != actualSize)
+        // {
+        //   output.Warning(GetSizeInconsistencyMessage(actualAssembly, expectedSize));
+        // }
+      }
+
+      if (missing.Any())
+      {
+        missing.Sort();
+        output.Error(AssemblyIsMissingMessage, null, new DetailedMessage(new BulletedList(missing)));
+      }
+
+      if (version.Any())
+      {
+        version.Sort();
+        output.Warning(VersionInconsistencyMessage, null, new DetailedMessage(new BulletedList(version)));
       }
     }
 
@@ -79,7 +104,7 @@
       Assert.ArgumentNotNull(assembly, nameof(assembly));
       Assert.ArgumentNotNull(formalVersion, nameof(formalVersion));
 
-      return $"Assembly version inconsistency detected for {assembly.FileName} (actual: {assembly.FileVersion}, expected: {formalVersion}).";
+      return $"{assembly.FileName} (actual: {assembly.FileVersion}, expected: {formalVersion}).";
     }
 
     [NotNull]
@@ -88,7 +113,7 @@
       Assert.ArgumentNotNull(assembly, nameof(assembly));
       Assert.ArgumentNotNull(formalSize, nameof(formalSize));
 
-      return $"Assembly size inconsistency detected for {assembly.FileName} (actual: {assembly.FileSize} bytes, expected: {formalSize} bytes).";
+      return $"{assembly.FileName} (actual: {assembly.FileSize} bytes, expected: {formalSize} bytes).";
     }
 
     [NotNull]
@@ -96,7 +121,7 @@
     {
       Assert.ArgumentNotNull(fileName, nameof(fileName));
 
-      return $"Assembly presence inconsistency detected for {fileName.Trim()} (assembly is missing).";
+      return $"{fileName.Trim()} (assembly is missing).";
     }
   }
 }

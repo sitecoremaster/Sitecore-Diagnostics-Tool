@@ -7,6 +7,7 @@
   using Sitecore.DiagnosticsTool.Tests.General.Health;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class ErrorWhenPublishingTheCheckInItemTests : ErrorWhenPublishingTheCheckInItem
@@ -18,7 +19,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext())
         .Process(this)
@@ -32,7 +33,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
         })
         .AddResource(new LoggingContext(LogHelperEx.Parse(LogLevel.Error, @"Cannot find dictionary domain for the dictionaty entry '/sitecore/system/Settings/Workflow/Check in'('{49D654D8-19C1-4DFC-BE0F-7A7D2314340F}')")))
         .Process(this)

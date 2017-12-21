@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.Resources;
@@ -10,7 +11,8 @@
   {
     #region Constructors
 
-    public ConfigurationPageViewModel(DataSource source) : base(source)
+    public ConfigurationPageViewModel(DataSource source)
+      : base(source)
     {
     }
 
@@ -25,7 +27,9 @@
     #region Properties
 
     public override string DisplayName => Strings.PageDisplayName_Configuration;
+
     public override string Icon => Strings.Icon_Configuration;
+
     public override string Title => Strings.PageTitle_Configuration;
 
     public List<CategorySourceModel> Categories
@@ -36,6 +40,7 @@
         {
           return categories;
         }
+
         categories = new List<CategorySourceModel>();
 
         foreach (var category in Category.GetAll())
@@ -80,6 +85,7 @@
     public class CategorySourceModel
     {
       public Category Category { get; set; }
+
       public bool IsSelected { get; set; }
     }
 

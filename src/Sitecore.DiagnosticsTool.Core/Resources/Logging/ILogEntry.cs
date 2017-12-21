@@ -1,6 +1,7 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Logging
 {
   using System;
+
   using JetBrains.Annotations;
 
   public interface ILogEntry

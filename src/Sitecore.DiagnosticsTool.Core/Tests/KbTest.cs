@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   /// <summary>
@@ -41,11 +43,11 @@
           message = message.Substring(0, 1).ToUpper() + message.Substring(1);
         }
 
-        output.Warning(string.Format(ErrorFormatWithMessage, KbNumber, message, KbName), url: Link);
+        output.Warning(string.Format(ErrorFormatWithMessage, KbNumber, message, KbName), Link);
       }
       else
       {
-        output.Warning(string.Format(ErrorFormat, KbNumber), url: Link);
+        output.Warning(string.Format(ErrorFormat, KbNumber), Link);
       }
     }
   }

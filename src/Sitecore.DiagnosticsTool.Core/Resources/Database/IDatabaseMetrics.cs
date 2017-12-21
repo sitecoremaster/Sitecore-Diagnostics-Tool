@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Resources.Database
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
 
   public interface IDatabaseMetrics

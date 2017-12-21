@@ -6,6 +6,7 @@
   using System.ComponentModel;
   using System.Linq;
   using System.Windows.Input;
+
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
 
@@ -18,10 +19,13 @@
     #region Fields
 
     private RelayCommand cancelCommand;
-    private DataSource source;
+
     private WizardPageViewModelBase currentPage;
+
     private RelayCommand moveNextCommand;
+
     private RelayCommand movePreviousCommand;
+
     private ReadOnlyCollection<WizardPageViewModelBase> pages;
 
     #endregion // Fields
@@ -30,7 +34,7 @@
 
     public MainWindowViewModel()
     {
-      source = new DataSource();
+      Source = new DataSource();
       CurrentPage = Pages[0];
     }
 
@@ -42,9 +46,9 @@
 
     public ICommand CancelCommand => cancelCommand ?? (cancelCommand = new RelayCommand(CancelOrder));
 
-    private void CancelOrder()
+    private void CancelOrder(object o)
     {
-      source = null;
+      Source = null;
       OnRequestClose();
     }
 
@@ -63,9 +67,10 @@
     }
 
     private bool CanMoveToPreviousPage => 0 < CurrentPageIndex;
+
     public bool IsNextButtonEnabled { get; set; }
 
-    private void MoveToPreviousPage()
+    private void MoveToPreviousPage(object o)
     {
       if (CanMoveToPreviousPage)
       {
@@ -112,7 +117,7 @@
       }
     }
 
-    private void MoveToNextPage()
+    private void MoveToNextPage(object o)
     {
       if (!CanMoveToNextPage)
       {
@@ -144,7 +149,7 @@
 
     #region Properties
 
-    public DataSource Source => source;
+    public DataSource Source { get; private set; }
 
     public WizardPageViewModelBase CurrentPage
     {
@@ -178,6 +183,7 @@
     }
 
     public bool IsOnLastPage => CurrentPageIndex == Pages.Count - 1;
+
     public bool IsOnFirstPage => CurrentPageIndex == 0;
 
     public ReadOnlyCollection<WizardPageViewModelBase> Pages
@@ -205,21 +211,22 @@
 
     private void CreatePages()
     {
-      var welcome = new WelcomePageViewModel(source);
-      var resources = new ResourcesPageViewModel(source);
+      var welcome = new WelcomePageViewModel(Source);
+      var resources = new ResourcesPageViewModel(Source);
+
       //var configuration = new ConfigurationPageViewModel(source);
-      var diagnostics = new DiagnosticsPageViewModel(source);
-      var results = new ResultsPageViewModel(source);
+      var diagnostics = new DiagnosticsPageViewModel(Source);
+      var results = new ResultsPageViewModel(Source);
 
       var pages = new List<WizardPageViewModelBase>
       {
         welcome,
         resources,
+
         //configuration,
         diagnostics,
         results
       };
-
 
       this.pages = new ReadOnlyCollection<WizardPageViewModelBase>(pages);
     }
@@ -232,6 +239,7 @@
         {
           return Pages.IndexOf(CurrentPage);
         }
+
         return -1;
       }
     }

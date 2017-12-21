@@ -1,8 +1,11 @@
 ﻿namespace Sitecore.DiagnosticsTool.Resources.SitecoreInformation.UnitTests
 {
   using System.Xml;
+
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
 

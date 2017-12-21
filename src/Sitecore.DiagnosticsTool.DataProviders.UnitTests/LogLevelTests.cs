@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Resources.SitecoreInformation.UnitTests
 {
   using FluentAssertions;
+
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
 
   [TestClass]

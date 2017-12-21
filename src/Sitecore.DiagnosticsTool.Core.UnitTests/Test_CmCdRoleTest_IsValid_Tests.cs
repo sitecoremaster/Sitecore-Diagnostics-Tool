@@ -2,11 +2,15 @@
 {
   using System;
   using System.Collections.Generic;
+  using System.Linq;
+
   using FluentAssertions;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Tests;
   using Sitecore.DiagnosticsTool.TestRunner;
+
   using Xunit;
 
   public class Test_CmCdRoleTest_IsValid_Tests
@@ -15,9 +19,9 @@
     public void CmCdRoleTest_ContentDelivery_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentDelivery }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
@@ -26,9 +30,9 @@
     public void CmCdRoleTest_ContentMangement_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentManagement }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
@@ -37,9 +41,9 @@
     public void CmCdRoleTest_Processing_IsValid_False()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.Processing, }, ver, new TestResourceContext())
         .Should()
         .BeFalse();
     }
@@ -48,20 +52,23 @@
     public void CmCdRoleTest_ContentManagement_Processing_IsValid_True()
     {
       var sut = new CmCdRoleTest();
-      var ver = new SitecoreVersion(8, 0, 0, 141212);
+      var ver = new SitecoreVersion(8, 0, 0);
 
-      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext(""))
+      sut.IsActual(new[] { ServerRole.ContentManagement, ServerRole.Processing, }, ver, new TestResourceContext())
         .Should()
         .BeTrue();
     }
 
     private class CmCdRoleTest : Test
     {
-      public override string Name { get; } = nameof(ServerRoles);
+      public override string Name { get; } = "CmCdTest";
 
       public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-      public override IEnumerable<ServerRole> ServerRoles { get; } = new[] { ServerRole.ContentManagement, ServerRole.ContentDelivery };
+      protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
+      {
+        return roles.Contains(ServerRole.ContentManagement) || roles.Contains(ServerRole.ContentDelivery);
+      }
 
       public override void Process(ITestResourceContext data, ITestOutputContext output)
       {

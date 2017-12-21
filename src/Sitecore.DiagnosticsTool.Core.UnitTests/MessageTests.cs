@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.UnitTests
 {
   using Sitecore.DiagnosticsTool.Core.Output;
+
   using Xunit;
 
   public class MessageTests
@@ -46,17 +47,20 @@
               new Container(
                 new Text("L3table"),
                 new Table(
-                  new TableRow {
+                  new TableRow
+                  {
                     { "Header1", "H1-1" },
                     { "Header3", "H3-1" },
                     { "Header4", "H4-1" },
                   },
-                  new TableRow {
+                  new TableRow
+                  {
                     { "Header2", "H2-2" },
                     { "Header1", "H1-2" },
                     { "Header3", "H3-2" },
                   },
-                  new TableRow {
+                  new TableRow
+                  {
                     { "Header2", "H2-2" },
                   }
                 )

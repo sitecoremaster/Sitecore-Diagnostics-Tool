@@ -3,7 +3,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using System.Collections.Generic;
   using System.Linq;
   using System.Reflection;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Tests;
 

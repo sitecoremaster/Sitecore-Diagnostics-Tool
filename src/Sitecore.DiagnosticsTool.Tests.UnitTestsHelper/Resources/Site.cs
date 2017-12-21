@@ -5,6 +5,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
   using System.IO;
   using System.Linq;
   using System.Net;
+
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 
   public class Site : ISite

@@ -3,6 +3,7 @@
   using System.Collections.Generic;
   using System.ComponentModel;
   using System.Runtime.CompilerServices;
+
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   public class SourcePackageModel : INotifyPropertyChanged
@@ -10,6 +11,7 @@
     #region Properties
 
     public List<ServerRole> Roles { get; set; }
+
     public string Path { get; set; }
 
     #endregion

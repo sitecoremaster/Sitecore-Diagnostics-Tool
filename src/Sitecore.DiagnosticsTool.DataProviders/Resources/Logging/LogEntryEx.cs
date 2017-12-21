@@ -1,12 +1,16 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Logging
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.LogAnalyzer.Models;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Logging;
+
+  using LogLevel = Sitecore.DiagnosticsTool.Core.Resources.Logging.LogLevel;
 
   public class LogEntryEx : ILogEntry
   {
@@ -15,14 +19,14 @@
     {
       Thread = string.Empty;
       Date = DateTime.MinValue;
-      Level = Core.Resources.Logging.LogLevel.All;
+      Level = LogLevel.All;
       Message = string.Empty;
       Exception = null;
       RawText = string.Empty;
     }
 
     [PublicAPI]
-    public LogEntryEx(DateTime moment, Core.Resources.Logging.LogLevel level, [NotNull] string message, ExceptionInfo exception)
+    public LogEntryEx(DateTime moment, LogLevel level, [NotNull] string message, ExceptionInfo exception)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
@@ -53,7 +57,7 @@
 
     public DateTime Date { get; internal set; }
 
-    public Core.Resources.Logging.LogLevel Level { get; internal set; }
+    public LogLevel Level { get; internal set; }
 
     public string Message { get; internal set; }
 
@@ -71,29 +75,29 @@
       return new ExceptionInfo(TypeRef.Parse(error.Exception), error.Message, error.StackTrace, ParseException(error.NestedException));
     }
 
-    private static Core.Resources.Logging.LogLevel ParseLevel(Diagnostics.LogAnalyzer.Models.LogLevel level)
+    private static LogLevel ParseLevel(Diagnostics.LogAnalyzer.Models.LogLevel level)
     {
       Assert.ArgumentNotNullOrEmpty(level.ToString(), nameof(level));
 
       switch (level.ToString())
       {
         case "FATAL":
-          return Core.Resources.Logging.LogLevel.Fatal;
+          return LogLevel.Fatal;
 
         case "CRITICAL":
-          return Core.Resources.Logging.LogLevel.Critical;
+          return LogLevel.Critical;
 
         case "ERROR":
-          return Core.Resources.Logging.LogLevel.Error;
+          return LogLevel.Error;
 
         case "WARN":
-          return Core.Resources.Logging.LogLevel.Warn;
+          return LogLevel.Warn;
 
         case "INFO":
-          return Core.Resources.Logging.LogLevel.Info;
+          return LogLevel.Info;
 
         case "DEBUG":
-          return Core.Resources.Logging.LogLevel.Debug;
+          return LogLevel.Debug;
 
         default:
           throw new NotImplementedException($"The {level} type is not implemented to be recognized");

@@ -1,7 +1,9 @@
 namespace Sitecore.DiagnosticsTool.TestRunner.Base
 {
   using System;
+
   using JetBrains.Annotations;
+
   using Sitecore.DiagnosticsTool.Core.Output;
 
   public interface ITestResult

@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation
 {
   using System.Collections.Generic;
+
   using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;

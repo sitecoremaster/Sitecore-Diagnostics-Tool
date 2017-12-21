@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database.Schema
 {
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public sealed class Column : Sitecore.Diagnostics.Database.Schema.Column

@@ -2,7 +2,9 @@
 {
   using System;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -33,7 +35,6 @@
     public void Warning(ShortMessage message, Uri url, DetailedMessage detailed)
     {
       Assert.ArgumentNotNull(message, nameof(message));
-
 
       AddResult(TestResultState.Warning, url, message, detailed);
     }

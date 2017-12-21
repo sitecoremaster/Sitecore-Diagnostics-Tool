@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Performance
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.TestRunner;
@@ -9,6 +10,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class CompilationDebugDisabledTests : CompilationDebugDisabled
@@ -20,7 +22,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().TryParse("<configuration />")
         })
         .Process(this)
@@ -30,7 +32,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath)
         })
         .Process(this)
@@ -40,7 +42,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath + "[@debug='false']")
         })
         .Process(this)
@@ -50,7 +52,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create(XPath + "[@debug='true']")
         })
         .Process(this)

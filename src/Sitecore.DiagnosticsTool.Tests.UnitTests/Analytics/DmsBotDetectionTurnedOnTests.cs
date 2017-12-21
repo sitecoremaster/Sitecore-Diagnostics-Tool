@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.Analytics
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -8,6 +9,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class DmsBotDetectionTurnedOnTests : DmsBotDetectionTurnedOn
@@ -20,32 +22,42 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore")
         })
         .Process(this)
         .Done();
+    }
 
+    [Fact]
+    public void Test1()
+    {
+      UnitTestContext
+          .Create(this)
+          .AddResource(new SitecoreInstance
+          {
+            Version = new SitecoreVersion(8, 2, 2),
+            Configuration = new XmlDocument()
+              .Create("/configuration/sitecore/settings/setting[@name='Xdb.Enabled' and @value='true']") // indicate xDB enabled
+              .Add("/configuration/sitecore", "pipelines/createTracker") // indicate xDB enabled
+              .Add("/configuration/sitecore", "analyticsExcludeRobots") // indicate exclude robots enabled
+          })
+          .Process(this)
+          .Done();
+
+    }
+
+    [Fact]
+    public void Test2()
+    {
       UnitTestContext
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()
-            .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']") // indicate DMS enabled
-            .Add("/configuration/sitecore", "pipelines/startTracking") // indicate DMS enabled
-            .Add("/configuration/sitecore", "analyticsExcludeRobots") // indicate exclude robots enabled
-        })
-        .Process(this)
-        .Done();
-
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
-        {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
-          Configuration = new XmlDocument()
-            .Create("/configuration/sitecore/settings/setting[@name='Analytics.Enabled' and @value='true']")
+            .Create("/configuration/sitecore/settings/setting[@name='Xdb.Enabled' and @value='true']")
+            .Add("/configuration/sitecore", "pipelines/createTracker") // indicate xDB enabled
         })
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, ErrorMessage))

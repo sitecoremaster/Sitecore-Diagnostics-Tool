@@ -2,10 +2,13 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   /// <summary>
   ///   Abstract class that implements ITest interface to simplify test development.
@@ -23,12 +26,6 @@
     public abstract IEnumerable<Category> Categories { get; }
 
     /// <summary>
-    ///   The list of server roles the Sitecore instance serves for.
-    /// </summary>
-    [NotNull]
-    public virtual IEnumerable<ServerRole> ServerRoles => new ServerRole[0];
-
-    /// <summary>
     ///   The method indicates if this specific test is actual for Sitecore version of the instance under test.
     /// </summary>
     public virtual bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
@@ -37,15 +34,20 @@
       Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
       Assert.ArgumentNotNull(data, nameof(data));
 
-      return IsActual(roles) && IsActual(sitecoreVersion) && IsActual(data);
+      return IsActual(roles) && IsActual(sitecoreVersion) && IsActual(data.SitecoreInfo.ModulesInformation.InstalledModules) && IsActual(data);
     }
 
     protected virtual bool IsActual([NotNull] IReadOnlyCollection<ServerRole> roles)
     {
-      return !ServerRoles.Any() || ServerRoles.Any(x => roles.Any(z => x.HasFlag(z)));
+      return true;
     }
 
     protected virtual bool IsActual([NotNull] ISitecoreVersion sitecoreVersion)
+    {
+      return true;
+    }
+
+    protected virtual bool IsActual(IReadOnlyDictionary<string, IReleaseInfo> modules)
     {
       return true;
     }

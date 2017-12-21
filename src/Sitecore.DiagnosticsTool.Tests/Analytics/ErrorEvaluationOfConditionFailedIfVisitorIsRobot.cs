@@ -2,7 +2,9 @@
 {
   using System.Collections.Generic;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -22,7 +24,7 @@
     {
       return sitecoreVersion.MajorMinorInt >= 75;
     }
-    
+
     protected override bool IsActual(ITestResourceContext data)
     {
       return data.SitecoreInfo.IsAnalyticsEnabled;

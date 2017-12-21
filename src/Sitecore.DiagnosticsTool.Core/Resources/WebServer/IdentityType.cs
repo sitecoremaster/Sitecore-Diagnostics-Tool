@@ -3,9 +3,13 @@
   public enum IdentityType
   {
     LocalSystem,
+
     LocalService,
+
     NetworkService,
+
     SpecificUser,
+
     ApplicationPoolIdentity
   }
 }

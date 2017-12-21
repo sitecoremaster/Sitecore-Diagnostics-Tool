@@ -1,47 +1,34 @@
 namespace Sitecore.DiagnosticsTool.Core.Resources.Configuration
 {
-  using System;
-  using System.IO;
+  using System.Diagnostics;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Extensions;
 
+  [DebuggerDisplay("{" + nameof(FilePath) + "}")]
   public class ConfigurationFile
   {
+    [CanBeNull]
+    private XmlDocument _Configuration;
+
     [NotNull]
     public string FilePath { get; }
 
-    private XmlDocument _Configuration;
+    [NotNull]
+    public string RawText { get; }
 
-    private string _RawText;
-
-    public ConfigurationFile([NotNull] string filePath)
+    public ConfigurationFile([NotNull] string filePath, [NotNull] string rawText)
     {
       Assert.ArgumentNotNullOrEmpty(filePath, nameof(filePath));
 
       FilePath = filePath;
+      RawText = rawText;
     }
 
-    /// <summary>
-    ///   The raw text stored in the file.
-    /// </summary>
     [NotNull]
-    [PublicAPI]
-    public string RawText
-    {
-      get
-      {
-        return _RawText ?? (_RawText = _Configuration.With(x => x.OuterXml) ?? File.ReadAllText(FilePath));
-      }
-    }
-
-    /// <summary>
-    ///   The XmlDocument pared from the file's raw text.
-    /// </summary>
-    /// <exception cref="InvalidOperationException">Failed to load XML file: {0}</exception>
-    [NotNull]
-    [PublicAPI]
-    public XmlDocument Configuration => _Configuration ?? (_Configuration = new XmlDocument().TryLoadFile(FilePath)).IsNotNull(nameof(_Configuration));
+    public XmlDocument Configuration => _Configuration ?? (_Configuration = new XmlDocument().TryParse(RawText));
   }
 }

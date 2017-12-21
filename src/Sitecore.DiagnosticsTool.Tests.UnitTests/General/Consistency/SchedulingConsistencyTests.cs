@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Consistency
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -8,6 +9,7 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class SchedulingConsistencyTests : SchedulingConsistency
@@ -19,7 +21,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling")
         })
         .Process(this) // missing frequency - that's okay, default value is used               
@@ -33,7 +35,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency")
         })
         .Process(this)
@@ -47,7 +49,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore/scheduling/frequency", "ololo")
         })
         .Process(this)
@@ -65,7 +67,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
         })
         .Process(this)
@@ -83,7 +85,7 @@
         .Create(this)
         .AddResource(new SitecoreInstance
         {
-          Version = new SitecoreVersion(8, 2, 2, 161221),
+          Version = new SitecoreVersion(8, 2, 2),
           Configuration = configuration
         })
         .Process(this)

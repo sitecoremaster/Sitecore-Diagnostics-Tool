@@ -2,10 +2,11 @@
 {
   using System;
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Categories;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
@@ -119,6 +120,7 @@
               Actual = actualColumn.Type,
               IsError = true
             },
+
             // TODO: enable that when SSPG schema matches SDT/SIS
             //new Property
             //{
@@ -148,6 +150,7 @@
               Actual = actualColumn.ForeignKey,
               IsError = false
             }
+
             // TODO: enable that when SSPG schema matches SDT/SIS
             //new Property
             //{

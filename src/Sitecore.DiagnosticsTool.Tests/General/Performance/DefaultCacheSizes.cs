@@ -4,15 +4,15 @@
   using System.Linq;
 
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;
-  using Sitecore.DiagnosticsTool.Core.Tests;
-  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
-  using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
+  using Sitecore.DiagnosticsTool.Core.Tests;
 
   // Reviewed: OK (2017-06-13, looks valid)
   [UsedImplicitly]
@@ -41,6 +41,11 @@
       var belowDefaultCachesPerDatabase = new Map<Map<CacheSizeDetails>>();
       foreach (var database in info.GetDatabases().Values)
       {
+        if (database.Name == "filesystem")
+        {
+          continue;
+        }
+
         var defaultDatabase = defaults.GetDatabases().TryGetValue(database.Name);
         if (defaultDatabase == null)
         {
@@ -52,16 +57,16 @@
 
       if (defaultCachesPerDatabase.Any())
       {
-        var message = GetMessage(defaultCachesPerDatabase, $"One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation:");
+        var message = "One or several Sitecore caches are not tuned up and use default settings which may lead to performance degradation";
 
-        output.Warning(message);
+        output.Warning(message, detailed: GetMessage(defaultCachesPerDatabase));
       }
 
       if (belowDefaultCachesPerDatabase.Any())
       {
-        var message = GetMessage(belowDefaultCachesPerDatabase, $"One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation:");
+        var message = "One or several Sitecore caches are use custom configuration which is below the minimum recommended values (set up by default) which may lead to performance degradation.";
 
-        output.Error(message);
+        output.Error(message, detailed: GetMessage(belowDefaultCachesPerDatabase));
       }
     }
 
@@ -74,10 +79,12 @@
       foreach (var cache in database.Caches.Values)
       {
         var cacheSize = cache.Size;
-        output.Debug($"Database {databaseName} {cache.Name} cache size: {cacheSize}");
-
         var defaultSize = defaultDatabase.Caches[cache.Name].Size;
-        Assert.IsNotNull(defaultSize, "default size cannot be null");
+        if (defaultSize == null)
+        {
+          // custom cache, or filesystem database
+          continue;
+        }
 
         if (cacheSize == null)
         {
@@ -100,7 +107,7 @@
             var cacheSizeDetails = new CacheSizeDetails
             {
               Value = cacheSize,
-              Comment = "which is default"
+              Comment = "cache size is default"
             };
 
             databaseCaches.Add(cache.Name, cacheSizeDetails);
@@ -110,7 +117,7 @@
             var cacheSizeDetails = new CacheSizeDetails
             {
               Value = cacheSize,
-              Comment = $"which is below than default: {defaultSize.Value}"
+              Comment = $"cache size is below than default: {defaultSize.Value}"
             };
 
             belowDefaultCaches.Add(cache.Name, cacheSizeDetails);
@@ -129,20 +136,22 @@
       }
     }
 
-    protected ShortMessage GetMessage(Map<Map<CacheSizeDetails>> result, string comment)
+    protected DetailedMessage GetMessage(Map<Map<CacheSizeDetails>> result)
     {
-      var databases = result
+      var rows = result
         .Where(x => x.Value.Any())
-        .Select(x => new Container(
-          new BoldText(x.Key),
-          new Text($" database caches need tuning:"),
-          BulletedList.Create(x.Value, c => $"{c.Key} = {c.Value.Value.Value} (\"{c.Value.Value.Text}\", {c.Value.Comment})")))
+        .SelectMany(d =>
+          d.Value.Select(c =>
+            new TableRow(
+              new Pair("Cache", $"{d.Key}[{c.Key}]"),
+              new Pair("Size", c.Value.Value.Value.ToString()),
+              new Pair("Comment", c.Value.Comment)
+            )))
         .ToArray();
 
-      var message = new ShortMessage(
-        new Text(comment),
-        new BulletedList(databases),
-        new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
+      var message = new DetailedMessage(
+          new Table(rows),
+          new Text("Read more in CMS Performance Tuning Guide on how to adjust cache settings."));
 
       return message;
     }

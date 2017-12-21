@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.UnitTests.General.Consistency
 {
   using System.Xml;
+
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.TestRunner;
   using Sitecore.DiagnosticsTool.TestRunner.Base;
@@ -8,11 +9,13 @@
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context;
   using Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources;
+
   using Xunit;
 
   public class SwitchingBetweenSheerUiAndSpeakModesInExperienceEditorTests : SwitchingBetweenSheerUiAndSpeakModesInExperienceEditor
   {
     private const string ProcessorFormat = "processor[@type='{0}']";
+
     private const string ExtenderFormat = "pageextender[@type='{0}']";
 
     [Fact]
@@ -78,7 +81,7 @@
       return new SitecoreInstance
       {
         Configuration = doc,
-        Version = new SitecoreVersion(8, 0, 0, 141212)
+        Version = new SitecoreVersion(8, 0, 0)
       };
     }
 
@@ -103,7 +106,7 @@
       return new SitecoreInstance
       {
         Configuration = doc,
-        Version = new SitecoreVersion(8, 0, 0, 141212)
+        Version = new SitecoreVersion(8, 0, 0)
       };
     }
 
@@ -119,7 +122,7 @@
     {
       return new SitecoreInstance
       {
-        Version = new SitecoreVersion(7, 5, 0, 141003)
+        Version = new SitecoreVersion(7, 5, 0)
       };
     }
   }

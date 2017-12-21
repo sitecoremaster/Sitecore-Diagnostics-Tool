@@ -4,7 +4,9 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
   using System.Collections.Generic;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Configuration;

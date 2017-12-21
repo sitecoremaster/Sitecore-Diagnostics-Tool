@@ -1,7 +1,9 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.General.Health
 {
   using System.Collections.Generic;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -79,11 +81,11 @@
 
       if (ratio < RateHigh)
       {
-        output.Warning(message, url: Link);
+        output.Warning(message, Link);
         return;
       }
 
-      output.Error(message, url: Link);
+      output.Error(message, Link);
     }
   }
 }

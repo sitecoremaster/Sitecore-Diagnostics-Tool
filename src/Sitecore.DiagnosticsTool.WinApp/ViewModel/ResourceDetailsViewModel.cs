@@ -10,7 +10,9 @@
   using System.Windows.Controls.Primitives;
   using System.Windows.Input;
   using System.Windows.Media;
+
   using Microsoft.Win32;
+
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -26,7 +28,9 @@
     #region Fields
 
     private string packagePath;
+
     private List<ServerRole> serverRoles = new List<ServerRole>();
+
     public ITestResourceContext Context { get; set; }
 
     #endregion
@@ -37,7 +41,7 @@
     {
       get
       {
-        return new RelayCommand(() => { View.SourcePackages.Remove(View); }, () => true);
+        return new RelayCommand(_ => { View.SourcePackages.Remove(View); }, () => true);
       }
     }
 
@@ -45,12 +49,13 @@
     {
       get
       {
-        return new RelayCommand(() =>
+        return new RelayCommand(_ =>
         {
           if (!IsPackageLoaded)
           {
             return;
           }
+
           CreatePackageDetailsPopup();
         });
       }
@@ -263,21 +268,28 @@
     {
       get
       {
-        return new RelayCommand(() =>
+        return new RelayCommand(param =>
           {
-            var openFileDialog = new OpenFileDialog
+            var path = param as string;
+            if (string.IsNullOrEmpty(path))
             {
-              Filter = "SSPG package|*.zip"
-            };
-            if (openFileDialog.ShowDialog() != true)
-            {
-              return;
+              var openFileDialog = new OpenFileDialog
+              {
+                Filter = "SSPG package|*.zip"
+              };
+
+              if (openFileDialog.ShowDialog() != true)
+              {
+                return;
+              }
+
+              path = openFileDialog.FileName;
             }
 
             try
             {
-              InitilizePackgeDetails(openFileDialog.FileName);
-              PackagePath = openFileDialog.FileName;
+              InitilizePackgeDetails(path);
+              PackagePath = path;
             }
             catch (Exception ex)
             {
@@ -298,7 +310,7 @@
     {
       get
       {
-        return new RelayCommand(() => { ServerRoles = View.ServerRolesCheckList.SelectedItems.Cast<string>().Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r)).ToList(); },
+        return new RelayCommand(_ => { ServerRoles = View.ServerRolesCheckList.SelectedItems.Cast<string>().Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r)).ToList(); },
           () => true);
       }
     }
@@ -308,8 +320,11 @@
     #region Properties
 
     public ResourceDetailsPageView View { get; set; }
+
     public bool IsSitecoreVersionValid => !string.IsNullOrEmpty(SitecoreVersion) && !SitecoreVersion.Equals(Strings.DataIsNotAvailable, StringComparison.OrdinalIgnoreCase);
+
     public bool IsPackageLoaded => !string.IsNullOrEmpty(PackagePath);
+
     public bool IsResourceValid => IsPackageLoaded && ServerRoles != null && ServerRoles.Any() && IsSitecoreVersionValid;
 
     public string PackagePath
@@ -353,7 +368,7 @@
       {
         var testRunner = new TestRunner();
         var assemblyName = Assembly.GetExecutingAssembly().GetName();
-        Context = testRunner.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null, null, $"{assemblyName.Name}, {assemblyName.Version.ToString()}"));
+        Context = testRunner.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null));
 
         try
         {

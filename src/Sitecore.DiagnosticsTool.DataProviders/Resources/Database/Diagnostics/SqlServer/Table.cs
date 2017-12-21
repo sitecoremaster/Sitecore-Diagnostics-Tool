@@ -5,9 +5,13 @@
   public class Table
   {
     public string Name { get; set; }
+
     public List<Column> Columns { get; set; }
+
     public List<Index> Indexes { get; set; }
+
     public long RowCount { get; set; }
+
     public double DataSpaceUsed { get; set; }
   }
 }

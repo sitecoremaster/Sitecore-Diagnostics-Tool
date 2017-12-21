@@ -6,7 +6,9 @@
   using System.Data.SqlClient;
   using System.Globalization;
   using System.Linq;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
 
   public class Database
@@ -28,9 +30,11 @@
     }
 
     public string Name { get; set; }
+
     public string Key { get; set; }
 
     public List<Table> Tables { get; set; }
+
     public List<StoredProcedure> StoredProcedures { get; set; }
 
     private void InitializeTables()
@@ -380,9 +384,11 @@
                 .Select(field => string.Concat("\"", field.Replace("\"", "\"\""), "\""))
                 .ToList();
             }
+
             content.Add("ColumnValues", columnValues);
           }
         }
+
         return content;
       }
       catch

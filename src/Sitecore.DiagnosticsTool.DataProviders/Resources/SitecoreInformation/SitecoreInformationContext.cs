@@ -5,7 +5,9 @@
   using System.IO;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Logging;
@@ -18,11 +20,13 @@
   {
     private static readonly IServiceClient _DefaultServiceClient = new ServiceClient();
 
-    public SitecoreInformationContext() : base(_DefaultServiceClient)
+    public SitecoreInformationContext()
+      : base(_DefaultServiceClient)
     {
     }
 
-    public SitecoreInformationContext(IServiceClient client) : base(client)
+    public SitecoreInformationContext(IServiceClient client)
+      : base(client)
     {
     }
 
@@ -89,10 +93,10 @@
 
         Log.Info("Parsing App_Config files");
         var appConfigFiles = Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
-          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file));
+          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));
 
-        Log.Info("Searching for \\App_Config\\Include *.config files");
-        includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Include\\");
+        Log.Info("Searching for \\App_Config\\Sitecore, Modules, Include, Environment *.config files");
+        includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Sitecore\\", "\\App_Config\\Modules\\", "\\App_Config\\Include\\", "\\App_Config\\Environment\\");
       }
 
       var globalAsaxPath = FindFile(rootPath, "global.asax");
@@ -169,7 +173,8 @@
       Assert.ArgumentNotNull(rootPath, nameof(rootPath));
       try
       {
-        var kernel = FindFile(rootPath, "Sitecore.Kernel.dll");
+        // in 9.0 sitecore.kernel.dll is always present in support package, so check Client.dll
+        var kernel = FindFile(rootPath, "Sitecore.Client.dll");
         if (kernel == null)
         {
           var assemblyInfoPath = FindFile(rootPath, "AssemblyInfo.xml");
@@ -221,6 +226,7 @@
         var name = assembly.GetAttribute("name");
         var fileVersion = assembly["fileVersion"].InnerText.Replace(", ", ".");
         var productVersion = assembly["productVersion"].InnerText.Replace(", ", ".");
+
         //TODO: enable that when SSPG saves date in ISO format var lastUpdated = DateTime.Parse(assembly["lastWriteTime"].InnerText);
         //TODO: implement md5
 
@@ -235,12 +241,12 @@
     }
 
     [NotNull]
-    private static Dictionary<string, ConfigurationFile> FilterFiles([NotNull] Dictionary<string, ConfigurationFile> appConfigFiles, [NotNull] string filter)
+    private static Dictionary<string, ConfigurationFile> FilterFiles([NotNull] Dictionary<string, ConfigurationFile> appConfigFiles, [NotNull] params string[] filter)
     {
       Assert.ArgumentNotNull(appConfigFiles, nameof(appConfigFiles));
       Assert.ArgumentNotNull(filter, nameof(filter));
 
-      return appConfigFiles.Where(item => item.Key.StartsWith(filter)).ToDictionary(item => item.Key, item => item.Value);
+      return appConfigFiles.Where(item => filter.Any(f => item.Key.StartsWith(f))).ToDictionary(item => item.Key, item => item.Value);
     }
   }
 }

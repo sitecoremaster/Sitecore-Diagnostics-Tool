@@ -6,16 +6,15 @@
   using System.IO.Compression;
   using System.Linq;
   using System.Xml;
+
   using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.InfoService.Client;
-  using Sitecore.DiagnosticsTool.Core;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Extensions;
-  using Sitecore.DiagnosticsTool.Core.Resources;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
-  using Sitecore.DiagnosticsTool.Core.Resources.Logging;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database;
@@ -27,35 +26,27 @@
   /// </summary>
   public class SupportPackageDataProvider : IDataProvider, IDisposable
   {
-    static readonly ServiceClient client = new ServiceClient();
+    private static readonly ServiceClient client = new ServiceClient();
 
-    private string _InstanceName;
     private IResource[] _Resources;
 
-    [NotNull]
-    public IReadOnlyCollection<ServerRole> Roles { get; }
-
     [CanBeNull]
-    private string DiagCode { get; }
+    public IReadOnlyCollection<ServerRole> Roles { get; }
 
     [CanBeNull]
     private Action<string> Logger { get; }
 
-    public string ApplicationInfo { get; }
-
     [NotNull]
     private string TempFolderPath { get; }
 
-    public SupportPackageDataProvider([NotNull] string packageFilePath, [NotNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger, [CanBeNull] string diagCode, [CanBeNull] string applicationInfo)
+    public SupportPackageDataProvider([NotNull] string packageFilePath, [CanBeNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger)
     {
-      ApplicationInfo = applicationInfo;
       SourcePath = packageFilePath;
       FileName = Path.GetFileName(packageFilePath);
       Roles = roles;
       Logger = logger;
-      DiagCode = diagCode;
       Assert.ArgumentNotNull(packageFilePath, nameof(packageFilePath));
-      
+
       if (File.Exists(packageFilePath))
       {
         TempFolderPath = Path.GetTempFileName() + "dt";
@@ -92,11 +83,7 @@
       var rootPath = GetRootPath();
 
       var instanceName = FileName;
-
-      yield return new SystemContext(DiagCode, ApplicationInfo, FileName);
-
-      yield return new ServerRolesContext(Roles);
-
+      
       Logger?.Invoke("Parsing log files...");
       var logFolder = Path.GetDirectoryName(Directory.GetFiles(TempFolderPath, "log*.txt", SearchOption.AllDirectories).OrderBy(x => x.Length).FirstOrDefault());
 
@@ -156,7 +143,7 @@
           }
         }
       }
-      
+
       if (instanceName == FileName)
       {
         // if log files does not contain instance name - use package metadata
@@ -192,6 +179,8 @@
 
       yield return info;
 
+      yield return new ServerRolesContext(Roles ?? ParseRoles(info));
+
       Logger?.Invoke("Parsing database data...");
       var databases = SitecorePackageDatabaseContext.TryParse(rootPath, info);
       if (databases != null)
@@ -204,6 +193,39 @@
       {
         yield return webServer;
       }
+    }
+
+    private ServerRole[] ParseRoles(SitecoreInformationContext info)
+    {
+      var value = info.Configuration
+        .SelectSingleElement("/configuration/appSettings/add[@key='role:define']")?.GetAttribute("value");
+
+      var roles = new List<ServerRole>();
+      if (!string.IsNullOrEmpty(value))
+      {
+        foreach (var text in value.Split(",;|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+        {
+          var name = text.Trim();
+
+          ServerRole role;
+          if (Enum.TryParse(name, out role))
+          {
+            roles.Add(role);
+          }
+          else if (name.Equals("Standalone", StringComparison.OrdinalIgnoreCase))
+          {
+            return Enum.GetValues(typeof(ServerRole)).Cast<ServerRole>().ToArray();
+          }
+          else
+          {
+            Logger?.Invoke($"Couldn't parse role: {name}");
+          }
+        }
+
+        return roles.ToArray();
+      }
+
+      throw new InvalidOperationException("The roles are not specified in the role:define attribute in the web.config file");
     }
 
     public void UnpackZip([NotNull] string packagePath, [NotNull] string folder)
@@ -244,19 +266,6 @@
       if (SourcePath != TempFolderPath)
       {
         Directory.Delete(TempFolderPath, true);
-      }
-    }
-
-    public string InstanceName
-    {
-      get
-      {
-        return _InstanceName ?? (_InstanceName = GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault()?.InstanceName);
-      }
-
-      set
-      {
-        throw new NotImplementedException();
       }
     }
   }

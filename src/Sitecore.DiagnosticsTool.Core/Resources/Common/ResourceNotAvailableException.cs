@@ -1,12 +1,14 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Resources.Common
 {
   using System;
+
   using Sitecore.Diagnostics.Base;
 
   [Serializable]
   public class ResourceNotAvailableException : Exception
   {
-    public ResourceNotAvailableException(ResourceType type) : base(type + " resource is not available")
+    public ResourceNotAvailableException(ResourceType type)
+      : base(type + " resource is not available")
     {
       Assert.ArgumentNotNull(type, nameof(type));
 

@@ -2,6 +2,7 @@
 {
   using System.Collections.Generic;
   using System.Xml;
+
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -29,19 +30,17 @@
       if (Version != null)
       {
         yield return new SitecoreInformationContext(ServiceClient)
-        {          
+        {
           SitecoreVersionXmlFile = new XmlDocument()
             .Parse($"<information>" +
               $"<version>" +
               $"<major>{Version.Major}</major>" +
               $"<minor>{Version.Minor}</minor>" +
               $"<build>{0}</build>" +
-              $"<revision>{Version.Revision}</revision>" +
+              $"<revision>{ServiceClient.Products["Sitecore CMS"].Versions[Version.MajorMinorUpdate].Revision}</revision>" +
               $"</version><title>Sitecore.NET</title><company>Sitecore Corporation</company><copyright>© Sitecore. All rights reserved.</copyright></information>")
         };
       }
     }
-
-    public string InstanceName { get; set; } = "";
   }
 }

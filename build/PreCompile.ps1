@@ -4,12 +4,12 @@ Param(
     [Parameter(Mandatory=$True)] [string]$BaseVersion,
     [Parameter(Mandatory=$True)] [string]$Shift,
     [Parameter(Mandatory=$True)] [string]$BuildFolder,
-    [Parameter(Mandatory=$True)] [string]$ProjectFile
+    [Parameter(Mandatory=$True)] [string]$ProjectFile,
+    [Parameter(Mandatory=$True)] [string]$Suffix
 )
 
 # normalize paths
 $ProjectFile =  [System.IO.Path]::GetFullPath($ProjectFile)
-$OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
 $BuildFolder = [System.IO.Path]::GetFullPath($BuildFolder)
 
 # get version
@@ -21,6 +21,13 @@ New-Item $BuildFolder -ItemType Directory -Force
 Remove-Item $BuildFolder -Recurse -Force 
 
 Write-Host "> Done. Deleted [$BuildFolder] folder"
+Write-Host ""
+
+# update csproj
+Write-Host "> Updating $ProjectFile"
+(Get-Content $ProjectFile).Replace(".DEV<", "$Suffix<") | Set-Content $ProjectFile
+
+Write-Host "> Done. Updated project file"
 Write-Host ""
 
 # update assemblyinfo.cs
