@@ -8,6 +8,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
+  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
   public sealed class SolutionResourceContext : Dictionary<string, IInstanceResourceContext>, ISolutionResourceContext
@@ -35,6 +36,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         throw new SameNameInstancesAreNotSupportedException(array.First().SitecoreInfo.InstanceName);
       }
     }
+
+    // TODO: rework 
+    public ISitecoreDefaultsContext SitecoreDefaults => Values.First().SitecoreInfo.SitecoreDefaults;
 
     public ISystemContext System { get; }
   }

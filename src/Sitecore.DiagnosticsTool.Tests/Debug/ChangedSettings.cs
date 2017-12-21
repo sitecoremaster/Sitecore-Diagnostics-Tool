@@ -11,7 +11,7 @@
   using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Tests;
 
-  public class ChangedSettings : Test
+  public class ChangedSettings : SolutionTest
   {
     [UsedImplicitly]
     public ChangedSettings()
@@ -22,17 +22,25 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext solution, ITestOutputContext output)
     {
       var rows = new List<TableRow>();
-      foreach (var settingName in data.SitecoreInfo.SitecoreDefaults.GetSettings().Keys)
+      foreach (var settingName in solution.SitecoreDefaults.GetSettings().Keys)
       {
-        var actualValue = data.SitecoreInfo.GetSetting(settingName);
-        var defaultValue = data.SitecoreInfo.SitecoreDefaults.GetSetting(settingName);
-        if (actualValue != defaultValue)
+        var defaultValue = solution.SitecoreDefaults.GetSetting(settingName);
+
+        if (solution.Values.Any(x => x.SitecoreInfo.GetSetting(settingName) != defaultValue))
         {
-          rows.Add(new TableRow(new Pair("Name", settingName), new Pair("Value", actualValue), new Pair("Default", defaultValue.EmptyToNull() ?? "[empty]")));
+          var columns = new List<Pair> 
+          { 
+            new Pair("Setting", settingName),
+            new Pair("Default Value", defaultValue.EmptyToNull() ?? "[empty]")            
+          };
+          columns.AddRange(solution.Values.Select(x => new Pair(x.InstanceName, x.SitecoreInfo.GetSetting(settingName))));
+
+          rows.Add(new TableRow(columns));
         }
+        
       }
 
       if (rows.Any())
