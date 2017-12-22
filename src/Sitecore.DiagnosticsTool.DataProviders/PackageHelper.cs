@@ -29,8 +29,13 @@
     public static IDirectory[] ExtractMegaPackage(IFile file)
     {
       var extracted = file.ExtractZipToDirectory();
-      var directories = extracted.GetDirectories();
+      var files = extracted.GetFiles();
+      if (files.Length > 0)
+      {
+        return new [] { extracted};
+      }
 
+      var directories = extracted.GetDirectories();
       if (directories.Length == 0)
       {
         var zipFiles = extracted.GetFiles("*.zip");
