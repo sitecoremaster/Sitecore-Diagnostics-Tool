@@ -52,6 +52,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\IRunCommand.cs" />
+    <Compile Include="Commands\RunCommand.cs" />
+    <Compile Include="Commands\RunCommandHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
