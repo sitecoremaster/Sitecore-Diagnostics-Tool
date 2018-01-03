@@ -59,7 +59,7 @@
       switch (command)
       {
         case "new":
-          NewCommand(options);
+          new NewCommand { Options = options }.Execute();
           return;
 
         case "list":
@@ -75,28 +75,6 @@
 
           return;
       }
-    }
-
-    private static void NewCommand(string[] options)
-    {
-      var parser = new FluentCommandLineParser();
-
-      var workplaceName = "";
-      parser.Setup<string>('n', "name")
-        .WithDescription("Workplace name.")
-        .Callback(x => workplaceName = x);
-
-      var result = parser.Parse(options);
-      if (result.HelpCalled || result.HasErrors)
-      {
-        parser.HelpOption.ShowHelp(parser.Options);
-        return;
-      }
-
-      var file = FileSystem.GetWorkplaceFile(workplaceName);
-      file.WriteAllText("");
-
-      Console.WriteLine("Workspace is created");
     }
 
     private static void ListCommand(string[] options)
