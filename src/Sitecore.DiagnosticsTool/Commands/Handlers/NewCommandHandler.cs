@@ -1,4 +1,4 @@
-﻿namespace Sitecore.DiagnosticsTool.Commands
+﻿namespace Sitecore.DiagnosticsTool.Commands.Handlers
 {
   using System;
 
@@ -9,16 +9,17 @@
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Commands.Contracts;
 
-  internal class ListCommandHandler : IListCommand
+  internal class NewCommandHandler : INewCommand
   {
-    [NotNull]
-    public string[] Options { get; }
-
     [NotNull]
     public IFileSystem FileSystem { get; }
 
-    public ListCommandHandler(IListCommand args)
+    [NotNull]
+    public string[] Options { get; }
+
+    public NewCommandHandler(INewCommand args)
     {
       FileSystem = args.FileSystem ?? Program.FileSystem;
       Options = args.Options;
@@ -44,11 +45,9 @@
       }
 
       var file = FileSystem.GetWorkplaceFile(workplaceName);
-      var lines = file.ReadAllLines();
-      foreach (var line in lines)
-      {
-        Console.WriteLine(line);
-      }
+      file.WriteAllText("");
+
+      Console.WriteLine("Workspace is created");
     }
   }
 }

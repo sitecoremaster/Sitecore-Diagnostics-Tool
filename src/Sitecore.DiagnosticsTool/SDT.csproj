@@ -53,17 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddCommand.cs" />
-    <Compile Include="Commands\AddCommandHandler.cs" />
-    <Compile Include="Commands\IGenericCommand.cs" />
-    <Compile Include="Commands\IAddCommand.cs" />
-    <Compile Include="Commands\IListCommand.cs" />
-    <Compile Include="Commands\INewCommand.cs" />
-    <Compile Include="Commands\IRunCommand.cs" />
+    <Compile Include="Commands\Handlers\AddCommandHandler.cs" />
+    <Compile Include="Commands\Abstract\IGenericCommand.cs" />
+    <Compile Include="Commands\Contracts\IAddCommand.cs" />
+    <Compile Include="Commands\Contracts\IListCommand.cs" />
+    <Compile Include="Commands\Contracts\INewCommand.cs" />
+    <Compile Include="Commands\Contracts\IRunCommand.cs" />
     <Compile Include="Commands\ListCommand.cs" />
-    <Compile Include="Commands\ListCommandHandler.cs" />
+    <Compile Include="Commands\Handlers\ListCommandHandler.cs" />
     <Compile Include="Commands\NewCommand.cs" />
+    <Compile Include="Commands\Handlers\NewCommandHandler.cs" />
     <Compile Include="Commands\RunCommand.cs" />
-    <Compile Include="Commands\RunCommandHandler.cs" />
+    <Compile Include="Commands\Handlers\RunCommandHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

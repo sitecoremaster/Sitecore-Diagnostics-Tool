@@ -1,4 +1,4 @@
-﻿namespace Sitecore.DiagnosticsTool.Commands
+﻿namespace Sitecore.DiagnosticsTool.Commands.Handlers
 {
   using System;
   using System.Diagnostics;
@@ -14,6 +14,7 @@
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Commands.Contracts;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;

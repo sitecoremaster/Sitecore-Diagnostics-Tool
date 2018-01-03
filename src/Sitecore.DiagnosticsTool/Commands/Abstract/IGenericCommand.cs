@@ -1,4 +1,4 @@
-﻿namespace Sitecore.DiagnosticsTool.Commands
+﻿namespace Sitecore.DiagnosticsTool.Commands.Abstract
 {
   using Sitecore.Diagnostics.FileSystem;
 

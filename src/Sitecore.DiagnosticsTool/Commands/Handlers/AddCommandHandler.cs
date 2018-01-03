@@ -1,4 +1,4 @@
-﻿namespace Sitecore.DiagnosticsTool.Commands
+﻿namespace Sitecore.DiagnosticsTool.Commands.Handlers
 {
   using System;
   using System.Linq;
@@ -10,6 +10,7 @@
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Commands.Contracts;
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   internal class AddCommandHandler : IAddCommand
