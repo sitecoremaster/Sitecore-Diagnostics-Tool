@@ -211,13 +211,14 @@
       }
 
       result += Token;
+      if (detailed != null)
+      {
+        result += detailed.ToString(OutputFormat.Html);
+      }
+
       if (link != null)
       {
         result += $"Get more information in <a href='{link.AbsoluteUri}'>this document</a>.<hr />";
-      }
-      else
-      {
-        result += detailed.ToString(OutputFormat.Html);
       }
 
       return result;
