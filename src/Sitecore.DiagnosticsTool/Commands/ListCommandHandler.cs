@@ -1,7 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Commands
 {
   using System;
-  using System.IO;
 
   using Fclp;
 
@@ -9,6 +8,7 @@
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.FileSystem;
+  using Sitecore.Diagnostics.FileSystem.Extensions;
 
   internal class ListCommandHandler : IListCommand
   {
@@ -44,7 +44,7 @@
       }
 
       var file = FileSystem.GetWorkplaceFile(workplaceName);
-      var lines = File.ReadAllLines(file.FullName);
+      var lines = file.ReadAllLines();
       foreach (var line in lines)
       {
         Console.WriteLine(line);

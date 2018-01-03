@@ -1,7 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Commands
 {
   using System;
-  using System.IO;
   using System.Linq;
 
   using Fclp;
@@ -10,6 +9,7 @@
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.FileSystem;
+  using Sitecore.Diagnostics.FileSystem.Extensions;
   using Sitecore.DiagnosticsTool.Core.Categories;
 
   internal class AddCommandHandler : IAddCommand
@@ -67,7 +67,7 @@
 
       var file = FileSystem.GetWorkplaceFile(workplaceName);
       var rolesText = string.Join("|", roles.Select(x => x.ToString()));
-      File.AppendAllText(file.FullName, $"{path}?{rolesText}\r\n");
+      file.AppendAllText($"{path}?{rolesText}\r\n");
     }
   }
 }

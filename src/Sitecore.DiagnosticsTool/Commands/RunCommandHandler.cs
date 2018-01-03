@@ -2,7 +2,6 @@
 {
   using System;
   using System.Diagnostics;
-  using System.IO;
   using System.Linq;
   using System.Reflection;
   using System.Windows.Forms;
@@ -134,7 +133,7 @@
           return;
         }
 
-        packages = File.ReadAllLines(workplaceFile.FullName)
+        packages = workplaceFile.ReadAllLines()
           .Select(x => x.Split('?'))
           .Select(x => new
           {
