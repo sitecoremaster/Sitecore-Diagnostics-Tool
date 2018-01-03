@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Commands.Handlers
 {
   using System;
+  using System.Linq;
 
   using Fclp;
 
@@ -45,10 +46,31 @@
       }
 
       var file = FileSystem.GetWorkplaceFile(workplaceName);
-      var lines = file.ReadAllLines();
-      foreach (var line in lines)
+      if (!file.Exists)
       {
-        Console.WriteLine(line);
+        Console.WriteLine("No workplace created, check 'sdt new' command.");
+
+        return;
+      }
+
+      var lines = file.ReadAllLines();
+      Console.WriteLine($"Current workplace has {lines.Length} packages added:");
+      for (var i = 0; i < lines.Length; i++)
+      {
+        var line = lines[i];
+
+        var arr = line.Split('?');
+        if (arr.Length < 2)
+        {
+          continue;
+        }
+
+        var path = arr[0];
+        var roles = string.Join(", ", arr[1].Split(",;|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+
+        Console.WriteLine();
+        Console.WriteLine($"{i + 1:D1}. Path:  {path}");
+        Console.WriteLine($"   Roles: {roles}");
       }
     }
   }

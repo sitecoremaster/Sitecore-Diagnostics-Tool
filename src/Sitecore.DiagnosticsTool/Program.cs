@@ -76,6 +76,11 @@
 
     internal static IFile GetWorkplaceFile(this IFileSystem fileSystem, string workplaceName)
     {
+      if (string.IsNullOrWhiteSpace(workplaceName))
+      {
+        workplaceName = "";
+      }
+      
       return fileSystem.ParseFile($"{workplaceName.TrimEnd(".sdt", StringComparison.OrdinalIgnoreCase)}.sdt");
     }
   }
