@@ -1,15 +1,10 @@
 ﻿namespace Sitecore.DiagnosticsTool
 {
   using System;
-  using System.IO;
   using System.Linq;
 
-  using Fclp;
-
   using Sitecore.Diagnostics.FileSystem;
-  using Sitecore.Diagnostics.FileSystem.Extensions;
   using Sitecore.DiagnosticsTool.Commands;
-  using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
 
   internal static class Program
@@ -28,7 +23,32 @@
 
       var command = args[0];
       var options = args.Skip(1).ToArray();
-      Main(command, options);
+
+      switch (command)
+      {
+        case "new":
+          new NewCommand { Options = options }.Execute();
+
+          return;
+
+        case "list":
+          new ListCommand { Options = options }.Execute();
+
+          return;
+
+        case "add":
+          new AddCommand { Options = options }.Execute();
+
+          return;
+
+        case "run":
+          new RunCommand { Options = options }.Execute();
+
+          return;
+
+        default:
+          throw new NotSupportedException();
+      }
     }
 
     internal static void ShowHelp()
@@ -54,32 +74,6 @@
       Console.WriteLine();
     }
 
-    private static void Main(string command, string[] options)
-    {
-      switch (command)
-      {
-        case "new":
-          new NewCommand { Options = options }.Execute();
-
-          return;
-
-        case "list":
-          new ListCommand { Options = options }.Execute();
-
-          return;
-
-        case "add":
-          new AddCommand { Options = options }.Execute();
-
-          return;
-
-        case "run":
-          new RunCommand { Options = options }.Execute();
-
-          return;
-      }
-    }
-    
     internal static IFile GetWorkplaceFile(this IFileSystem fileSystem, string workplaceName)
     {
       return fileSystem.ParseFile($"{workplaceName.TrimEnd(".sdt", StringComparison.OrdinalIgnoreCase)}.sdt");
