@@ -69,7 +69,7 @@
           return;
 
         case "add":
-          AddCommand(options);
+          new AddCommand { Options = options }.Execute();
 
           return;
 
@@ -78,47 +78,6 @@
 
           return;
       }
-    }
-
-    private static void AddCommand(string[] options)
-    {
-      var path = "";
-      var parser = new FluentCommandLineParser
-      {
-      };
-
-      parser.SetupHelp("?", "help")
-        .Callback(text => Console.WriteLine(text));
-
-      parser.Setup<string>('p', "path")
-        .Callback(x => path = x)
-        .WithDescription("Path to the SSPG file")
-        .Required();
-
-      var roles = new ServerRole[0];
-      parser.Setup<string>('r', "role")
-        .Callback(x => roles = x.Split(",;|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
-          .Select(r => (ServerRole)Enum.Parse(typeof(ServerRole), r))
-          .ToArray())
-        .WithDescription("One or several pipe-separated server roles: " + string.Join(", ", Enum.GetNames(typeof(ServerRole))))
-        .Required();
-
-      var workplaceName = "";
-      parser.Setup<string>('n', "name")
-        .WithDescription("Workplace name.")
-        .Callback(x => workplaceName = x);
-
-      // triggers the SetupHelp Callback which writes the text to the console
-      var result = parser.Parse(options);
-      if (result.HelpCalled || result.HasErrors)
-      {
-        parser.HelpOption.ShowHelp(parser.Options);
-        return;
-      }
-
-      var file = FileSystem.GetWorkplaceFile(workplaceName);
-      var rolesText = string.Join("|", roles.Select(x => x.ToString()));
-      File.AppendAllText(file.FullName, $"{path}?{rolesText}\r\n");
     }
     
     internal static IFile GetWorkplaceFile(this IFileSystem fileSystem, string workplaceName)
