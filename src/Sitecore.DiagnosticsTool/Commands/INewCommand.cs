@@ -1,13 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Commands
 {
-  using Sitecore.Diagnostics.FileSystem;
-
-  public interface INewCommand
+  internal interface INewCommand : IGenericCommand
   {
-    string[] Options { get; }
-
-    IFileSystem FileSystem { get; }
-
-    void Execute();
   }
 }

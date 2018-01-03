@@ -10,7 +10,7 @@
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
 
-  public class NewCommandHandler : INewCommand
+  internal class NewCommandHandler : INewCommand
   {
     [NotNull]
     public IFileSystem FileSystem { get; }

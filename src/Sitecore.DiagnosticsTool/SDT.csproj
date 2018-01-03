@@ -52,6 +52,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\IGenericCommand.cs" />
+    <Compile Include="Commands\IListCommand.cs" />
     <Compile Include="Commands\INewCommand.cs" />
     <Compile Include="Commands\IRunCommand.cs" />
     <Compile Include="Commands\NewCommand.cs" />

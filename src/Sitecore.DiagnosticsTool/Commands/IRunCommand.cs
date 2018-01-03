@@ -1,13 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Commands
 {
-  using Sitecore.Diagnostics.FileSystem;
-
-  internal interface IRunCommand
+  internal interface IRunCommand : IGenericCommand
   {
-    string[] Options { get; }
-
-    IFileSystem FileSystem { get; }
-
-    void Execute();
   }
 }
