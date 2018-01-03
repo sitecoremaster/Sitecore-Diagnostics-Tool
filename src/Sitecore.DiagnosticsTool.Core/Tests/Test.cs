@@ -62,9 +62,7 @@
     /// </summary>
     /// <param name="data">An interface to test resources.</param>
     /// <param name="output">An interface to test output.</param>
-    public virtual void Process(IInstanceResourceContext data, ITestOutputContext output)
-    {
-    }
+    public abstract void Process(IInstanceResourceContext data, ITestOutputContext output);
 
     public bool IsActual(ISolutionResourceContext data, ISitecoreVersion sitecoreVersion)
     {
