@@ -53,17 +53,17 @@
     <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.104\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.106\lib\Sitecore.Diagnostics.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.104\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.106\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Logging, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.1.104\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Logging, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Logging.2.0.1.106\lib\Sitecore.Diagnostics.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.104\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.106\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System" />
