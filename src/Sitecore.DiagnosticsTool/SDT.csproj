@@ -56,6 +56,8 @@
     <Compile Include="Commands\IListCommand.cs" />
     <Compile Include="Commands\INewCommand.cs" />
     <Compile Include="Commands\IRunCommand.cs" />
+    <Compile Include="Commands\ListCommand.cs" />
+    <Compile Include="Commands\ListCommandHandler.cs" />
     <Compile Include="Commands\NewCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Commands\RunCommandHandler.cs" />

@@ -60,44 +60,23 @@
       {
         case "new":
           new NewCommand { Options = options }.Execute();
+
           return;
 
         case "list":
-          ListCommand(options);
+          new ListCommand { Options = options }.Execute();
+
           return;
 
         case "add":
           AddCommand(options);
+
           return;
 
         case "run":
           new RunCommand { Options = options }.Execute();
 
           return;
-      }
-    }
-
-    private static void ListCommand(string[] options)
-    {
-      var parser = new FluentCommandLineParser();
-
-      var workplaceName = "";
-      parser.Setup<string>('n', "name")
-        .WithDescription("Workplace name.")
-        .Callback(x => workplaceName = x);
-
-      var result = parser.Parse(options);
-      if (result.HelpCalled || result.HasErrors)
-      {
-        parser.HelpOption.ShowHelp(parser.Options);
-        return;
-      }
-
-      var file = FileSystem.GetWorkplaceFile(workplaceName);
-      var lines = File.ReadAllLines(file.FullName);
-      foreach (var line in lines)
-      {
-        Console.WriteLine(line);
       }
     }
 
