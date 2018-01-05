@@ -43,6 +43,18 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         }
       }
 
+      foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+      {
+        try
+        {
+          GlobalTests.AddRange(GetTests(assembly));
+        }
+        catch (Exception exception)
+        {
+          Log.Error(exception, "Failed to parse tests in already loaded assembly: " + assembly.FullName);
+        }
+      }
+
       return GlobalTests;
     }
 
