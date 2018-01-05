@@ -77,16 +77,16 @@
 
     private static string GetMessagesTotalCount(int errorMessages, int warningMessages, ResultsFile resultsFile)
     {
-      var count = errorMessages + warningMessages + resultsFile.Instances.Values.Sum(x => x.Count(z => z.Results.DebugLogs.Any(c => c != null)));
+      var count = errorMessages + warningMessages + resultsFile.Solution.Count(z => z.Results.DebugLogs.Any(c => c != null));
 
       return $"{count}";
     }
 
     private static string GetRunTestsCount(ResultsFile resultsFile)
     {
-      var runTestsCount = resultsFile.Instances.Values
-        .SelectMany(x => x.Select(z => z.Owner.Name))
-        .GroupBy(x => x)
+      var runTestsCount = resultsFile.Solution
+        .Where(x => !x.Results.CannotRun.Any())
+        .GroupBy(x => x.Owner.Name)
         .Count();
 
       return $"{runTestsCount}";
@@ -99,7 +99,7 @@
 
     private static string GetInstancesCount(ResultsFile resultsFile)
     {
-      var instancesCount = $"{resultsFile.Instances.Count}";
+      var instancesCount = $"{resultsFile.Packages?.Count ?? -1}";
 
       return instancesCount;
     }
@@ -230,22 +230,6 @@
     {
       var counter = 1;
       var testToInstanceToMessages = new Map<Map<List<string>>>();
-      foreach (var packageName in resultsFile.Instances.Keys)
-      {
-        var reports = resultsFile.Instances[packageName];
-        foreach (var report in reports)
-        {
-          var test = report.Owner.Name;
-          var instanceToMessages = testToInstanceToMessages.GetOrAdd(test, new Map<List<string>>());
-          Assert.IsNotNull(instanceToMessages);
-
-          var messages = instanceToMessages.GetOrAdd(packageName, new List<string>());
-          Assert.IsNotNull(messages);
-
-          messages.AddRange(getMessages(report));
-        }
-      }
-
       foreach (var test in testToInstanceToMessages.Keys)
       {
         var instanceToMessages = testToInstanceToMessages[test];
