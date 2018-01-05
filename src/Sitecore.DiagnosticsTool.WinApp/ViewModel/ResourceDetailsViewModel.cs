@@ -12,6 +12,7 @@
 
   using Microsoft.Win32;
 
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.DiagnosticsTool.Core.Categories;
   using Sitecore.DiagnosticsTool.Core.Extensions;
@@ -365,7 +366,7 @@
     {
       try
       {
-        Context = TestRunnerBase<ITest, IInstanceResourceContext, SupportPackageDataProvider>.CreateContext(new SupportPackageDataProvider(fileName, ServerRoles, null));
+        Context = TestRunnerBase<ITest, IInstanceResourceContext, SupportPackageDataProvider>.CreateContext(new SupportPackageDataProvider(DiagnosticsPageViewModel.ParseFileSystemEntry(fileName), ServerRoles, null));
 
         try
         {

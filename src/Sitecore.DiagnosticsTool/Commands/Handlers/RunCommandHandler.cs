@@ -123,7 +123,7 @@
 
         packages = PackageHelper.ExtractMegaPackage(mega)
           .ToArray(x =>
-            new SupportPackageDataProvider(x.FullName, null, null));
+            new SupportPackageDataProvider(x, null, null));
       }
       else
       {
@@ -147,7 +147,13 @@
           {
             Console.WriteLine($"Parsing {x.Path}");
 
-            return new SupportPackageDataProvider(x.Path, x.Roles, null);
+            var file = FileSystem.ParseFile(x.Path);
+            var dir = FileSystem.ParseDirectory(x.Path);
+            Assert.IsTrue(file.Exists || dir.Exists, "Neither file nor dir exists: " + x.Path);
+
+            var fileSystemEntry = file.Exists ? (IFileSystemEntry)file : dir;
+
+            return new SupportPackageDataProvider(fileSystemEntry, x.Roles, null);
           })
           .ToArray();
       }

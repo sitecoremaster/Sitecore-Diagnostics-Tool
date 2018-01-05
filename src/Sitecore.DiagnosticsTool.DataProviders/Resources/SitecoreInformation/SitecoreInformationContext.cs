@@ -9,6 +9,7 @@
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.Diagnostics.Logging;
   using Sitecore.Diagnostics.Objects;
@@ -33,11 +34,12 @@
     protected override ResourceType ResourceType => ResourceType.SitecoreInformation;
 
     [CanBeNull]
-    public static SitecoreInformationContext TryParse([NotNull] string rootPath, string instanceName, IServiceClient client)
+    public static SitecoreInformationContext TryParse([NotNull] IDirectory rootFolder, string instanceName, IServiceClient client)
     {
-      Assert.ArgumentNotNull(rootPath, nameof(rootPath));
-      Assert.ArgumentCondition(Directory.Exists(rootPath), nameof(rootPath), $"The {nameof(rootPath)} directory does not exist.");
+      Assert.ArgumentNotNull(rootFolder, nameof(rootFolder));
+      Assert.ArgumentCondition(rootFolder.Exists, nameof(rootFolder), $"The {nameof(rootFolder)} directory does not exist.");
 
+      var rootPath = rootFolder.FullName;
       var sitecoreVersionXmlPath = FindFile(rootPath, "sitecore.version.xml");
       if (sitecoreVersionXmlPath == null || !File.Exists(sitecoreVersionXmlPath))
       {
@@ -79,7 +81,7 @@
         var webConfigPath = Path.Combine(webRootPath, "web.config");
         Log.Info("WebConfig = " + webConfigPath);
 
-        resultConfiguration = WebConfigurationHelper.GetConfiguration(webRootPath);
+        resultConfiguration = WebConfigurationHelper.GetConfiguration(rootFolder.FileSystem.ParseDirectory(webRootPath));
         Assert.IsNotNull(resultConfiguration, "resultConfiguration");
 
         dataFolderPath = GetDataFolderPath(webRootPath, resultConfiguration);

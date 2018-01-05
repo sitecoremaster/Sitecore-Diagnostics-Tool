@@ -10,10 +10,12 @@
 
   using JetBrains.Annotations;
 
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
+  using Sitecore.DiagnosticsTool.Tests.General.Health;
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.Resources;
@@ -165,7 +167,7 @@
         var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
         var system = new SystemContext(assemblyName);
         var packages = Source.Packages
-          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null))
+          .Select(package => new SupportPackageDataProvider(ParseFileSystemEntry(package.Path), package.Roles, null))
           .ToArray();
 
         try
@@ -212,6 +214,24 @@
         IsThreadRunning = false;
         Thread.Sleep(50);
       }
+    }
+
+    internal static IFileSystemEntry ParseFileSystemEntry(string path)
+    {
+      var fs = new FileSystem();
+      var file = fs.ParseFile(path);
+      if (file.Exists)
+      {
+        return file;
+      }
+
+      var dir = fs.ParseDirectory(path);
+      if (dir.Exists)
+      {
+        return dir;
+      }
+
+      throw new InvalidOperationException("Neither file nor directory exists: " + path);
     }
 
     private void OnTestRun(int index)

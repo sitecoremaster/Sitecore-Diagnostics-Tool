@@ -8,21 +8,23 @@
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.ConfigBuilder;
+  using Sitecore.Diagnostics.FileSystem;
+  using Sitecore.Diagnostics.FileSystem.Extensions;
   using Sitecore.Diagnostics.Logging;
 
   public static class WebConfigurationHelper
   {
-    public static XmlDocument GetConfiguration([NotNull] string webRootPath)
+    public static XmlDocument GetConfiguration([NotNull] IDirectory webRoot)
     {
-      Assert.ArgumentNotNull(webRootPath, nameof(webRootPath));
-      var webConfigPath = Path.Combine(webRootPath, "web.config");
+      Assert.ArgumentNotNull(webRoot, nameof(webRoot));
+      var webConfigFile = webRoot.GetChildFile("web.config");
 
-      if (!File.Exists(webConfigPath))
+      if (!webConfigFile.Exists)
       {
         return null;
       }
 
-      var configuration = ConfigBuilder.Build(webConfigPath, true, true);
+      var configuration = ConfigBuilder.Build(webConfigFile.FullName, true, true);
       var configurationElement = (XmlElement)configuration.SelectSingleNode("/configuration");
       Assert.IsNotNull(configurationElement, "configurationElement");
 
