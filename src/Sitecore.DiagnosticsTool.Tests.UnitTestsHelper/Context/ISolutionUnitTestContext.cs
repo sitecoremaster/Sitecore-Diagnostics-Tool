@@ -2,8 +2,8 @@
 {
   using JetBrains.Annotations;
 
-  using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
 
   public interface ISolutionUnitTestContext
   {
@@ -11,6 +11,6 @@
     ISolutionUnitTestContext AddInstance([NotNull] IDataProvider dataProvider);
 
     [NotNull]
-    ISolutionUnitTestResultsContext Process([NotNull] ISolutionTest test);
+    ISolutionUnitTestResultsContext Process([NotNull] ITest test);
   }
 }

@@ -3,7 +3,6 @@
   using System.Xml;
 
   using Sitecore.Diagnostics.InfoService.Client;
-  using Sitecore.Diagnostics.InfoService.Client.Model;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Collections;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
@@ -32,9 +31,9 @@
           { new ReleaseInfo(new ServiceClient().Products["Email Experience Manager"].Versions["3.2.0"]) }
         },
       };
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .Done();
     }
@@ -55,9 +54,9 @@
         },
       };
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(sitecoreConfiguration)
+      new SolutionUnitTestContext()
+        
+        .AddInstance(sitecoreConfiguration)
         .Process(this)
         .MustReturn(new TestOutput(TestResultState.Warning, GetErrorMessage("<httpHandlers>", false)))
         .Done();

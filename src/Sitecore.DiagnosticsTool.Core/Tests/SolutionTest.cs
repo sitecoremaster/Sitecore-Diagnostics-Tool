@@ -11,7 +11,7 @@
   /// <summary>
   ///   Abstract class that implements ISolutionTest interface to simplify test development.
   /// </summary>
-  public abstract class SolutionTest : ISolutionTest
+  public abstract class SolutionTest : ITest
   {
     /// <summary>
     ///   Easy to remember and share test name.
@@ -26,7 +26,7 @@
     /// <summary>
     ///   The method indicates if this specific test is actual for Sitecore version of the instance under test.
     /// </summary>
-    public virtual bool IsActual(ISolutionTestResourceContext data, ISitecoreVersion sitecoreVersion)
+    public virtual bool IsActual(ISolutionResourceContext data, ISitecoreVersion sitecoreVersion)
     {
       Assert.ArgumentNotNull(data, nameof(data));
       Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
@@ -34,7 +34,7 @@
       return IsActual(sitecoreVersion) && IsActual(data);
     }
 
-    protected virtual bool IsActual([NotNull] ISolutionTestResourceContext data)
+    protected virtual bool IsActual([NotNull] ISolutionResourceContext data)
     {
       return true;
     }
@@ -50,6 +50,6 @@
     /// </summary>
     /// <param name="data">An interface to test resources.</param>
     /// <param name="output">An interface to test output.</param>
-    public abstract void Process(ISolutionTestResourceContext data, ITestOutputContext output);
+    public abstract void Process(ISolutionResourceContext data, ITestOutputContext output);
   }
 }

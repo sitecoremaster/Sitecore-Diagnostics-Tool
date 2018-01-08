@@ -52,23 +52,23 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.104\lib\Sitecore.Diagnostics.Base.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Base, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Base.2.0.1.106\lib\Sitecore.Diagnostics.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.104\lib\Sitecore.Diagnostics.Database.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Database, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Database.2.0.1.106\lib\Sitecore.Diagnostics.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.104\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.FileSystem, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.FileSystem.2.0.1.106\lib\Sitecore.Diagnostics.FileSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.104\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.InfoService.Client.Core, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.InfoService.Client.Core.2.0.1.106\lib\Sitecore.Diagnostics.InfoService.Client.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.104\lib\Sitecore.Diagnostics.Net.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Net, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Net.2.0.1.106\lib\Sitecore.Diagnostics.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.104\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
+    <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.106\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -109,7 +109,7 @@
     <Compile Include="General\SystemTest.cs" />
     <Compile Include="Search\ContentSearchConfigurationsDuplicates.cs" />
     <Compile Include="General\Consistency\AssembliesConsistencyMatch.cs" />
-    <Compile Include="General\Consistency\DatabaseSchemaValidation.cs" />
+    <Compile Include="General\Consistency\SqlDatabaseSchemaValidation.cs" />
     <Compile Include="General\Performance\DefaultCacheSizes.cs" />
     <Compile Include="General\Health\ErrorWhenPublishingTheCheckInItem.cs" />
     <Compile Include="General\Performance\CompilationDebugDisabled.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="Analytics\DmsBotDetectionTurnedOn.cs" />
     <Compile Include="General\Performance\EventQueueSize.cs" />
     <Compile Include="General\Consistency\GlobalAsaxInheritsFrom.cs" />
-    <Compile Include="Extensions\ConfigurationExtensions.cs" />
     <Compile Include="General\Performance\HistoryTableSize.cs" />
     <Compile Include="Analytics\TrackingFieldAccess.cs" />
     <Compile Include="General\Health\ImageValidatorErrors.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="General\Server\ServerBitness.cs" />
     <Compile Include="General\Server\ServerRamContentManagement.cs" />
     <Compile Include="General\Performance\W3WpCrash.cs" />
-    <Compile Include="General\Server\WebsiteFolderReusage.cs" />
     <Compile Include="General\Consistency\SwitchingBetweenSheerUIAndSpeakModesInExperienceEditor.cs" />
     <Compile Include="Search\ObsoleteLuceneConfiguration.cs" />
     <Compile Include="Solution\ConsistentConfiguration.cs" />
@@ -163,7 +161,6 @@
     <Compile Include="Solution\SharedSession.cs" />
     <Compile Include="Solution\PublishingInstance.cs" />
     <Compile Include="TestsLibrary.cs" />
-    <Compile Include="Tools\WFFM\WFFMConstants.cs" />
     <Compile Include="WFFM\WFFMBusinessName.cs" />
     <Compile Include="WFFM\WFFMDoubledBrackets.cs" />
     <Compile Include="WFFM\WFFMNoClientActions.cs" />
@@ -176,7 +173,9 @@
       <Name>SDT.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -3,6 +3,8 @@
   using System.Collections.Generic;
   using System.Linq;
 
+  using JetBrains.Annotations;
+
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
@@ -11,6 +13,11 @@
 
   public class ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518 : KbTest
   {
+    [UsedImplicitly]
+    public ExceptionMayBeThrownIfMultipleThreadsCreatesContactSimultaneouslyKB032518()
+    {
+    }
+
     public override IEnumerable<Category> Categories => new[] { Category.Analytics };
 
     public override string KbName => "Exception may be thrown if multiple threads try to create a contact at the same time";
@@ -22,7 +29,7 @@
       return sitecoreVersion.MajorMinorInt >= 75;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

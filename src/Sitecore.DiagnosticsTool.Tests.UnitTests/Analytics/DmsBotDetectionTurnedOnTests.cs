@@ -18,9 +18,9 @@
     public void Test()
     {
       // NO DMS, NO DETECTION
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument().Create("/configuration/sitecore")
@@ -32,9 +32,9 @@
     [Fact]
     public void Test1()
     {
-      UnitTestContext
-          .Create(this)
-          .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+          
+          .AddInstance(new SitecoreInstance
           {
             Version = new SitecoreVersion(8, 2, 2),
             Configuration = new XmlDocument()
@@ -50,9 +50,9 @@
     [Fact]
     public void Test2()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Version = new SitecoreVersion(8, 2, 2),
           Configuration = new XmlDocument()

@@ -10,13 +10,11 @@
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.InfoService.Client;
   using Sitecore.DiagnosticsTool.Core.Categories;
-  using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
-  using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
-  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Database;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Logging;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.SitecoreInformation;
@@ -37,10 +35,15 @@
     private Action<string> Logger { get; }
 
     [NotNull]
+    private IFileSystemEntry Source { get; }
+
+    [NotNull]
     private string TempFolderPath { get; }
 
-    public SupportPackageDataProvider([NotNull] string packageFilePath, [CanBeNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger)
+    public SupportPackageDataProvider([NotNull] IFileSystemEntry source, [CanBeNull] IReadOnlyCollection<ServerRole> roles, [CanBeNull] Action<string> logger)
     {
+      Source = source;
+      var packageFilePath = source.FullName;
       SourcePath = packageFilePath;
       FileName = Path.GetFileName(packageFilePath);
       Roles = roles;
@@ -174,7 +177,7 @@
 
       Logger?.Invoke("Parsing Sitecore information...");
 
-      var info = SitecoreInformationContext.TryParse(TempFolderPath, instanceName, client);
+      var info = SitecoreInformationContext.TryParse(Source.FileSystem.ParseDirectory(TempFolderPath), instanceName, client);
       Assert.IsNotNull(info, nameof(info));
 
       yield return info;

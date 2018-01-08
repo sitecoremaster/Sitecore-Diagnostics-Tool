@@ -29,3 +29,5 @@ src/Sitecore.DiagnosticsTool/bin/
 src/Sitecore.DiagnosticsTool/obj/
 src/packages/
 *.user
+src/Sitecore.DiagnosticsTool.Service/bin/
+src/Sitecore.DiagnosticsTool.Service/obj/

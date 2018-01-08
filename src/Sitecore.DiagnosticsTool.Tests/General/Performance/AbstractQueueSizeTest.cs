@@ -21,7 +21,7 @@ namespace Sitecore.DiagnosticsTool.Tests.General.Performance
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

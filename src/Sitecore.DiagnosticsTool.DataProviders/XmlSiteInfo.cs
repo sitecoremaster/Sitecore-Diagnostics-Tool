@@ -42,14 +42,6 @@
 
     public IEnumerable<string> HostNames { get; }
 
-    public State State
-    {
-      get
-      {
-        throw new WebServerResourceNotAvailableException();
-      }
-    }
-
     public IApplicationPool ApplicationPool
     {
       get
@@ -73,17 +65,5 @@
         throw new WebServerResourceNotAvailableException();
       }
     }
-
-    public HttpWebRequest CreateWebRequest(string path)
-    {
-      throw new WebServerResourceNotAvailableException();
-    }
-
-    public HttpWebRequest CreateWebRequest(Uri uri)
-    {
-      throw new WebServerResourceNotAvailableException();
-    }
-
-    public bool IsLocal { get; } = false;
   }
 }

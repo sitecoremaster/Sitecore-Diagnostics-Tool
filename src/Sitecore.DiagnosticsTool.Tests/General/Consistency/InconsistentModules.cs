@@ -13,7 +13,6 @@
   using System.Linq;
 
   using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
-  using Sitecore.Diagnostics.Objects;
 
   // Reviewed: OK (2017-06-13, looks valid)
   [UsedImplicitly]
@@ -23,7 +22,7 @@
 
     public override string Name { get; } = "Inconsistent Modules";
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
       

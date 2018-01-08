@@ -10,10 +10,12 @@
 
   using JetBrains.Annotations;
 
+  using Sitecore.Diagnostics.FileSystem;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.TestRunner;
+  using Sitecore.DiagnosticsTool.Tests.General.Health;
   using Sitecore.DiagnosticsTool.WinApp.Command;
   using Sitecore.DiagnosticsTool.WinApp.Model;
   using Sitecore.DiagnosticsTool.WinApp.Resources;
@@ -165,12 +167,12 @@
         var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
         var system = new SystemContext(assemblyName);
         var packages = Source.Packages
-          .Select(package => new SupportPackageDataProvider(package.Path, package.Roles, null))
+          .Select(package => new SupportPackageDataProvider(ParseFileSystemEntry(package.Path), package.Roles, null))
           .ToArray();
 
         try
         {
-          var resultsFile = AggregatedTestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
+          var resultsFile = TestRunner.RunTests(packages, system, (test, index, count) => OnTestRun(index));
 
           if (tokenSource.IsCancellationRequested)
           {
@@ -214,6 +216,24 @@
       }
     }
 
+    internal static IFileSystemEntry ParseFileSystemEntry(string path)
+    {
+      var fs = new FileSystem();
+      var file = fs.ParseFile(path);
+      if (file.Exists)
+      {
+        return file;
+      }
+
+      var dir = fs.ParseDirectory(path);
+      if (dir.Exists)
+      {
+        return dir;
+      }
+
+      throw new InvalidOperationException("Neither file nor directory exists: " + path);
+    }
+
     private void OnTestRun(int index)
     {
       CurrentTest = index;
@@ -227,7 +247,7 @@
     {
       IsThreadRunning = true;
       IsThreadAborted = false;
-      TestsNumber = AggregatedTestRunner.GetTotalTestsCount(Source.Packages.Count);
+      TestsNumber = new TestManager().GetTests().Count();
       CurrentTest = 0;
       reportPath = null;
     }

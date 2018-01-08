@@ -11,6 +11,11 @@
 
   public class SchedulingSectionOnCd : Test
   {
+    [UsedImplicitly]
+    public SchedulingSectionOnCd()
+    {
+    }
+
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
     
     public override string Name { get; } = "EXM scheduling section must be disabled on ContentDelivery instance";
@@ -23,7 +28,7 @@
       return roles.Contains(ServerRole.ContentDelivery) && !roles.Contains(ServerRole.ContentManagement);
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

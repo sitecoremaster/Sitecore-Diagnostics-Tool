@@ -1,9 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Tests.ECM
 {
-  using System;
   using System.Collections.Generic;
   using System.Linq;
-  using System.Text;
 
   using JetBrains.Annotations;
 
@@ -39,6 +37,11 @@
       "Fact_AutomationStatesStatisticsByAbnMessage"
     };
 
+    [UsedImplicitly]
+    public ExmSqlScriptTest()
+    {
+    }
+
     public override string Name { get; } = "EXM objects in reporting database";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
@@ -55,7 +58,7 @@
     }
 
     /// <inheritdoc />
-    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public override bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, IInstanceResourceContext data)
     {
       if (EcmHelper.GetEcmVersion(data) == null)
       {
@@ -77,7 +80,7 @@
       return true;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

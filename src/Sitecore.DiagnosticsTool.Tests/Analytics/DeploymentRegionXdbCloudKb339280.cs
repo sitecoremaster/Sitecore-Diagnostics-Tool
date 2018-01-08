@@ -21,7 +21,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);
       if (logs.Any(log => log.RawText.Contains(ErrorText)))

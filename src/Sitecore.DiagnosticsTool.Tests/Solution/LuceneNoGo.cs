@@ -20,7 +20,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.SearchIndexing };
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var numberOfSearchEnabledInstances = data.Values.Count(x => x.SitecoreInfo.ContentSearchIndexes.Any());
       if (numberOfSearchEnabledInstances < 2)

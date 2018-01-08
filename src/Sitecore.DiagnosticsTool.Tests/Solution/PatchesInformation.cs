@@ -22,7 +22,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var patches = new Map<List<string>>();
       var instanceNames = data.Values.ToArray(x => x.SitecoreInfo.InstanceName);
@@ -40,7 +40,7 @@
       }
     }
 
-    private static void ProcessAssemblies(ITestResourceContext instance, Map<List<string>> assemblies)
+    private static void ProcessAssemblies(IInstanceResourceContext instance, Map<List<string>> assemblies)
     {
       var instanceName = instance.SitecoreInfo.InstanceName;
       foreach (var assembly in instance.SitecoreInfo.Assemblies.Values)
@@ -57,7 +57,7 @@
       }
     }
 
-    private static void ProcessConfiguration(ITestResourceContext instance, Map<List<string>> configs)
+    private static void ProcessConfiguration(IInstanceResourceContext instance, Map<List<string>> configs)
     {
       var instanceName = instance.SitecoreInfo.InstanceName;
       foreach (var filePath in instance.SitecoreInfo.IncludeFiles.Keys)

@@ -3,29 +3,27 @@
   using System.IO;
   using System.Xml.Linq;
 
+  using JetBrains.Annotations;
+
+  using Sitecore.Diagnostics.Base;
   using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.WebServer;
 
   public class SupportPackageWebServerContext : IWebServerContext
   {
-    private IServerInfo Server { get; }
+    public IServerInfo Server { get; }
 
-    private ISite Site { get; }
+    public ISite Site { get; }
 
-    private SupportPackageWebServerContext(ISite site, IServerInfo server)
+    private SupportPackageWebServerContext([NotNull] ISite site, [NotNull] IServerInfo server)
     {
+      Assert.ArgumentNotNull(site, nameof(site));
+      Assert.ArgumentNotNull(server, nameof(server));
+      
       Site = site;
       Server = server;
     }
-
-    public ISiteCollection Sites => Throw<ISiteCollection>();
-
-    public IApplicationPoolCollection ApplicationPools => Throw<IApplicationPoolCollection>();
-
-    public ISite CurrentSite => Site ?? Throw<ISite>();
-
-    public IServerInfo Info => Server ?? Throw<IServerInfo>();
 
     public static IResource Parse(string rootPath)
     {
@@ -36,10 +34,12 @@
       }
 
       var hardwarePath = Path.Combine(rootPath, "ServerInfo.xml");
+      if (!File.Exists(hardwarePath))
+      {
+        return null;
+      }
 
-      var server = !File.Exists(hardwarePath)
-        ? null
-        : File.OpenRead(hardwarePath)
+      var server = File.OpenRead(hardwarePath)
           .Using(r => XDocument.Load(r))
           .With(x => new XmlServerInfo(x));
 
@@ -48,11 +48,6 @@
         .With(x => new XmlSiteInfo(x));
 
       return new SupportPackageWebServerContext(site, server);
-    }
-
-    private static T Throw<T>()
-    {
-      throw new WebServerResourceNotAvailableException();
     }
   }
 }

@@ -23,7 +23,7 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       var info = data.SitecoreInfo;
       var logs = data.Logs.GetSitecoreLogEntries(LogLevel.Error);

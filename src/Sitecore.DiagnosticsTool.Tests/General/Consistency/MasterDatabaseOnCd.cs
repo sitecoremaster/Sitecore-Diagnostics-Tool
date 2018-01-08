@@ -32,10 +32,10 @@
 
     protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
     {
-      return roles.Contains(ServerRole.ContentDelivery);
+      return roles.Count == 1 && roles.Single() == ServerRole.ContentDelivery;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

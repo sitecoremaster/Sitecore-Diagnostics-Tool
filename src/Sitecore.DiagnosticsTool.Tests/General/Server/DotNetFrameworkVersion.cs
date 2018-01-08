@@ -25,11 +25,11 @@
         ;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      if (data.WebServer.Info.FrameworkVersions.All(p => !FrameworkVersion.v45x.HasFlag(p)))
+      if (data.WebServer.Server.FrameworkVersions.All(p => !FrameworkVersion.v45x.HasFlag(p)))
       {
         output.Error("Sitecore XP requires .NET Framework 4.5.");
       }

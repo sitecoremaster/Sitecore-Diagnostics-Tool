@@ -23,7 +23,7 @@
       return configuration.SelectElements(nodeXPath).LastOrDefault().With(x => x.Attributes[attributeName].With(a => a.Value) ?? x.InnerText);
     }
 
-    public static ISitecoreVersion GetEcmVersion([NotNull] ITestResourceContext data)
+    public static ISitecoreVersion GetEcmVersion([NotNull] IInstanceResourceContext data)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

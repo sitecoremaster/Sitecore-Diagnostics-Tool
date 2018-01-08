@@ -28,7 +28,7 @@
     /// <summary>
     ///   The method indicates if this specific test is actual for Sitecore version of the instance under test.
     /// </summary>
-    public virtual bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, ITestResourceContext data)
+    public virtual bool IsActual(IReadOnlyCollection<ServerRole> roles, ISitecoreVersion sitecoreVersion, IInstanceResourceContext data)
     {
       Assert.ArgumentNotNull(roles, nameof(roles));
       Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
@@ -52,7 +52,7 @@
       return true;
     }
 
-    protected virtual bool IsActual([NotNull] ITestResourceContext data)
+    protected virtual bool IsActual([NotNull] IInstanceResourceContext data)
     {
       return true;
     }
@@ -62,6 +62,22 @@
     /// </summary>
     /// <param name="data">An interface to test resources.</param>
     /// <param name="output">An interface to test output.</param>
-    public abstract void Process(ITestResourceContext data, ITestOutputContext output);
+    public abstract void Process(IInstanceResourceContext data, ITestOutputContext output);
+
+    public bool IsActual(ISolutionResourceContext data, ISitecoreVersion sitecoreVersion)
+    {
+      return data.Values.Any(x => IsActual(x.ServerRoles, sitecoreVersion, x));
+    }
+
+    public void Process(ISolutionResourceContext data, ITestOutputContext output)
+    {
+      foreach (var instance in data.Values)
+      {
+        if (IsActual(instance.ServerRoles, instance.SitecoreInfo.SitecoreVersion, instance))
+        {
+          Process(instance, output);
+        }
+      }
+    }
   }
 }

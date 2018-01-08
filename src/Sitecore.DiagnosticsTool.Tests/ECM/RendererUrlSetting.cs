@@ -25,12 +25,12 @@
     [NotNull]
     protected string ErrorMessage => "The ECM.RendererUrl setting doesn't exist. This can cause issues with message dispatch in some environments.";
 
-    protected override bool IsActual(ITestResourceContext data)
+    protected override bool IsActual(IInstanceResourceContext data)
     {
       return data.SitecoreInfo.ModulesInformation.InstalledModules.ContainsKey("Email Experience Manager");
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 

@@ -17,11 +17,11 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Performance };
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
-      var coresCount = data.WebServer.Info.CpuCoresCount;
+      var coresCount = data.WebServer.Server.CpuCoresCount;
 
       var message = $"Your server has {coresCount} CPU cores, which is lower than the recommended minimum. Please review the hardware recommendations for Sitecore products.";
       if (coresCount <= 2)

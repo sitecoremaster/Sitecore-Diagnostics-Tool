@@ -26,9 +26,9 @@
     [Fact]
     public void TestPassed()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create(CacheSizesXPath)
@@ -58,9 +58,9 @@
         { "prefetch", "1MB" }
       };
 
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           Configuration = new XmlDocument()
             .Create(CacheSizesXPath)

@@ -18,9 +18,8 @@
     [Fact]
     public void Passed()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -33,9 +32,8 @@
     [Fact]
     public void Warn_Sites()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -49,9 +47,9 @@
     [Fact]
     public void CannotRun_Site()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentManagement },
           Version = new SitecoreVersion(8, 2, 2),
@@ -65,9 +63,9 @@
     [Fact]
     public void Warn_IDTable()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -81,9 +79,9 @@
     [Fact]
     public void Warn_Databases()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -97,9 +95,9 @@
     [Fact]
     public void Warn_Search()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -113,9 +111,9 @@
     [Fact]
     public void Warn_Scheduling()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),
@@ -129,9 +127,9 @@
     [Fact]
     public void Warn_Scheduling2()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Version = new SitecoreVersion(8, 2, 2),

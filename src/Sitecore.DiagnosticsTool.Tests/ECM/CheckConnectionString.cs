@@ -14,6 +14,11 @@
 
   public class CheckConnectionString : Test
   {
+    [UsedImplicitly]
+    public CheckConnectionString()
+    {
+    }
+
     public override string Name { get; } = "Presence of EXM-specific connection strings";
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Ecm };
@@ -23,14 +28,14 @@
       return sitecoreVersion.Major >= 8;
     }
 
-    protected override bool IsActual(ITestResourceContext data)
+    protected override bool IsActual(IInstanceResourceContext data)
     {
       var exmMajor = EcmHelper.GetEcmVersion(data)?.Major;
 
       return exmMajor == 3 || exmMajor == 2;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
@@ -83,7 +88,7 @@
       }
     }
 
-    private void Error(ITestResourceContext data, ITestOutputContext output, string name)
+    private void Error(IInstanceResourceContext data, ITestOutputContext output, string name)
     {
       var value = data.Databases.ConnectionStrings.TryGetValue(name.ToLower());
       if (value == null)

@@ -31,7 +31,7 @@
       return sitecoreVersion.MajorMinorInt == 80 || sitecoreVersion.MajorMinorInt == 81;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       if (data.SitecoreInfo.SitecoreVersion.Minor == 0)
       {
@@ -49,7 +49,7 @@
       }
     }
 
-    private static bool CheckConfigurationForError(string nodePath, bool is8Version, ITestResourceContext data)
+    private static bool CheckConfigurationForError(string nodePath, bool is8Version, IInstanceResourceContext data)
     {
       var dataProvider = data.SitecoreInfo.Configuration.SelectSingleNode(nodePath) as XmlElement;
       var addError = false;

@@ -5,8 +5,8 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
-  using Sitecore.DiagnosticsTool.Core.DataProviders;
   using Sitecore.DiagnosticsTool.Core.Tests;
+  using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
 
   public class SolutionUnitTestContext : ISolutionUnitTestContext
   {
@@ -20,7 +20,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Context
       return this;
     }
 
-    public ISolutionUnitTestResultsContext Process(ISolutionTest test)
+    public ISolutionUnitTestResultsContext Process(ITest test)
     {
       Assert.ArgumentNotNull(test, nameof(test));
 

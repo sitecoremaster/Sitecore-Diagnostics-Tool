@@ -23,7 +23,7 @@ namespace Sitecore.DiagnosticsTool.Tests.Solution
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.Analytics };
 
-    public override void Process(ISolutionTestResourceContext data, ITestOutputContext output)
+    public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       var errors = new List<string>();
 

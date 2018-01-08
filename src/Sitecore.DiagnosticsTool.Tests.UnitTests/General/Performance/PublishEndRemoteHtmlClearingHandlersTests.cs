@@ -18,9 +18,9 @@
     [Fact]
     public void PublishEndRemoteHtmlClearingHandlersTest_Passed()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Configuration = new XmlDocument().TryParse(@"
@@ -57,9 +57,9 @@
     [Fact]
     public void PublishEndRemoteHtmlClearingHandlersTest_Error()
     {
-      UnitTestContext
-        .Create(this)
-        .AddResource(new SitecoreInstance
+      new SolutionUnitTestContext()
+        
+        .AddInstance(new SitecoreInstance
         {
           ServerRoles = new[] { ServerRole.ContentDelivery },
           Configuration = new XmlDocument().TryParse(@"

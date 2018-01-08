@@ -30,7 +30,7 @@
       return sitecoreVersion.Major >= 7;
     }
 
-    public override void Process(ITestResourceContext data, ITestOutputContext output)
+    public override void Process(IInstanceResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
 
@@ -111,12 +111,12 @@
 
       if (fieldsConfigIgnored.Count > 0)
       {
-        output.Warning("Configuration of the following field(s) is ignored:\r\n" + new BulletedList(fieldsConfigIgnored) + "\r\n", Link);
+        output.Warning("Configuration of the following field(s) is ignored", Link, new DetailedMessage(new BulletedList(fieldsConfigIgnored)));
       }
 
       if (fieldsAnalyzerIgnored.Count > 0)
       {
-        output.Warning("Analyzer of the following field(s) is ignored:\r\n" + new BulletedList(fieldsAnalyzerIgnored), Link);
+        output.Warning("Analyzer of the following field(s) is ignored", Link, new DetailedMessage(new BulletedList(fieldsAnalyzerIgnored)));
       }
     }
 
