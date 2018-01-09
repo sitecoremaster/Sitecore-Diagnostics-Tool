@@ -27,7 +27,6 @@
     [HttpPost]
     public string Post()
     {
-
       var file = HttpContext.Request.Files[0];
       Assert.IsNotNull(file);
 
@@ -50,15 +49,12 @@
 
         try
         {
-          Console.WriteLine("Running tests...");
+          Console.WriteLine($"Running tests, File = {file.FileName}");
 
           var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
           var system = new SystemContext(assemblyName);
-          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
-
-          Console.WriteLine("Building report...");
-
-          return ReportBuilder.GenerateReport(resultsFile);
+          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
+          var report = ReportBuilder.GenerateReport(resultsFile);
         }
         finally
         {
