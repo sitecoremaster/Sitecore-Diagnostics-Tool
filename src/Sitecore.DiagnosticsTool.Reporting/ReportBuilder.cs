@@ -8,8 +8,6 @@
 
   using JetBrains.Annotations;
 
-  using Sitecore.Diagnostics.Base;
-  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.DiagnosticsTool.Core;
@@ -30,20 +28,16 @@
       var template = File.ReadAllText(Application.GetEmbeddedFile(typeof(ReportBuilder).Assembly, "Template.html"));
 
       var errorMessages = Safe(_ => GetErrorMessages(resultsFile));
-      var errorText = errorMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No error messages</p>";
+      var errorText = GetMessagesText(errorMessages, "error");
 
       var warningMessages = Safe(_ => GetWarningMessages(resultsFile));
-      var warningText = warningMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No warning messages</p>";
+      var warningText = GetMessagesText(warningMessages, "warning");
 
       var debugMessages = Safe(_ => GetDebugMessages(resultsFile));
-      var debugText = debugMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No debug messages</p>";
+      var debugText = GetMessagesText(debugMessages, "debug");
 
       var cannotRunMessages = Safe(_ => GetCannotRunMessages(resultsFile));
-      var cannotRunText = cannotRunMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No cannot run messages</p>";
+      var cannotRunText = GetMessagesText(cannotRunMessages, "cannot run");
 
       return template
         .Replace("<span class=\"placeholder-messages-total-count\"></span>", Safe(_ => GetMessagesTotalCount(errorMessages.Length, warningMessages.Length, resultsFile)))
@@ -59,6 +53,12 @@
         .Replace("<div class=\"placeholder-warning-messages\"></div>", warningText)
         .Replace("<div class=\"placeholder-cannot-run-messages\"></div>", cannotRunText)
         .Replace("<div class=\"placeholder-debug-messages\"></div>", debugText);
+    }
+
+    private static string GetMessagesText(string[] errorMessages, string name)
+    {
+      return errorMessages
+        .JoinToString("\r\n").EmptyToNull() ?? $"<p>No {name.ToLower()} messages</p>";
     }
 
     private static T Safe<T>([NotNull] Func<Null, T> func)
