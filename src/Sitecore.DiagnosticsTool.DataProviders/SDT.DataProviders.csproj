@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sitecore.DiagnosticsTool.DataProviders.SupportPackage</RootNamespace>
-    <AssemblyName>Sitecore.DiagnosticsTool.DataProviders.SupportPackage</AssemblyName>
+    <AssemblyName>Sitecore.DiagnosticsTool.DataProviders</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
