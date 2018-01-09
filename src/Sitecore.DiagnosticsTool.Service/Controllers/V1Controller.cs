@@ -66,7 +66,7 @@
           IncludeReportToMega(mega, report);
           UploadToFtp(mega);
 
-          return "Uploaded to FTP as " + file.FileName;
+          return $"Uploaded to FTP as {file.FileName}; {report}";
         }
         finally
         {
