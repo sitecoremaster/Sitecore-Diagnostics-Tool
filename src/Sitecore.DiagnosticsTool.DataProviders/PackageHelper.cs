@@ -30,7 +30,7 @@
     {
       var extracted = file.ExtractZipToDirectory();
       var files = extracted.GetFiles();
-      if (files.Length > 0)
+      if (files.Length > 2) // in mega there are collectionLog.html and optional index.html (SDT report included by SupportPackage.aspx)
       {
         return new [] { extracted};
       }
