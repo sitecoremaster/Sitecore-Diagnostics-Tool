@@ -34,7 +34,7 @@
 
       using (var inputTemp = fileSystem.CreateUniqueTempFolder())
       {
-        var mega = inputTemp.GetChildFile("1.zip");//file.FileName);
+        var mega = inputTemp.GetChildFile(file.FileName);
         using (var output = mega.Open(FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
         {
           using (var input = file.InputStream)
