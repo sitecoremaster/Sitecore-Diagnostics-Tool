@@ -160,20 +160,18 @@
 
       try
       {
+        Console.WriteLine("Running tests...");
+        var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
+
+        outputFile.Directory.Create();
+
+        Console.WriteLine("Building report...");
+
+        outputFile.WriteAllText(ReportBuilder.GenerateReport(resultsFile));
+
+        if (openReport)
         {
-          Console.WriteLine("Running tests...");
-          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
-
-          outputFile.Directory.Create();
-
-          Console.WriteLine("Building report...");
-
-          outputFile.WriteAllText(ReportBuilder.GenerateReport(resultsFile));
-
-          if (openReport)
-          {
-            Process.Start("explorer", $"\"{outputFile}\"");
-          }
+          Process.Start("explorer", $"\"{outputFile}\"");
         }
       }
       finally
