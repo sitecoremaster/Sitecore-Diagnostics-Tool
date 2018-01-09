@@ -3,6 +3,8 @@
   using System;
   using System.Diagnostics;
   using System.IO;
+  using System.IO.Compression;
+  using System.Net;
   using System.Reflection;
   using System.Web;
   using System.Web.Mvc;
@@ -21,11 +23,11 @@
     [HttpGet]
     public string Get()
     {
-      return "Send Aggregated SSPG package in POST request.";
+      return "Send Aggregated SSPG package in POST request. There is also optional ?ftp=true switch which will include report into given package and upload it to Sitecore FTP.";
     }
 
     [HttpPost]
-    public string Post()
+    public string Post(bool ftp = false)
     {
       var file = HttpContext.Request.Files[0];
       Assert.IsNotNull(file);
@@ -55,6 +57,16 @@
           var system = new SystemContext(assemblyName);
           var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
           var report = ReportBuilder.GenerateReport(resultsFile);
+
+          if (!ftp)
+          {
+            return report;
+          }
+
+          IncludeReportToMega(mega, report);
+          UploadToFtp(mega);
+
+          return "Uploaded to FTP as " + file.FileName;
         }
         finally
         {
@@ -62,6 +74,44 @@
           {
             package?.Dispose();
           }
+        }
+      }
+    }
+
+    private void IncludeReportToMega(IFile mega, string report)
+    {
+      using (var zip = ZipFile.Open(mega.FullName, ZipArchiveMode.Update))
+      {
+        var entry = zip.GetEntry("index.html");
+        if (entry != null)
+        {
+          return;
+        }
+
+        entry = zip.CreateEntry("index.html");
+        using (var writer = new StreamWriter(entry.Open()))
+        {
+          writer.Write(report);
+        }
+      }
+    }
+
+    private void UploadToFtp(IFile packageFile)
+    {
+      var url = $"ftp://dl.sitecore.net/upload/{packageFile.Name}";
+      var ftpRquest = (FtpWebRequest)WebRequest.Create(new Uri(url));
+      ftpRquest.Credentials = new NetworkCredential();
+      ftpRquest.KeepAlive = false;
+      ftpRquest.UseBinary = true;
+      ftpRquest.ContentLength = packageFile.Length;
+      ftpRquest.Method = WebRequestMethods.Ftp.UploadFile;
+      ftpRquest.EnableSsl = true;
+
+      using (var sourceStream = packageFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+      {
+        using (var targetStream = ftpRquest.GetRequestStream())
+        {
+          sourceStream.CopyTo(targetStream);
         }
       }
     }

@@ -72,6 +72,8 @@
     <Reference Include="Sitecore.Diagnostics.Objects, Version=2.0.1.106, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Diagnostics.Objects.2.0.1.106\lib\Sitecore.Diagnostics.Objects.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
