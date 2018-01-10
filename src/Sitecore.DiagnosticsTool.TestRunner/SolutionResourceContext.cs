@@ -7,6 +7,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
   using JetBrains.Annotations;
 
   using Sitecore.Diagnostics.Base;
+  using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
   using Sitecore.DiagnosticsTool.Core.Tests;
@@ -39,6 +40,9 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
     // TODO: rework 
     public ISitecoreDefaultsContext SitecoreDefaults => Values.First().SitecoreInfo.SitecoreDefaults;
+
+    // TODO: rework 
+    public ISitecoreVersion SitecoreVersion => Values.First().SitecoreInfo.SitecoreVersion;
 
     public ISystemContext System { get; }
   }
