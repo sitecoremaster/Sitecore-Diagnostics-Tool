@@ -71,5 +71,10 @@ namespace Sitecore.DiagnosticsTool.Core.Output
     {
       return !(left == right);
     }
+
+    public static implicit operator MessagePart(string text)
+    {
+      return new Text(text);
+    }
   }
 }
