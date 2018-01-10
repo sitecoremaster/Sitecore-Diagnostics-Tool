@@ -103,7 +103,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         if (!context.Results.All.Any())
         {
-          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
+          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
         }
 
         return CreateReport(test, context);
@@ -112,7 +112,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         Log.Error(ex, "Test failed with unhandled exception");
 
-        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Checking test preconditions failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, ex.PrintException()));
+        context.Results.Add(new TestOutput(TestResultState.CannotRun, "Checking test preconditions failed with unhandled exception. " + ex.Message.TrimEnd('.') + ". Find details in the log file.", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
       }
 
       return RunTestInner(test, data, context);
@@ -133,7 +133,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       {
         if (!context.Results.All.Any())
         {
-          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, ex.PrintException()));
+          context.Results.Add(new TestOutput(TestResultState.CannotRun, $"Test failed to run due to missing resource: {ex.Message}", null, new DetailedMessage(new CodeBlock(ex.PrintException()))));
         }
       }
       catch (Exception ex)

@@ -10,7 +10,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
   public class TestOutput : ITestResult
   {
-    public TestOutput(TestResultState state, [NotNull] ShortMessage message, Uri link = null, DetailedMessage data = null)
+    public TestOutput(TestResultState state, [NotNull] ShortMessage message, Uri link = null, DetailedMessage data = null, string instanceName = null)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
@@ -18,6 +18,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
       Message = message;
       Link = link;
       Detailed = data;
+      Instance = instanceName;
     }
 
     public TestResultState State { get; }
@@ -27,6 +28,8 @@ namespace Sitecore.DiagnosticsTool.TestRunner
     public Uri Link { get; }
 
     public DetailedMessage Detailed { get; }
+
+    public string Instance { get; }
 
     /// <summary>
     ///   Indicates if the Sitecore test was completed i.e. it is conclusive.

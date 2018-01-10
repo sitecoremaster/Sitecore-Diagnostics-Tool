@@ -67,6 +67,7 @@
     <Compile Include="Base\ITestProcessingContext.cs" />
     <Compile Include="Base\ITestReport.cs" />
     <Compile Include="Base\ITestResult.cs" />
+    <Compile Include="Base\ITestResultData.cs" />
     <Compile Include="Base\ITestResults.cs" />
     <Compile Include="Base\ITestResultsView.cs" />
     <Compile Include="Base\ResultsFile.cs" />

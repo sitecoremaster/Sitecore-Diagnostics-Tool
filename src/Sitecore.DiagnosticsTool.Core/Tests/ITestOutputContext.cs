@@ -23,7 +23,10 @@
     /// <param name="detailed">
     ///   The detailed message about an issue applied to customer's solution.
     /// </param>
-    void Error([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null);
+    /// <param name="instanceName">
+    ///   The instance name the message relates to.
+    /// </param>
+    void Error([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null, [CanBeNull] string instanceName = null);
 
     /// <summary>
     ///   The method for saving information about trivial error or potential place for improvement in customer's solution.
@@ -37,7 +40,10 @@
     /// <param name="detailed">
     ///   The detailed message about trivial error or potential place for improvement in customer's solution.
     /// </param>
-    void Warning([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null);
+    /// <param name="instanceName">
+    ///   The instance name the message relates to.
+    /// </param>
+    void Warning([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null, [CanBeNull] string instanceName = null);
 
     /// <summary>
     ///   The method for notifying that test is not completed due specific circumstance.
@@ -51,7 +57,10 @@
     /// <param name="detailed">
     ///   The detailed message that describes why test couldn't be run.
     /// </param>
-    void CannotRun([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null);
+    /// <param name="instanceName">
+    ///   The instance name the message relates to.
+    /// </param>
+    void CannotRun([NotNull] ShortMessage message, [CanBeNull] Uri url = null, [CanBeNull] DetailedMessage detailed = null, [CanBeNull] string instanceName = null);
 
     /// <summary>
     ///   The method for saving additional debug information.
