@@ -127,7 +127,6 @@
     <Compile Include="PackageHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitecoreInformationContextTests.cs" />
-    <Compile Include="VersionHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sitecore.DiagnosticsTool.Core\SDT.Core.csproj">

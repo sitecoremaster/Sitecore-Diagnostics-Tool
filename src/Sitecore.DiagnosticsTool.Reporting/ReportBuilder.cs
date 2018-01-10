@@ -229,60 +229,7 @@
     private static IEnumerable<string> GetMessages(string alertType, string prefix, ResultsFile resultsFile, Func<ITestReport, IEnumerable<string>> getMessages)
     {
       var counter = 1;
-      var testToInstanceToMessages = new Map<Map<List<string>>>();
-      foreach (var test in testToInstanceToMessages.Keys)
-      {
-        var instanceToMessages = testToInstanceToMessages[test];
-
-        var instanceToMessage = new Map();
-        foreach (var packageName in instanceToMessages.Keys)
-        {
-          var messages = instanceToMessages[packageName];
-          if (messages.Count <= 0)
-          {
-            continue;
-          }
-
-          var validFor = "";
-          if (!string.IsNullOrEmpty(packageName))
-          {
-            var infoContext = resultsFile.Packages[packageName].GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault();
-            validFor = infoContext?.InstanceName;
-          }
-
-          var messageContent = "";
-          foreach (var message in messages)
-          {
-            messageContent += $"{message}<br />";
-          }
-
-          instanceToMessage.Add(validFor, messageContent);
-        }
-
-        var content = instanceToMessage.GroupBy(x => x.Value)
-          .Select(g => new
-          {
-            Message = g.Key,
-            Instances = g.ToArray()
-          })
-          .Select(g => $"{GetValidForText(g.Instances)}\r\n{g.Message}")
-          .JoinToString("\r\n");
-
-        if (string.IsNullOrWhiteSpace(content))
-        {
-          continue;
-        }
-
-        var id = $"{prefix}{counter++}";
-        var header = $"" +
-          $"<h4 class='alert-heading'>" +
-          $"  <a href='#{id}'>{id}</a>. <span class='test-name'>{test}</span>" +
-          $"</h4>";
-
-        yield return GetMessage(alertType, header + Render(id, test, content));
-      }
-
-      foreach (ITestReport testReport in resultsFile.Solution)
+      foreach (var testReport in resultsFile.Solution)
       {
         var test = testReport.Owner.Name;
         var content = getMessages(testReport).JoinToString("\r\n");
