@@ -22,7 +22,7 @@
 
     public override void ToHtml(StringBuilder builder)
     {
-      builder.Append(WebUtility.HtmlEncode(Value));
+      builder.Append(WebUtility.HtmlEncode(Value).Replace("\r\n", "<br />"));
     }
 
     public override void ToPlainText(StringBuilder builder, string shift = null)
