@@ -6,7 +6,6 @@
   using System.IO.Compression;
   using System.Net;
   using System.Reflection;
-  using System.Web;
   using System.Web.Mvc;
 
   using Sitecore.Diagnostics.Base;
@@ -16,14 +15,16 @@
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
+  using Sitecore.DiagnosticsTool.Service.ErrorHandler;
 
   [Route("api/v1")]
+  [AiHandleError]
   public class V1Controller : Controller
   {
     [HttpGet]
-    public string Get()
+    public string Get(bool? ftp = null)
     {
-      return "Send Aggregated SSPG package in POST request. There is also optional ?ftp=true switch which will include report into given package and upload it to Sitecore FTP.";
+      return "Send Aggregated SSPG package in POST request. " + (ftp == null ? "There is also optional ?ftp=true switch which will include report into given package and upload it to Sitecore FTP." : "");
     }
 
     [HttpPost]
@@ -51,11 +52,11 @@
 
         try
         {
-          Console.WriteLine($"Running tests, File = {file.FileName}");
+          Trace.TraceInformation($"Running tests, File = {file.FileName}");
 
           var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
           var system = new SystemContext(assemblyName);
-          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
+          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Trace.TraceInformation($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
           var report = ReportBuilder.GenerateReport(resultsFile);
 
           if (!ftp)
@@ -64,6 +65,9 @@
           }
 
           IncludeReportToMega(mega, report);
+
+          Trace.TraceInformation($"Uploadting to FTP, File = {file.FileName}");
+
           UploadToFtp(mega);
 
           return $"Uploaded to FTP as {file.FileName}; {report}";
