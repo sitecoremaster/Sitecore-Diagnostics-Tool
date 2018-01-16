@@ -121,6 +121,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ECM\DefaultDatabaseDefinitionTests.cs" />
     <Compile Include="ECM\ExmSpeakHandlerCheckerTests.cs" />
     <Compile Include="ECM\RendererUrlSettingTests.cs" />
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
