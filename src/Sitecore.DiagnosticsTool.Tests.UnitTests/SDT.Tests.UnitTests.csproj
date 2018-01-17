@@ -122,6 +122,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ECM\ExmSpeakHandlerCheckerTests.cs" />
+    <Compile Include="ECM\ListManagementTests.cs" />
     <Compile Include="ECM\RendererUrlSettingTests.cs" />
     <Compile Include="General\Performance\CompilationDebugDisabledTests.cs" />
     <Compile Include="Search\ContentSearchUpdateStrategiesTests.cs" />
