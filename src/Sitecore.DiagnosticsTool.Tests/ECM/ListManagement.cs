@@ -40,7 +40,7 @@
 
     protected override bool IsActual(ISitecoreVersion sitecoreVersion)
     {
-      return sitecoreVersion.Major >= 8;
+      return sitecoreVersion.Major == 8;
     }
     protected override bool IsActual(IReadOnlyCollection<ServerRole> roles)
     {
