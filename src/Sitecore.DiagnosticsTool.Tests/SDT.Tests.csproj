@@ -92,6 +92,7 @@
     <Compile Include="Debug\ChangedSettings.cs" />
     <Compile Include="ECM\DefaultDefinitionDatabase.cs" />
     <Compile Include="ECM\ExMSpeakHandlerChecker.cs" />
+    <Compile Include="ECM\ListManagement.cs" />
     <Compile Include="General\Performance\AbstractQueueSizeTest.cs" />
     <Compile Include="General\Performance\CheckIndexFragmentation.cs" />
     <Compile Include="Analytics\SessionTimeoutWhenSavingRichTextFields.cs" />
