@@ -41,6 +41,11 @@
 
           return;
 
+        case "compress":
+          new CompressCommand { Options = options }.Execute();
+
+          return;
+
         case "run":
           new RunCommand { Options = options }.Execute();
 
