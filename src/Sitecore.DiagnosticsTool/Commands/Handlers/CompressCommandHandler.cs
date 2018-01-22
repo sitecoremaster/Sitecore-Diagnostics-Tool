@@ -88,32 +88,24 @@
       var subfolders1 = folder1.GetDirectories();
       var subfolders2 = folder2.GetDirectories();
 
-      foreach (var subfolder1 in subfolders1)
+      foreach (var subfoldersGroup in subfolders1.Concat(subfolders2).GroupBy(x => x.Name, StringComparer.OrdinalIgnoreCase))
       {
-        foreach (var subfolder2 in subfolders2)
+        var subfolders = subfoldersGroup.ToArray();
+        if (subfolders.Length == 2)
         {
-          if (!string.Equals(subfolder1.Name, subfolder2.Name, StringComparison.OrdinalIgnoreCase))
-          {
-            continue;
-          }
-
-          ReplaceDuplicateFilesWithLinks(subfolder1, subfolder2, onInfo, onError);
+          ReplaceDuplicateFilesWithLinks(subfolders[0], subfolders[1], onInfo, onError);
         }
       }
-      
+
       var files1 = folder1.GetFiles();
       var files2 = folder2.GetFiles();
 
-      foreach (var file1 in files1)
+      foreach (var filesGroup in files1.Concat(files2).GroupBy(x => x.Name, StringComparer.OrdinalIgnoreCase))
       {
-        foreach (var file2 in files2)
+        var files = filesGroup.ToArray();
+        if (files.Length == 2)
         {
-          if (!string.Equals(file1.Name, file2.Name, StringComparison.OrdinalIgnoreCase))
-          {
-            continue;
-          }
-
-          ReplaceDuplicateFilesWithLinks(file1, file2, onInfo, onError);
+          ReplaceDuplicateFilesWithLinks(files[0], files[1], onInfo, onError);
         }
       }
     }
