@@ -53,12 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddCommand.cs" />
+    <Compile Include="Commands\CompressCommand.cs" />
+    <Compile Include="Commands\Contracts\IDecompressCommand.cs" />
+    <Compile Include="Commands\DecompressCommand.cs" />
+    <Compile Include="Commands\Handlers\CompressCommandHandler.cs" />
     <Compile Include="Commands\Handlers\AddCommandHandler.cs" />
     <Compile Include="Commands\Abstract\IGenericCommand.cs" />
     <Compile Include="Commands\Contracts\IAddCommand.cs" />
     <Compile Include="Commands\Contracts\IListCommand.cs" />
     <Compile Include="Commands\Contracts\INewCommand.cs" />
     <Compile Include="Commands\Contracts\IRunCommand.cs" />
+    <Compile Include="Commands\Contracts\ICompressCommand.cs" />
+    <Compile Include="Commands\Handlers\DecompressCommandHandler.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\Handlers\ListCommandHandler.cs" />
     <Compile Include="Commands\NewCommand.cs" />

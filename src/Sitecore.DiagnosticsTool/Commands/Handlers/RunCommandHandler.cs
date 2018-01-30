@@ -46,10 +46,15 @@
         .Required()
         .Callback(x => outputFile = FileSystem.ParseFile(x));
 
-      var showDialog = false;
-      parser.Setup<bool>('d', "diaog")
+      var fileDialog = false;
+      parser.Setup<bool>('f', "fileDiaog")
         .WithDescription("Show popup dialog to choose mega SSPG file")
-        .Callback(x => showDialog = x);
+        .Callback(x => fileDialog = x);
+
+      var dirDialog = false;
+      parser.Setup<bool>('d', "directoryDiaog")
+        .WithDescription("Show popup dialog to choose extracted mega SSPG file")
+        .Callback(x => dirDialog = x);
 
       var openReport = false;
       parser.Setup<bool>('e', "open")
@@ -75,8 +80,8 @@
       var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
       var system = new SystemContext(assemblyName);
       IFile workplaceFile = null;
-      SupportPackageDataProvider[] packages;
-      if (showDialog)
+      SupportPackageDataProvider[] packages = null;
+      if (fileDialog)
       {
         var dialog = new OpenFileDialog
         {
@@ -111,21 +116,50 @@
           mega = file;
         }
       }
-
-      if (mega != null)
+      else if (dirDialog)
       {
-        if (!mega.Exists)
-        {
-          Console.WriteLine($"File does not exist: {mega}");
+        var dialog = new FolderBrowserDialog();
 
-          return;
+        IDirectory dir;
+        while (true)
+        {
+          var dialogResult = dialog.ShowDialog();
+
+          if (dialogResult == DialogResult.Cancel)
+          {
+            return;
+          }
+
+          dir = FileSystem.ParseDirectory(dialog.SelectedPath);
+          if (dir.Exists)
+          {
+            break;
+          }
         }
 
-        packages = PackageHelper.ExtractMegaPackage(mega)
+        packages = dir.GetDirectories()
           .ToArray(x =>
             new SupportPackageDataProvider(x, null, null));
       }
-      else
+
+      if (packages == null)
+      {
+        if (mega != null)
+        {
+          if (!mega.Exists)
+          {
+            Console.WriteLine($"File does not exist: {mega}");
+
+            return;
+          }
+
+          packages = PackageHelper.ExtractMegaPackage(mega)
+            .ToArray(x =>
+              new SupportPackageDataProvider(x, null, null));
+        }
+      }
+
+      if (packages == null)
       {
         workplaceFile = workplaceFile ?? FileSystem.GetWorkplaceFile(workplaceName);
         if (!workplaceFile.Exists)
@@ -160,20 +194,18 @@
 
       try
       {
+        Console.WriteLine("Running tests...");
+        var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
+
+        outputFile.Directory.Create();
+
+        Console.WriteLine("Building report...");
+
+        outputFile.WriteAllText(ReportBuilder.GenerateReport(resultsFile));
+
+        if (openReport)
         {
-          Console.WriteLine("Running tests...");
-          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Console.WriteLine($"Running {test?.Name}..."));
-
-          outputFile.Directory.Create();
-
-          Console.WriteLine("Building report...");
-
-          outputFile.WriteAllText(ReportBuilder.GenerateReport(resultsFile));
-
-          if (openReport)
-          {
-            Process.Start("explorer", $"\"{outputFile}\"");
-          }
+          Process.Start("explorer", $"\"{outputFile}\"");
         }
       }
       finally

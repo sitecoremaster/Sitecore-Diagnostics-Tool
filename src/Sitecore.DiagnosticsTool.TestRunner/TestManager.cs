@@ -14,40 +14,15 @@ namespace Sitecore.DiagnosticsTool.TestRunner
 
   public class TestManager
   {
-    private readonly List<ITest> GlobalTests = new List<ITest>();
-
     [NotNull]
     public IEnumerable<ITest> GetTests()
     {
-      if (GlobalTests.Count > 0)
-      {
-        return GlobalTests;
-      }
-
-      var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-      if (path == null)
-      {
-        return GlobalTests;
-      }
-
-      var assemblyPaths = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories).Concat(Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories));
-      foreach (var assemblyPath in assemblyPaths)
-      {
-        try
-        {
-          GlobalTests.AddRange(GetTests(assemblyPath));
-        }
-        catch (Exception exception)
-        {
-          Log.Error(exception, "Failed to load an assembly: " + assemblyPath);
-        }
-      }
-
+      var tests = new List<ITest>();
       foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
       {
         try
         {
-          GlobalTests.AddRange(GetTests(assembly));
+          tests.AddRange(GetTests(assembly));
         }
         catch (Exception exception)
         {
@@ -55,7 +30,7 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         }
       }
 
-      return GlobalTests;
+      return tests;
     }
 
     [NotNull]

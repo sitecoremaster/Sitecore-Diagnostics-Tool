@@ -29,10 +29,16 @@
     public static IDirectory[] ExtractMegaPackage(IFile file)
     {
       var extracted = file.ExtractZipToDirectory();
+
+      return DecompressMegaPackage(file, extracted);
+    }
+
+    public static IDirectory[] DecompressMegaPackage(IFileSystemEntry file, IDirectory extracted)
+    {
       var files = extracted.GetFiles();
-      if (files.Length > 0)
+      if (files.Length > 2) // in mega there are collectionLog.html and optional index.html (SDT report included by SupportPackage.aspx)
       {
-        return new [] { extracted};
+        return new IDirectory[] { extracted };
       }
 
       var directories = extracted.GetDirectories();
@@ -41,7 +47,7 @@
         var zipFiles = extracted.GetFiles("*.zip");
         if (zipFiles.Length == 0)
         {
-          throw new InvalidOperationException("Zip file does not contain enither subfolders or inner zip files: " + file);
+          throw new InvalidOperationException("Mega package does not contain enither subfolders or inner zip files: " + file);
         }
 
         var newDirs = new List<IDirectory>();

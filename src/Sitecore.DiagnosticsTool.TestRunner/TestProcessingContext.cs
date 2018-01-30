@@ -25,25 +25,25 @@
       Results = new TestResults();
     }
 
-    public void Error(ShortMessage message, Uri url, DetailedMessage detailed)
+    public void Error(ShortMessage message, Uri url, DetailedMessage detailed, string instanceName)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
-      AddResult(TestResultState.Error, url, message, detailed);
+      AddResult(TestResultState.Error, url, message, detailed, instanceName);
     }
 
-    public void Warning(ShortMessage message, Uri url, DetailedMessage detailed)
+    public void Warning(ShortMessage message, Uri url, DetailedMessage detailed, string instanceName)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
-      AddResult(TestResultState.Warning, url, message, detailed);
+      AddResult(TestResultState.Warning, url, message, detailed, instanceName);
     }
 
-    public void CannotRun(ShortMessage message, Uri url, DetailedMessage detailed)
+    public void CannotRun(ShortMessage message, Uri url, DetailedMessage detailed, string instanceName)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
-      AddResult(TestResultState.CannotRun, url, message, detailed);
+      AddResult(TestResultState.CannotRun, url, message, detailed, instanceName);
     }
 
     public void Debug(DetailedMessage message)
@@ -61,18 +61,12 @@
       Debug(new DetailedMessage(message.Items.Concat(new[] { new Text(". Exception:"), new CodeBlock(ex.PrintException()) })));
     }
 
-    private void AddResult(TestResultState state, [CanBeNull] Uri link, [NotNull] ShortMessage message, [CanBeNull] DetailedMessage detailed)
+    private void AddResult(TestResultState state, [CanBeNull] Uri link, [NotNull] ShortMessage message, [CanBeNull] DetailedMessage detailed, [CanBeNull] string instanceName)
     {
       Assert.ArgumentNotNull(message, nameof(message));
 
-      if (Results.All.Any(x => x.State == state && x.Message.ToString() == message.ToString()))
-      {
-        // avoid duplicate messages
-        return;
-      }
-
       Log.Info($"Test output: {state}, {message}{(link != null ? ", " + link.AbsoluteUri : null)}");
-      Results.Add(new TestOutput(state, message, link, detailed));
+      Results.Add(new TestOutput(state, message, link, detailed, instanceName));
     }
   }
 }

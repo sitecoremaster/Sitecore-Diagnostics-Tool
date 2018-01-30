@@ -8,8 +8,6 @@
 
   using JetBrains.Annotations;
 
-  using Sitecore.Diagnostics.Base;
-  using Sitecore.Diagnostics.Base.Extensions.DictionaryExtensions;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.Base.Extensions.StringExtensions;
   using Sitecore.DiagnosticsTool.Core;
@@ -29,21 +27,17 @@
     {
       var template = File.ReadAllText(Application.GetEmbeddedFile(typeof(ReportBuilder).Assembly, "Template.html"));
 
-      var errorMessages = Safe(_ => GetErrorMessages(resultsFile));
-      var errorText = errorMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No error messages</p>";
+      var errorMessages = Safe(_ => GetErrorMessages(resultsFile)) ?? new string[0];
+      var errorText = GetMessagesText(errorMessages, "error");
 
-      var warningMessages = Safe(_ => GetWarningMessages(resultsFile));
-      var warningText = warningMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No warning messages</p>";
+      var warningMessages = Safe(_ => GetWarningMessages(resultsFile)) ?? new string[0];
+      var warningText = GetMessagesText(warningMessages, "warning");
 
-      var debugMessages = Safe(_ => GetDebugMessages(resultsFile));
-      var debugText = debugMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No debug messages</p>";
+      var debugMessages = Safe(_ => GetDebugMessages(resultsFile)) ?? new string[0];
+      var debugText = GetMessagesText(debugMessages, "debug");
 
-      var cannotRunMessages = Safe(_ => GetCannotRunMessages(resultsFile));
-      var cannotRunText = cannotRunMessages
-        .JoinToString("\r\n").EmptyToNull() ?? "<p>No cannot run messages</p>";
+      var cannotRunMessages = Safe(_ => GetCannotRunMessages(resultsFile)) ?? new string[0];
+      var cannotRunText = GetMessagesText(cannotRunMessages, "cannot run");
 
       return template
         .Replace("<span class=\"placeholder-messages-total-count\"></span>", Safe(_ => GetMessagesTotalCount(errorMessages.Length, warningMessages.Length, resultsFile)))
@@ -59,6 +53,12 @@
         .Replace("<div class=\"placeholder-warning-messages\"></div>", warningText)
         .Replace("<div class=\"placeholder-cannot-run-messages\"></div>", cannotRunText)
         .Replace("<div class=\"placeholder-debug-messages\"></div>", debugText);
+    }
+
+    internal static string GetMessagesText(string[] errorMessages, string name)
+    {
+      return errorMessages
+        .JoinToString("\r\n").EmptyToNull() ?? $"<p>No {name.ToLower()} messages</p>";
     }
 
     private static T Safe<T>([NotNull] Func<Null, T> func)
@@ -139,16 +139,16 @@
     private static string GetInstancesModules(ResultsFile resultsFile)
     {
       var contexts = resultsFile.Packages.Values
-        .ToArray(x => 
+        .ToArray(x =>
           x.GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault());
 
       var map = contexts.SelectMany(x => x.ModulesInformation.InstalledModules.Values.Select(z => new
-        
-        {
-          InstanceName = x.InstanceName,
-          ProductName = $"{z.Release.ProductName}", 
-          Version = $"{z.Release.Version}",
-        })).GroupBy(x => x.ProductName);
+
+      {
+        InstanceName = x.InstanceName,
+        ProductName = $"{z.Release.ProductName}",
+        Version = $"{z.Release.Version}",
+      })).GroupBy(x => x.ProductName);
 
       if (!map.Any())
       {
@@ -156,7 +156,7 @@
       }
 
       var sb = new StringBuilder();
-      new Table(map.ToArray(x => 
+      new Table(map.ToArray(x =>
         new TableRow(
           new[] { new Pair("Module", x.Key) }
             .Concat(x.Select(z => new Pair(z.InstanceName, z.Version)))
@@ -167,198 +167,195 @@
     }
 
     [NotNull]
-    private static string[] GetErrorMessages(ResultsFile resultsFile)
+    internal static string[] GetErrorMessages(ResultsFile resultsFile)
     {
-      return GetMessages("danger", "E", resultsFile, r => r.Results.Errors.Select(Render)).ToArray();
+      return GetMessages("danger", "E", resultsFile, r => r.Results.Errors).ToArray();
     }
 
     [NotNull]
     private static string[] GetWarningMessages(ResultsFile resultsFile)
     {
-      return GetMessages("warning", "W", resultsFile, r => r.Results.Warnings.Select(Render)).ToArray();
+      return GetMessages("warning", "W", resultsFile, r => r.Results.Warnings).ToArray();
     }
 
     [NotNull]
     private static string[] GetDebugMessages(ResultsFile resultsFile)
     {
-      return GetMessages("info", "D", resultsFile, r => 
-        r.Results.DebugLogs.Select(m => m.Items.Length == 1 && m.Items.Single() is Text
-          ? Render(m.Items.Single(), null, null) 
-          : Render(new Text("There is additional debugging information"), null, m))).ToArray();
+      return GetMessages("info", "D", resultsFile, r => r.Results.DebugLogs.Select(GetDebugMessages)).ToArray();
+    }
+
+    private static ITestResultData GetDebugMessages(Container m)
+    {
+      if (m.Items.Length == 1 && m.Items.Single() is Text)
+      {
+        return new TestOutputData
+        {
+          Message = new ShortMessage(m.Items.Single()),
+          Detailed = new DetailedMessage(m.Items.Single()),
+        };
+      }
+
+      return new TestOutputData
+      {
+        Message = "There is an additional debugging information",
+        Detailed = new DetailedMessage(m)
+      };
     }
 
     [NotNull]
     private static string[] GetCannotRunMessages(ResultsFile resultsFile)
     {
-      return GetMessages("info", "C", resultsFile, r => r.Results.CannotRun.Select(Render)).ToArray();
-    }
-
-    private static string Render(ITestResult testResult)
-    {
-      var shortMessage = testResult.Message;
-      var link = testResult.Link;
-      var detailed = testResult.Detailed;
-
-      return Render(shortMessage, link, detailed);
-    }
-
-    private static string Render(MessagePart shortMessage, Uri link, MessagePart detailed)
-    {
-      var result = shortMessage.ToString(OutputFormat.Html);
-      if (link == null && detailed == null)
-      {
-        return result;
-      }
-
-      result += Token;
-      if (detailed != null)
-      {
-        result += detailed.ToString(OutputFormat.Html);
-      }
-
-      if (link != null)
-      {
-        result += $"Get more information in <a href='{link.AbsoluteUri}'>this document</a>.<hr />";
-      }
-
-      return result;
+      return GetMessages("info", "C", resultsFile, r => r.Results.CannotRun).ToArray();
     }
 
     [NotNull]
     [ItemNotNull]
-    private static IEnumerable<string> GetMessages(string alertType, string prefix, ResultsFile resultsFile, Func<ITestReport, IEnumerable<string>> getMessages)
+    private static IEnumerable<string> GetMessages(string alertType, string prefix, ResultsFile resultsFile, Func<ITestReport, IEnumerable<ITestResultData>> getMessages)
     {
       var counter = 1;
-      var testToInstanceToMessages = new Map<Map<List<string>>>();
-      foreach (var test in testToInstanceToMessages.Keys)
+      foreach (var group in resultsFile.Solution.GroupBy(x => x.Owner.Name))
       {
-        var instanceToMessages = testToInstanceToMessages[test];
+        var test = group.Key;
 
-        var instanceToMessage = new Map();
-        foreach (var packageName in instanceToMessages.Keys)
+        // e.g. all error messages from this test
+        var messages = group.SelectMany(getMessages);
+
+        // data grouped by short messages, and every group has dictionary [ instance => detailed messages[] ]
+        var data = messages
+          .GroupBy(x => x.Message.ToString(OutputFormat.Html))
+          .ToArray(g => new
+          {
+            Message = g.Key,
+            PerInstance = g
+              .GroupBy(x => x.Instance)
+              .ToDictionary(x => x.Key ?? "", x => x.ToArray())
+          });
+
+        if (!data.Any())
         {
-          var messages = instanceToMessages[packageName];
-          if (messages.Count <= 0)
+          continue;
+        }
+
+        var shortMessages = new List<string>();
+        var detailedMessages = new List<string>();
+
+        foreach (var messageGroup in data)
+        {
+          var shortMessage = messageGroup.Message;
+          if (string.IsNullOrWhiteSpace(shortMessage.Replace("  ", " ").Replace("<br />", "").Replace("<br>", "")))
           {
             continue;
           }
 
-          var validFor = "";
-          if (!string.IsNullOrEmpty(packageName))
+          shortMessages.Add(shortMessage);
+
+          foreach (var instanceGroup in messageGroup.PerInstance)
           {
-            var infoContext = resultsFile.Packages[packageName].GetResources().OfType<ISitecoreInformationContext>().FirstOrDefault();
-            validFor = infoContext?.InstanceName;
+            var instanceName = instanceGroup.Key;
+
+            var detailedMessage = "";
+            if (!string.IsNullOrEmpty(instanceName))
+            {
+              detailedMessage += $"<div class='applies-to'>{instanceName}</div>";
+            }
+
+            var detailedMessages1 = instanceGroup.Value
+              .Select(x => RenderDetailedMessage(x, shortMessage))
+              .GroupBy(x => x) // to remove duplicates
+              .ToArray(x => x.Key);
+
+            detailedMessage += detailedMessages1.JoinToString("");
+
+            detailedMessages.Add(detailedMessage);
           }
-
-          var messageContent = "";
-          foreach (var message in messages)
-          {
-            messageContent += $"{message}<br />";
-          }
-
-          instanceToMessage.Add(validFor, messageContent);
-        }
-
-        var content = instanceToMessage.GroupBy(x => x.Value)
-          .Select(g => new
-          {
-            Message = g.Key,
-            Instances = g.ToArray()
-          })
-          .Select(g => $"{GetValidForText(g.Instances)}\r\n{g.Message}")
-          .JoinToString("\r\n");
-
-        if (string.IsNullOrWhiteSpace(content))
-        {
-          continue;
         }
 
         var id = $"{prefix}{counter++}";
-        var header = $"" +
-          $"<h4 class='alert-heading'>" +
+
+        var header = $"<h4 class='alert-heading'>" +
           $"  <a href='#{id}'>{id}</a>. <span class='test-name'>{test}</span>" +
           $"</h4>";
 
-        yield return GetMessage(alertType, header + Render(id, test, content));
-      }
+        var briefView = $"<div class=\'short-message\'>{string.Join("</div><hr /><div class='short-message'>", shortMessages)}</div>";
 
-      foreach (ITestReport testReport in resultsFile.Solution)
-      {
-        var test = testReport.Owner.Name;
-        var content = getMessages(testReport).JoinToString("\r\n");
-        if (string.IsNullOrWhiteSpace(content))
+        if (detailedMessages.All(string.IsNullOrWhiteSpace))
         {
+          yield return GetMessage(alertType, header + briefView);
+
           continue;
         }
 
-        var id = $"{prefix}{counter++}";
-        var header = $"" +
-                     $"<h4 class='alert-heading'>" +
-                     $"  <a href='#{id}'>{id}</a>. <span class='test-name'>{test}</span>" +
-                     $"</h4>";
-
-        yield return GetMessage(alertType, header + Render(id, test, content));
-      }
-    }
-
-    private const string Token = "/--!!--/*--!!--*/--!!--/";
-
-    private static string Render(string id, string testName, string pair)
-    {
-      var pos = pair.IndexOf(Token);
-      if (pos < 0)
-      {
-        return pair;
-      }
-
-      var summary = pair.Substring(0, pos).TrimEnd(" .".ToCharArray());
-      var detailed = pair.Substring(pos + Token.Length);
-
-      if (string.IsNullOrWhiteSpace(detailed.Replace("<br />", "").Trim("\r\n ".ToCharArray())))
-      {
-        return summary;
-      }
-
-      return summary + ". " +
-        $"  <a href='#' data-toggle='modal' data-target='#{id}-details'>See&nbsp;full&nbsp;details.</a>" +
-        $"  <div id='{id}-details' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'>" +
-        $"    <div class='modal-dialog modal-lg'>" +
-        $"      <div class='modal-content'>" +
-        $"        <div class='modal-header'>" +
-        $"          <h5 class='modal-title'>{id}. {testName}</h5>" +
-        $"          <button type='button' class='close' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button>" +
-        $"        </div>" +
-        $"        <div class='modal-body'>" +
-        $"          {summary}" +
-        $"          <hr />" +
-        $"          {detailed.Replace(Token, "")}" +
-        $"        </div>" +
-        $"      </div>" +
-        $"    </div>" +
-        $"  </div>";
-    }
-
-    private static string GetValidForText(IEnumerable<KeyValuePair<string, string>> g)
-    {
-      var text = "";
-
-      foreach (var pair in g)
-      {
-        var instanceName = pair.Key;
-        if (string.IsNullOrEmpty(instanceName))
+        if (AreSame(shortMessages, detailedMessages))
         {
+          yield return GetMessage(alertType, header + briefView);
+
           continue;
         }
 
-        text += $"<b>Applies to: {instanceName}</b><br />\r\n";
-      }
+        var detailedView = $"<div class=\'detailed-message\'>{string.Join("</div><hr /><div class='detailed-message'>", detailedMessages)}</div>";
+        var html = $"" +
+          $"{header}" +
+          $"{briefView}" +
+          $"<a href='#' data-toggle='modal' data-target='#{id}-details'>See&nbsp;full&nbsp;details.</a>" +
+          $"  <div id='{id}-details' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'>" +
+          $"    <div class='modal-dialog modal-lg'>" +
+          $"      <div class='modal-content'>" +
+          $"        <div class='modal-header'>" +
+          $"          <h5 class='modal-title'>{id}. {test}</h5>" +
+          $"          <button type='button' class='close' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button>" +
+          $"        </div>" +
+          $"        <div class='modal-body'>" +
+          $"          {detailedView}" +
+          $"        </div>" +
+          $"      </div>" +
+          $"    </div>" +
+          $"  </div>";
 
-      if (string.IsNullOrWhiteSpace(text))
+        yield return GetMessage(alertType, html);
+      }
+    }
+
+    private static bool AreSame(List<string> first, List<string> second)
+    {
+      if (first.Count != second.Count)
       {
-        return "";
+        return false;
       }
 
-      return $"<hr />{text}";
+      for (var i = 0; i < first.Count; ++i)
+      {
+        if (first[i] != second[i])
+        {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    private static string RenderDetailedMessage(ITestResultData testResult, string shortMessage)
+    {
+      var result = "";
+      var detailed = testResult.Detailed;
+      var uri = testResult.Link;
+      if (detailed != null)
+      {
+        result += detailed.ToString(OutputFormat.Html);
+      }
+      else
+      {
+        result += shortMessage;
+      }
+
+      if (uri != null)
+      {
+        result += $"" +
+          $"<div>" +
+          $"Get more information in <a href='{uri.AbsoluteUri}'>this document</a>." +
+          $"</div>";
+      }
+
+      return result;
     }
 
     private static string GetMessage(string alertType, [NotNull] string contents)
@@ -368,6 +365,17 @@
         $"  <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> " +
         $"  {contents} " +
         $"</div>";
+    }
+
+    public class TestOutputData : ITestResultData
+    {
+      public ShortMessage Message { get; set; }
+
+      public Uri Link { get; set; }
+
+      public DetailedMessage Detailed { get; set; }
+
+      public string Instance { get; set; }
     }
   }
 }

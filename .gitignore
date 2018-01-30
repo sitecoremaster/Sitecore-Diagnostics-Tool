@@ -31,3 +31,5 @@ src/packages/
 *.user
 src/Sitecore.DiagnosticsTool.Service/bin/
 src/Sitecore.DiagnosticsTool.Service/obj/
+src/Sitecore.DiagnosticsTool.Reporting.UnitTests/bin/
+src/Sitecore.DiagnosticsTool.Reporting.UnitTests/obj/

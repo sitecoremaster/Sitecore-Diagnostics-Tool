@@ -1,5 +1,6 @@
 ﻿namespace Sitecore.DiagnosticsTool.Core.Tests
 {
+  using System;
   using System.Collections.Generic;
   using System.Linq;
 
@@ -8,6 +9,7 @@
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Categories;
+  using Sitecore.DiagnosticsTool.Core.Output;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
 
   /// <summary>
@@ -75,8 +77,48 @@
       {
         if (IsActual(instance.ServerRoles, instance.SitecoreInfo.SitecoreVersion, instance))
         {
-          Process(instance, output);
+          Process(instance, new ProxyOutputContext(instance.SitecoreInfo.InstanceName, output));
         }
+      }
+    }
+
+    public class ProxyOutputContext : ITestOutputContext
+    {
+      [NotNull]
+      public string InstanceName { get; }
+
+      [NotNull]
+      public ITestOutputContext Inner { get; }
+
+      public ProxyOutputContext(string instanceName, ITestOutputContext inner)
+      {
+        InstanceName = instanceName;
+        Inner = inner;
+      }
+
+      public void Error(ShortMessage message, Uri url = null, DetailedMessage detailed = null, string instanceName = null)
+      {
+        Inner.Error(message, url, detailed, instanceName ?? InstanceName);
+      }
+
+      public void Warning(ShortMessage message, Uri url = null, DetailedMessage detailed = null, string instanceName = null)
+      {
+        Inner.Warning(message, url, detailed, instanceName ?? InstanceName);
+      }
+
+      public void CannotRun(ShortMessage message, Uri url = null, DetailedMessage detailed = null, string instanceName = null)
+      {
+        Inner.CannotRun(message, url, detailed, instanceName ?? InstanceName);
+      }
+
+      public void Debug(DetailedMessage detailed)
+      {
+        Inner.Debug(detailed);
+      }
+
+      public void Debug(Exception exception, DetailedMessage detailed)
+      {
+        Inner.Debug(exception, detailed);
       }
     }
   }

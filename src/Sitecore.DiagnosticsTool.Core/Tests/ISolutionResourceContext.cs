@@ -4,6 +4,7 @@
 
   using JetBrains.Annotations;
 
+  using Sitecore.Diagnostics.Objects;
   using Sitecore.DiagnosticsTool.Core.Resources.Common;
   using Sitecore.DiagnosticsTool.Core.Resources.Database;
   using Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation;
@@ -19,6 +20,13 @@
     /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
     [NotNull]
     ISitecoreDefaultsContext SitecoreDefaults { get; }
+
+    /// <summary>
+    ///   The version of Sitecore extracted from the sitecore\shell\sitecore.version.xml file
+    /// </summary>
+    /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+    [NotNull]
+    ISitecoreVersion SitecoreVersion { get; }
 
     /// <summary>
     ///   System information.
