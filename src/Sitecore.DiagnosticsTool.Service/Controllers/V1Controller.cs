@@ -12,6 +12,7 @@
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
@@ -71,6 +72,15 @@
           UploadToFtp(mega);
 
           return $"Uploaded to FTP as {file.FileName}; {report}";
+        }
+        catch (Exception ex)
+        {
+          Trace.TraceError($"Failed to process request, File = {file.FileName}, Exception = {ex.PrintException()}");
+
+          Response.StatusCode = 500;
+          Response.StatusDescription = "InternalServerError";
+
+          return ex.PrintException();
         }
         finally
         {
