@@ -6,16 +6,19 @@
   using System.IO.Compression;
   using System.Net;
   using System.Reflection;
+  using System.Web;
   using System.Web.Mvc;
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
   using Sitecore.Diagnostics.FileSystem;
   using Sitecore.Diagnostics.FileSystem.Extensions;
+  using Sitecore.DiagnosticsTool.Core.Extensions;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage;
   using Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources;
   using Sitecore.DiagnosticsTool.Reporting;
   using Sitecore.DiagnosticsTool.Service.ErrorHandler;
+  using Sitecore.DiagnosticsTool.TestRunner;
 
   [Route("api/v1")]
   [AiHandleError]
@@ -46,18 +49,9 @@
           }
         }
 
-        var packages = PackageHelper.ExtractMegaPackage(mega)
-              .ToArray(x =>
-                new SupportPackageDataProvider(x, null, null));
-
         try
         {
-          Trace.TraceInformation($"Running tests, File = {file.FileName}");
-
-          var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
-          var system = new SystemContext(assemblyName);
-          var resultsFile = TestRunner.TestRunner.RunTests(packages, system, (test, index, count) => Trace.TraceInformation($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
-          var report = ReportBuilder.GenerateReport(resultsFile);
+          var report = AnalyzeMegaPackage(mega, file);
 
           if (!ftp)
           {
@@ -66,18 +60,51 @@
 
           IncludeReportToMega(mega, report);
 
-          Trace.TraceInformation($"Uploadting to FTP, File = {file.FileName}");
-
           UploadToFtp(mega);
 
           return $"Uploaded to FTP as {file.FileName}; {report}";
         }
-        finally
+        catch (Exception ex)
         {
-          foreach (var package in packages)
+          if (ftp)
           {
-            package?.Dispose();
+            UploadToFtp(mega);
+
+            return $"Uploaded to FTP as {file.FileName}";
           }
+
+          Trace.TraceError($"Failed to process request, File = {file.FileName}, Exception = {ex.PrintException()}");
+
+          Response.StatusCode = 500;
+          Response.StatusDescription = "InternalServerError";
+
+          return ex.PrintException();
+        }
+      }
+    }
+
+    private static string AnalyzeMegaPackage(IFile mega, HttpPostedFileBase file)
+    {
+      var packages = PackageHelper.ExtractMegaPackage(mega)
+        .ToArray(x =>
+          new SupportPackageDataProvider(x, null, null));
+
+      try
+      {
+        Trace.TraceInformation($"Running tests, File = {file.FileName}");
+
+        var assemblyName = Assembly.GetExecutingAssembly().GetName().ToString();
+        var system = new SystemContext(assemblyName);
+        var resultsFile = TestRunner.RunTests(packages, system, (test, index, count) => Trace.TraceInformation($"Running test #{index:D2}, File = {file.FileName}, Test = {test?.Name}"));
+        var report = ReportBuilder.GenerateReport(resultsFile);
+
+        return report;
+      }
+      finally
+      {
+        foreach (var package in packages)
+        {
+          package?.Dispose();
         }
       }
     }
@@ -102,6 +129,8 @@
 
     private void UploadToFtp(IFile packageFile)
     {
+      Trace.TraceInformation($"Uploadting to FTP, File = {packageFile.Name}");
+
       var url = $"ftp://dl.sitecore.net/upload/{packageFile.Name}";
       var ftpRquest = (FtpWebRequest)WebRequest.Create(new Uri(url));
       ftpRquest.Credentials = new NetworkCredential();

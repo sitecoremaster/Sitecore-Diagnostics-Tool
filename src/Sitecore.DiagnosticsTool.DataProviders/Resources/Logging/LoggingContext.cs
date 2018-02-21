@@ -78,7 +78,14 @@
 
     private IEnumerable<FileInfo> GetAllLogFiles()
     {
-      return new DirectoryInfo(SitecoreLogsFolderPath).GetFiles().OrderBy(x => x.CreationTime);
+      /* order-by this way: 
+          log.20180131.txt.1,  ~ 1
+          log.20180131.txt.2,  ~ 2
+          log.20180131.txt.3,  ~ 3   
+          log.20180131.txt     ~ 2147483647    
+        */
+      int tmp; 
+      return new DirectoryInfo(SitecoreLogsFolderPath).GetFiles().OrderBy(x => int.TryParse(x.Name.Substring(x.Name.LastIndexOf('.') + 1), out tmp) ? tmp : int.MaxValue);
     }
 
     private FileInfo[] GetLogFilesByLimit()
