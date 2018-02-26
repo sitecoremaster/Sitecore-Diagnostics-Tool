@@ -47,12 +47,12 @@
         .Callback(x => outputFile = FileSystem.ParseFile(x));
 
       var fileDialog = false;
-      parser.Setup<bool>('f', "fileDiaog")
+      parser.Setup<bool>('f', "fileDialog")
         .WithDescription("Show popup dialog to choose mega SSPG file")
         .Callback(x => fileDialog = x);
 
       var dirDialog = false;
-      parser.Setup<bool>('d', "directoryDiaog")
+      parser.Setup<bool>('d', "directoryDialog")
         .WithDescription("Show popup dialog to choose extracted mega SSPG file")
         .Callback(x => dirDialog = x);
 
@@ -119,6 +119,21 @@
       else if (dirDialog)
       {
         var dialog = new FolderBrowserDialog();
+        var lastPathFile = FileSystem.ParseFile(Environment.ExpandEnvironmentVariables(@"%APPDATA%\Sitecore\Sitecore Diagnostics Tool\Temp\directoryDialog-LastPath.txt"));
+        if (lastPathFile.Exists)
+        {
+          var value = lastPathFile.ReadAllText();
+          while (!string.IsNullOrEmpty(value))
+          {
+            if (FileSystem.ParseDirectory(value).Exists)
+            {
+              dialog.SelectedPath = value;
+              break;
+            }
+
+            value = string.Join("\\", value.Split('\\').Reverse().Skip(1).Reverse());
+          }
+        }
 
         IDirectory dir;
         while (true)
