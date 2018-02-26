@@ -31,12 +31,11 @@
 
         if (solution.Values.Any(x => x.SitecoreInfo.GetSetting(settingName) != defaultValue))
         {
-          var columns = new List<Pair> 
-          { 
-            new Pair("Setting", settingName),
-            new Pair("Default Value", defaultValue.EmptyToNull() ?? "[empty]")            
-          };
+          var var columns = new List<Pair>();
+
+          columns.Add(new Pair("Setting", settingName));
           columns.AddRange(solution.Values.Select(x => new Pair(x.InstanceName, x.SitecoreInfo.GetSetting(settingName))));
+          columns.Add(new Pair("Default Value", defaultValue.EmptyToNull() ?? "[empty]"));
 
           rows.Add(new TableRow(columns));
         }
