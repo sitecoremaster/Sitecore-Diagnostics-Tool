@@ -1,3 +1,5 @@
+using Sitecore.Diagnostics.FileSystem;
+
 namespace Sitecore.DiagnosticsTool.TestRunner
 {
   using System;
@@ -27,6 +29,29 @@ namespace Sitecore.DiagnosticsTool.TestRunner
         catch (Exception exception)
         {
           Log.Error(exception, "Failed to parse tests in already loaded assembly: " + assembly.FullName);
+        }
+      }
+
+      if (tests.Count == 0)
+      {
+        var dir = new FileSystem().ParseFile(Assembly.GetExecutingAssembly().Location).Directory;
+        if (dir.Exists)
+        {
+          var assemblies = Enumerable.Concat(
+            dir.GetFiles("*.dll", SearchOption.AllDirectories), 
+            dir.GetFiles("*.exe", SearchOption.AllDirectories));
+
+          foreach (var assembly in assemblies)
+          {
+            try
+            {
+              tests.AddRange(GetTests(Assembly.LoadFrom(assembly.FullName)));
+            }
+            catch (Exception exception)
+            {
+              Log.Error(exception, "Failed to load assembly: " + assembly.FullName);
+            }
+          }
         }
       }
 

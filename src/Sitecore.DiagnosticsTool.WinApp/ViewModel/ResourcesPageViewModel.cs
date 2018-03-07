@@ -1,4 +1,6 @@
-﻿namespace Sitecore.DiagnosticsTool.WinApp.ViewModel
+﻿using Sitecore.Diagnostics.FileSystem.Extensions;
+
+namespace Sitecore.DiagnosticsTool.WinApp.ViewModel
 {
   using System.Collections.ObjectModel;
   using System.Linq;
@@ -54,7 +56,10 @@
             }
 
             var file = new FileSystem().ParseFile(openFileDialog.FileName);
-            if (PackageHelper.IsLegacyPackage(file))
+            var dir = new FileSystem().CreateUniqueTempFolder();
+
+            file.ExtractZipToDirectory(dir);
+            if (PackageHelper.IsLegacyPackage(dir))
             {
               var viewModel = (ResourceDetailsViewModel)view.DataContext;
               viewModel.LoadPackageCommand.Execute(file.FullName);

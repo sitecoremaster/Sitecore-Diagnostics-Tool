@@ -11,19 +11,19 @@
 
   public class PackageHelper
   {
-    public static bool IsLegacyPackage(IFile file)
+    public static bool IsLegacyPackage(IDirectory dir)
     {
-      // legacy package has PackageInfo.xml in zip root
-      using (var zip = file.FileSystem.ZipManager.OpenRead(file))
-      {
-        var fileNamesInZipRoot = zip.Entries
-          .Where(x => !x.FullName.Contains('/'))
-          .Select(x => x.FullName)
-          .Distinct()
-          .ToArray();
+      return !IsMegaPackage(dir);
+    }
 
-        return fileNamesInZipRoot.Any(x => x == "PackageInfo.xml");
-      }
+    private static bool IsMegaPackage(IDirectory dir)
+    {
+      return true 
+        && dir.GetFiles().Length == 0
+        && dir.GetDirectories().All(x => true 
+          && x.GetFiles("sitecore.version.xml", SearchOption.AllDirectories).Length > 0 
+          && x.GetDirectories("App_Config", SearchOption.AllDirectories).Length > 0
+        );
     }
 
     public static IDirectory[] ExtractMegaPackage(IFile file)
@@ -33,7 +33,7 @@
       return DecompressMegaPackage(file, extracted);
     }
 
-    public static IDirectory[] DecompressMegaPackage(IFileSystemEntry file, IDirectory extracted)
+    public static IDirectory[] DecompressMegaPackage(IFileSystemEntry fileSystemEntry, IDirectory extracted)
     {
       var files = extracted.GetFiles();
       if (files.Length > 2) // in mega there are collectionLog.html and optional index.html (SDT report included by SupportPackage.aspx)
@@ -47,7 +47,7 @@
         var zipFiles = extracted.GetFiles("*.zip");
         if (zipFiles.Length == 0)
         {
-          throw new InvalidOperationException("Mega package does not contain enither subfolders or inner zip files: " + file);
+          throw new InvalidOperationException("Mega package does not contain enither subfolders or inner zip files: " + fileSystemEntry);
         }
 
         var newDirs = new List<IDirectory>();
