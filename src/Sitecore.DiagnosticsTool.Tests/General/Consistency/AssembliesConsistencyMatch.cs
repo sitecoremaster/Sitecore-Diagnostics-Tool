@@ -22,6 +22,11 @@
 
     public override IEnumerable<Category> Categories { get; } = new[] { Category.General };
 
+    protected override bool IsActual(ISolutionResourceContext data)
+    {
+      return data.Values.Any(x => x.SitecoreInfo.Assemblies.Any());
+    }
+
     public override void Process(ISolutionResourceContext data, ITestOutputContext output)
     {
       Assert.ArgumentNotNull(data, nameof(data));
@@ -85,6 +90,11 @@
     private string Process(string fileName, IInstanceResourceContext instance, AssemblyFile defaultAssembly)
     {
       var actualAssemblies = instance.SitecoreInfo.Assemblies;
+      if (!actualAssemblies.Any())
+      {
+        return "N/A";
+      }
+
       var key = actualAssemblies.Keys.FirstOrDefault(x => fileName.Equals(x, StringComparison.OrdinalIgnoreCase)) ?? actualAssemblies.Keys.FirstOrDefault(x => fileName.EndsWith(x, StringComparison.OrdinalIgnoreCase));
       if (key == null)
       {
