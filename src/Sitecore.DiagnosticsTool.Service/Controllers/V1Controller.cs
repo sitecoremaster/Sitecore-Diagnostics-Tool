@@ -1,6 +1,7 @@
 ﻿namespace Sitecore.DiagnosticsTool.Service.Controllers
 {
   using System;
+  using System.Collections.Generic;
   using System.Diagnostics;
   using System.IO;
   using System.IO.Compression;
@@ -8,6 +9,7 @@
   using System.Reflection;
   using System.Web;
   using System.Web.Mvc;
+  using Microsoft.ApplicationInsights;
 
   using Sitecore.Diagnostics.Base;
   using Sitecore.Diagnostics.Base.Extensions.EnumerableExtensions;
@@ -72,12 +74,12 @@
 
             return $"Uploaded to FTP as {file.FileName}";
           }
-
-          Trace.TraceError($"Failed to process request, File = {file.FileName}, Exception = {ex.PrintException()}");
+          
+          new TelemetryClient().TrackException(ex, new Dictionary<string, string>() { { "fileName", file.FileName }, { "fileSize", file.ContentLength.ToString() } });
 
           Response.StatusCode = 500;
           Response.StatusDescription = "InternalServerError";
-
+          
           return ex.PrintException();
         }
       }
