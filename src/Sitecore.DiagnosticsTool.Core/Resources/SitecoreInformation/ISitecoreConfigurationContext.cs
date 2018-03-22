@@ -18,6 +18,13 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     XmlDocument Configuration { get; }
 
     /// <summary>
+    ///   All the *.config files that are merged into showconfig.xml
+    /// </summary>
+    /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
+    [NotNull]
+    IReadOnlyDictionary<string, ConfigurationFile> ConfigurationFiles { get; }
+
+    /// <summary>
     ///   Retrieves Sitecore settings map from actual showconfig.
     /// </summary>
     /// <returns>Returns a dictionary with setting names and values.</returns>

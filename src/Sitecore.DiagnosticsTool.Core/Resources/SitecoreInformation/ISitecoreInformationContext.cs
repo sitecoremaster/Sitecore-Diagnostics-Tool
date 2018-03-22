@@ -57,13 +57,6 @@ namespace Sitecore.DiagnosticsTool.Core.Resources.SitecoreInformation
     [NotNull]
     ISitecoreDefaultsContext SitecoreDefaults { get; }
 
-    /// <summary>
-    ///   All the *.config files that are merged into showconfig.xml
-    /// </summary>
-    /// <exception cref="ResourceNotAvailableException">The exception will be thrown if resource is not available.</exception>
-    [NotNull]
-    IReadOnlyDictionary<string, ConfigurationFile> IncludeFiles { get; }
-
     ///// <summary>
     ///// All configuration files that were merged into web.config file while initialization. 
     ///// For example: 

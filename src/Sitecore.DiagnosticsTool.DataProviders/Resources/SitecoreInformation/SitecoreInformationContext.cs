@@ -64,7 +64,7 @@
       // configs
       XmlDocument webConfigFile = null;
       XmlDocument resultConfiguration = null;
-      Dictionary<string, ConfigurationFile> includeFiles = null;
+      Dictionary<string, ConfigurationFile> configurationFiles = null;
 
       string dataFolderPath = null;
       var appConfig = Find(rootPath, "App_Config");
@@ -94,11 +94,8 @@
         webConfigFile = new XmlDocument().TryLoadFile(webConfigPath);
 
         Log.Info("Parsing App_Config files");
-        var appConfigFiles = Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
-          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));
-
-        Log.Info("Searching for \\App_Config\\Sitecore, Modules, Include, Environment *.config files");
-        includeFiles = FilterFiles(appConfigFiles, "\\App_Config\\Sitecore\\", "\\App_Config\\Modules\\", "\\App_Config\\Include\\", "\\App_Config\\Environment\\");
+        configurationFiles = Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
+          .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));        
       }
 
       var globalAsaxPath = FindFile(rootPath, "global.asax");
@@ -121,7 +118,7 @@
         DataFolderPath = dataFolderPath,
         GlobalAsaxFile = globalAsaxFile,
         Configuration = resultConfiguration,
-        IncludeFiles = includeFiles,
+        ConfigurationFiles = configurationFiles,
         SitecoreVersionXmlFile = sitecoreVersionXml,
         Assemblies = new AssemblyFileCollection(GetBinaries(rootPath) ?? new AssemblyFile[0])
       };

@@ -134,7 +134,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     public virtual ISitecoreDefaultsContext SitecoreDefaults => AssertResource(_SitecoreDefaults ?? (_SitecoreDefaults = new SitecoreDefaultsContext(SitecoreVersion, _ServiceClient)));
 
-    public virtual IReadOnlyDictionary<string, ConfigurationFile> IncludeFiles
+    public virtual IReadOnlyDictionary<string, ConfigurationFile> ConfigurationFiles
     {
       get
       {

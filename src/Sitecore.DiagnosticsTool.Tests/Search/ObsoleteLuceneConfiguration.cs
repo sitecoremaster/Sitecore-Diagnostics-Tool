@@ -38,7 +38,7 @@
         var configurationName = configuration.Name;
         var configurationFiles = configuration.Files;
 
-        foreach (var configurationFile in data.SitecoreInfo.IncludeFiles.Values)
+        foreach (var configurationFile in data.SitecoreInfo.ConfigurationFiles.Values)
         {
           var configurationElements = configurationFile.Configuration.SelectElements($"{ContentSearchXPath}/{configurationName}");
           if (configurationElements.Any(x => TypeRef.Parse(x.GetAttribute("type")) == configuration.Type))

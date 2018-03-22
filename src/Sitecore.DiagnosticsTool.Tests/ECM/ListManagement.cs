@@ -21,7 +21,7 @@
     {
       IList<string> filesToBeDisabled = new List<string>();
       Assert.ArgumentNotNull(data, nameof(data));
-      foreach (var filePath in data.SitecoreInfo.IncludeFiles.Keys)
+      foreach (var filePath in data.SitecoreInfo.ConfigurationFiles.Keys)
       {
         if (filePath.StartsWith("\\App_Config\\Include\\ListManagement\\",StringComparison.InvariantCultureIgnoreCase)&&filePath.Contains("Sitecore.ListManagement"))
         {

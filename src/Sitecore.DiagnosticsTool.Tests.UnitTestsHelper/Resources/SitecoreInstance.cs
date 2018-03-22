@@ -74,7 +74,7 @@ namespace Sitecore.DiagnosticsTool.Tests.UnitTestsHelper.Resources
       var include = IncludeFiles;
       if (include != null)
       {
-        context.IncludeFiles = include;
+        context.ConfigurationFiles = include;
       }
 
       var globalAsax = GlobalAsaxFile;

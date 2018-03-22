@@ -2,6 +2,7 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 {
   using System;
   using System.Collections.Generic;
+  using System.IO;
   using System.Linq;
   using System.Runtime.Remoting;
   using System.Xml;
@@ -41,6 +42,8 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
 
     private List<ISitecoreModuleInfo> _ModulesInformation;
 
+    private IReadOnlyDictionary<string, ConfigurationFile> _ConfigurationFiles;
+
     public SitecoreDefaultsContext([NotNull] ISitecoreVersion sitecoreVersion, IServiceClient client = null)
     {
       Assert.ArgumentNotNull(sitecoreVersion, nameof(sitecoreVersion));
@@ -63,6 +66,16 @@ namespace Sitecore.DiagnosticsTool.DataProviders.SupportPackage.Resources.Siteco
     private IDistributionDefaults Defaults => _Defaults ?? (_Defaults = GetDefaults());
 
     public virtual XmlDocument Configuration => _Configuration ?? (_Configuration = GetConfiguration());
+
+    public IReadOnlyDictionary<string, ConfigurationFile> ConfigurationFiles => _ConfigurationFiles ?? (_ConfigurationFiles = GetConfigurationFiles());
+
+    private IReadOnlyDictionary<string, ConfigurationFile> GetConfigurationFiles()
+    {
+      var webRootPath = Release.DefaultDistribution.Defaults.Configs.Files.FullName;
+
+      return Directory.GetFiles(Path.Combine(webRootPath, "App_Config"), "*.config", SearchOption.AllDirectories)
+        .ToDictionary(file => file.Substring(webRootPath.Length, file.Length - webRootPath.Length), file => new ConfigurationFile(file, File.ReadAllText(file)));
+    }
 
     public IReadOnlyDictionary<string, AssemblyFile> Assemblies => _Assemblies ?? (_Assemblies = GetAssemblies());
 

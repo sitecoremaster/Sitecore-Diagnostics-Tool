@@ -110,7 +110,6 @@
     <Compile Include="ResourceNotAvailableExceptionTests.cs" />
     <Compile Include="Resources\ProcessorDefinitionTests.cs" />
     <Compile Include="Test_AnyRoleTest_IsValid_Tests.cs" />
-    <Compile Include="VersionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

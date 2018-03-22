@@ -60,7 +60,7 @@
     private static void ProcessConfiguration(IInstanceResourceContext instance, Map<List<string>> configs)
     {
       var instanceName = instance.SitecoreInfo.InstanceName;
-      foreach (var filePath in instance.SitecoreInfo.IncludeFiles.Keys)
+      foreach (var filePath in instance.SitecoreInfo.ConfigurationFiles.Keys)
       {
         var fileName = Path.GetFileNameWithoutExtension(filePath);
         if (!fileName.Contains("Sitecore.Support."))

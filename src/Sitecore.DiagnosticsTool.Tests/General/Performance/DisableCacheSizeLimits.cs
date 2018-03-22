@@ -22,7 +22,7 @@
 
       if (data.SitecoreInfo.GetBoolSetting("Caching.DisableCacheSizeLimits"))
       {
-        output.Warning("All cache size limits are disabled. It can potentially cause significant performance degradation and OutOfMemoryException exception. It is recommended to disable the Caching.DisableCacheSizeLimits setting. Check CMS Performance Tuning Guide document for details.");
+        output.Error("All cache size limits are disabled. It can potentially cause significant performance degradation and OutOfMemoryException exception. It is recommended to disable the Caching.DisableCacheSizeLimits setting. Check CMS Performance Tuning Guide document for details.");
       }
     }
   }
